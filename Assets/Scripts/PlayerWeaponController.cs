@@ -12,7 +12,6 @@ public class PlayerWeaponController : MonoBehaviour
 
 
     [SerializeField] private Transform weaponHolder;
-    [SerializeField] private Transform aim;
 
     private void Start()
     {
@@ -32,24 +31,20 @@ public class PlayerWeaponController : MonoBehaviour
         GetComponentInChildren<Animator>().SetTrigger("Fire");
     }
 
-    private Vector3 BulletDirection()
+    public Vector3 BulletDirection()
     {
+        Transform aim = player.aim.Aim();
+
         Vector3 direction = (aim.position - gunPoint.position).normalized;
 
-        if(player.aim.CanAimPrecisly() == false )
+        if(player.aim.CanAimPrecisly() == false && player.aim.Target() == null)
             direction.y = 0;
 
-        weaponHolder.LookAt(aim);
-        gunPoint.LookAt(aim);
+        //weaponHolder.LookAt(aim);
+        //gunPoint.LookAt(aim); TODO: find a better place for it.
 
         return direction;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(weaponHolder.position, weaponHolder.position + weaponHolder.forward * 25);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(gunPoint.position, gunPoint.position + BulletDirection() * 25);
-    }
+    public Transform GunPoint() => gunPoint;
 }
