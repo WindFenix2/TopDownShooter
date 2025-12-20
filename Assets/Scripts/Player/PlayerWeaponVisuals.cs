@@ -8,9 +8,10 @@ public class PlayerWeaponVisuals : MonoBehaviour
 {
     private Player player;
     private Animator anim;
-    private bool isGrabbingWeapon; 
+    private bool isEquippingWeapon; 
 
     [SerializeField] private WeaponModel[] weaponModels;
+    [SerializeField] private BackupWeaponModel[] backupWeaponModels;
 
     [Header("Rig")]
     [SerializeField] private float rigWeightIncreaseRate;
@@ -30,6 +31,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rig = GetComponentInChildren<Rig>();
         weaponModels = GetComponentsInChildren<WeaponModel>(true);
+        backupWeaponModels = GetComponentsInChildren<BackupWeaponModel>(true);
     }
 
     private void Update()
@@ -41,21 +43,27 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
     public void PlayReloadAnimation()
     {
-        if (isGrabbingWeapon)
+        if (isEquippingWeapon)
             return;
 
+        float reloadSpeed = player.weapon.CurrentWeapon().reloadSpeed;
+        if (reloadSpeed <= 0f) reloadSpeed = 1f;
+        anim.SetFloat("ReloadSpeed", reloadSpeed);
         anim.SetTrigger("Reload");
-        ReduseRigWeight();
+        ReduceRigWeight();
     }
 
     public void PlayWeaponEquipAnimation()
     {
-        GrabType grabType = CurrentWeaponModel().grabType;
+        EquipType equipType = CurrentWeaponModel().equipAnimationType;
 
+        float equipmentSpeed = player.weapon.CurrentWeapon().equipmentSpeed;
+        if (equipmentSpeed <= 0f) equipmentSpeed = 1f;
         leftHandIK.weight = 0;
-        ReduseRigWeight();
-        anim.SetFloat("WeaponGrabType", ((float)grabType));
-        anim.SetTrigger("WeaponGrab");
+        anim.SetTrigger("EquipWeapon");
+        anim.SetFloat("EquipSpeed", equipmentSpeed);
+        anim.SetFloat("EquipType", ((float)equipType));
+        ReduceRigWeight();
 
         SetBusyGrabbingWeaponTo(true);
     }
@@ -63,13 +71,19 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
     public void SetBusyGrabbingWeaponTo(bool busy)
     {
-        isGrabbingWeapon = busy;
-        anim.SetBool("BusyGrabbingWeapon", isGrabbingWeapon);
+        isEquippingWeapon = busy;
+        anim.SetBool("BusyEquipingWeapon", isEquippingWeapon);
     }
 
     public void SwitchOnCurrentWeaponModel()
     {
         int animationIndex = ((int)CurrentWeaponModel().holdType);
+
+        SwithOffWeaponModels();
+        SwitchOffBackupWeaponModels();
+
+        if(player.weapon.HasOnlyOneWeapon() == false)
+            SwitchOnBackupWeaponModel();
 
         SwitchAnimationLayer(animationIndex);
         CurrentWeaponModel().gameObject.SetActive(true);
@@ -82,6 +96,26 @@ public class PlayerWeaponVisuals : MonoBehaviour
             weaponModels[i].gameObject.SetActive(false);
         }
     }
+
+    private void SwitchOffBackupWeaponModels()
+    {
+        foreach (BackupWeaponModel backupModel in backupWeaponModels)
+        {
+            backupModel.gameObject.SetActive(false);
+        }
+    }
+
+    public void SwitchOnBackupWeaponModel()
+    {
+        WeaponType weaponType = player.weapon.BackupWeapon().weaponType;
+
+        foreach (BackupWeaponModel backupModel in backupWeaponModels)
+        {
+            if (backupModel.weaponType == weaponType)
+                backupModel.gameObject.SetActive(true);
+        }
+    }
+
 
     private void SwitchAnimationLayer(int layerIndex)
     {
@@ -141,7 +175,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
         }
     }
 
-    private void ReduseRigWeight()
+    private void ReduceRigWeight()
     {
         rig.weight = .15f;
     }

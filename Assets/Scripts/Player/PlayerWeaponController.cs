@@ -29,15 +29,16 @@ public class PlayerWeaponController : MonoBehaviour
         player = GetComponent<Player>();
         AssignInputEvents();
 
-        currentWeapon.bulletsInMagazine = currentWeapon.totalReserveAmmo;
+        Invoke("EquipStartingWeapon", .1f);
     }
 
     #region Slots managment - Pickup\Equip\Drop Weapon
+
+    private void EquipStartingWeapon() => EquipWeapon(0);
+
     private void EquipWeapon(int i)
     {
         currentWeapon = weaponSlots[i];
-
-        player.weaponVisuals.SwithOffWeaponModels();
         player.weaponVisuals.PlayWeaponEquipAnimation();
     }
 
@@ -50,18 +51,17 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         weaponSlots.Add(newWeapon);
+        player.weaponVisuals.SwitchOnBackupWeaponModel();
     }
 
     private void DropWeapon()
     {
-        if (weaponSlots.Count <= 1)
+        if (HasOnlyOneWeapon())
             return;
         
         weaponSlots.Remove(currentWeapon);
-
-        currentWeapon = weaponSlots[0];
+        EquipWeapon(0);
     }
-
     #endregion
 
     private void Shoot()
@@ -69,15 +69,16 @@ public class PlayerWeaponController : MonoBehaviour
         if (currentWeapon.CanShoot() == false)
             return;
 
-        GameObject newBullet = 
-            Instantiate(bulletPrefab, gunPoint.position, Quaternion.LookRotation(gunPoint.forward));
+        GameObject newBullet = ObjectPool.instance.GetBullet();
+
+        newBullet.transform.position = gunPoint.position;
+        newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
 
         rbNewBullet.mass = REFERENCE_BULLET_SPEED / bulletSpeed;
         rbNewBullet.velocity = BulletDirection() * bulletSpeed;
 
-        Destroy(newBullet,10);
         GetComponentInChildren<Animator>().SetTrigger("Fire");
     }
 
@@ -96,7 +97,22 @@ public class PlayerWeaponController : MonoBehaviour
         return direction;
     }
 
+
+    public bool HasOnlyOneWeapon() => weaponSlots.Count <= 1;
+
     public Weapon CurrentWeapon() => currentWeapon;
+
+    public Weapon BackupWeapon()
+    {
+        foreach (Weapon weapon in weaponSlots)
+        {
+            if (weapon != currentWeapon)
+                return weapon;
+        }
+
+        return null;
+    }
+
     public Transform GunPoint() => gunPoint;
 
     #region Input Event
