@@ -29,13 +29,16 @@ public class PlayerWeaponController : MonoBehaviour
         player = GetComponent<Player>();
         AssignInputEvents();
 
-        currentWeapon.ammo = currentWeapon.maxAmmo;
+        currentWeapon.bulletsInMagazine = currentWeapon.totalReserveAmmo;
     }
 
     #region Slots managment - Pickup\Equip\Drop Weapon
     private void EquipWeapon(int i)
     {
         currentWeapon = weaponSlots[i];
+
+        player.weaponVisuals.SwithOffWeaponModels();
+        player.weaponVisuals.PlayWeaponEquipAnimation();
     }
 
     public void PickupWeapon(Weapon newWeapon)
@@ -93,6 +96,7 @@ public class PlayerWeaponController : MonoBehaviour
         return direction;
     }
 
+    public Weapon CurrentWeapon() => currentWeapon;
     public Transform GunPoint() => gunPoint;
 
     #region Input Event
@@ -106,6 +110,14 @@ public class PlayerWeaponController : MonoBehaviour
         controls.Character.EquipSlot2.performed += context => EquipWeapon(1);
 
         controls.Character.DropCurrentWeapon.performed += context => DropWeapon();
+
+        controls.Character.Reload.performed += context =>
+        {
+            if (currentWeapon.CanReload())
+            {
+                player.weaponVisuals.PlayReloadAnimation();
+            }
+        };
 
     }
 
