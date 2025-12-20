@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
+    private Player player;
     private const float REFERENCE_BULLET_SPEED = 20;
     //This is the default speed from which our mass formula is derived.
 
+    [SerializeField] private Weapon currentWeapon;
 
-    private Player player;
 
+    [Header("Bullet details")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private Transform gunPoint;
@@ -17,15 +19,53 @@ public class PlayerWeaponController : MonoBehaviour
 
     [SerializeField] private Transform weaponHolder;
 
+    [Header("Inventory")]
+
+    [SerializeField] private int maxSlots = 2;
+    [SerializeField] private List<Weapon> weaponSlots;
+
     private void Start()
     {
         player = GetComponent<Player>();
-        player.controls.Character.Fire.performed += context => Shoot();
+        AssignInputEvents();
 
+        currentWeapon.ammo = currentWeapon.maxAmmo;
     }
+
+    #region Slots managment - Pickup\Equip\Drop Weapon
+    private void EquipWeapon(int i)
+    {
+        currentWeapon = weaponSlots[i];
+    }
+
+    public void PickupWeapon(Weapon newWeapon)
+    {
+        if (weaponSlots.Count >= maxSlots)
+        {
+            Debug.Log("No slots availible");
+            return;
+        }
+
+        weaponSlots.Add(newWeapon);
+    }
+
+    private void DropWeapon()
+    {
+        if (weaponSlots.Count <= 1)
+            return;
+        
+        weaponSlots.Remove(currentWeapon);
+
+        currentWeapon = weaponSlots[0];
+    }
+
+    #endregion
 
     private void Shoot()
     {
+        if (currentWeapon.CanShoot() == false)
+            return;
+
         GameObject newBullet = 
             Instantiate(bulletPrefab, gunPoint.position, Quaternion.LookRotation(gunPoint.forward));
 
@@ -54,4 +94,20 @@ public class PlayerWeaponController : MonoBehaviour
     }
 
     public Transform GunPoint() => gunPoint;
+
+    #region Input Event
+    private void AssignInputEvents()
+    {
+        PlayerControls controls = player.controls;
+
+        player.controls.Character.Fire.performed += context => Shoot();
+
+        controls.Character.EquipSlot1.performed += context => EquipWeapon(0);
+        controls.Character.EquipSlot2.performed += context => EquipWeapon(1);
+
+        controls.Character.DropCurrentWeapon.performed += context => DropWeapon();
+
+    }
+
+    #endregion
 }
