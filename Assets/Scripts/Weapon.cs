@@ -25,14 +25,14 @@ public class Weapon
     [Range(1, 3)]
     public float equipmentSpeed = 1; // how fast character equips weapon
 
+    [Space]
+    public float fireRate = 1; // bullets per second
+    private float lastShootTime;
+    
+
     public bool CanShoot()
     {
-        return HaveEnoughBullets();
-    }
-
-    private bool HaveEnoughBullets()
-    {
-        if (bulletsInMagazine > 0)
+        if(HaveEnoughBullets() && ReadyToFire())
         {
             bulletsInMagazine--;
             return true;
@@ -41,6 +41,19 @@ public class Weapon
         return false;
     }
 
+    private bool ReadyToFire()
+    {
+        if(Time.time > lastShootTime + 1 / fireRate)
+        {
+            lastShootTime = Time.time; // 25 seconds
+            return true;
+        }
+
+        return false;
+    }
+
+
+    #region Reload methods
     public bool CanReload()
     {
         if (bulletsInMagazine == magazineCapacity)
@@ -53,8 +66,6 @@ public class Weapon
 
         return false;
     }
-
-
     public void RefillBullets()
     {
         //totalReserveAmmo += bulletsInMagazine; 
@@ -71,5 +82,6 @@ public class Weapon
         if (totalReserveAmmo < 0)
             totalReserveAmmo = 0;
     }
-
+    private bool HaveEnoughBullets() => bulletsInMagazine > 0;
+    #endregion
 }
