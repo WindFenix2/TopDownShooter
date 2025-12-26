@@ -3022,7 +3022,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.94399977, z: 1.186391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4077,7 +4077,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 2008909899}
+  m_Follow: {fileID: 99127756}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
@@ -4106,7 +4106,7 @@ Transform:
   m_GameObject: {fileID: 1560804999}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.94399977, z: 1.186391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5187,12 +5187,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon:
     weaponType: 2
+    shootType: 0
+    fireRate: 1
     bulletsInMagazine: 0
     magazineCapacity: 0
     totalReserveAmmo: 0
     reloadSpeed: 1
     equipmentSpeed: 1
-    fireRate: 1
 --- !u!4 &1949077757
 Transform:
   m_ObjectHideFlags: 0
@@ -5418,31 +5419,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon:
     weaponType: 0
+    shootType: 0
+    fireRate: 1
     bulletsInMagazine: 0
     magazineCapacity: 0
     totalReserveAmmo: 0
     reloadSpeed: 1
     equipmentSpeed: 1
-    fireRate: 1
   bulletPrefab: {fileID: 7678511026656812387, guid: 3ef401dc367096543a7b478f6aa4197f, type: 3}
   bulletSpeed: 15
   weaponHolder: {fileID: 1733711238}
   maxSlots: 2
   weaponSlots:
   - weaponType: 0
+    shootType: 0
+    fireRate: 3
     bulletsInMagazine: 100
     magazineCapacity: 50
     totalReserveAmmo: 5000
     reloadSpeed: 0
     equipmentSpeed: 1
+  - weaponType: 2
+    shootType: 1
     fireRate: 5
-  - weaponType: 4
     bulletsInMagazine: 100
     magazineCapacity: 50
     totalReserveAmmo: 6161
     reloadSpeed: 0
     equipmentSpeed: 1
-    fireRate: 1.5
 --- !u!114 &2008909902
 MonoBehaviour:
   m_ObjectHideFlags: 0

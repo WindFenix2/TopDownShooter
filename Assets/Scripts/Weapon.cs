@@ -9,13 +9,24 @@ public enum WeaponType
     Rifle
 }
 
+public enum ShootType
+{
+    Single,
+    Auto
+}
 
 [System.Serializable] // Makes class visible in the inspector.
 public class Weapon
 {
     public WeaponType weaponType;
 
+    [Header("Shooting specifics")]
 
+    public ShootType shootType;
+    public float fireRate = 1; // bullets per second
+    private float lastShootTime;
+
+    [Header("Magazine datails")]
     public int bulletsInMagazine;
     public int magazineCapacity;
     public int totalReserveAmmo;
@@ -25,9 +36,6 @@ public class Weapon
     [Range(1, 3)]
     public float equipmentSpeed = 1; // how fast character equips weapon
 
-    [Space]
-    public float fireRate = 1; // bullets per second
-    private float lastShootTime;
     
 
     public bool CanShoot()
