@@ -26,10 +26,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     }
 
-    public void WeaponGrabIsOver()
+    public void WeaponEquippingIsOver()
     {
-        visualController.SetBusyGrabbingWeaponTo(false);
-
         weaponController.SetWeaponReady(true);
     }
 

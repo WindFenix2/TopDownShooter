@@ -12,7 +12,7 @@ public class WeaponModel : MonoBehaviour
     public EquipType equipAnimationType;
     public HoldType holdType;
 
-    public Transform gunType;
+    public Transform gunPoint;
     public Transform holdPoint;
 
 }

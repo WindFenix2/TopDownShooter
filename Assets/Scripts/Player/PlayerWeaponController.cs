@@ -14,7 +14,6 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Bullet details")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
-    [SerializeField] private Transform gunPoint;
 
 
     [SerializeField] private Transform weaponHolder;
@@ -72,20 +71,23 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Shoot()
     {
+        if (WeaponReady() == false)
+            return;
+
         if (currentWeapon.CanShoot() == false)
             return;
 
         GameObject newBullet = ObjectPool.instance.GetBullet();
 
-        newBullet.transform.position = gunPoint.position;
-        newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
+        newBullet.transform.position = GunPoint().position;
+        newBullet.transform.rotation = Quaternion.LookRotation(GunPoint().forward);
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
 
         rbNewBullet.mass = REFERENCE_BULLET_SPEED / bulletSpeed;
         rbNewBullet.velocity = BulletDirection() * bulletSpeed;
 
-        GetComponentInChildren<Animator>().SetTrigger("Fire");
+        player.weaponVisuals.PlayFireAnimation();
     }
 
     private void Reload()
@@ -98,13 +100,10 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Transform aim = player.aim.Aim();
 
-        Vector3 direction = (aim.position - gunPoint.position).normalized;
+        Vector3 direction = (aim.position - GunPoint().position).normalized;
 
         if(player.aim.CanAimPrecisly() == false && player.aim.Target() == null)
             direction.y = 0;
-
-        //weaponHolder.LookAt(aim);
-        //gunPoint.LookAt(aim); TODO: find a better place for it.
 
         return direction;
     }
@@ -125,7 +124,7 @@ public class PlayerWeaponController : MonoBehaviour
         return null;
     }
 
-    public Transform GunPoint() => gunPoint;
+    public Transform GunPoint() => player.weaponVisuals.CurrentWeaponModel().gunPoint;
 
     #region Input Event
     private void AssignInputEvents()
@@ -141,7 +140,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         controls.Character.Reload.performed += context =>
         {
-            if (currentWeapon.CanReload())
+            if (currentWeapon.CanReload() && WeaponReady())
             {
                 Reload();
             }
