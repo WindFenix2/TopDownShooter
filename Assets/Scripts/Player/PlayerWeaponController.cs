@@ -9,7 +9,7 @@ public class PlayerWeaponController : MonoBehaviour
     //This is the default speed from which our mass formula is derived.
 
     [SerializeField] private Weapon currentWeapon;
-
+    private bool weaponReady;
 
     [Header("Bullet details")]
     [SerializeField] private GameObject bulletPrefab;
@@ -32,12 +32,14 @@ public class PlayerWeaponController : MonoBehaviour
         Invoke("EquipStartingWeapon", .1f);
     }
 
-    #region Slots managment - Pickup\Equip\Drop Weapon
+    #region Slots managment - Pickup\Equip\Drop\Ready Weapon
 
     private void EquipStartingWeapon() => EquipWeapon(0);
 
     private void EquipWeapon(int i)
     {
+        SetWeaponReady(false);
+
         currentWeapon = weaponSlots[i];
         player.weaponVisuals.PlayWeaponEquipAnimation();
     }
@@ -62,6 +64,10 @@ public class PlayerWeaponController : MonoBehaviour
         weaponSlots.Remove(currentWeapon);
         EquipWeapon(0);
     }
+
+    public void SetWeaponReady(bool ready) => weaponReady = ready;
+    public bool WeaponReady() => weaponReady;
+
     #endregion
 
     private void Shoot()
@@ -80,6 +86,12 @@ public class PlayerWeaponController : MonoBehaviour
         rbNewBullet.velocity = BulletDirection() * bulletSpeed;
 
         GetComponentInChildren<Animator>().SetTrigger("Fire");
+    }
+
+    private void Reload()
+    {
+        SetWeaponReady(false);
+        player.weaponVisuals.PlayReloadAnimation();
     }
 
     public Vector3 BulletDirection()
@@ -131,11 +143,13 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (currentWeapon.CanReload())
             {
-                player.weaponVisuals.PlayReloadAnimation();
+                Reload();
             }
         };
 
     }
+
+    
 
     #endregion
 }
