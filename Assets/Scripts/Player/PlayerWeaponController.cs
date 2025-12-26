@@ -36,6 +36,9 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if(isShooting)
             Shoot();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            currentWeapon.ToggleBurst();
     }
 
     #region Slots managment - Pickup\Equip\Drop\Ready Weapon
@@ -76,6 +79,21 @@ public class PlayerWeaponController : MonoBehaviour
 
     #endregion
 
+    private IEnumerator BurstFire()
+    {
+        SetWeaponReady(false);
+
+        for (int i = 1; i <= currentWeapon.bulletsPerShot; i++)
+        {
+            FireSingleBullet();
+
+            yield return new WaitForSeconds(currentWeapon.burstFireDelay);
+
+            if(i >= currentWeapon.bulletsPerShot)
+                SetWeaponReady(true);   
+        }
+    }
+
     private void Shoot()
     {
         if (WeaponReady() == false)
@@ -84,8 +102,23 @@ public class PlayerWeaponController : MonoBehaviour
         if (currentWeapon.CanShoot() == false)
             return;
 
+        player.weaponVisuals.PlayFireAnimation();
+
         if (currentWeapon.shootType == ShootType.Single)
             isShooting = false;
+
+        if(currentWeapon.BurstActivated() == true)
+        {
+            StartCoroutine(BurstFire());
+            return;
+        }
+
+        FireSingleBullet();
+    }
+
+    private void FireSingleBullet()
+    {
+        currentWeapon.bulletsInMagazine--;
 
         GameObject newBullet = ObjectPool.instance.GetBullet();
 
@@ -98,8 +131,6 @@ public class PlayerWeaponController : MonoBehaviour
 
         rbNewBullet.mass = REFERENCE_BULLET_SPEED / bulletSpeed;
         rbNewBullet.velocity = bulletsDicrection * bulletSpeed;
-
-        player.weaponVisuals.PlayFireAnimation();
     }
 
     private void Reload()
