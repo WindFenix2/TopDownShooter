@@ -936,7 +936,7 @@ Transform:
   m_GameObject: {fileID: 99127752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0009727478, y: 1, z: 1.301}
+  m_LocalPosition: {x: 0.03, y: 4.06, z: -2.41}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 6
+  m_CameraDistance: 6.8
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -3022,7 +3022,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0.94399977, z: 1.186391}
+  m_LocalPosition: {x: 0.030972747, y: 4.696821, z: -2.9246094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4106,7 +4106,7 @@ Transform:
   m_GameObject: {fileID: 1560804999}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0.94399977, z: 1.186391}
+  m_LocalPosition: {x: 0.030972747, y: 4.696821, z: -2.9246094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5131,6 +5131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1931979158}
+  - component: {fileID: 1931979159}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -5155,6 +5156,19 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1931979159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931979157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cddb01cfed28043aa859740c492b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceChangeRate: 0.5
 --- !u!1 &1949077755
 GameObject:
   m_ObjectHideFlags: 0
@@ -5201,6 +5215,8 @@ MonoBehaviour:
     totalReserveAmmo: 0
     reloadSpeed: 1
     equipmentSpeed: 1
+    gunDistance: 6
+    cameraDistance: 6
     baseSpread: 0
     maximumSpread: 3
     spreadIncreaseRate: 0.15
@@ -5428,7 +5444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon:
-    weaponType: 0
+    weaponType: 2
     shootType: 0
     bulletsPerShot: 0
     defaultFireRate: 0
@@ -5443,6 +5459,8 @@ MonoBehaviour:
     totalReserveAmmo: 0
     reloadSpeed: 1
     equipmentSpeed: 1
+    gunDistance: 6
+    cameraDistance: 7
     baseSpread: 100
     maximumSpread: 15
     spreadIncreaseRate: 0.15
@@ -5466,6 +5484,8 @@ MonoBehaviour:
     totalReserveAmmo: 6161
     reloadSpeed: 0
     equipmentSpeed: 1
+    gunDistance: 6
+    cameraDistance: 7
     baseSpread: 1
     maximumSpread: 3
     spreadIncreaseRate: 0.15
@@ -5484,6 +5504,8 @@ MonoBehaviour:
     totalReserveAmmo: 5000
     reloadSpeed: 1
     equipmentSpeed: 1
+    gunDistance: 2.5
+    cameraDistance: 4.5
     baseSpread: 15
     maximumSpread: 15
     spreadIncreaseRate: 0.15
