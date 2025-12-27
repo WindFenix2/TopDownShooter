@@ -61,6 +61,33 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Equip Slot - 3",
+                    "type": "Button",
+                    "id": "9e5d9f99-cf91-44e7-8103-a2c278cb317d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Slot - 4",
+                    "type": "Button",
+                    "id": "e1fd65b6-1d60-4a8d-8679-7343370db3b3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Slot - 5",
+                    "type": "Button",
+                    "id": "eca6d6db-df81-4982-833e-79b19200127d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Drop Current Weapon",
                     "type": "Button",
                     "id": "8ffba5c5-76ac-460d-aefc-0e9537a58c40",
@@ -73,6 +100,15 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "005e0f11-e4fb-4e14-afa7-5bfabef5b216",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Toogle Weapon Mode",
+                    "type": "Button",
+                    "id": "273499aa-d462-4899-b258-8e9ecdecbb30",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -192,6 +228,39 @@
                 },
                 {
                     "name": "",
+                    "id": "d5211375-2d89-4805-86ff-a9a90a32a6c6",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Slot - 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "325a84ca-b89c-4a01-aeb7-d3ce8d446615",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Slot - 4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72aeaedf-ecf4-48f5-9d99-d8f80a7999be",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Slot - 5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6b8acafe-f00f-443d-9858-bca1e491441f",
                     "path": "<Keyboard>/g",
                     "interactions": "",
@@ -209,6 +278,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76940707-756d-44a3-abdd-74ce2e72f395",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toogle Weapon Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
