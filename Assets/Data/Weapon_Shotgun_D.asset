@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc2466499cd6ca4c866730b163cd293, type: 3}
+  m_Name: Weapon_Shotgun_D
+  m_EditorClassIdentifier: 
+  weaponName: Shotgun G7
+  bulletsInMagazine: 30
+  magazineCapacity: 30
+  totalReserveAmmo: 999999999
+  shootType: 0
+  bulletsPerShot: 5
+  fireRate: 2
+  burstAvalible: 0
+  burstActive: 0
+  burstBulletsPerShot: 0
+  burstFireRate: 0
+  burstFireDelay: 0.1
+  baseSpread: 15
+  maxSpread: 15
+  spreadIncreaseRate: 0.15
+  weaponType: 3
+  reloadSpeed: 1
+  equipmentSpeed: 1
+  gunDistance: 4.5
+  cameraDistance: 6

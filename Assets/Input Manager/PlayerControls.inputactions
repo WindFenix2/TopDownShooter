@@ -1,16 +1,15 @@
 {
-    "version": 1,
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Character",
-            "id": "b075ce06-aeaf-4f07-b38e-6c8508f4e299",
+            "name": "Character ",
+            "id": "120eda51-de0c-4090-bcfa-16c57844dfec",
             "actions": [
                 {
                     "name": "Fire",
                     "type": "Button",
-                    "id": "8e8175bf-3aab-4a3d-8fe9-bded35588a9a",
-                    "expectedControlType": "",
+                    "id": "8c5b8cee-af57-4c74-bf87-3e96823def6e",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,7 +17,7 @@
                 {
                     "name": "Movement",
                     "type": "Value",
-                    "id": "a572271f-f303-4f32-844d-056e76f353b4",
+                    "id": "88d0dd60-817f-48ab-80a0-2aabaf71d11f",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -27,7 +26,7 @@
                 {
                     "name": "Aim",
                     "type": "Value",
-                    "id": "3d7571ba-9092-4493-ae3d-d7cb4ccc9b04",
+                    "id": "9c6cc80c-f2bf-4223-a97d-5a82e2ecdf2d",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -36,8 +35,8 @@
                 {
                     "name": "Run",
                     "type": "Button",
-                    "id": "e908ddcc-6553-405d-a2dd-5021dd42036d",
-                    "expectedControlType": "",
+                    "id": "322208ec-277c-4b80-bbe3-61aba45a2ce4",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -45,8 +44,8 @@
                 {
                     "name": "Equip Slot - 1",
                     "type": "Button",
-                    "id": "754c741c-603e-4dbf-b667-6e64825d7d16",
-                    "expectedControlType": "",
+                    "id": "6536ba8c-158c-4b21-abf6-f0dfbcbc0a09",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -54,8 +53,8 @@
                 {
                     "name": "Equip Slot - 2",
                     "type": "Button",
-                    "id": "d2721d63-1116-4dbc-89af-838cb2584f87",
-                    "expectedControlType": "",
+                    "id": "d3ea4687-0e83-4ef7-b414-e49c0dabcace",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,8 +62,8 @@
                 {
                     "name": "Equip Slot - 3",
                     "type": "Button",
-                    "id": "9e5d9f99-cf91-44e7-8103-a2c278cb317d",
-                    "expectedControlType": "",
+                    "id": "5d2cf7da-3389-430b-87b1-5b2d2c1c5b28",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -72,8 +71,8 @@
                 {
                     "name": "Equip Slot - 4",
                     "type": "Button",
-                    "id": "e1fd65b6-1d60-4a8d-8679-7343370db3b3",
-                    "expectedControlType": "",
+                    "id": "4b2165b9-b1d3-45d2-bf03-b1eb1ef5d4de",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -81,8 +80,8 @@
                 {
                     "name": "Equip Slot - 5",
                     "type": "Button",
-                    "id": "eca6d6db-df81-4982-833e-79b19200127d",
-                    "expectedControlType": "",
+                    "id": "3190df3f-6199-4db2-9ed4-545ac57f653a",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,8 +89,8 @@
                 {
                     "name": "Drop Current Weapon",
                     "type": "Button",
-                    "id": "8ffba5c5-76ac-460d-aefc-0e9537a58c40",
-                    "expectedControlType": "",
+                    "id": "657d131c-aaa1-42bb-8d0f-23f052c419f2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -99,8 +98,8 @@
                 {
                     "name": "Reload",
                     "type": "Button",
-                    "id": "005e0f11-e4fb-4e14-afa7-5bfabef5b216",
-                    "expectedControlType": "",
+                    "id": "2ab53d65-92fc-42a8-913c-b4eb5fa5546d",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -108,8 +107,8 @@
                 {
                     "name": "Toogle Weapon Mode",
                     "type": "Button",
-                    "id": "273499aa-d462-4899-b258-8e9ecdecbb30",
-                    "expectedControlType": "",
+                    "id": "a66fb886-267b-46da-8670-a45d89128af1",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -118,7 +117,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d5142bcb-3bc8-4601-8e4b-baaada42a460",
+                    "id": "02407c90-cf5c-4a3d-9733-6c0069ab2bcb",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -129,7 +128,7 @@
                 },
                 {
                     "name": "WASD",
-                    "id": "941ed72e-f734-4070-bc43-77b72c60175a",
+                    "id": "c86e3601-b0aa-49a2-b7d8-c5f005fd3fec",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -140,7 +139,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "7ed7b475-439e-49d3-a974-c8ca2d051b1c",
+                    "id": "702c50b6-e87a-40ad-bcfa-77be549fc99b",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -151,7 +150,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "cc943735-0f73-4fb3-be65-d0f8ea587419",
+                    "id": "d95e7516-150f-4844-85fb-16b3a806096c",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -162,7 +161,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "af6b313c-95aa-4ce2-811c-b7ec52ba0de8",
+                    "id": "f61d35e1-bc82-4dfb-afdf-307c6486d2d3",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -173,7 +172,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "dd1e2536-fd7c-4935-ba7d-1bafbd0eb110",
+                    "id": "1ab3a667-acdd-405b-9e7d-fe65c31a4660",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -184,7 +183,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0e7cc35a-9a3a-45f6-80ea-fff3d4a58f11",
+                    "id": "2e275601-cbb2-4711-b098-6fa49c0725c9",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -195,7 +194,7 @@
                 },
                 {
                     "name": "",
-                    "id": "c5736def-bdf1-46d7-a954-5e396eddb9cb",
+                    "id": "d43a758b-cece-4b97-926c-7e79a949430a",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
@@ -206,7 +205,7 @@
                 },
                 {
                     "name": "",
-                    "id": "44826c86-9c12-4c95-abef-6644e73e74ba",
+                    "id": "de5eb120-9aa7-4610-a883-80a648980409",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
@@ -217,7 +216,7 @@
                 },
                 {
                     "name": "",
-                    "id": "07ecdc0a-eb9c-447a-8dc3-020b165037a4",
+                    "id": "64633af6-c745-456d-9152-195b7c2f7829",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
@@ -228,40 +227,7 @@
                 },
                 {
                     "name": "",
-                    "id": "d5211375-2d89-4805-86ff-a9a90a32a6c6",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Equip Slot - 3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "325a84ca-b89c-4a01-aeb7-d3ce8d446615",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Equip Slot - 4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "72aeaedf-ecf4-48f5-9d99-d8f80a7999be",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Equip Slot - 5",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6b8acafe-f00f-443d-9858-bca1e491441f",
+                    "id": "e3b4af53-fb92-4aed-8f97-bbd14b5e09e0",
                     "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
@@ -272,7 +238,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a5e5a17f-8784-4df0-88ea-bf7c3cda2543",
+                    "id": "b6845d16-f29e-4d90-95f2-78e5d7601496",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
@@ -283,7 +249,40 @@
                 },
                 {
                     "name": "",
-                    "id": "76940707-756d-44a3-abdd-74ce2e72f395",
+                    "id": "f7e96240-2651-4a58-bf42-e171a24d5a9a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Slot - 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad9d2f0a-fdf8-40b2-afec-f9e64ece875d",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Slot - 4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe43fbd9-44a8-493a-8b2b-9e62c3332ee3",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Slot - 5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "736ea05c-536c-4703-bd44-033c4d05f723",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",

@@ -1,49 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.UIElements;
 
 public class PlayerWeaponVisuals : MonoBehaviour
 {
+
     private Player player;
     private Animator anim;
 
     [SerializeField] private WeaponModel[] weaponModels;
     [SerializeField] private BackupWeaponModel[] backupWeaponModels;
 
-    [Header("Rig")]
+
+
+    [Header("Rig ")]
     [SerializeField] private float rigWeightIncreaseRate;
     private bool shouldIncrease_RigWeight;
     private Rig rig;
 
     [Header("Left hand IK")]
-    [SerializeField] private float leftHandIKWeightIncreaseRate;
+    [SerializeField] private float leftHandIkWeightIncreaseRate;
     [SerializeField] private TwoBoneIKConstraint leftHandIK;
     [SerializeField] private Transform leftHandIK_Target;
-    private bool shouldIncrease_LeftHandIKWiegth;
+    private bool shouldIncrease_LeftHandIKWieght;
+
 
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        player  = GetComponent<Player>();
         anim = GetComponentInChildren<Animator>();
         rig = GetComponentInChildren<Rig>();
+
         weaponModels = GetComponentsInChildren<WeaponModel>(true);
         backupWeaponModels = GetComponentsInChildren<BackupWeaponModel>(true);
     }
 
     private void Update()
     {
-        UpdateRigWeigth();
-        UpdateLeftHandIKWeigth();
+        UpdateRigWigth();
+        UpdateLeftHandIKWeight();
     }
+
 
     public void PlayFireAnimation() => anim.SetTrigger("Fire");
     public void PlayReloadAnimation()
     {
+       
         float reloadSpeed = player.weapon.CurrentWeapon().reloadSpeed;
-        if (reloadSpeed <= 0f) reloadSpeed = 1f;
+
         anim.SetFloat("ReloadSpeed", reloadSpeed);
         anim.SetTrigger("Reload");
         ReduceRigWeight();
@@ -54,20 +58,22 @@ public class PlayerWeaponVisuals : MonoBehaviour
         EquipType equipType = CurrentWeaponModel().equipAnimationType;
 
         float equipmentSpeed = player.weapon.CurrentWeapon().equipmentSpeed;
-        if (equipmentSpeed <= 0f) equipmentSpeed = 1f;
+
         leftHandIK.weight = 0;
-        anim.SetTrigger("EquipWeapon");
-        anim.SetFloat("EquipSpeed", equipmentSpeed);
-        anim.SetFloat("EquipType", ((float)equipType));
         ReduceRigWeight();
+        anim.SetTrigger("EquipWeapon");
+        anim.SetFloat("EquipType", ((float)equipType));
+        anim.SetFloat("EquipSpeed", equipmentSpeed);
     }
+
 
     public void SwitchOnCurrentWeaponModel()
     {
         int animationIndex = ((int)CurrentWeaponModel().holdType);
 
-        SwithOffWeaponModels();
+        SwitchOffWeaponModels();
         SwitchOffBackupWeaponModels();
+
 
         if(player.weapon.HasOnlyOneWeapon() == false)
             SwitchOnBackupWeaponModel();
@@ -76,7 +82,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
         CurrentWeaponModel().gameObject.SetActive(true);
         AttachLeftHand();
     }
-    public void SwithOffWeaponModels()
+    public void SwitchOffWeaponModels()
     {
         for (int i = 0; i < weaponModels.Length; i++)
         {
@@ -97,8 +103,8 @@ public class PlayerWeaponVisuals : MonoBehaviour
         SwitchOffBackupWeaponModels();
 
         BackupWeaponModel lowHangWeapon = null;
-        BackupWeaponModel backHandWeapon = null;
-        BackupWeaponModel sideHandWeapon = null;
+        BackupWeaponModel backHangWeapon = null;
+        BackupWeaponModel sideHangWeapon = null;
 
         foreach (BackupWeaponModel backupModel in backupWeaponModels)
         {
@@ -106,25 +112,25 @@ public class PlayerWeaponVisuals : MonoBehaviour
             if (backupModel.weaponType == player.weapon.CurrentWeapon().weaponType)
                 continue;
 
-            if(player.weapon.WeaponInSlots(backupModel.weaponType) != null)
+
+            if (player.weapon.WeaponInSlots(backupModel.weaponType) != null)
             {
-                if(backupModel.HangTypeIs(HangType.LowBackHang))
+                if (backupModel.HangTypeIs(HangType.LowBackHang))
                     lowHangWeapon = backupModel;
 
-                if (backupModel.HangTypeIs(HangType.BackHang))
-                    backHandWeapon = backupModel;
+                if(backupModel.HangTypeIs(HangType.BackHang))
+                    backHangWeapon = backupModel;
 
-                if (backupModel.HangTypeIs(HangType.SideHang))
-                    sideHandWeapon = backupModel;
+                if(backupModel.HangTypeIs(HangType.SideHang))
+                    sideHangWeapon = backupModel;
             }
         }
 
         lowHangWeapon?.Activate(true);
-        backHandWeapon?.Activate(true);
-        sideHandWeapon?.Activate(true);
+        backHangWeapon?.Activate(true);
+        sideHangWeapon?.Activate(true);
     }
-
-
+  
     private void SwitchAnimationLayer(int layerIndex)
     {
         for (int i = 1; i < anim.layerCount; i++)
@@ -132,7 +138,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
             anim.SetLayerWeight(i, 0);
         }
 
-        anim.SetLayerWeight(layerIndex, 1); 
+        anim.SetLayerWeight(layerIndex, 1);
     }
 
 
@@ -152,7 +158,9 @@ public class PlayerWeaponVisuals : MonoBehaviour
     }
 
 
+
     #region Animation Rigging Methods
+
     private void AttachLeftHand()
     {
         Transform targetTransform = CurrentWeaponModel().holdPoint;
@@ -161,18 +169,17 @@ public class PlayerWeaponVisuals : MonoBehaviour
         leftHandIK_Target.localRotation = targetTransform.localRotation;
     }
 
-    private void UpdateLeftHandIKWeigth()
+    private void UpdateLeftHandIKWeight()
     {
-        if (shouldIncrease_LeftHandIKWiegth)
+        if (shouldIncrease_LeftHandIKWieght)
         {
-            leftHandIK.weight += leftHandIKWeightIncreaseRate * Time.deltaTime;
+            leftHandIK.weight += leftHandIkWeightIncreaseRate * Time.deltaTime;
 
             if (leftHandIK.weight >= 1)
-                shouldIncrease_LeftHandIKWiegth = false;
+                shouldIncrease_LeftHandIKWieght = false;
         }
     }
-
-    private void UpdateRigWeigth()
+    private void UpdateRigWigth()
     {
         if (shouldIncrease_RigWeight)
         {
@@ -182,14 +189,13 @@ public class PlayerWeaponVisuals : MonoBehaviour
                 shouldIncrease_RigWeight = false;
         }
     }
-
     private void ReduceRigWeight()
     {
         rig.weight = .15f;
     }
 
     public void MaximizeRigWeight() => shouldIncrease_RigWeight = true;
-    public void MaximizeLeftHandWeight() => shouldIncrease_LeftHandIKWiegth = true; 
+    public void MaximizeLeftHandWeight() => shouldIncrease_LeftHandIKWieght = true;
 
     #endregion
 }

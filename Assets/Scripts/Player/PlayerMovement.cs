@@ -4,11 +4,11 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
 
-    private PlayerControls controls;
     private CharacterController characterController;
+    private PlayerControls controls;
     private Animator animator;
 
-    [Header("Movement Info")]
+    [Header("Movement info")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float turnSpeed;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         AssignInputEvents();
     }
 
+
     private void Update()
     {
         ApplyMovement();
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("xVelocity", xVelocity, .1f, Time.deltaTime);
         animator.SetFloat("zVelocity", zVelocity, .1f, Time.deltaTime);
 
-        bool playRunAnimation = isRunning && movementDirection.magnitude > 0;
+        bool playRunAnimation = isRunning & movementDirection.magnitude > 0;
         animator.SetBool("isRunning", playRunAnimation);
     }
     private void ApplyRotation()
@@ -93,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
             speed = runSpeed;
             isRunning = true;
         };
+
 
         controls.Character.Run.canceled += context =>
         {

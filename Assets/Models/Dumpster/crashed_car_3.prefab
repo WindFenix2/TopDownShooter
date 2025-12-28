@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2406649881840001195}
   - component: {fileID: 4163694615822101494}
   - component: {fileID: 8188863697592917186}
+  - component: {fileID: 3079888382074933180}
   m_Layer: 0
   m_Name: crashed_car_3
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3079888382074933180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771326837565017776}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2568091, y: 0.5112679, z: 2.616435}
+  m_Center: {x: 0.10650498, y: 0.20629019, z: -0.294096}

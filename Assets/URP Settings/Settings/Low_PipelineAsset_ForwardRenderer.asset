@@ -35,9 +35,6 @@ MonoBehaviour:
     cameraMotionVector: {fileID: 0}
     objectMotionVector: {fileID: 0}
     dataDrivenLensFlare: {fileID: 0}
-    terrainDetailLitPS: {fileID: 0}
-    terrainDetailGrassPS: {fileID: 0}
-    terrainDetailGrassBillboardPS: {fileID: 0}
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2

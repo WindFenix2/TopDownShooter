@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimationEvents : MonoBehaviour
@@ -19,14 +21,14 @@ public class PlayerAnimationEvents : MonoBehaviour
         weaponController.SetWeaponReady(true);
     }
 
+
     public void ReturnRig()
     {
         visualController.MaximizeRigWeight();
         visualController.MaximizeLeftHandWeight();
-
     }
 
-    public void WeaponEquippingIsOver()
+    public void WeaponEquipingIsOver()
     {
         weaponController.SetWeaponReady(true);
     }

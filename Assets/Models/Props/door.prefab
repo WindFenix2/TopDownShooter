@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5600572820758144639}
   - component: {fileID: 8782453171548193825}
   - component: {fileID: 5639972863921303065}
-  - component: {fileID: 3213959886244485420}
-  - component: {fileID: 2268264969887874743}
-  - component: {fileID: 1513180029601096434}
+  - component: {fileID: 6903577280504947652}
+  - component: {fileID: 519911947256892516}
+  - component: {fileID: 9128788751963475794}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3213959886244485420
+--- !u!65 &6903577280504947652
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,9 +105,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8685644, y: 0.07058141, z: 1.026941}
-  m_Center: {x: 0.1866355, y: 0.04121608, z: 0.002597224}
---- !u!54 &2268264969887874743
+  m_Size: {x: 0.8685644, y: 0.070581295, z: 1.0269408}
+  m_Center: {x: 0.1866355, y: 0.041216314, z: 0.0025972172}
+--- !u!54 &519911947256892516
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1513180029601096434
+--- !u!114 &9128788751963475794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7315668587081498972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f4797075d070f4b80f3aff0fde8f98, type: 3}
+  m_Script: {fileID: 11500000, guid: 6778d9e3e81680042a39a8308f559ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

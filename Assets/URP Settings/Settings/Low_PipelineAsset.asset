@@ -17,7 +17,7 @@ MonoBehaviour:
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
-  - {fileID: 11400000, guid: 96ad215a4f03acc48b0271fd930f8999, type: 2}
+  - {fileID: 11400000, guid: 9842c44c3e106e942856169c7788ed14, type: 2}
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0
@@ -104,10 +104,6 @@ MonoBehaviour:
   m_PrefilterDBufferMRT1: 0
   m_PrefilterDBufferMRT2: 0
   m_PrefilterDBufferMRT3: 0
-  m_PrefilterSoftShadowsQualityLow: 0
-  m_PrefilterSoftShadowsQualityMedium: 0
-  m_PrefilterSoftShadowsQualityHigh: 0
-  m_PrefilterSoftShadows: 0
   m_PrefilterScreenCoord: 0
   m_PrefilterNativeRenderPass: 0
   m_ShaderVariantLogLevel: 0
