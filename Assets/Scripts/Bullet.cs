@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float impactForce;
+
+
+
     private BoxCollider cd;
     private Rigidbody rb;
     private MeshRenderer meshRenderer;
     private TrailRenderer trailRenderer;
 
-
+    
     [SerializeField] private GameObject bulletImpactFX;
 
 
@@ -66,6 +70,7 @@ public class Bullet : MonoBehaviour
         CreateImpactFx(collision);
         ReturnBulletToPool();
     }
+
 
     private void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
 
