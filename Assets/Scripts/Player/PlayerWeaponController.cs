@@ -33,7 +33,7 @@ public class PlayerWeaponController : MonoBehaviour
         player = GetComponent<Player>();
         AssignInputEvents();
 
-        Invoke("EquipStartingWeapon", .1f);
+        Invoke(nameof(EquipStartingWeapon), .1f);
     }
 
     private void Update()
