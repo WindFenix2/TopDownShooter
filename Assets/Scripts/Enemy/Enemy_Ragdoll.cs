@@ -6,13 +6,13 @@ public class Enemy_Ragdoll : MonoBehaviour
 {
     [SerializeField] private Transform ragdollParent;
 
-    [SerializeField] private Collider[] ragdollColliders;
-    [SerializeField] private Rigidbody[] ragdollRigidbodies;
+    private Collider[] ragdollColliders;
+    private Rigidbody[] ragdollRigidbodies;
 
     private void Awake()
     {
-        ragdollColliders = ragdollParent.GetComponentsInChildren<Collider>(true);
-        ragdollRigidbodies = ragdollParent.GetComponentsInChildren<Rigidbody>(true);
+        ragdollColliders = GetComponentsInChildren<Collider>();
+        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
 
         RagdollActive(false);
     }
@@ -25,4 +25,11 @@ public class Enemy_Ragdoll : MonoBehaviour
         }
     }
 
+    public void CollidersActive(bool active)
+    {
+        foreach (Collider cd in ragdollColliders)
+        {
+            cd.enabled = active;
+        }
+    }
 }
