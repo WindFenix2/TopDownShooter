@@ -1,9 +1,8 @@
-using UnityEditor;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float impactForce;
+    private float impactForce;
 
     private BoxCollider cd;
     private Rigidbody rb;
@@ -18,7 +17,7 @@ public class Bullet : MonoBehaviour
     private float flyDistance;
     private bool bulletDisabled;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         cd = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
@@ -26,7 +25,7 @@ public class Bullet : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
     }
 
-    public void BulletSetup(float flyDistance, float impactForce)
+    public void BulletSetup(float flyDistance = 100, float impactForce = 100)
     {
         this.impactForce = impactForce;
 
@@ -34,24 +33,25 @@ public class Bullet : MonoBehaviour
         cd.enabled = true;
         meshRenderer.enabled = true;
 
+        trailRenderer.Clear();
         trailRenderer.time = .25f;
         startPosition = transform.position;
         this.flyDistance = flyDistance + .5f; // magic number .5f is a length of tip of the laser ( Check method UpdateAimVisuals() on PlayerAim script) ;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         FadeTrailIfNeeded();
         DisableBulletIfNeeded();
         ReturnToPoolIfNeeded();
     }
 
-    private void ReturnToPoolIfNeeded()
+    protected void ReturnToPoolIfNeeded()
     {
         if (trailRenderer.time < 0)
             ReturnBulletToPool();
     }
-    private void DisableBulletIfNeeded()
+    protected void DisableBulletIfNeeded()
     {
         if (Vector3.Distance(startPosition, transform.position) > flyDistance && !bulletDisabled)
         {
@@ -60,15 +60,15 @@ public class Bullet : MonoBehaviour
             bulletDisabled = true;
         }
     }
-    private void FadeTrailIfNeeded()
+    protected void FadeTrailIfNeeded()
     {
         if (Vector3.Distance(startPosition, transform.position) > flyDistance - 1.5f)
             trailRenderer.time -= 2 * Time.deltaTime; // magic number 2 is choosen trhou testing
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        CreateImpactFx(collision);
+        CreateImpactFx();
         ReturnBulletToPool();
 
         Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
@@ -91,19 +91,12 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
+    protected void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
 
 
-    private void CreateImpactFx(Collision collision)
+    protected void CreateImpactFx()
     {
-        if (collision.contacts.Length > 0)
-        {
-            ContactPoint contact = collision.contacts[0];
-
-            GameObject newImpactFx = ObjectPool.instance.GetObject(bulletImpactFX);
-            newImpactFx.transform.position = contact.point;
-
-            ObjectPool.instance.ReturnObject(newImpactFx, 1);
-        }
+        GameObject newImpactFx = ObjectPool.instance.GetObject(bulletImpactFX, transform);
+        ObjectPool.instance.ReturnObject(newImpactFx, 1);
     }
 }

@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour
     public float aggresionRange;
 
     [Header("Move data")]
-    public float moveSpeed;
-    public float chaseSpeed;
+    public float walkSpeed = 1.5f;
+    public float runSpeed = 3;
     public float turnSpeed;
     private bool manualMovement;
     private bool manualRotation;
@@ -27,12 +27,18 @@ public class Enemy : MonoBehaviour
     public Animator anim { get; private set; }
     public NavMeshAgent agent { get; private set; }
     public EnemyStateMachine stateMachine { get; private set; }
+    public Enemy_Visuals visuals { get; private set; }
+
+    public Enemy_Ragdoll ragdoll { get; private set; }
+
 
 
     protected virtual void Awake()
     {
         stateMachine = new EnemyStateMachine();
 
+        ragdoll = GetComponent<Enemy_Ragdoll>();
+        visuals = GetComponent<Enemy_Visuals>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         player = GameObject.Find("Player").GetComponent<Transform>();
@@ -47,14 +53,18 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+        if (ShouldEnterBattleMode())
+            EnterBattleMode();
+    }
+
+    protected virtual void InitializePerk()
+    {
+
     }
 
     protected bool ShouldEnterBattleMode()
     {
-        bool inAggresionRange = Vector3.Distance(transform.position, player.position) < aggresionRange;
-
-        if (inAggresionRange && !inBattleMode)
+        if (IsPlayerInAgrresionRange() && !inBattleMode)
         {
             EnterBattleMode();
             return true;
@@ -90,6 +100,7 @@ public class Enemy : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(target - transform.position);
 
         Vector3 currentEulerAngels = transform.rotation.eulerAngles;
+
 
         float yRotation = Mathf.LerpAngle(currentEulerAngels.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
 
@@ -140,7 +151,7 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
-
+    public bool IsPlayerInAgrresionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, aggresionRange);
