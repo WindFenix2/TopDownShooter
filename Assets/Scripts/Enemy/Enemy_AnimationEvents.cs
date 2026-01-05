@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_AnimationEvents : MonoBehaviour
 {
     private Enemy enemy;
+    private Enemy_Boss enemyBoss;
 
     private void Awake()
     {
@@ -14,6 +13,7 @@ public class Enemy_AnimationEvents : MonoBehaviour
     public void AnimationTrigger() => enemy.AnimationTrigger();
 
     public void StartManualMovement() => enemy.ActivateManualMovement(true);
+
     public void StopManualMovement() => enemy.ActivateManualMovement(false);
 
     public void StartManualRotation() => enemy.ActivateManualRotation(true);
@@ -26,5 +26,13 @@ public class Enemy_AnimationEvents : MonoBehaviour
     {
         enemy.visuals.EnableWeaponModel(true);
         enemy.visuals.EnableSeconoderyWeaponModel(false);
+    }
+
+    public void BossJumpImpact()
+    {
+        if (enemyBoss == null)
+            enemyBoss = GetComponentInParent<Enemy_Boss>();
+
+        enemyBoss?.JumpImpact();
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected int healthPoints = 20;
@@ -95,14 +96,17 @@ public class Enemy : MonoBehaviour
         rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 
-    public void FaceTarget(Vector3 target)
+    public void FaceTarget(Vector3 target,float turnSpeed = 0)
     {
         Quaternion targetRotation = Quaternion.LookRotation(target - transform.position);
 
         Vector3 currentEulerAngels = transform.rotation.eulerAngles;
 
+        if (turnSpeed == 0)
+            turnSpeed = this.turnSpeed;
 
-        float yRotation = Mathf.LerpAngle(currentEulerAngels.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
+        float yRotation = 
+            Mathf.LerpAngle(currentEulerAngels.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
 
         transform.rotation = Quaternion.Euler(currentEulerAngels.x, yRotation, currentEulerAngels.z);
     }

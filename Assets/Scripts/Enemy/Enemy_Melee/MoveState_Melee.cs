@@ -25,11 +25,6 @@ public class MoveState_Melee : EnemyState
 
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();

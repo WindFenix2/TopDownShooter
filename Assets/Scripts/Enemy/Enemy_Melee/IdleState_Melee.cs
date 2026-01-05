@@ -18,12 +18,6 @@ public class IdleState_Melee : EnemyState
         stateTimer = enemy.idleTime;
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-
-    }
-
     public override void Update()
     {
         base.Update();
