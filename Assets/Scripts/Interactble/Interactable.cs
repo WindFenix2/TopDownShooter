@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    protected PlayerWeaponController weaponController;
+    protected Player_WeaponController weaponController;
     protected MeshRenderer mesh;
 
 
@@ -40,9 +40,9 @@ public class Interactable : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (weaponController == null)
-            weaponController = other.GetComponent<PlayerWeaponController>();
+            weaponController = other.GetComponent<Player_WeaponController>();
 
-        PlayerInteraction playerInteraction = other.GetComponent<PlayerInteraction>();
+        Player_Interaction playerInteraction = other.GetComponent<Player_Interaction>();
 
         if (playerInteraction == null)
             return;
@@ -53,7 +53,7 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        PlayerInteraction playerInteraction = other.GetComponent<PlayerInteraction>();
+        Player_Interaction playerInteraction = other.GetComponent<Player_Interaction>();
 
         if (playerInteraction == null)
             return;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerAim : MonoBehaviour
+public class Player_AimController : MonoBehaviour
 {
     private Player player;
     private PlayerControls controls;
@@ -38,6 +38,9 @@ public class PlayerAim : MonoBehaviour
     }
     private void Update()
     {
+        if (player.health.isDead)
+            return;
+
         if(Input.GetKeyDown(KeyCode.P))
             isAimingPrecisly = !isAimingPrecisly;
 

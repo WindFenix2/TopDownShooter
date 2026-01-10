@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public struct AttackData_EnemyMelee
 {
+    public int attackDamage;
     public string attackName;
     public float attackRange;
     public float moveSpeed;
@@ -34,11 +35,16 @@ public class Enemy_Melee : Enemy
     public EnemyMelee_Type meleeType;
     public Enemy_MeleeWeaponType weaponType;
 
+    [Header("Shield")]
+    public int shieldDurability;
     public Transform shieldTransform;
+
+    [Header("Dodge")]
     public float dodgeCooldown;
     private float lastTimeDodge = -10;
 
     [Header("Axe throw ability")]
+    public int axeDamage;
     public GameObject axePrefab;
     public float axeFlySpeed;
     public float axeAimTimer;
@@ -49,6 +55,10 @@ public class Enemy_Melee : Enemy
     [Header("Attack Data")]
     public AttackData_EnemyMelee attackData;
     public List<AttackData_EnemyMelee> attackList;
+    private Enemy_WeaponModel currentWeapon;
+    private bool isAttackReady;
+    [Space]
+    [SerializeField] private GameObject meleeAttackFx;
 
     protected override void Awake()
     {
@@ -80,9 +90,9 @@ public class Enemy_Melee : Enemy
         base.Update();
         stateMachine.currentState.Update();
 
-       
-    }
 
+        MeleeAttackCheck(currentWeapon.damagePoints, currentWeapon.attackRadius, meleeAttackFx, attackData.attackDamage);
+    }
 
 
 
@@ -103,9 +113,10 @@ public class Enemy_Melee : Enemy
         visuals.EnableWeaponModel(false);
     }
 
+
     public void UpdateAttackData()
     {
-        Enemy_WeaponModel currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
+        currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
 
         if (currentWeapon.weaponData != null)
         {
@@ -135,11 +146,11 @@ public class Enemy_Melee : Enemy
         }
     }
 
-    public override void GetHit()
+    public override void Die()
     {
-        base.GetHit();
+        base.Die();
 
-        if (healthPoints <= 0 && stateMachine.currentState != deadState)
+        if(stateMachine.currentState != deadState)
             stateMachine.ChangeState(deadState);
     }
 
@@ -168,7 +179,7 @@ public class Enemy_Melee : Enemy
     {
         GameObject newAxe = ObjectPool.instance.GetObject(axePrefab, axeStartPoint);
 
-        newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer);
+        newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer,axeDamage);
     }
     public bool CanThrowAxe()
     {

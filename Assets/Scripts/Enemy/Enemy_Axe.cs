@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Axe : MonoBehaviour
@@ -15,10 +13,13 @@ public class Enemy_Axe : MonoBehaviour
     private float rotationSpeed;
     private float timer = 1;
 
-    public void AxeSetup(float flySpeed, Transform player, float timer)
+    private int damage;
+
+    public void AxeSetup(float flySpeed, Transform player, float timer,int damage)
     {
         rotationSpeed = 1600;
 
+        this.damage = damage;
         this.flySpeed = flySpeed;
         this.player = player;
         this.timer = timer;
@@ -33,24 +34,24 @@ public class Enemy_Axe : MonoBehaviour
             direction = player.position + Vector3.up - transform.position;
 
 
-        rb.velocity = direction.normalized * flySpeed;
         transform.forward = rb.velocity;
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
     {
-        Bullet bullet = other.GetComponent<Bullet>();
-        Player player = other.GetComponent<Player>();
+        rb.velocity = direction.normalized * flySpeed;
+    }
 
-        if (bullet != null || player != null)
-        {
-            GameObject newFx = ObjectPool.instance.GetObject(impactFx,transform);
 
-            
+    private void OnCollisionEnter(Collision collision)
+    {
+        IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
+        damagable?.TakeDamage(damage);
 
-            ObjectPool.instance.ReturnObject(gameObject);
-            ObjectPool.instance.ReturnObject(newFx, 1f);
-        }
+
+        GameObject newFx = ObjectPool.instance.GetObject(impactFx, transform);
+
+        ObjectPool.instance.ReturnObject(gameObject);
+        ObjectPool.instance.ReturnObject(newFx, 1f);
     }
 }

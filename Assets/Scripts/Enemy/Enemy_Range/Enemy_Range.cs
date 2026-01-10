@@ -13,6 +13,7 @@ public class Enemy_Range : Enemy
     public GrenadePerk grenadePerk;
 
     [Header("Grenade perk")]
+    public int grenadeDamage;
     public GameObject grenadePrefab;
     public float impactPower;
     public float explosionTimer = .75f;
@@ -99,11 +100,11 @@ public class Enemy_Range : Enemy
         stateMachine.currentState.Update();
     }
 
-    public override void GetHit()
+    public override void Die()
     {
-        base.GetHit();
+        base.Die();
 
-        if (healthPoints <= 0 && stateMachine.currentState != deadState)
+        if (stateMachine.currentState != deadState)
             stateMachine.ChangeState(deadState);
     }
 
@@ -131,11 +132,11 @@ public class Enemy_Range : Enemy
 
         if (stateMachine.currentState == deadState)
         {
-            newGrenadeScript.SetupGrenade(transform.position, 1,explosionTimer,impactPower);
+            newGrenadeScript.SetupGrenade(whatIsAlly, transform.position, 1,explosionTimer,impactPower,grenadeDamage);
             return;
         }
 
-        newGrenadeScript.SetupGrenade(player.transform.position, timeToTarget,explosionTimer,impactPower);
+        newGrenadeScript.SetupGrenade(whatIsAlly,player.transform.position, timeToTarget,explosionTimer,impactPower,grenadeDamage);
     }
 
     protected override void InitializePerk()
@@ -244,7 +245,7 @@ public class Enemy_Range : Enemy
         GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab,gunPoint);
         newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
 
-        newBullet.GetComponent<Enemy_Bullet>().BulletSetup();
+        newBullet.GetComponent<Bullet>().BulletSetup(whatIsAlly,weaponData.bulletDamage);
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
 
@@ -300,7 +301,7 @@ public class Enemy_Range : Enemy
 
         if (Physics.Raycast(myPosition, directionToPlayer, out RaycastHit hit, Mathf.Infinity, ~whatToIgnore))
         {
-            if (hit.transform == player)
+            if (hit.transform.root == player.root)
             {
                 UpdateAimPosition();
                 return true;

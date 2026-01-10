@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Weapon_Auto-Rifle_D
   m_EditorClassIdentifier: 
   weaponName: Blaster K-567
-  bulletsInMagazine: 40
-  magazineCapacity: 40
+  bulletDamage: 12
+  bulletsInMagazine: 32
+  magazineCapacity: 32
   totalReserveAmmo: 2147483647
   shootType: 1
   bulletsPerShot: 1
@@ -30,5 +31,5 @@ MonoBehaviour:
   weaponType: 2
   reloadSpeed: 1
   equipmentSpeed: 1
-  gunDistance: 6
+  gunDistance: 25
   cameraDistance: 6

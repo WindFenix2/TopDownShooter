@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7283598575673572096}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8482762695367554984}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,8 @@ GameObject:
   - component: {fileID: 4200972618140145564}
   - component: {fileID: 3744050675410568950}
   - component: {fileID: 8263362663484147989}
-  m_Layer: 0
+  - component: {fileID: 5508344871936303188}
+  m_Layer: 11
   m_Name: mixamorig:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,6 +206,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5508344871936303188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223432220193450431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &290762970048854662
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4438784579295230521}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,13 +261,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6693899764724879696}
   - component: {fileID: 3497766583606427518}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6693899764724879696
 Transform:
   m_ObjectHideFlags: 0
@@ -394,7 +408,7 @@ GameObject:
   - component: {fileID: 5007694096651241862}
   - component: {fileID: 4873748639975648157}
   - component: {fileID: 2171363673776789767}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: hand_2_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2173649458730824610}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6432375633510352602}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +567,7 @@ GameObject:
   - component: {fileID: 480673678228797225}
   - component: {fileID: 6404151364815065075}
   - component: {fileID: 1453123138706037576}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: back_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8900210606049429989}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2755747021997547349}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8115767611632783825}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5397164579322786074}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4726011346821419786}
   - component: {fileID: 7676704319510127241}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5651114102896976328}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1266628105903285197}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +999,7 @@ GameObject:
   - component: {fileID: 5149008846569009327}
   - component: {fileID: 4468480067446586686}
   - component: {fileID: 2937247558936856575}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: head_3_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1092,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4360469217873417416}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649772839859050164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PatrolPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4813782467438499023}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1181,7 +1195,7 @@ GameObject:
   - component: {fileID: 319303618383556691}
   - component: {fileID: 7337529813246559609}
   - component: {fileID: 5061743396321693352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: body_3_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1274,7 +1288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6901651302624615365}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1309,7 +1323,8 @@ GameObject:
   - component: {fileID: 8694290748637802520}
   - component: {fileID: 316029568295768016}
   - component: {fileID: 1396518230112897093}
-  m_Layer: 0
+  - component: {fileID: 2600643976796921494}
+  m_Layer: 11
   m_Name: mixamorig:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,6 +1443,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2600643976796921494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555239109873013959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &1576900321750063262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 773352426855419228}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3693497052050811441}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1501,7 +1529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1813492576305400401}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,7 +1568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 489617071466586294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1572,7 +1600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599501723409535013}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AxeStartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1606,7 +1634,7 @@ GameObject:
   - component: {fileID: 212825201114926030}
   - component: {fileID: 1906583950584563843}
   - component: {fileID: 8354011934218073526}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: body_2_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1699,7 +1727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1342754832754065957}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,7 +1758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7166384314009860627}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1762,7 +1790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 366339910175891541}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,7 +1825,8 @@ GameObject:
   - component: {fileID: 8358833334872859150}
   - component: {fileID: 5898806478498816144}
   - component: {fileID: 6206917134720737458}
-  m_Layer: 0
+  - component: {fileID: 5482018451433200234}
+  m_Layer: 11
   m_Name: mixamorig:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,6 +1947,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5482018451433200234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436271129947657269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &2460774034644033215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,7 +1969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8389592821369837028}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1962,7 +2004,7 @@ GameObject:
   - component: {fileID: 8460555392114253505}
   - component: {fileID: 3004281402816849412}
   - component: {fileID: 3229443268082241919}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: shoulder_2_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2342662404002467897}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2089,7 +2131,7 @@ GameObject:
   - component: {fileID: 5593758265084830005}
   - component: {fileID: 2243718095218499969}
   - component: {fileID: 4341888032856332178}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: weap_enemy_axe_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2179,6 +2221,9 @@ MonoBehaviour:
   weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 5884706799508294309}
+  damagePoints:
+  - {fileID: 1811393193378666075}
+  attackRadius: 0.3
 --- !u!1 &3036481154623336642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,7 +2233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4142412083519073287}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2221,7 +2266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3418879827627265923}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2256,7 +2301,8 @@ GameObject:
   - component: {fileID: 4927450758741677611}
   - component: {fileID: 440455729114764300}
   - component: {fileID: 5772050756558466654}
-  m_Layer: 0
+  - component: {fileID: 1995934022743475889}
+  m_Layer: 11
   m_Name: mixamorig:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2375,6 +2421,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1995934022743475889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518382082824076578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &3561475178078368271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,7 +2444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8335203767821661525}
   - component: {fileID: 7413286172900633808}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2529,7 +2588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2940786234447221107}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2560,7 +2619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3505934348337395359}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2592,7 +2651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3680213725868622400}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2624,7 +2683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5501076262335066172}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PatrolPoint
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -2658,7 +2717,7 @@ GameObject:
   - component: {fileID: 6698491573976747944}
   - component: {fileID: 3334941075653612830}
   - component: {fileID: 5422816078688222454}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: foot_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2751,7 +2810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8008996166976321409}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2845,7 @@ GameObject:
   - component: {fileID: 5585008603669908446}
   - component: {fileID: 7346889674355483033}
   - component: {fileID: 3181467230269130661}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leg_3_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2881,7 +2940,8 @@ GameObject:
   - component: {fileID: 7148471519682812842}
   - component: {fileID: 1513293501346669644}
   - component: {fileID: 832589376665580829}
-  m_Layer: 0
+  - component: {fileID: 5834312458624086803}
+  m_Layer: 11
   m_Name: mixamorig:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2954,6 +3014,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5834312458624086803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4276159729821249039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &4340407741949803465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,7 +3039,7 @@ GameObject:
   - component: {fileID: 9134331811609457996}
   - component: {fileID: 5624202528078831581}
   - component: {fileID: 1279249776085288110}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: head_2_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3059,7 +3132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5617886818774758419}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3091,7 +3164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5645384499789356947}
   - component: {fileID: 7823787505219063381}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3107,7 +3180,7 @@ Transform:
   m_GameObject: {fileID: 4594792524171468596}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000010430811, y: 0.000000029802315, z: -0.000000014901158, w: 1}
-  m_LocalPosition: {x: -0, y: 0.139, z: -0.014}
+  m_LocalPosition: {x: 0, y: 0.146, z: -0.014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3238,7 +3311,7 @@ GameObject:
   - component: {fileID: 7609496719361955518}
   - component: {fileID: 871085654964442474}
   - component: {fileID: 8951137737543004740}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leg_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3331,7 +3404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7590684457208787047}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3364,7 +3437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634061927664403734}
   - component: {fileID: 4151918309583356951}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3511,7 +3584,8 @@ GameObject:
   - component: {fileID: 1143896548698870425}
   - component: {fileID: 8521767220676327772}
   - component: {fileID: 5436179210948568818}
-  m_Layer: 0
+  - component: {fileID: 3906599528218056820}
+  m_Layer: 11
   m_Name: mixamorig:Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3628,6 +3702,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3906599528218056820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818271387357424757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &4875449405071622642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,7 +3727,7 @@ GameObject:
   - component: {fileID: 1803997321960428837}
   - component: {fileID: 6999867945540702974}
   - component: {fileID: 2255944477791115713}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: weap_enemy_wrench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3730,6 +3817,9 @@ MonoBehaviour:
   weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 5907767135163616027}
+  damagePoints:
+  - {fileID: 7417555368889897548}
+  attackRadius: 0.3
 --- !u!1 &4930476608646041847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,7 +3832,8 @@ GameObject:
   - component: {fileID: 1758639776169061340}
   - component: {fileID: 8196459216687273898}
   - component: {fileID: 3040869320478528720}
-  m_Layer: 0
+  - component: {fileID: 7191525982478182295}
+  m_Layer: 11
   m_Name: mixamorig:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3861,6 +3952,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7191525982478182295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930476608646041847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &4951691003619247811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,7 +3974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6137385726240650925}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3902,7 +4006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895656260496225146}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:HeadTop_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3933,7 +4037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5963596300375512384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3970,7 +4074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7205856871075024523}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PatrolPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -4001,7 +4105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2534719776223428221}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4036,7 +4140,7 @@ GameObject:
   - component: {fileID: 4527338558328131787}
   - component: {fileID: 7466648187055521924}
   - component: {fileID: 685024194366596938}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: head_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4129,7 +4233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6133269906529696765}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4161,7 +4265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4234547844005277028}
   - component: {fileID: 6043771956825830776}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: weap_enemy_unarmed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4204,6 +4308,12 @@ MonoBehaviour:
   - {fileID: 4786770502748137139}
   - {fileID: 964729910005849843}
   - {fileID: 6167075257268542298}
+  damagePoints:
+  - {fileID: 8827816133403361309}
+  - {fileID: 8634061927664403734}
+  - {fileID: 4726011346821419786}
+  - {fileID: 9026187821916486595}
+  attackRadius: 0.3
 --- !u!1 &5622337649236672337
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,7 +4323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6715541273327680433}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4244,7 +4354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 647354173843170409}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4282,7 +4392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8309167717048766518}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4314,7 +4424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2509084958171468946}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4346,7 +4456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1811393193378666075}
   - component: {fileID: 2914604914177463393}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4362,7 +4472,7 @@ Transform:
   m_GameObject: {fileID: 5884706799508294309}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000010430811, y: 0.000000029802315, z: -0.000000014901158, w: 1}
-  m_LocalPosition: {x: 0, y: 0.107, z: -0.013}
+  m_LocalPosition: {x: 0, y: 0.11, z: -0.013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4491,7 +4601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7417555368889897548}
   - component: {fileID: 5426037737864526497}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4507,7 +4617,7 @@ Transform:
   m_GameObject: {fileID: 5907767135163616027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.088, z: -0}
+  m_LocalPosition: {x: 0, y: 0.119, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4635,7 +4745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3945712808723920964}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4667,11 +4777,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2683697981695365485}
+  - component: {fileID: 4895822366045627693}
   - component: {fileID: 1798904469698207450}
   - component: {fileID: 7991282927474603119}
   - component: {fileID: 8619387491810796290}
   - component: {fileID: 1410124891614150917}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4696,6 +4807,20 @@ Transform:
   - {fileID: 1599501723409535013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4895822366045627693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5957605082017663771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!114 &1798904469698207450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4708,25 +4833,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cb4ec380aaba14eb95299525a951c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsAlly:
+    serializedVersion: 2
+    m_Bits: 2048
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 256
   healthPoints: 3
   idleTime: 60
-  aggresionRange: 1
-  moveSpeed: 1.5
-  chaseSpeed: 4
+  aggresionRange: 10
+  walkSpeed: 1.5
+  runSpeed: 4
   turnSpeed: 5
   patrolPoints:
   - {fileID: 5501076262335066172}
   - {fileID: 7205856871075024523}
   - {fileID: 6994111950806159994}
-  meleeType: 0
+  meleeType: 1
+  weaponType: 0
+  shieldDurability: 400
   shieldTransform: {fileID: 3431966613972324221}
   dodgeCooldown: 5
+  axeDamage: 70
   axePrefab: {fileID: 4862397190595803901, guid: 9f2a7c1c5c8ea294a82c0903ee2dc7dd, type: 3}
-  axeFlySpeed: 5
-  axeAimTimer: 1
+  axeFlySpeed: 6
+  axeAimTimer: 1.25
   axeThrowCooldown: 10
   axeStartPoint: {fileID: 1599501723409535013}
   attackData:
+    attackDamage: 0
     attackName: 
     attackRange: 1.5
     moveSpeed: 0
@@ -4734,18 +4869,21 @@ MonoBehaviour:
     animationSpeed: 1.4
     attackType: 0
   attackList:
-  - attackName: Sword spin attack
+  - attackDamage: 25
+    attackName: Sword spin attack
     attackRange: 1.5
-    moveSpeed: 2.5
+    moveSpeed: 3.5
     attackIndex: 0
     animationSpeed: 1
     attackType: 1
-  - attackName: Sword slash
+  - attackDamage: 21
+    attackName: Sword slash
     attackRange: 1
     moveSpeed: 0
     attackIndex: 1
-    animationSpeed: 1.497
+    animationSpeed: 1.7
     attackType: 0
+  meleeAttackFx: {fileID: 1655072745795733258, guid: 8cec389166826bc479837dab48b02c1a, type: 3}
 --- !u!195 &7991282927474603119
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4793,8 +4931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a45613ca026ae94281f677536278bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponModels: []
-  weaponType: 0
+  grenadeModel: {fileID: 0}
   corruptionCrystals: []
   corruptionAmount: 5
   colorTextures:
@@ -4803,6 +4940,10 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 9e78c31e8e77908429c3117287027de3, type: 3}
   - {fileID: 2800000, guid: d90689c80305c1b4fb7bfd8cc0b55a11, type: 3}
   skinnedMeshRenderer: {fileID: 8964836438508087448}
+  leftHandIK: {fileID: 0}
+  leftElbowIK: {fileID: 0}
+  leftHandIKConstraint: {fileID: 0}
+  weaponAimConstraint: {fileID: 0}
 --- !u!1 &6135291453938831984
 GameObject:
   m_ObjectHideFlags: 0
@@ -4812,7 +4953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3933809876777260175}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4847,7 +4988,7 @@ GameObject:
   - component: {fileID: 3389215492165674263}
   - component: {fileID: 234964487973934732}
   - component: {fileID: 7907651240455076331}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: weap_enemy_pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4864,7 +5005,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.4218817, y: -0.46550807, z: -0.562875, w: -0.53711253}
   m_LocalPosition: {x: -0.1557, y: 0.0874, z: 0.0264}
-  m_LocalScale: {x: 0.74999994, y: 0.74999994, z: 0.74999994}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8335203767821661525}
@@ -4937,6 +5078,9 @@ MonoBehaviour:
   weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 3561475178078368271}
+  damagePoints:
+  - {fileID: 8335203767821661525}
+  attackRadius: 0.3
 --- !u!1 &6167075257268542298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,7 +5091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9026187821916486595}
   - component: {fileID: 5950717670306409779}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5091,7 +5235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1449359974229329101}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5123,7 +5267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6994111950806159994}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PatrolPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -5154,7 +5298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3314988776003236388}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5186,7 +5330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766948126268930229}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5221,7 +5365,8 @@ GameObject:
   - component: {fileID: 5891449798866259793}
   - component: {fileID: 3643161411404842996}
   - component: {fileID: 7814186772805170235}
-  m_Layer: 0
+  - component: {fileID: 4167287474077936628}
+  m_Layer: 11
   m_Name: mixamorig:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5341,6 +5486,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4167287474077936628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661395804404305161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1.5
 --- !u!1 &6664158713566529368
 GameObject:
   m_ObjectHideFlags: 0
@@ -5353,7 +5511,7 @@ GameObject:
   - component: {fileID: 1156879143988717740}
   - component: {fileID: 6931913697171333666}
   - component: {fileID: 8203622344224884012}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: shoulder_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5449,7 +5607,7 @@ GameObject:
   - component: {fileID: 8641122877772199461}
   - component: {fileID: 7139210414281543083}
   - component: {fileID: 8263836079208742721}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: body_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5544,7 +5702,7 @@ GameObject:
   - component: {fileID: 3601367443751237616}
   - component: {fileID: 5081937303472438388}
   - component: {fileID: 8093234891130066107}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: character_enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5613,7 +5771,7 @@ GameObject:
   - component: {fileID: 4291293911203843675}
   - component: {fileID: 6891933112592320526}
   - component: {fileID: 5141634517990112889}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: shoulder_3_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5709,7 +5867,8 @@ GameObject:
   - component: {fileID: 6148714652128863560}
   - component: {fileID: 3578092578238364428}
   - component: {fileID: 7718589816560088381}
-  m_Layer: 0
+  - component: {fileID: 3331139153190559266}
+  m_Layer: 11
   m_Name: mixamorig:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5828,6 +5987,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3331139153190559266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269522760895882533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &7553338658342094556
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,7 +6009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9150224167779204330}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5871,7 +6043,8 @@ GameObject:
   - component: {fileID: 4129501753275575385}
   - component: {fileID: 1257540155477839661}
   - component: {fileID: 2708794770747597773}
-  m_Layer: 0
+  - component: {fileID: 3393076397625777515}
+  m_Layer: 11
   m_Name: mixamorig:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5991,6 +6164,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3393076397625777515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842173256673304626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &7843796512904403409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6000,7 +6186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7439962496874923082}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6032,7 +6218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6335995569746298751}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6067,7 +6253,8 @@ GameObject:
   - component: {fileID: 1816598294520529054}
   - component: {fileID: 6426688389278064108}
   - component: {fileID: 902594111867044131}
-  m_Layer: 0
+  - component: {fileID: 7900432628551428882}
+  m_Layer: 11
   m_Name: mixamorig:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6186,6 +6373,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7900432628551428882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928734333857051734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &7962569752598896361
 GameObject:
   m_ObjectHideFlags: 0
@@ -6199,9 +6399,8 @@ GameObject:
   - component: {fileID: 609805156942276585}
   - component: {fileID: 1424452649674317601}
   - component: {fileID: 477725444132390149}
-  - component: {fileID: 99547638524209143}
   - component: {fileID: 7752292995644506257}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6321,18 +6520,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &99547638524209143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962569752598896361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6778d9e3e81680042a39a8308f559ddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7752292995644506257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6355,7 +6542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3474556589391722685}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6386,7 +6573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8684892147608197436}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6418,7 +6605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3447095442825696336}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6453,7 +6640,7 @@ GameObject:
   - component: {fileID: 2189887154309151296}
   - component: {fileID: 1858254018272747982}
   - component: {fileID: 4807253273755246320}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leg_2_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6546,7 +6733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4416531470125267247}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6581,7 +6768,7 @@ GameObject:
   - component: {fileID: 5752358688984018792}
   - component: {fileID: 2468222394164096965}
   - component: {fileID: 8646864231824635141}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: weap_enemy_axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6671,6 +6858,9 @@ MonoBehaviour:
   weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 402948744682059984}
+  damagePoints:
+  - {fileID: 6693899764724879696}
+  attackRadius: 0.3
 --- !u!1 &8632151989016426222
 GameObject:
   m_ObjectHideFlags: 0
@@ -6680,7 +6870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8979927407220144647}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6715,7 +6905,7 @@ GameObject:
   - component: {fileID: 7946864802074805025}
   - component: {fileID: 8361076335033060441}
   - component: {fileID: 8570453648397072843}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: foot_2_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6811,7 +7001,7 @@ GameObject:
   - component: {fileID: 6404790935344897206}
   - component: {fileID: 1937797494737735759}
   - component: {fileID: 163044071767722406}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: hand_corruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6905,7 +7095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634288890742451631}
   - component: {fileID: 8964836438508087448}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7041,7 +7231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3435329204561946410}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:RightHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7075,7 +7265,7 @@ GameObject:
   - component: {fileID: 4423386299053874948}
   - component: {fileID: 3529332713018444572}
   - component: {fileID: 3538524384396324101}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: weap_enemy_hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7092,7 +7282,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.4218817, y: -0.46550807, z: -0.562875, w: -0.53711253}
   m_LocalPosition: {x: -0.2172, y: 0.088, z: 0.0307}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5645384499789356947}
@@ -7165,6 +7355,9 @@ MonoBehaviour:
   weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 4594792524171468596}
+  damagePoints:
+  - {fileID: 5645384499789356947}
+  attackRadius: 0.4
 --- !u!1 &9095967208251191565
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,7 +7368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8827816133403361309}
   - component: {fileID: 6602480834423296203}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_MeleeWeaponTrail (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7319,7 +7512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 913430475594966850}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mixamorig:LeftHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

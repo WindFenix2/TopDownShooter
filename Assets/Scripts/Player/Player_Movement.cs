@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 {
     private Player player;
 
@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (player.health.isDead)
+            return;
+
         ApplyMovement();
         ApplyRotation();
         AnimatorControllers();

@@ -5,7 +5,11 @@ using System.Collections;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int healthPoints = 20;
+
+    public LayerMask whatIsAlly;
+    public LayerMask whatIsPlayer;
+    [Space]
+    public int healthPoints = 20;
     
     [Header("Idle data")]
     public float idleTime;
@@ -23,6 +27,7 @@ public class Enemy : MonoBehaviour
     private int currentPatrolIndex;
 
     public bool inBattleMode { get; private set; }
+    protected bool isMeleeAttackReady;
 
     public Transform player {  get; private set; }
     public Animator anim { get; private set; }
@@ -30,15 +35,16 @@ public class Enemy : MonoBehaviour
     public EnemyStateMachine stateMachine { get; private set; }
     public Enemy_Visuals visuals { get; private set; }
 
-    public Enemy_Ragdoll ragdoll { get; private set; }
+    public Enemy_Health health { get; private set; }
 
-
+    public Ragdoll ragdoll { get; private set; }
 
     protected virtual void Awake()
     {
         stateMachine = new EnemyStateMachine();
 
-        ragdoll = GetComponent<Enemy_Ragdoll>();
+        health = GetComponent<Enemy_Health>();
+        ragdoll = GetComponent<Ragdoll>();
         visuals = GetComponent<Enemy_Visuals>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
@@ -79,15 +85,60 @@ public class Enemy : MonoBehaviour
         inBattleMode = true;
     }
 
-    public virtual void GetHit()
+    public virtual void GetHit(int damage)
     {
+        health.ReduceHealth(damage);
+
+        if (health.ShouldDie())
+            Die();
+
+
         EnterBattleMode();
-        healthPoints--;
     }
 
-    public virtual void DeathImpact( Vector3 force,Vector3 hitPoint,Rigidbody rb)
+    public virtual void Die()
     {
-        StartCoroutine(DeathImpactCourutine(force,hitPoint,rb));
+
+    }
+
+    public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius,GameObject fx,int damage)
+    {
+        if (isMeleeAttackReady == false)
+            return;
+
+        foreach (Transform attackPoint in damagePoints)
+        {
+            Collider[] detectedHits =
+                Physics.OverlapSphere(attackPoint.position, attackCheckRadius, whatIsPlayer);
+
+
+            for (int i = 0; i < detectedHits.Length; i++)
+            {
+                IDamagable damagable = detectedHits[i].GetComponent<IDamagable>();
+
+                if (damagable != null)
+                {
+
+                    damagable.TakeDamage(damage);
+                    isMeleeAttackReady = false;
+                    GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
+
+                    ObjectPool.instance.ReturnObject(newAttackFx, 1);
+                    return;
+                }
+            }
+
+        }
+
+    }
+
+    public void EnableMeleeAttackCheck(bool enable) => isMeleeAttackReady = enable;
+
+
+    public virtual void BulletImpact( Vector3 force,Vector3 hitPoint,Rigidbody rb)
+    {
+        if(health.ShouldDie())
+            StartCoroutine(DeathImpactCourutine(force,hitPoint,rb));
     }
     private IEnumerator DeathImpactCourutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
     {

@@ -31,9 +31,11 @@ public class Enemy_Visuals : MonoBehaviour
 
     private void Update()
     {
+        if(leftHandIKConstraint != null)
+            leftHandIKConstraint.weight = AdjustIKWeight(leftHandIKConstraint.weight, leftHandTargetWeight);
 
-        leftHandIKConstraint.weight = AdjustIKWeight(leftHandIKConstraint.weight, leftHandTargetWeight);
-        weaponAimConstraint.weight = AdjustIKWeight(weaponAimConstraint.weight, weaponAimTargetWeight);
+        if(weaponAimConstraint != null)
+            weaponAimConstraint.weight = AdjustIKWeight(weaponAimConstraint.weight, weaponAimTargetWeight);
     }
 
     public void EnableGrenadeModel(bool active) => grenadeModel?.SetActive(active);

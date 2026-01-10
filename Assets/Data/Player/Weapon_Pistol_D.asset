@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Weapon_Pistol_D
   m_EditorClassIdentifier: 
   weaponName: Heaven 567
-  bulletsInMagazine: 20
-  magazineCapacity: 20
+  bulletDamage: 25
+  bulletsInMagazine: 15
+  magazineCapacity: 15
   totalReserveAmmo: 999999999
   shootType: 0
   bulletsPerShot: 1
-  fireRate: 4
+  fireRate: 6
   burstAvalible: 0
   burstActive: 0
   burstBulletsPerShot: 0
@@ -29,6 +30,6 @@ MonoBehaviour:
   spreadIncreaseRate: 0.15
   weaponType: 0
   reloadSpeed: 1
-  equipmentSpeed: 1
-  gunDistance: 6
+  equipmentSpeed: 1.55
+  gunDistance: 25
   cameraDistance: 6

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationEvents : MonoBehaviour
+public class Player_AnimationEvents : MonoBehaviour
 {
-    private PlayerWeaponVisuals visualController;
-    private PlayerWeaponController weaponController;
+    private Player_WeaponVisuals visualController;
+    private Player_WeaponController weaponController;
 
     private void Start()
     {
-        visualController = GetComponentInParent<PlayerWeaponVisuals>();
-        weaponController = GetComponentInParent<PlayerWeaponController>();
+        visualController = GetComponentInParent<Player_WeaponVisuals>();
+        weaponController = GetComponentInParent<Player_WeaponController>();
     }
 
     public void ReloadIsOver()
