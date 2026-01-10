@@ -61,7 +61,10 @@ public class Enemy_Grenade : MonoBehaviour
         Rigidbody rb = hit.GetComponent<Rigidbody>();
 
         if (rb != null)
+        {
+            rb.isKinematic = false;
             rb.AddExplosionForce(impactPower, transform.position, impactRadius, upwardsMultiplier, ForceMode.Impulse);
+        }
     }
 
     private void PlayExplosionFx()
