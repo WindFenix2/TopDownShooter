@@ -12,14 +12,14 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Obstacles
+  - Environment
   - Player
   - Bullet
   - Aim
   - Enemy
   - Enemy's_Ability
   - IntersectionCheck
-  - 
+  - ZoneLimit
   - 
   - 
   - 

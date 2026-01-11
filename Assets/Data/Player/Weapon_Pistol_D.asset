@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Pistol_D
   m_EditorClassIdentifier: 
   weaponName: Heaven 567
-  bulletDamage: 25
+  bulletDamage: 18
   bulletsInMagazine: 15
   magazineCapacity: 15
   totalReserveAmmo: 999999999

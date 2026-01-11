@@ -94,8 +94,6 @@ public class Enemy_Melee : Enemy
         MeleeAttackCheck(currentWeapon.damagePoints, currentWeapon.attackRadius, meleeAttackFx, attackData.attackDamage);
     }
 
-
-
     public override void EnterBattleMode()
     {
         if (inBattleMode)

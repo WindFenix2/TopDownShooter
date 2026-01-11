@@ -8,6 +8,27 @@ public class LevelPart : MonoBehaviour
     [SerializeField] private Collider[] intersectionCheckColliders;
     [SerializeField] private Transform intersectionCheckParent;
 
+
+    [ContextMenu("Set static to envoirment layer")]
+    private void AdjustLayerForStaticObjcets()
+    {
+        foreach (Transform childTransorm in transform.GetComponentsInChildren<Transform>(true))
+        {
+            if (childTransorm.gameObject.isStatic)
+            {
+                childTransorm.gameObject.layer = LayerMask.NameToLayer("Environment");
+            }
+        }
+    }
+
+    private void Start()
+    {
+        if (intersectionCheckColliders.Length <= 0)
+        {
+            intersectionCheckColliders = intersectionCheckParent.GetComponentsInChildren<Collider>();
+        }
+    }
+
     public bool IntersectionDetected()
     {
         Physics.SyncTransforms();
@@ -104,6 +125,8 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
         // Return null if no matching snap points are found
         return null;
     }
+
+    public Enemy[] MyEnemies() => GetComponentsInChildren<Enemy>(true);
 }
 
 
