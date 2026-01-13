@@ -16,7 +16,7 @@ MonoBehaviour:
   bulletDamage: 12
   bulletsInMagazine: 32
   magazineCapacity: 32
-  totalReserveAmmo: 2147483647
+  totalReserveAmmo: 107
   shootType: 1
   bulletsPerShot: 1
   fireRate: 8
@@ -33,3 +33,5 @@ MonoBehaviour:
   equipmentSpeed: 1
   gunDistance: 25
   cameraDistance: 6
+  weaponIcon: {fileID: -91878611, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
+  weaponInfo: Good shreder for enemies

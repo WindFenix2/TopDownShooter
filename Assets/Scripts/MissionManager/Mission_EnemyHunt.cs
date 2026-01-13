@@ -14,6 +14,8 @@ public class Mission_EnemyHunt : Mission
     public override void StartMission()
     {
         killsToGo = amountToKill;
+        UpdateMissionUI();
+
         MissionObject_HuntTarget.OnTargetKilled += EliminateTarget;
 
         List<Enemy> validEnemies = new List<Enemy>();
@@ -48,9 +50,21 @@ public class Mission_EnemyHunt : Mission
     private void EliminateTarget()
     {
         killsToGo--;
+        UpdateMissionUI();
 
         if (killsToGo <= 0)
+        {
+            UI.instance.inGameUI.UpdateMissionInfo("Get to the evacuation point.");
             MissionObject_HuntTarget.OnTargetKilled -= EliminateTarget;
+        }
+    }
+
+    private void UpdateMissionUI()
+    {
+        string missionText = "Eliminate " + amountToKill + " enemies with signal disruptor.";
+        string missionDetaiils = "Targets left: " + killsToGo;
+
+        UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetaiils);
     }
 
 }

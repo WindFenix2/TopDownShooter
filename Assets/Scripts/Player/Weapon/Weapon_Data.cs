@@ -43,4 +43,8 @@ public class Weapon_Data : ScriptableObject
     public float gunDistance = 4;
     [Range(4, 10)]
     public float cameraDistance = 6;
+
+    [Header("UI elements")]
+    public Sprite weaponIcon;
+    public string weaponInfo;
 }

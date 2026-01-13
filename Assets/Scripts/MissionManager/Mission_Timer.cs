@@ -22,12 +22,14 @@ public class Mission_Timer : Mission
 
         if (currentTime < 0)
         {
-            Debug.Log("GAME OVER");
+            //GameManager.instance.GameOver();
         }
 
         string timeText = System.TimeSpan.FromSeconds(currentTime).ToString("mm':'ss");
+        string missionText = "Get to evacuation point before plane take off.";
+        string missionDetails = "Time left: " + timeText;
 
-        Debug.Log(timeText);
+        UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
     }
 
     public override bool MissionCompleted()

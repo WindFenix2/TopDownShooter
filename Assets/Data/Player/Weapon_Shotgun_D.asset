@@ -16,7 +16,7 @@ MonoBehaviour:
   bulletDamage: 21
   bulletsInMagazine: 20
   magazineCapacity: 20
-  totalReserveAmmo: 999999999
+  totalReserveAmmo: 31
   shootType: 0
   bulletsPerShot: 5
   fireRate: 2
@@ -33,3 +33,5 @@ MonoBehaviour:
   equipmentSpeed: 1
   gunDistance: 25
   cameraDistance: 6
+  weaponIcon: {fileID: 1123339388, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
+  weaponInfo: It's like rifle, but an opposite

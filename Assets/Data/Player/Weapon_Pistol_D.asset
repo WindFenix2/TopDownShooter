@@ -16,7 +16,7 @@ MonoBehaviour:
   bulletDamage: 18
   bulletsInMagazine: 15
   magazineCapacity: 15
-  totalReserveAmmo: 999999999
+  totalReserveAmmo: 500
   shootType: 0
   bulletsPerShot: 1
   fireRate: 6
@@ -33,3 +33,5 @@ MonoBehaviour:
   equipmentSpeed: 1.55
   gunDistance: 25
   cameraDistance: 6
+  weaponIcon: {fileID: 1068215163, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
+  weaponInfo: Quick to draw,Quick to use, Quick to Kill

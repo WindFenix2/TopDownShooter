@@ -21,6 +21,8 @@ public class Player_Health : HealthController
 
         if (ShouldDie())
             Die();
+
+        UI.instance.inGameUI.UpdateHealthUI(currentHealth, maxHealth);
     }
 
     private void Die()
@@ -28,9 +30,13 @@ public class Player_Health : HealthController
         if (isDead)
             return;
 
+
+
         Debug.Log("Player was killed at " + Time.time);
         isDead = true;
         player.anim.enabled = false;
         player.ragdoll.RagdollActive(true);
+
+        GameManager.instance.GameOver();
     }
 }
