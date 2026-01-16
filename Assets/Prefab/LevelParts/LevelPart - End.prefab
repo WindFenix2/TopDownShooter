@@ -31401,10 +31401,6 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.0000004209578
       objectReference: {fileID: 0}
-    - target: {fileID: 8470400710520663391, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
-      propertyPath: aggresionRange
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 9086992370608192448, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.0000012516975

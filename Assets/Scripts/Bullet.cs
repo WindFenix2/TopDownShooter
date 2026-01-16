@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     private bool bulletDisabled;
 
     private LayerMask allyLayerMask;
-    
+
 
     protected virtual void Awake()
     {
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
     }
 
-    public void BulletSetup(LayerMask allyLayerMask,int bulletDamage, float flyDistance = 100, float impactForce = 100)
+    public void BulletSetup(LayerMask allyLayerMask, int bulletDamage, float flyDistance = 100, float impactForce = 100)
     {
         this.allyLayerMask = allyLayerMask;
         this.impactForce = impactForce;
@@ -92,7 +92,6 @@ public class Bullet : MonoBehaviour
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
         damagable?.TakeDamage(bulletDamage);
 
-
         ApplyBulletImpactToEnemy(collision);
     }
 
@@ -107,7 +106,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected void ReturnBulletToPool(float delay = 0) => ObjectPool.instance.ReturnObject(gameObject,delay);
+    protected void ReturnBulletToPool(float delay = 0) => ObjectPool.instance.ReturnObject(gameObject, delay);
 
 
     protected void CreateImpactFx()

@@ -18,7 +18,6 @@ public class UI : MonoBehaviour
 
     [Header("Fade Image")]
     [SerializeField] private Image fadeImage;
-
     private void Awake()
     {
         instance = this;

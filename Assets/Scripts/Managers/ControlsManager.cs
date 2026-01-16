@@ -11,12 +11,12 @@ public class ControlsManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        controls = new PlayerControls();
     }
 
 
     private void Start()
     {
-        controls = GameManager.instance.player.controls;
         player = GameManager.instance.player;
 
         SwitchToCharacterControls();
@@ -24,16 +24,33 @@ public class ControlsManager : MonoBehaviour
 
     public void SwitchToCharacterControls()
     {
-        controls.UI.Disable();
         controls.Character.Enable();
+
+        controls.Car.Disable();
+        controls.UI.Disable();
+
         player.SetControlsEnabledTo(true);
+        UI.instance.inGameUI.SwitchToCharcaterUI();
     }
 
     public void SwitchToUIControls()
     {
         controls.UI.Enable();
+
+        controls.Car.Disable();
         controls.Character.Disable();
         player.SetControlsEnabledTo(false);
+    }
+
+    public void SwitchToCarControls()
+    {
+        controls.Car.Enable();
+
+        controls.UI.Disable();
+        controls.Character.Disable();
+
+        player.SetControlsEnabledTo(false);
+        UI.instance.inGameUI.SwitchToCarUI();
     }
 
 

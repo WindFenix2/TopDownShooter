@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8429136853036353924}
   - component: {fileID: 2246023856420169483}
   - component: {fileID: 62096729072487379}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: IntersectionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8934857020434593339}
   - component: {fileID: 6756718640746838285}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: IntersectionCheckParent (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

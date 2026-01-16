@@ -3,11 +3,11 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     protected Player_WeaponController weaponController;
-    protected MeshRenderer mesh;
+    [SerializeField] protected  MeshRenderer mesh;
 
 
     [SerializeField] private Material highlightMaterial;
-    protected Material defaultMaterial;
+    [SerializeField] protected Material defaultMaterial;
 
     private void Start()
     {
