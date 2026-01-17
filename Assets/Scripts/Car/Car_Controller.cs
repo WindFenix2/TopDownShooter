@@ -14,6 +14,7 @@ public enum DriveType { FrontWheelDrive, RearWheelDrive, AllWheelDrive}
 [RequireComponent(typeof(Rigidbody))]
 public class Car_Controller : MonoBehaviour
 {
+    public Car_Sounds carSounds { get; private set; }
     public Rigidbody rb { get; private set; }
     public bool carActive { get; private set; }
     private PlayerControls controls;
@@ -70,6 +71,7 @@ public class Car_Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         wheels = GetComponentsInChildren<Car_Wheel>();
+        carSounds = GetComponent<Car_Sounds>();
         ui = UI.instance;
 
         controls = ControlsManager.instance.controls;
@@ -233,6 +235,9 @@ public class Car_Controller : MonoBehaviour
     public void ActivateCar(bool activate)
     {
         carActive = activate;
+
+        if (carSounds != null)
+            carSounds.ActivateCarSFX(activate);
 
         //if(!activate)
         //    rb.constraints = RigidbodyConstraints.FreezeAll;

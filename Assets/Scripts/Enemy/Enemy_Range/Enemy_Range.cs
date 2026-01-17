@@ -45,6 +45,7 @@ public class Enemy_Range : Enemy
     public Transform gunPoint;
     public Transform weaponHolder;
     public GameObject bulletPrefab;
+    public Enemy_RangeWeaponModel weaponModel { get; private set; }
 
     [Header("Aim details")]
     public float slowAim = 4;

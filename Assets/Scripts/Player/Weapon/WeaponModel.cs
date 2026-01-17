@@ -15,4 +15,8 @@ public class WeaponModel : MonoBehaviour
     public Transform gunPoint;
     public Transform holdPoint;
 
+    [Header("Audio")]
+    public AudioSource fireSFX;
+    public AudioSource realodSfx;
+
 }

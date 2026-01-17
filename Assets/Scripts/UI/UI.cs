@@ -10,6 +10,7 @@ public class UI : MonoBehaviour
     public UI_InGame inGameUI { get; private set; }
     public UI_WeaponSelection weaponSelection { get; private set; }
     public UI_GameOver gameOverUI { get; private set; }
+    public UI_Settings settingsUI { get; private set; }
     public GameObject victoryScreenUI;
     public GameObject pauseUI;
 
@@ -24,8 +25,8 @@ public class UI : MonoBehaviour
         inGameUI = GetComponentInChildren<UI_InGame>(true);
         weaponSelection = GetComponentInChildren<UI_WeaponSelection>(true);
         gameOverUI = GetComponentInChildren<UI_GameOver>(true);
+        settingsUI = GetComponentInChildren<UI_Settings>(true);
     }
-
     private void Start()
     {
         AssignInputsUI();
@@ -40,7 +41,6 @@ public class UI : MonoBehaviour
             StartTheGame();
         }
     }
-
     public void SwitchTo(GameObject uiToSwitchOn)
     {
         foreach (GameObject go in UIElements)
@@ -49,6 +49,9 @@ public class UI : MonoBehaviour
         }
          
         uiToSwitchOn.SetActive(true);
+
+        if (uiToSwitchOn == settingsUI.gameObject)
+            settingsUI.LoadSettings();
     }
 
     public void StartTheGame() => StartCoroutine(StartGameSequence());
@@ -110,16 +113,25 @@ public class UI : MonoBehaviour
 
     private IEnumerator StartGameSequence()
     {
+        bool quickStart = GameManager.instance.quickStart;
 
         //THIS SHOULD BE UNCOMMENTED BEFORE MAKING A BUILD
-        //StartCoroutine(ChangeImageAlpha(1, 1, null));
-        //yield return new WaitForSeconds(1);
+        if (quickStart == false)
+        {
+            fadeImage.color = Color.black;
+            StartCoroutine(ChangeImageAlpha(1, 1, null));
+            yield return new WaitForSeconds(1);
+
+        }
 
         yield return null;
         SwitchTo(inGameUI.gameObject);
         GameManager.instance.GameStart();
-        StartCoroutine(ChangeImageAlpha(0,.1f, null));
-        //StartCoroutine(ChangeImageAlpha(0,1f, null));
+
+        if(quickStart)
+            StartCoroutine(ChangeImageAlpha(0,.1f, null));
+        else
+            StartCoroutine(ChangeImageAlpha(0,1f, null));
     }
 
     private IEnumerator ChangeImageAlpha(float targetAlpha, float duration,System.Action onComplete)
@@ -142,5 +154,16 @@ public class UI : MonoBehaviour
 
         // Call the cimpletion method if it exists
         onComplete?.Invoke();
+    }
+
+    [ContextMenu("Assign Audio To Buttons")]
+    public void AssignAudioListenesrsToButtons()
+    {
+        UI_Button[] buttons = FindObjectsOfType<UI_Button>(true);
+
+        foreach (var button in buttons)
+        {
+            button.AssignAudioSource();
+        }
     }
 }

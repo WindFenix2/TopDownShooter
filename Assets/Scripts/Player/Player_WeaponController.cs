@@ -114,7 +114,13 @@ public class Player_WeaponController : MonoBehaviour
         droppedWeapon.GetComponent<Pickup_Weapon>()?.SetupPickupWeapon(currentWeapon, transform);
     }
 
-    public void SetWeaponReady(bool ready) => weaponReady = ready;
+    public void SetWeaponReady(bool ready)
+    {
+        weaponReady = ready;
+
+        if(ready)
+            player.sound.weaponReady.Play();
+    }
     public bool WeaponReady() => weaponReady;
 
     #endregion
@@ -169,6 +175,8 @@ public class Player_WeaponController : MonoBehaviour
         currentWeapon.bulletsInMagazine--;
         UpdateWeaponUI();
 
+        player.weaponVisuals.CurrentWeaponModel().fireSFX.Play();
+
 
         GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab,GunPoint());
 
@@ -190,6 +198,8 @@ public class Player_WeaponController : MonoBehaviour
     {
         SetWeaponReady(false);
         player.weaponVisuals.PlayReloadAnimation();
+
+        player.weaponVisuals.CurrentWeaponModel().realodSfx.Play();
 
         // We do actuall refill of bullets in Playe_AnimationEvents
         // We UpdateWeaponUI in Player_AnimationEvents

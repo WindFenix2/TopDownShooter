@@ -13,5 +13,4 @@ public class Enemy_RangeWeaponModel : MonoBehaviour
 
     public Transform leftHandTarget;
     public Transform leftElbowTarget;
-
 }
