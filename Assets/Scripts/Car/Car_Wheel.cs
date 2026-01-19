@@ -19,6 +19,8 @@ public class Car_Wheel : MonoBehaviour
         cd = GetComponent<WheelCollider>();
         trail = GetComponentInChildren<TrailRenderer>();
 
+        trail.emitting = false;
+
         if(model == null)
             model = GetComponentInChildren<MeshRenderer>().gameObject;
     }

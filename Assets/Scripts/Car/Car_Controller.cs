@@ -66,6 +66,7 @@ public class Car_Controller : MonoBehaviour
     [SerializeField] private float driftDuration = 1f;
     private float driftTimer;
     private bool isDrifting;
+    private bool canEmitTrails = true;
 
 
     private Car_Wheel[] wheels;
@@ -139,6 +140,9 @@ public class Car_Controller : MonoBehaviour
 
     private void ApplyTrailsOnTheGround()
     {
+        if (canEmitTrails == false)
+            return;
+
         foreach (var wheel in wheels)
         {
             WheelHit hit;
@@ -275,6 +279,14 @@ public class Car_Controller : MonoBehaviour
 
     public void BrakeTheCar()
     {
+        canEmitTrails = false;
+
+        foreach (var wheel in wheels)
+        {
+            wheel.trail.emitting = false;
+        }
+
+        rb.drag = 1;
         motorForce = 0;
         isDrifting = true;
         frontDriftFactor = .9f;
