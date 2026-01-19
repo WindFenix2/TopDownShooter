@@ -806,7 +806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3610160418166918113, guid: d08f548e62a7c25418846cc858b38ecf, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3681844093942734429, guid: d08f548e62a7c25418846cc858b38ecf, type: 3}
       propertyPath: m_LocalScale.x
@@ -1402,6 +1402,10 @@ PrefabInstance:
     - target: {fileID: 8494904192741033626, guid: 8d141e2333f1e9f4ca650e947057bf45, type: 3}
       propertyPath: m_Name
       value: hill_terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494904192741033626, guid: 8d141e2333f1e9f4ca650e947057bf45, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2076,6 +2080,10 @@ PrefabInstance:
     - target: {fileID: 8917031686052998293, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
       propertyPath: m_Name
       value: base_terrain_square
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917031686052998293, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

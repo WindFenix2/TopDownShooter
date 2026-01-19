@@ -9,6 +9,7 @@ public class Car_Wheel : MonoBehaviour
 {
     public AxelType axelType;
     public WheelCollider cd { get; private set; }
+    public TrailRenderer trail {  get; private set; }
     public GameObject model;
 
     private float defaultSideStiffnes;
@@ -16,6 +17,7 @@ public class Car_Wheel : MonoBehaviour
     private void Awake()
     {
         cd = GetComponent<WheelCollider>();
+        trail = GetComponentInChildren<TrailRenderer>();
 
         if(model == null)
             model = GetComponentInChildren<MeshRenderer>().gameObject;
