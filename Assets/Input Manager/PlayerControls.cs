@@ -161,6 +161,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreciseAim"",
+                    ""type"": ""Button"",
+                    ""id"": ""eeac1401-a4e2-4bb8-bc1b-2c4b70871447"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -372,6 +381,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""UI Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5be7cd2-e067-4b31-ad7a-0f53ea1358b0"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreciseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -535,6 +555,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Character_Interaction = m_Character.FindAction("Interaction", throwIfNotFound: true);
         m_Character_UIMissionToolTipSwitch = m_Character.FindAction("UI Mission ToolTip Switch", throwIfNotFound: true);
         m_Character_UIPause = m_Character.FindAction("UI Pause", throwIfNotFound: true);
+        m_Character_PreciseAim = m_Character.FindAction("PreciseAim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UIPause = m_UI.FindAction("UI Pause", throwIfNotFound: true);
@@ -619,6 +640,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Interaction;
     private readonly InputAction m_Character_UIMissionToolTipSwitch;
     private readonly InputAction m_Character_UIPause;
+    private readonly InputAction m_Character_PreciseAim;
     public struct CharacterActions
     {
         private @PlayerControls m_Wrapper;
@@ -638,6 +660,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_Character_Interaction;
         public InputAction @UIMissionToolTipSwitch => m_Wrapper.m_Character_UIMissionToolTipSwitch;
         public InputAction @UIPause => m_Wrapper.m_Character_UIPause;
+        public InputAction @PreciseAim => m_Wrapper.m_Character_PreciseAim;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -692,6 +715,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @UIPause.started += instance.OnUIPause;
             @UIPause.performed += instance.OnUIPause;
             @UIPause.canceled += instance.OnUIPause;
+            @PreciseAim.started += instance.OnPreciseAim;
+            @PreciseAim.performed += instance.OnPreciseAim;
+            @PreciseAim.canceled += instance.OnPreciseAim;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -741,6 +767,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @UIPause.started -= instance.OnUIPause;
             @UIPause.performed -= instance.OnUIPause;
             @UIPause.canceled -= instance.OnUIPause;
+            @PreciseAim.started -= instance.OnPreciseAim;
+            @PreciseAim.performed -= instance.OnPreciseAim;
+            @PreciseAim.canceled -= instance.OnPreciseAim;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -883,6 +912,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnUIMissionToolTipSwitch(InputAction.CallbackContext context);
         void OnUIPause(InputAction.CallbackContext context);
+        void OnPreciseAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

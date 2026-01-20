@@ -73,12 +73,14 @@ public class UI : MonoBehaviour
             SwitchTo(inGameUI.gameObject);
             ControlsManager.instance.SwitchToCharacterControls();
             TimeManager.instance.ResumeTime();
+            Cursor.visible = false;
         }
         else
         {
             SwitchTo(pauseUI);
             ControlsManager.instance.SwitchToUIControls();
             TimeManager.instance.PauseTime();
+            Cursor.visible = true;
         }
     }
 
