@@ -130,22 +130,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1270070c62189c4789286d9c782892b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
+  defaultMaterial: {fileID: 0}
   boxType: 1
   smallBoxAmmo:
   - weaponType: 0
-    amount: 99
+    minAmount: 20
+    maxAmount: 30
   - weaponType: 1
-    amount: 99
+    minAmount: 0
+    maxAmount: 16
   - weaponType: 3
-    amount: 99
-  bigBoxAmmo:
+    minAmount: 30
+    maxAmount: 30
   - weaponType: 2
-    amount: 99
-  - weaponType: 3
-    amount: 999
+    minAmount: 40
+    maxAmount: 60
   - weaponType: 4
-    amount: 99
+    minAmount: 14
+    maxAmount: 23
+  bigBoxAmmo:
+  - weaponType: 0
+    minAmount: 40
+    maxAmount: 60
+  - weaponType: 1
+    minAmount: 20
+    maxAmount: 32
+  - weaponType: 3
+    minAmount: 60
+    maxAmount: 60
+  - weaponType: 2
+    minAmount: 80
+    maxAmount: 100
+  - weaponType: 4
+    minAmount: 28
+    maxAmount: 46
   boxModel:
   - {fileID: 6430379376461019806}
   - {fileID: 422108717402118447}
