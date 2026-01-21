@@ -35,9 +35,11 @@ public class UI : MonoBehaviour
 
 
         // Remove this if statement before build, it's for easier testing
-        if (GameManager.instance.quickStart)
+        if (GameManager.instance != null && GameManager.instance.quickStart)
         {
-            LevelGenerator.instance.InitializeGeneration();
+            if (LevelGenerator.instance != null)
+                LevelGenerator.instance.InitializeGeneration();
+
             StartTheGame();
         }
     }
