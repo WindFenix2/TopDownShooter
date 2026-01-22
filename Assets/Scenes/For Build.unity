@@ -14011,6 +14011,7 @@ MonoBehaviour:
   player: {fileID: 0}
   friendlyFire: 1
   quickStart: 0
+  quickStartDefaultWeapons: []
 --- !u!4 &1687976509
 Transform:
   m_ObjectHideFlags: 0
@@ -23444,7 +23445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &5436874393792064691
 AudioSource:
   m_ObjectHideFlags: 0
