@@ -38,14 +38,18 @@ public class Player_Movement : MonoBehaviour
 
         speed = walkSpeed;
 
-
         AssignInputEvents();
     }
-
 
     private void Update()
     {
         if (player.health.isDead)
+            return;
+
+        if (player.controlsEnabled == false)
+            return;
+
+        if (Time.timeScale == 0f)
             return;
 
         ApplyMovement();
@@ -64,16 +68,24 @@ public class Player_Movement : MonoBehaviour
         bool playRunAnimation = isRunning & movementDirection.magnitude > 0;
         animator.SetBool("isRunning", playRunAnimation);
     }
+
     private void ApplyRotation()
     {
+        if (player.aim == null)
+            return;
+
         Vector3 lookingDirection = player.aim.GetMouseHitInfo().point - transform.position;
         lookingDirection.y = 0f;
+
+        if (lookingDirection.sqrMagnitude < 0.0001f)
+            return;
+
         lookingDirection.Normalize();
 
         Quaternion desiredRotation = Quaternion.LookRotation(lookingDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, turnSpeed * Time.deltaTime);
-
     }
+
     private void ApplyMovement()
     {
         movementDirection = new Vector3(moveInput.x, 0, moveInput.y);
@@ -82,7 +94,6 @@ public class Player_Movement : MonoBehaviour
         if (movementDirection.magnitude > 0)
         {
             PlayFootstepsSFX();
-
             characterController.Move(movementDirection * Time.deltaTime * speed);
         }
     }
@@ -94,20 +105,22 @@ public class Player_Movement : MonoBehaviour
 
         if (isRunning)
         {
-            if (runSFX.isPlaying == false)
+            if (runSFX != null && runSFX.isPlaying == false)
                 runSFX.Play();
         }
         else
         {
-            if (walkSFX.isPlaying == false)
+            if (walkSFX != null && walkSFX.isPlaying == false)
                 walkSFX.Play();
         }
     }
+
     private void StopFootstepsSFX()
     {
-        walkSFX.Stop();
-        runSFX.Stop();
+        if (walkSFX != null) walkSFX.Stop();
+        if (runSFX != null) runSFX.Stop();
     }
+
     private void AllowfootstepsSFX() => canPlayFootsteps = true;
 
     private void ApplyGravity()
@@ -118,8 +131,11 @@ public class Player_Movement : MonoBehaviour
             movementDirection.y = verticalVelocity;
         }
         else
+        {
             verticalVelocity = -.5f;
+        }
     }
+
     private void AssignInputEvents()
     {
         controls = player.controls;
@@ -137,11 +153,16 @@ public class Player_Movement : MonoBehaviour
             isRunning = true;
         };
 
-
         controls.Character.Run.canceled += context =>
         {
             speed = walkSpeed;
             isRunning = false;
         };
+    }
+
+    private void OnDisable()
+    {
+        StopFootstepsSFX();
+        moveInput = Vector2.zero;
     }
 }

@@ -5884,7 +5884,7 @@ GameObject:
   - component: {fileID: 875539765}
   - component: {fileID: 875539766}
   m_Layer: 5
-  m_Name: WeapoSelection_UI
+  m_Name: WeaponSelection_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7143,12 +7143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'To learn how to make this game go to
-
-    Unityalexdev.com
-
-    Thank
-    you! <3'
+  m_text: Use Q - to slow down time
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
   m_sharedMaterial: {fileID: -3459236091167403587, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
@@ -14587,6 +14582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de073d75be1cba840962e610ca5e2b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuUI: {fileID: 48196193}
   victoryScreenUI: {fileID: 16112717}
   pauseUI: {fileID: 2066297862}
   UIElements:

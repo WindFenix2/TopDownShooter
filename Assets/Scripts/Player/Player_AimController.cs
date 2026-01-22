@@ -8,7 +8,7 @@ public class Player_AimController : MonoBehaviour
     private PlayerControls controls;
 
     [Header("Aim Viusal - Laser")]
-    [SerializeField] private LineRenderer aimLaser; // this component is on the waepon holder(child of a player)
+    [SerializeField] private LineRenderer aimLaser;
 
     [Header("Aim Control")]
     [SerializeField] private float preciseAimCamDistance = 6;
@@ -42,9 +42,8 @@ public class Player_AimController : MonoBehaviour
         cameraManager = CameraManager.instance;
         player = GetComponent<Player>();
         AssignInputEvents();
-
-        Cursor.visible = false;
     }
+
     private void Update()
     {
         if (player.health.isDead)
@@ -61,7 +60,6 @@ public class Player_AimController : MonoBehaviour
     private void EnablePreciseAim(bool enable)
     {
         isAimingPrecisly = !isAimingPrecisly;
-        Cursor.visible = false;
 
         if (enable)
         {
@@ -80,7 +78,9 @@ public class Player_AimController : MonoBehaviour
         cameraTarget.position = player.transform.position;
         return cameraTarget;
     }
+
     public void EnableAimLaer(bool enable) => aimLaser.enabled = enable;
+
     private void UpdateAimVisuals()
     {
         aim.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
@@ -89,12 +89,10 @@ public class Player_AimController : MonoBehaviour
         if (aimLaser.enabled == false)
             return;
 
-
         WeaponModel weaponModel = player.weaponVisuals.CurrentWeaponModel();
 
         weaponModel.transform.LookAt(aim);
         weaponModel.gunPoint.LookAt(aim);
-
 
         Transform gunPoint = player.weapon.GunPoint();
         Vector3 laserDirection = player.weapon.BulletDirection();
@@ -114,12 +112,12 @@ public class Player_AimController : MonoBehaviour
         aimLaser.SetPosition(1, endPoint);
         aimLaser.SetPosition(2, endPoint + laserDirection * laserTipLenght);
     }
+
     private void UpdateAimPosition()
     {
         aim.position = GetMouseHitInfo().point;
 
         Vector3 newAimPosition = isAimingPrecisly ? aim.position : transform.position;
-
         aim.position = new Vector3(aim.position.x, newAimPosition.y + AdjustedOffsetY(), aim.position.z);
     }
 
@@ -135,6 +133,7 @@ public class Player_AimController : MonoBehaviour
 
     public Transform Aim() => aim;
     public bool CanAimPrecisly() => isAimingPrecisly;
+
     public RaycastHit GetMouseHitInfo()
     {
         Ray ray = Camera.main.ScreenPointToRay(mouseInput);
@@ -158,7 +157,7 @@ public class Player_AimController : MonoBehaviour
             return;
 
         cameraTarget.position =
-                    Vector3.Lerp(cameraTarget.position, DesieredCameraPosition(), cameraSensetivity * Time.deltaTime);
+            Vector3.Lerp(cameraTarget.position, DesieredCameraPosition(), cameraSensetivity * Time.deltaTime);
     }
 
     private Vector3 DesieredCameraPosition()
@@ -189,5 +188,4 @@ public class Player_AimController : MonoBehaviour
         controls.Character.Aim.performed += context => mouseInput = context.ReadValue<Vector2>();
         controls.Character.Aim.canceled += context => mouseInput = Vector2.zero;
     }
-
 }

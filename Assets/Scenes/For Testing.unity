@@ -11175,7 +11175,7 @@ GameObject:
   - component: {fileID: 875539765}
   - component: {fileID: 875539766}
   m_Layer: 5
-  m_Name: WeapoSelection_UI
+  m_Name: WeaponSelection_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12493,7 +12493,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 82.62, y: 6.1111774, z: -10.04}
+  m_LocalPosition: {x: 0.18, y: 6.1111774, z: -7.4399996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16539,7 +16539,7 @@ Transform:
   m_GameObject: {fileID: 1259482826}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 82.62, y: 6.1111774, z: -10.04}
+  m_LocalPosition: {x: 0.18, y: 6.1111774, z: -7.4399996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34841,7 +34841,7 @@ Transform:
   m_GameObject: {fileID: 2141233244}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82.62, y: 0.049, z: -6.54}
+  m_LocalPosition: {x: 0.18, y: 0.049, z: -3.94}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
