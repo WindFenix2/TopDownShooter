@@ -69,12 +69,20 @@ public class Player_WeaponController : MonoBehaviour
 
     private void EquipWeapon(int i)
     {
-        if (weaponSlots == null || i >= weaponSlots.Count)
+        if (weaponSlots == null || i < 0 || i >= weaponSlots.Count)
+            return;
+
+        Weapon weaponToEquip = weaponSlots[i];
+        if (weaponToEquip == null)
+            return;
+
+        // не даём повторно "доставать" то же оружие, если оно уже готово
+        if (currentWeapon != null && weaponReady && weaponToEquip.weaponType == currentWeapon.weaponType)
             return;
 
         SetWeaponReady(false);
 
-        currentWeapon = weaponSlots[i];
+        currentWeapon = weaponToEquip;
 
         if (player != null && player.weaponVisuals != null)
             player.weaponVisuals.PlayWeaponEquipAnimation();

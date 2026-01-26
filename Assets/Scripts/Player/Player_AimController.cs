@@ -26,7 +26,7 @@ public class Player_AimController : MonoBehaviour
     [SerializeField] private LayerMask regularAim;
 
     [Header("Anti self-aim (regular mode)")]
-    [SerializeField] private float minRegularAimDistance = 1.25f;
+    [SerializeField] private float minRegularAimDistance = 1;
 
     [Header("Camera Control")]
     [SerializeField] private Transform cameraTarget;

@@ -41,11 +41,21 @@ public class Player_WeaponVisuals : MonoBehaviour
         UpdateLeftHandIKWeight();
     }
 
-    public void PlayFireAnimation() => anim.SetTrigger("Fire");
+    public void PlayFireAnimation()
+    {
+        if (anim == null) return;
+        anim.SetTrigger("Fire");
+    }
 
     public void PlayReloadAnimation()
     {
-        float reloadSpeed = player.weapon.CurrentWeapon().reloadSpeed;
+        if (player == null || player.weapon == null) return;
+        var w = player.weapon.CurrentWeapon();
+        if (w == null) return;
+
+        if (anim == null) return;
+
+        float reloadSpeed = w.reloadSpeed;
 
         anim.SetFloat("ReloadSpeed", reloadSpeed);
         anim.SetTrigger("Reload");
@@ -54,20 +64,34 @@ public class Player_WeaponVisuals : MonoBehaviour
 
     public void PlayWeaponEquipAnimation()
     {
-        EquipType equipType = CurrentWeaponModel().equipAnimationType;
+        if (player == null || player.weapon == null) return;
+        var w = player.weapon.CurrentWeapon();
+        if (w == null) return;
 
-        float equipmentSpeed = player.weapon.CurrentWeapon().equipmentSpeed;
+        var model = CurrentWeaponModel();
+        if (model == null) return;
 
-        leftHandIK.weight = 0;
+        if (anim == null) return;
+
+        EquipType equipType = model.equipAnimationType;
+        float equipmentSpeed = w.equipmentSpeed;
+
+        if (leftHandIK != null) leftHandIK.weight = 0;
+
         ReduceRigWeight();
         anim.SetTrigger("EquipWeapon");
-        anim.SetFloat("EquipType", ((float)equipType));
+        anim.SetFloat("EquipType", (float)equipType);
         anim.SetFloat("EquipSpeed", equipmentSpeed);
     }
 
     public void SwitchOnCurrentWeaponModel()
     {
-        int animationIndex = ((int)CurrentWeaponModel().holdType);
+        if (player == null || player.weapon == null) return;
+
+        var model = CurrentWeaponModel();
+        if (model == null) return;
+
+        int animationIndex = (int)model.holdType;
 
         SwitchOffWeaponModels();
         SwitchOffBackupWeaponModels();
@@ -76,28 +100,40 @@ public class Player_WeaponVisuals : MonoBehaviour
             SwitchOnBackupWeaponModel();
 
         SwitchAnimationLayer(animationIndex);
-        CurrentWeaponModel().gameObject.SetActive(true);
+        model.gameObject.SetActive(true);
         AttachLeftHand();
     }
 
     public void SwitchOffWeaponModels()
     {
+        if (weaponModels == null) return;
+
         for (int i = 0; i < weaponModels.Length; i++)
         {
-            weaponModels[i].gameObject.SetActive(false);
+            if (weaponModels[i] != null)
+                weaponModels[i].gameObject.SetActive(false);
         }
     }
 
     private void SwitchOffBackupWeaponModels()
     {
+        if (backupWeaponModels == null) return;
+
         foreach (BackupWeaponModel backupModel in backupWeaponModels)
         {
-            backupModel.Activate(false);
+            if (backupModel != null)
+                backupModel.Activate(false);
         }
     }
 
     public void SwitchOnBackupWeaponModel()
     {
+        if (player == null || player.weapon == null) return;
+        if (backupWeaponModels == null) return;
+
+        var current = player.weapon.CurrentWeapon();
+        if (current == null) return;
+
         SwitchOffBackupWeaponModels();
 
         BackupWeaponModel lowHangWeapon = null;
@@ -106,7 +142,9 @@ public class Player_WeaponVisuals : MonoBehaviour
 
         foreach (BackupWeaponModel backupModel in backupWeaponModels)
         {
-            if (backupModel.weaponType == player.weapon.CurrentWeapon().weaponType)
+            if (backupModel == null) continue;
+
+            if (backupModel.weaponType == current.weaponType)
                 continue;
 
             if (player.weapon.WeaponInSlots(backupModel.weaponType) != null)
@@ -129,6 +167,8 @@ public class Player_WeaponVisuals : MonoBehaviour
 
     private void SwitchAnimationLayer(int layerIndex)
     {
+        if (anim == null) return;
+
         for (int i = 1; i < anim.layerCount; i++)
         {
             anim.SetLayerWeight(i, 0);
@@ -139,24 +179,33 @@ public class Player_WeaponVisuals : MonoBehaviour
 
     public WeaponModel CurrentWeaponModel()
     {
-        WeaponModel weaponModel = null;
+        if (player == null || player.weapon == null) return null;
+        var w = player.weapon.CurrentWeapon();
+        if (w == null) return null;
+        if (weaponModels == null) return null;
 
-        WeaponType weaponType = player.weapon.CurrentWeapon().weaponType;
+        WeaponType weaponType = w.weaponType;
 
         for (int i = 0; i < weaponModels.Length; i++)
         {
-            if (weaponModels[i].weaponType == weaponType)
-                weaponModel = weaponModels[i];
+            if (weaponModels[i] != null && weaponModels[i].weaponType == weaponType)
+                return weaponModels[i];
         }
 
-        return weaponModel;
+        return null;
     }
 
     #region Animation Rigging Methods
 
     private void AttachLeftHand()
     {
-        Transform targetTransform = CurrentWeaponModel().holdPoint;
+        var model = CurrentWeaponModel();
+        if (model == null) return;
+
+        if (leftHandIK_Target == null) return;
+        if (model.holdPoint == null) return;
+
+        Transform targetTransform = model.holdPoint;
 
         leftHandIK_Target.localPosition = targetTransform.localPosition;
         leftHandIK_Target.localRotation = targetTransform.localRotation;
@@ -164,28 +213,29 @@ public class Player_WeaponVisuals : MonoBehaviour
 
     private void UpdateLeftHandIKWeight()
     {
-        if (shouldIncrease_LeftHandIKWieght)
-        {
-            leftHandIK.weight += leftHandIkWeightIncreaseRate * Time.deltaTime;
+        if (!shouldIncrease_LeftHandIKWieght) return;
+        if (leftHandIK == null) { shouldIncrease_LeftHandIKWieght = false; return; }
 
-            if (leftHandIK.weight >= 1)
-                shouldIncrease_LeftHandIKWieght = false;
-        }
+        leftHandIK.weight += leftHandIkWeightIncreaseRate * Time.deltaTime;
+
+        if (leftHandIK.weight >= 1)
+            shouldIncrease_LeftHandIKWieght = false;
     }
 
     private void UpdateRigWigth()
     {
-        if (shouldIncrease_RigWeight)
-        {
-            rig.weight += rigWeightIncreaseRate * Time.deltaTime;
+        if (!shouldIncrease_RigWeight) return;
+        if (rig == null) { shouldIncrease_RigWeight = false; return; }
 
-            if (rig.weight >= 1)
-                shouldIncrease_RigWeight = false;
-        }
+        rig.weight += rigWeightIncreaseRate * Time.deltaTime;
+
+        if (rig.weight >= 1)
+            shouldIncrease_RigWeight = false;
     }
 
     private void ReduceRigWeight()
     {
+        if (rig == null) return;
         rig.weight = .15f;
     }
 
