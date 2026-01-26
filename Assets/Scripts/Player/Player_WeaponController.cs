@@ -27,6 +27,8 @@ public class Player_WeaponController : MonoBehaviour
 
     [SerializeField] private GameObject weaponPickupPrefab;
 
+    private Collider[] playerColliders;
+
     private void Awake()
     {
         if (weaponSlots == null)
@@ -36,6 +38,7 @@ public class Player_WeaponController : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+        playerColliders = GetComponentsInChildren<Collider>(true);
         AssignInputEvents();
     }
 
@@ -218,15 +221,24 @@ public class Player_WeaponController : MonoBehaviour
             return;
 
         GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab, gunPoint);
+        newBullet.transform.position = gunPoint.position;
         newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
+
+        Collider bulletCol = newBullet.GetComponent<Collider>();
+        if (bulletCol != null && playerColliders != null)
+        {
+            for (int i = 0; i < playerColliders.Length; i++)
+            {
+                if (playerColliders[i] == null) continue;
+                Physics.IgnoreCollision(bulletCol, playerColliders[i], true);
+            }
+        }
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
         if (bulletScript != null)
-        {
-            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, player.transform);
-        }
+            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce);
 
         Vector3 bulletsDirection = currentWeapon.ApplySpread(BulletDirection());
 

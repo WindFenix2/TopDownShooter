@@ -27004,10 +27004,11 @@ MonoBehaviour:
   offsetChangeRate: 6
   preciseAim:
     serializedVersion: 2
-    m_Bits: 6337
+    m_Bits: 6336
   regularAim:
     serializedVersion: 2
     m_Bits: 64
+  minRegularAimDistance: 1
   cameraTarget: {fileID: 2141233248}
   minCameraDistance: 1
   maxCameraDistance: 3

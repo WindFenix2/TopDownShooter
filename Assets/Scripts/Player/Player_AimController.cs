@@ -25,6 +25,9 @@ public class Player_AimController : MonoBehaviour
     [SerializeField] private LayerMask preciseAim;
     [SerializeField] private LayerMask regularAim;
 
+    [Header("Anti self-aim (regular mode)")]
+    [SerializeField] private float minRegularAimDistance = 1.25f;
+
     [Header("Camera Control")]
     [SerializeField] private Transform cameraTarget;
     [Range(.5f, 1)]
@@ -50,20 +53,7 @@ public class Player_AimController : MonoBehaviour
             return;
 
         if (player.controlsEnabled == false)
-        {
-            if (aim != null && aim.gameObject.activeSelf)
-                aim.gameObject.SetActive(false);
-
-            if (aimLaser != null && aimLaser.enabled)
-                aimLaser.enabled = false;
-
             return;
-        }
-        else
-        {
-            if (aim != null && !aim.gameObject.activeSelf)
-                aim.gameObject.SetActive(true);
-        }
 
         UpdateAimVisuals();
         UpdateAimPosition();
@@ -92,17 +82,7 @@ public class Player_AimController : MonoBehaviour
         return cameraTarget;
     }
 
-    public void EnableAimLaer(bool enable)
-    {
-        if (aimLaser != null)
-            aimLaser.enabled = enable;
-    }
-
-    public void EnableAimTarget(bool enable)
-    {
-        if (aim != null)
-            aim.gameObject.SetActive(enable);
-    }
+    public void EnableAimLaer(bool enable) => aimLaser.enabled = enable;
 
     private void UpdateAimVisuals()
     {
@@ -159,15 +139,59 @@ public class Player_AimController : MonoBehaviour
 
     public RaycastHit GetMouseHitInfo()
     {
+        if (Camera.main == null)
+            return lastKnownMouseHit;
+
+        LayerMask maskToUse = isAimingPrecisly ? preciseAim : regularAim;
+
         Ray ray = Camera.main.ScreenPointToRay(mouseInput);
 
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, preciseAim))
+        RaycastHit[] hits = Physics.RaycastAll(ray, 999f, maskToUse, QueryTriggerInteraction.Ignore);
+
+        if (hits != null && hits.Length > 0)
         {
-            lastKnownMouseHit = hitInfo;
-            return hitInfo;
+            Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].transform != null && hits[i].transform.IsChildOf(player.transform))
+                    continue;
+
+                lastKnownMouseHit = hits[i];
+
+                if (!isAimingPrecisly)
+                    lastKnownMouseHit.point = ClampRegularAimPoint(lastKnownMouseHit.point);
+
+                return lastKnownMouseHit;
+            }
+        }
+
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, transform.position.y, 0));
+        if (groundPlane.Raycast(ray, out float enter))
+        {
+            Vector3 p = ray.GetPoint(enter);
+            lastKnownMouseHit.point = (!isAimingPrecisly) ? ClampRegularAimPoint(p) : p;
+            return lastKnownMouseHit;
         }
 
         return lastKnownMouseHit;
+    }
+
+    private Vector3 ClampRegularAimPoint(Vector3 point)
+    {
+        Vector3 p = point;
+        Vector3 playerPos = transform.position;
+
+        Vector3 flat = new Vector3(p.x - playerPos.x, 0, p.z - playerPos.z);
+        float dist = flat.magnitude;
+
+        if (dist < minRegularAimDistance)
+        {
+            Vector3 dir = flat.sqrMagnitude < 0.0001f ? transform.forward : flat.normalized;
+            p = playerPos + dir * minRegularAimDistance;
+        }
+
+        return p;
     }
 
     #region Camera Region
