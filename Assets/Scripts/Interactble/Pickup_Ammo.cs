@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable]
 public struct AmmoData
 {
@@ -9,49 +8,50 @@ public struct AmmoData
     [Range(10, 100)] public int minAmount;
     [Range(10, 100)] public int maxAmount;
 }
-public enum AmmoBoxType { smallBox,bigBox}
+public enum AmmoBoxType { smallBox, bigBox }
 
 public class Pickup_Ammo : Interactable
 {
     [SerializeField] private AmmoBoxType boxType;
-
-
-
 
     [SerializeField] private List<AmmoData> smallBoxAmmo;
     [SerializeField] private List<AmmoData> bigBoxAmmo;
 
     [SerializeField] private GameObject[] boxModel;
 
-    private void Start() => SetupBoxModel();    
+    private void Start() => SetupBoxModel();
 
-    
     public override void Interaction()
     {
+        if (weaponController == null)
+            return;
+
         List<AmmoData> currentAmmoList = smallBoxAmmo;
 
-        if(boxType == AmmoBoxType.bigBox)
+        if (boxType == AmmoBoxType.bigBox)
             currentAmmoList = bigBoxAmmo;
 
-        foreach(AmmoData ammo in currentAmmoList)
+        foreach (AmmoData ammo in currentAmmoList)
         {
             Weapon weapon = weaponController.WeaponInSlots(ammo.weaponType);
             AddBulletsToWeapon(weapon, GetBulletAmount(ammo));
         }
 
+        weaponController.UpdateWeaponUI();
+
         ObjectPool.instance.ReturnObject(gameObject);
     }
 
-
     private int GetBulletAmount(AmmoData ammoData)
     {
-        float min = Mathf.Min(ammoData.minAmount,ammoData.maxAmount);
-        float max = Mathf.Max(ammoData.minAmount,ammoData.maxAmount);
+        float min = Mathf.Min(ammoData.minAmount, ammoData.maxAmount);
+        float max = Mathf.Max(ammoData.minAmount, ammoData.maxAmount);
 
-        float randomAmmoAmount = Random.Range(min,max);
+        float randomAmmoAmount = Random.Range(min, max);
 
         return Mathf.RoundToInt(randomAmmoAmount);
     }
+
     private void AddBulletsToWeapon(Weapon weapon, int amount)
     {
         if (weapon == null)
@@ -59,12 +59,12 @@ public class Pickup_Ammo : Interactable
 
         weapon.totalReserveAmmo += amount;
     }
+
     private void SetupBoxModel()
     {
         for (int i = 0; i < boxModel.Length; i++)
         {
             boxModel[i].SetActive(false);
-
 
             if (i == ((int)boxType))
             {
@@ -73,5 +73,4 @@ public class Pickup_Ammo : Interactable
             }
         }
     }
-
 }
