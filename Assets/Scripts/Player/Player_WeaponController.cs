@@ -66,19 +66,12 @@ public class Player_WeaponController : MonoBehaviour
 
     private void EquipWeapon(int i)
     {
-        if (weaponSlots == null || i < 0 || i >= weaponSlots.Count)
-            return;
-
-        Weapon weaponToEquip = weaponSlots[i];
-        if (weaponToEquip == null)
-            return;
-
-        if (currentWeapon != null && weaponToEquip.weaponType == currentWeapon.weaponType && weaponReady)
+        if (weaponSlots == null || i >= weaponSlots.Count)
             return;
 
         SetWeaponReady(false);
 
-        currentWeapon = weaponToEquip;
+        currentWeapon = weaponSlots[i];
 
         if (player != null && player.weaponVisuals != null)
             player.weaponVisuals.PlayWeaponEquipAnimation();
@@ -231,7 +224,9 @@ public class Player_WeaponController : MonoBehaviour
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
         if (bulletScript != null)
-            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce);
+        {
+            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, player.transform);
+        }
 
         Vector3 bulletsDirection = currentWeapon.ApplySpread(BulletDirection());
 

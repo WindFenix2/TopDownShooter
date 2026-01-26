@@ -10,9 +10,7 @@ public class Bullet : MonoBehaviour
     private MeshRenderer meshRenderer;
     private TrailRenderer trailRenderer;
 
-
     [SerializeField] private GameObject bulletImpactFX;
-
 
     private Vector3 startPosition;
     private float flyDistance;
@@ -20,6 +18,7 @@ public class Bullet : MonoBehaviour
 
     private LayerMask allyLayerMask;
 
+    private Transform ownerRoot;
 
     protected virtual void Awake()
     {
@@ -28,12 +27,13 @@ public class Bullet : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
     }
-
-    public void BulletSetup(LayerMask allyLayerMask, int bulletDamage, float flyDistance = 100, float impactForce = 100)
+    public void BulletSetup(LayerMask allyLayerMask, int bulletDamage, float flyDistance = 100, float impactForce = 100, Transform owner = null)
     {
         this.allyLayerMask = allyLayerMask;
         this.impactForce = impactForce;
         this.bulletDamage = bulletDamage;
+
+        ownerRoot = owner != null ? owner.root : null;
 
         bulletDisabled = false;
         cd.enabled = true;
@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
         trailRenderer.Clear();
         trailRenderer.time = .25f;
         startPosition = transform.position;
-        this.flyDistance = flyDistance + .5f; // magic number .5f is a length of tip of the laser ( Check method UpdateAimVisuals() on PlayerAim script) ;
+        this.flyDistance = flyDistance + .5f; // tip length
     }
 
     protected virtual void Update()
@@ -57,6 +57,7 @@ public class Bullet : MonoBehaviour
         if (trailRenderer.time < 0)
             ReturnBulletToPool();
     }
+
     protected void DisableBulletIfNeeded()
     {
         if (Vector3.Distance(startPosition, transform.position) > flyDistance && !bulletDisabled)
@@ -66,19 +67,24 @@ public class Bullet : MonoBehaviour
             bulletDisabled = true;
         }
     }
+
     protected void FadeTrailIfNeeded()
     {
         if (Vector3.Distance(startPosition, transform.position) > flyDistance - 1.5f)
-            trailRenderer.time -= 2 * Time.deltaTime; // magic number 2 is choosen trhou testing
+            trailRenderer.time -= 2 * Time.deltaTime;
     }
-
-
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        if (ownerRoot != null && collision.transform.root == ownerRoot)
+        {
+            ReturnBulletToPool();
+            return;
+        }
+
         if (FriendlyFare() == false)
         {
-            // Use a bitwise AND to check if the collsion layer is in the allyLayerMask
+            // check if collision layer is in allyLayerMask
             if ((allyLayerMask.value & (1 << collision.gameObject.layer)) > 0)
             {
                 ReturnBulletToPool(10);
@@ -108,16 +114,12 @@ public class Bullet : MonoBehaviour
 
     protected void ReturnBulletToPool(float delay = 0) => ObjectPool.instance.ReturnObject(gameObject, delay);
 
-
     protected void CreateImpactFx()
     {
         GameObject newFx = Instantiate(bulletImpactFX);
         newFx.transform.position = transform.position;
 
         Destroy(newFx, 1);
-
-        //GameObject newImpactFx = ObjectPool.instance.GetObject(bulletImpactFX, transform);
-        //ObjectPool.instance.ReturnObject(newImpactFx, 1);
     }
 
     private bool FriendlyFare() => GameManager.instance.friendlyFire;
