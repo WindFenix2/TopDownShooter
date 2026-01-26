@@ -53,7 +53,6 @@ public class UI : MonoBehaviour
 
         StartCoroutine(ChangeImageAlpha(0, 1.5f, null));
 
-        // QuickStart (testing)
         if (GameManager.instance != null && GameManager.instance.quickStart)
         {
             if (LevelGenerator.instance != null)
@@ -67,6 +66,35 @@ public class UI : MonoBehaviour
     {
         if (controls != null)
             controls.UI.UIPause.performed -= OnPausePerformed;
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+            RefreshCursorState();
+    }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (!pauseStatus)
+            RefreshCursorState();
+    }
+
+    private void RefreshCursorState()
+    {
+        if (gameHasStarted && !isPaused)
+            SetCursorGameplay();
+        else
+            SetCursorMenu();
+    }
+
+    private bool IsPlayerInCar()
+    {
+        if (GameManager.instance == null || GameManager.instance.player == null)
+            return false;
+
+        // ¬ твоей логике "в машине" = игрок запарентен к машине
+        return GameManager.instance.player.transform.parent != null;
     }
 
     public void SwitchTo(GameObject uiToSwitchOn)
@@ -96,7 +124,13 @@ public class UI : MonoBehaviour
         {
             isPaused = false;
             TimeManager.instance.ResumeTime();
-            ControlsManager.instance.SwitchToCharacterControls();
+
+            // если рестарт из паузы в машине Ч не включаем character controls
+            if (IsPlayerInCar())
+                ControlsManager.instance.SwitchToCarControls();
+            else
+                ControlsManager.instance.SwitchToCharacterControls();
+
             SwitchTo(inGameUI.gameObject);
             SetCursorGameplay();
         }
@@ -141,7 +175,13 @@ public class UI : MonoBehaviour
         else
         {
             SwitchTo(inGameUI.gameObject);
-            ControlsManager.instance.SwitchToCharacterControls();
+
+            //  Ћё„≈¬ќ≈: возвращаемс€ в тот режим, в котором были (машина/персонаж)
+            if (IsPlayerInCar())
+                ControlsManager.instance.SwitchToCarControls();
+            else
+                ControlsManager.instance.SwitchToCharacterControls();
+
             TimeManager.instance.ResumeTime();
             SetCursorGameplay();
         }

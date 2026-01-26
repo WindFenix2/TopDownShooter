@@ -76,13 +76,15 @@ public class Player_WeaponController : MonoBehaviour
         if (weaponToEquip == null)
             return;
 
-        // не даём повторно "доставать" то же оружие, если оно уже готово
         if (currentWeapon != null && weaponReady && weaponToEquip.weaponType == currentWeapon.weaponType)
             return;
 
         SetWeaponReady(false);
 
         currentWeapon = weaponToEquip;
+
+        if (player != null && player.aim != null)
+            player.aim.SetRegularAimCameraDistance(currentWeapon.cameraDistance);
 
         if (player != null && player.weaponVisuals != null)
             player.weaponVisuals.PlayWeaponEquipAnimation();

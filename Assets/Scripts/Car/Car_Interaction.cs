@@ -10,7 +10,6 @@ public class Car_Interaction : Interactable
 
     private float defaultPlayerScale;
 
-
     [Header("Exit details")]
     [SerializeField] private float exitCheckRadius = .2f;
     [SerializeField] private Transform[] exitPoints;
@@ -47,8 +46,7 @@ public class Car_Interaction : Interactable
         player.transform.parent = transform;
         player.transform.localPosition = Vector3.up / 2;
 
-        CameraManager.instance.ChangeCameraTarget(transform,12,.5f);
-
+        CameraManager.instance.ChangeCameraTarget(transform, 12, .5f);
     }
 
     public void GetOutOfTheCar()
@@ -60,17 +58,29 @@ public class Car_Interaction : Interactable
 
         player.parent = null;
         player.position = GetExitPoint();
-        player.transform.localScale = new Vector3(defaultPlayerScale,defaultPlayerScale,defaultPlayerScale);
+        player.transform.localScale = new Vector3(defaultPlayerScale, defaultPlayerScale, defaultPlayerScale);
 
         ControlsManager.instance.SwitchToCharacterControls();
+
         Player_AimController aim = GameManager.instance.player.aim;
 
-        CameraManager.instance.ChangeCameraTarget(aim.GetAimCameraTarget(),8.5f);
+        float camDist = 8.5f;
+        var p = GameManager.instance.player;
+
+        if (p != null && p.weapon != null && p.weapon.CurrentWeapon() != null)
+        {
+            camDist = p.weapon.CurrentWeapon().cameraDistance;
+
+            if (p.aim != null)
+                p.aim.SyncCameraDistanceFromCurrentWeapon(false);
+        }
+
+        CameraManager.instance.ChangeCameraTarget(aim.GetAimCameraTarget(), camDist);
     }
 
     private Vector3 GetExitPoint()
     {
-       for (int i = 0; i < exitPoints.Length; i++)
+        for (int i = 0; i < exitPoints.Length; i++)
         {
             if (IsExitClear(exitPoints[i].position))
                 return exitPoints[i].position;
@@ -87,10 +97,11 @@ public class Car_Interaction : Interactable
 
     private void OnDrawGizmos()
     {
-        if (exitPoints.Length > 0)
+        if (exitPoints != null && exitPoints.Length > 0)
         {
             foreach (var point in exitPoints)
             {
+                if (point == null) continue;
                 Gizmos.DrawWireSphere(point.position, exitCheckRadius);
             }
         }

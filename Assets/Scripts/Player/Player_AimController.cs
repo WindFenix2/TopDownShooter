@@ -10,10 +10,16 @@ public class Player_AimController : MonoBehaviour
     [Header("Aim Viusal - Laser")]
     [SerializeField] private LineRenderer aimLaser;
 
+    [Header("Aim Visual - Sprite (crosshair on ground)")]
+    [SerializeField] private SpriteRenderer aimSprite;
+
     [Header("Aim Control")]
     [SerializeField] private float preciseAimCamDistance = 6;
     [SerializeField] private float regularAimCamDistance = 7;
     [SerializeField] private float camChangeRate = 5;
+
+    [Header("Weapon camera")]
+    [SerializeField] private float preciseAimOffsetFromRegular = -1f;
 
     [Header("Aim Setup")]
     [SerializeField] private Transform aim;
@@ -45,6 +51,11 @@ public class Player_AimController : MonoBehaviour
         cameraManager = CameraManager.instance;
         player = GetComponent<Player>();
         AssignInputEvents();
+
+        if (aimSprite == null && aim != null)
+            aimSprite = aim.GetComponent<SpriteRenderer>();
+
+        SyncCameraDistanceFromCurrentWeapon();
     }
 
     private void Update()
@@ -59,6 +70,44 @@ public class Player_AimController : MonoBehaviour
         UpdateAimPosition();
         UpdateCameraPosition();
     }
+
+    public void EnableAimLaer(bool enable)
+    {
+        if (aimLaser != null)
+            aimLaser.enabled = enable;
+
+        if (aimSprite != null)
+            aimSprite.enabled = enable;
+    }
+
+    public void SyncCameraDistanceFromCurrentWeapon(bool applyNow = true)
+    {
+        if (player == null || player.weapon == null)
+            return;
+
+        Weapon w = player.weapon.CurrentWeapon();
+        if (w == null)
+            return;
+
+        SetRegularAimCameraDistance(w.cameraDistance, applyNow);
+    }
+
+    public void SetRegularAimCameraDistance(float regularDistance, bool applyNow = true)
+    {
+        regularAimCamDistance = regularDistance;
+        preciseAimCamDistance = Mathf.Max(0.5f, regularAimCamDistance + preciseAimOffsetFromRegular);
+
+        if (!applyNow)
+            return;
+
+        if (cameraManager == null)
+            return;
+
+        float distToApply = isAimingPrecisly ? preciseAimCamDistance : regularAimCamDistance;
+        cameraManager.ChangeCameraDistance(distToApply, camChangeRate);
+    }
+
+    public float GetRegularAimCameraDistance() => regularAimCamDistance;
 
     private void EnablePreciseAim(bool enable)
     {
@@ -82,11 +131,16 @@ public class Player_AimController : MonoBehaviour
         return cameraTarget;
     }
 
-    public void EnableAimLaer(bool enable) => aimLaser.enabled = enable;
-
     private void UpdateAimVisuals()
     {
+        if (aim == null || Camera.main == null)
+            return;
+
         aim.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+
+        if (aimLaser == null || player.weapon == null)
+            return;
+
         aimLaser.enabled = player.weapon.WeaponReady();
 
         if (aimLaser.enabled == false)
@@ -118,6 +172,9 @@ public class Player_AimController : MonoBehaviour
 
     private void UpdateAimPosition()
     {
+        if (aim == null)
+            return;
+
         aim.position = GetMouseHitInfo().point;
 
         Vector3 newAimPosition = isAimingPrecisly ? aim.position : transform.position;
