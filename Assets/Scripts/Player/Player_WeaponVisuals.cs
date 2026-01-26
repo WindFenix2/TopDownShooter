@@ -3,14 +3,11 @@ using UnityEngine.Animations.Rigging;
 
 public class Player_WeaponVisuals : MonoBehaviour
 {
-
     private Player player;
     private Animator anim;
 
     [SerializeField] private WeaponModel[] weaponModels;
     [SerializeField] private BackupWeaponModel[] backupWeaponModels;
-
-
 
     [Header("Rig ")]
     [SerializeField] private float rigWeightIncreaseRate;
@@ -23,16 +20,19 @@ public class Player_WeaponVisuals : MonoBehaviour
     [SerializeField] private Transform leftHandIK_Target;
     private bool shouldIncrease_LeftHandIKWieght;
 
-
-
     private void Start()
     {
-        player  = GetComponent<Player>();
+        player = GetComponent<Player>();
         anim = GetComponentInChildren<Animator>();
         rig = GetComponentInChildren<Rig>();
 
         weaponModels = GetComponentsInChildren<WeaponModel>(true);
         backupWeaponModels = GetComponentsInChildren<BackupWeaponModel>(true);
+
+        if (player != null && player.weapon != null && player.weapon.CurrentWeapon() != null)
+        {
+            SwitchOnCurrentWeaponModel();
+        }
     }
 
     private void Update()
@@ -41,11 +41,10 @@ public class Player_WeaponVisuals : MonoBehaviour
         UpdateLeftHandIKWeight();
     }
 
-
     public void PlayFireAnimation() => anim.SetTrigger("Fire");
+
     public void PlayReloadAnimation()
     {
-       
         float reloadSpeed = player.weapon.CurrentWeapon().reloadSpeed;
 
         anim.SetFloat("ReloadSpeed", reloadSpeed);
@@ -66,7 +65,6 @@ public class Player_WeaponVisuals : MonoBehaviour
         anim.SetFloat("EquipSpeed", equipmentSpeed);
     }
 
-
     public void SwitchOnCurrentWeaponModel()
     {
         int animationIndex = ((int)CurrentWeaponModel().holdType);
@@ -74,14 +72,14 @@ public class Player_WeaponVisuals : MonoBehaviour
         SwitchOffWeaponModels();
         SwitchOffBackupWeaponModels();
 
-
-        if(player.weapon.HasOnlyOneWeapon() == false)
+        if (player.weapon.HasOnlyOneWeapon() == false)
             SwitchOnBackupWeaponModel();
 
         SwitchAnimationLayer(animationIndex);
         CurrentWeaponModel().gameObject.SetActive(true);
         AttachLeftHand();
     }
+
     public void SwitchOffWeaponModels()
     {
         for (int i = 0; i < weaponModels.Length; i++)
@@ -108,20 +106,18 @@ public class Player_WeaponVisuals : MonoBehaviour
 
         foreach (BackupWeaponModel backupModel in backupWeaponModels)
         {
-
             if (backupModel.weaponType == player.weapon.CurrentWeapon().weaponType)
                 continue;
-
 
             if (player.weapon.WeaponInSlots(backupModel.weaponType) != null)
             {
                 if (backupModel.HangTypeIs(HangType.LowBackHang))
                     lowHangWeapon = backupModel;
 
-                if(backupModel.HangTypeIs(HangType.BackHang))
+                if (backupModel.HangTypeIs(HangType.BackHang))
                     backHangWeapon = backupModel;
 
-                if(backupModel.HangTypeIs(HangType.SideHang))
+                if (backupModel.HangTypeIs(HangType.SideHang))
                     sideHangWeapon = backupModel;
             }
         }
@@ -130,7 +126,7 @@ public class Player_WeaponVisuals : MonoBehaviour
         backHangWeapon?.Activate(true);
         sideHangWeapon?.Activate(true);
     }
-  
+
     private void SwitchAnimationLayer(int layerIndex)
     {
         for (int i = 1; i < anim.layerCount; i++)
@@ -140,7 +136,6 @@ public class Player_WeaponVisuals : MonoBehaviour
 
         anim.SetLayerWeight(layerIndex, 1);
     }
-
 
     public WeaponModel CurrentWeaponModel()
     {
@@ -156,8 +151,6 @@ public class Player_WeaponVisuals : MonoBehaviour
 
         return weaponModel;
     }
-
-
 
     #region Animation Rigging Methods
 
@@ -179,6 +172,7 @@ public class Player_WeaponVisuals : MonoBehaviour
                 shouldIncrease_LeftHandIKWieght = false;
         }
     }
+
     private void UpdateRigWigth()
     {
         if (shouldIncrease_RigWeight)
@@ -189,6 +183,7 @@ public class Player_WeaponVisuals : MonoBehaviour
                 shouldIncrease_RigWeight = false;
         }
     }
+
     private void ReduceRigWeight()
     {
         rig.weight = .15f;
