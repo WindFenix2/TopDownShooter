@@ -50,7 +50,20 @@ public class Player_AimController : MonoBehaviour
             return;
 
         if (player.controlsEnabled == false)
+        {
+            if (aim != null && aim.gameObject.activeSelf)
+                aim.gameObject.SetActive(false);
+
+            if (aimLaser != null && aimLaser.enabled)
+                aimLaser.enabled = false;
+
             return;
+        }
+        else
+        {
+            if (aim != null && !aim.gameObject.activeSelf)
+                aim.gameObject.SetActive(true);
+        }
 
         UpdateAimVisuals();
         UpdateAimPosition();
@@ -79,7 +92,17 @@ public class Player_AimController : MonoBehaviour
         return cameraTarget;
     }
 
-    public void EnableAimLaer(bool enable) => aimLaser.enabled = enable;
+    public void EnableAimLaer(bool enable)
+    {
+        if (aimLaser != null)
+            aimLaser.enabled = enable;
+    }
+
+    public void EnableAimTarget(bool enable)
+    {
+        if (aim != null)
+            aim.gameObject.SetActive(enable);
+    }
 
     private void UpdateAimVisuals()
     {

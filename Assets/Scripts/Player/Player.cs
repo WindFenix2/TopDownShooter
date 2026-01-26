@@ -32,13 +32,13 @@ public class Player : MonoBehaviour
         controls = ControlsManager.instance.controls;
     }
 
-
     private void OnEnable()
     {
         controls.Enable();
         controls.Character.UIMissionToolTipSwitch.performed += ctx => UI.instance.inGameUI.SwitchMissionTooltip();
         controls.Character.UIPause.performed += ctx => UI.instance.PauseSwitch();
     }
+
     private void OnDisable()
     {
         controls.Disable();
@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     {
         controlsEnabled = enabled;
         ragdoll.CollidersActive(enabled);
+
         aim.EnableAimLaer(enabled);
+        aim.EnableAimTarget(enabled);
     }
 }

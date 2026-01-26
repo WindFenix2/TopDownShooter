@@ -12311,7 +12311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canChangeCameraDistance: 1
-  distanceChangeRate: 0.25
+  distanceChangeRate: 5
   targetCameraDistance: 7
 --- !u!1 &958470777
 GameObject:
