@@ -156,7 +156,6 @@ MonoBehaviour:
   levelParts:
   - {fileID: 1990789868430406224, guid: 1d7d46429e009bb4585eb449a59464bc, type: 3}
   - {fileID: 344561504900064319, guid: bc6e99b42c9c96b4087696f3b6ac03bc, type: 3}
-  - {fileID: 1961009257641033207, guid: ebdada50b9e90ac409a065fefa1ebb10, type: 3}
   nextSnapPoint: {fileID: 819654112}
   generationCooldown: 0.25
 --- !u!4 &5961874
@@ -5592,12 +5591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'To learn how to make this game go to
-
-    Unityalexdev.com
-
-    Thank
-    you! <3'
+  m_text: "This game was created as a diploma thesis. \nGame creator: \nNikita Halaiko"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
   m_sharedMaterial: {fileID: -3459236091167403587, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
@@ -7143,7 +7137,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use Q - to slow down time
+  m_text: 'Use Q - to slow down time
+
+    Use RMB - to aim'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
   m_sharedMaterial: {fileID: -3459236091167403587, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
@@ -23106,9 +23102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimLaser: {fileID: 5705817702565076673}
+  aimSprite: {fileID: 0}
   preciseAimCamDistance: 6
   regularAimCamDistance: 7
   camChangeRate: 5
+  preciseAimOffsetFromRegular: -1
   aim: {fileID: 489048668}
   isAimingPrecisly: 0
   offsetChangeRate: 6
@@ -25421,6 +25419,11 @@ MonoBehaviour:
     magazineCapacity: 50
     totalReserveAmmo: 6161
   weaponPickupPrefab: {fileID: 8396333148451498682, guid: 69c7326fdde85914a85f03d1501aca1c, type: 3}
+  pistolHomingRadius: 2
+  pistolHomingMaxDistanceFromPlayer: 12
+  pistolHomingTimeMin: 0.05
+  pistolHomingTimeMax: 0.12
+  pistolHomingTurnSpeedDeg: 900
 --- !u!54 &7667312168735303441
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -29,6 +29,13 @@ public class Player_WeaponController : MonoBehaviour
 
     private Collider[] playerColliders;
 
+    [Header("Pistol - Smart Bullets (Soft homing)")]
+    [SerializeField] private float pistolHomingRadius = 2.0f;
+    [SerializeField] private float pistolHomingMaxDistanceFromPlayer = 12.0f;
+    [SerializeField] private float pistolHomingTimeMin = 0.05f;
+    [SerializeField] private float pistolHomingTimeMax = 0.12f;
+    [SerializeField] private float pistolHomingTurnSpeedDeg = 900f;
+
     private void Awake()
     {
         if (weaponSlots == null)
@@ -247,8 +254,10 @@ public class Player_WeaponController : MonoBehaviour
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
+        bool isPlayerBullet = true;
+
         if (bulletScript != null)
-            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce);
+            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, transform, isPlayerBullet);
 
         Vector3 bulletsDirection = currentWeapon.ApplySpread(BulletDirection());
 
@@ -257,6 +266,71 @@ public class Player_WeaponController : MonoBehaviour
             rbNewBullet.mass = REFERENCE_BULLET_SPEED / bulletSpeed;
             rbNewBullet.velocity = bulletsDirection * bulletSpeed;
         }
+
+        if (currentWeapon.weaponType == WeaponType.Pistol)
+        {
+            TryApplyPistolSoftHoming(newBullet);
+        }
+    }
+
+    private void TryApplyPistolSoftHoming(GameObject bulletObject)
+    {
+        if (player == null || player.aim == null)
+            return;
+
+        Transform aimTr = player.aim.Aim();
+        if (aimTr == null)
+            return;
+
+        Vector3 aimPoint = aimTr.position;
+
+        if (Vector3.Distance(transform.position, aimPoint) > pistolHomingMaxDistanceFromPlayer)
+            return;
+
+        Collider[] hits = Physics.OverlapSphere(aimPoint, pistolHomingRadius);
+        if (hits == null || hits.Length == 0)
+            return;
+
+        Transform bestTarget = null;
+        Vector3 bestTargetLocalOffset = Vector3.zero;
+
+        float bestDist = float.MaxValue;
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i] == null) continue;
+
+            Enemy enemy = hits[i].GetComponentInParent<Enemy>();
+            if (enemy == null) continue;
+
+            if (enemy.IsDead) continue;
+            if (!enemy.isActiveAndEnabled) continue;
+
+            Collider enemyCol = enemy.GetComponentInChildren<Collider>();
+            Vector3 targetWorldPoint = enemy.transform.position + Vector3.up * 1.0f;
+
+            if (enemyCol != null)
+                targetWorldPoint = enemyCol.bounds.center;
+
+            float d = Vector3.Distance(aimPoint, targetWorldPoint);
+            if (d < bestDist)
+            {
+                bestDist = d;
+                bestTarget = enemy.transform;
+
+                bestTargetLocalOffset = bestTarget.InverseTransformPoint(targetWorldPoint);
+            }
+        }
+
+        if (bestTarget == null)
+            return;
+
+        BulletSoftHoming homing = bulletObject.GetComponent<BulletSoftHoming>();
+        if (homing == null)
+            homing = bulletObject.AddComponent<BulletSoftHoming>();
+
+        float t = Random.Range(pistolHomingTimeMin, pistolHomingTimeMax);
+        homing.EnableHoming(bestTarget, bestTargetLocalOffset, t, pistolHomingTurnSpeedDeg);
     }
 
     private void Reload()

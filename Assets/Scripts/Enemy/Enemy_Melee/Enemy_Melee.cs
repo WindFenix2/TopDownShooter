@@ -13,6 +13,7 @@ public struct AttackData_EnemyMelee
     public float animationSpeed;
     public AttackType_Melee attackType;
 }
+
 public enum AttackType_Melee { Close, Charge }
 public enum EnemyMelee_Type { Regular, Shield, Dodge, AxeThrow }
 
@@ -28,7 +29,6 @@ public class Enemy_Melee : Enemy
     public AttackState_Melee attackState { get; private set; }
     public DeadState_Melee deadState { get; private set; }
     public AbilityState_Melee abilityState { get; private set; }
-
     #endregion
 
     [Header("Enemy Settings")]
@@ -55,8 +55,9 @@ public class Enemy_Melee : Enemy
     [Header("Attack Data")]
     public AttackData_EnemyMelee attackData;
     public List<AttackData_EnemyMelee> attackList;
+
     private Enemy_WeaponModel currentWeapon;
-    private bool isAttackReady;
+
     [Space]
     [SerializeField] private GameObject meleeAttackFx;
 
@@ -69,7 +70,7 @@ public class Enemy_Melee : Enemy
         recoveryState = new RecoveryState_Melee(this, stateMachine, "Recovery");
         chaseState = new ChaseState_Melee(this, stateMachine, "Chase");
         attackState = new AttackState_Melee(this, stateMachine, "Attack");
-        deadState = new DeadState_Melee(this, stateMachine, "Idle"); // Idle anim is just a place holder,we use ragdoll
+        deadState = new DeadState_Melee(this, stateMachine, "Idle"); // placeholder (ragdoll)
         abilityState = new AbilityState_Melee(this, stateMachine, "AxeThrow");
 
         meleeSFX = GetComponent<Enemy_MeleeSFX>();
@@ -78,6 +79,7 @@ public class Enemy_Melee : Enemy
     protected override void Start()
     {
         base.Start();
+
         stateMachine.Initialize(idleState);
         ResetCooldown();
 
@@ -86,14 +88,14 @@ public class Enemy_Melee : Enemy
         UpdateAttackData();
     }
 
-
     protected override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();
 
-
-        MeleeAttackCheck(currentWeapon.damagePoints, currentWeapon.attackRadius, meleeAttackFx, attackData.attackDamage);
+        // ВОТ ЭТО БЫЛО ВАЖНО: проверяем попадание КАЖДЫЙ КАДР, пока окно удара включено
+        if (currentWeapon != null)
+            MeleeAttackCheck(currentWeapon.damagePoints, currentWeapon.attackRadius, meleeAttackFx, attackData.attackDamage);
     }
 
     public override void EnterBattleMode()
@@ -113,12 +115,14 @@ public class Enemy_Melee : Enemy
         visuals.EnableWeaponModel(false);
     }
 
-
     public void UpdateAttackData()
     {
+        if (visuals == null || visuals.currentWeaponModel == null)
+            return;
+
         currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
 
-        if (currentWeapon.weaponData != null)
+        if (currentWeapon != null && currentWeapon.weaponData != null)
         {
             attackList = new List<AttackData_EnemyMelee>(currentWeapon.weaponData.attackData);
             turnSpeed = currentWeapon.weaponData.turnSpeed;
@@ -128,32 +132,26 @@ public class Enemy_Melee : Enemy
     protected override void InitializePerk()
     {
         if (meleeType == EnemyMelee_Type.AxeThrow)
-        {
             weaponType = Enemy_MeleeWeaponType.Throw;
-        }
-
 
         if (meleeType == EnemyMelee_Type.Shield)
         {
             anim.SetFloat("ChaseIndex", 1);
-            shieldTransform.gameObject.SetActive(true);
+            if (shieldTransform != null) shieldTransform.gameObject.SetActive(true);
             weaponType = Enemy_MeleeWeaponType.OneHand;
         }
 
         if (meleeType == EnemyMelee_Type.Dodge)
-        {
             weaponType = Enemy_MeleeWeaponType.Unarmed;
-        }
     }
 
     public override void Die()
     {
         base.Die();
 
-        if(stateMachine.currentState != deadState)
+        if (stateMachine.currentState != deadState)
             stateMachine.ChangeState(deadState);
     }
-
 
     public void ActivateDodgeRoll()
     {
@@ -178,9 +176,9 @@ public class Enemy_Melee : Enemy
     public void ThrowAxe()
     {
         GameObject newAxe = ObjectPool.instance.GetObject(axePrefab, axeStartPoint);
-
-        newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer,axeDamage);
+        newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer, axeDamage);
     }
+
     public bool CanThrowAxe()
     {
         if (meleeType != EnemyMelee_Type.AxeThrow)
@@ -191,15 +189,15 @@ public class Enemy_Melee : Enemy
             lastTimeAxeThrown = Time.time;
             return true;
         }
+
         return false;
     }
+
     private void ResetCooldown()
     {
         lastTimeDodge -= dodgeCooldown;
         lastTimeAxeThrown -= axeThrowCooldown;
     }
-
-    
 
     private float GetAnimationClipDuration(string clipName)
     {
@@ -211,7 +209,7 @@ public class Enemy_Melee : Enemy
                 return clip.length;
         }
 
-        Debug.Log(clipName + "animation not found!");
+        Debug.Log(clipName + " animation not found!");
         return 0;
     }
 
@@ -223,6 +221,5 @@ public class Enemy_Melee : Enemy
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackData.attackRange);
-
     }
 }

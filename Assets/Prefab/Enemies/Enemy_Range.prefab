@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: 9047758744686984606}
   - component: {fileID: 8230458317172433530}
   - component: {fileID: 9082566918859955191}
+  - component: {fileID: 5857620809926895674}
   m_Layer: 11
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -1032,6 +1033,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5857620809926895674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060253008391256059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f2f7fd6b01dce48ab3ab5fff7f7796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &1076028212965898057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1529,7 @@ MonoBehaviour:
   - {fileID: 7086963790007380954}
   - {fileID: 5673001054955848948}
   - {fileID: 2103080116678446538}
+  meleeNonAllocBufferSize: 16
   weaponType: 2
   coverPerk: 0
   unstoppablePerk: 0

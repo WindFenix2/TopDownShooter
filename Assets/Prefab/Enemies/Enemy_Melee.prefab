@@ -5012,7 +5012,8 @@ MonoBehaviour:
   - {fileID: 5501076262335066172}
   - {fileID: 7205856871075024523}
   - {fileID: 6994111950806159994}
-  meleeType: 1
+  meleeNonAllocBufferSize: 16
+  meleeType: 0
   weaponType: 0
   shieldDurability: 400
   shieldTransform: {fileID: 3431966613972324221}
@@ -5026,7 +5027,7 @@ MonoBehaviour:
   attackData:
     attackDamage: 0
     attackName: 
-    attackRange: 1.5
+    attackRange: 1
     moveSpeed: 0
     attackIndex: 1
     animationSpeed: 1.4

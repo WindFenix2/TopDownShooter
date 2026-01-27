@@ -18698,10 +18698,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4346036921387289756}
   - component: {fileID: 4589424794015968695}
+  - component: {fileID: 421906443778875881}
   - component: {fileID: 8579631330992450095}
   - component: {fileID: 2583303110093365540}
   - component: {fileID: 1220252299848808864}
-  - component: {fileID: 421906443778875881}
   - component: {fileID: 7967682950002811877}
   m_Layer: 11
   m_Name: Enemy_Boss_Flamethrower
@@ -18751,6 +18751,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &421906443778875881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364281645933512702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2000
+  currentHealth: 0
 --- !u!114 &8579631330992450095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18779,6 +18793,7 @@ MonoBehaviour:
   - {fileID: 4719425290124929824}
   - {fileID: 8120080741906631284}
   - {fileID: 57291627576391273}
+  meleeNonAllocBufferSize: 16
   bossWeaponType: 0
   actionCooldown: 1
   attackRange: 1.6
@@ -18842,20 +18857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdollParent: {fileID: 4545999204917849412}
---- !u!114 &421906443778875881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7364281645933512702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2000
-  currentHealth: 0
 --- !u!114 &7967682950002811877
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyState 
+public class EnemyState
 {
     protected Enemy enemyBase;
     protected EnemyStateMachine stateMachine;
@@ -23,7 +23,6 @@ public class EnemyState
     public virtual void Enter()
     {
         enemyBase.anim.SetBool(animBoolName, true);
-
         triggerCalled = false;
     }
 
@@ -34,7 +33,6 @@ public class EnemyState
 
     public virtual void Exit()
     {
-
         enemyBase.anim.SetBool(animBoolName, false);
     }
 
@@ -42,20 +40,21 @@ public class EnemyState
 
     public virtual void AbilityTrigger()
     {
-
     }
 
     protected Vector3 GetNextPathPoint()
     {
         NavMeshAgent agent = enemyBase.agent;
-        NavMeshPath path = agent.path;
+        if (agent == null || !agent.enabled)
+            return enemyBase.transform.position;
 
-        if (path.corners.Length < 2)
+        NavMeshPath path = agent.path;
+        if (path == null || path.corners == null || path.corners.Length < 2)
             return agent.destination;
 
-        for (int i = 0; i < path.corners.Length; i++)
+        for (int i = 0; i < path.corners.Length - 1; i++)
         {
-            if (Vector3.Distance(agent.transform.position, path.corners[i]) < 1)
+            if (Vector3.Distance(agent.transform.position, path.corners[i]) < 1f)
                 return path.corners[i + 1];
         }
 

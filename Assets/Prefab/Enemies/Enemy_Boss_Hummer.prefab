@@ -12954,10 +12954,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6474903555049594375}
   - component: {fileID: 4022693558791645526}
+  - component: {fileID: 4995941086161136381}
   - component: {fileID: 472203988157196534}
   - component: {fileID: 6020553845203899244}
   - component: {fileID: 306930934154059304}
-  - component: {fileID: 4995941086161136381}
   - component: {fileID: 6825657308078770662}
   m_Layer: 11
   m_Name: Enemy_Boss_Hummer
@@ -13007,6 +13007,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4995941086161136381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522898272314983028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2000
+  currentHealth: 0
 --- !u!114 &472203988157196534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13035,7 +13049,8 @@ MonoBehaviour:
   - {fileID: 3142938418775484685}
   - {fileID: 4219087019665420567}
   - {fileID: 2097656858466747313}
-  bossWeaponType: 0
+  meleeNonAllocBufferSize: 16
+  bossWeaponType: 1
   actionCooldown: 0.5
   attackRange: 1.6
   minAbilityDistance: 3
@@ -13094,20 +13109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdollParent: {fileID: 7736342475346190992}
---- !u!114 &4995941086161136381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522898272314983028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2000
-  currentHealth: 0
 --- !u!114 &6825657308078770662
 MonoBehaviour:
   m_ObjectHideFlags: 0
