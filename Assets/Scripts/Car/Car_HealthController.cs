@@ -38,7 +38,7 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
     public void UpdateCarHealthUI()
     {
-        UI.instance.inGameUI.UpdateCarHealthUI(currentHealth,maxHealth);
+        UI.instance.inGameUI.UpdateCarHealthUI(currentHealth, maxHealth);
     }
 
     private void ReduceHealth(int damage)
@@ -48,7 +48,8 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
         currentHealth -= damage;
 
-        if (currentHealth < 0)
+        // FIX: ломаемся и при 0 тоже
+        if (currentHealth <= 0)
             BrakeTheCar();
     }
 
@@ -98,8 +99,11 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
                 damagable.TakeDamage(explosionDamage);
 
-                hit.GetComponentInChildren<Rigidbody>().
-                    AddExplosionForce(explosionForce, explosionPoint.position, explosionRadius, explosionUpwardsModifier, ForceMode.VelocityChange);
+                Rigidbody rb = hit.GetComponentInChildren<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.AddExplosionForce(explosionForce, explosionPoint.position, explosionRadius, explosionUpwardsModifier, ForceMode.VelocityChange);
+                }
             }
         }
     }

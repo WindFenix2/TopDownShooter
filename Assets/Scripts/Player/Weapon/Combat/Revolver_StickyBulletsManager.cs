@@ -5,6 +5,14 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
 {
     private readonly List<Revolver_StuckBullet> stuckBullets = new List<Revolver_StuckBullet>();
 
+    private bool damageCarsEvenIfDefaultLayerNotInMask = true;
+
+    private static bool LayerInMask(int layer, LayerMask mask)
+    {
+        int bit = 1 << layer;
+        return (mask.value & bit) != 0;
+    }
+
     public void Register(Revolver_StuckBullet bullet)
     {
         if (bullet == null) return;
@@ -33,54 +41,128 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
         }
     }
 
-    // Один раз по врагу/игроку (без мульти-хитбоксов)
     public void ApplyExplosionDamage(Vector3 pos, int damage, float radius, LayerMask whatToDamage)
     {
-        // ВАЖНО: не доверяем слоям хитбоксов, поэтому берём всё, а фильтруем компонентами
+        if (damage <= 0) return;
+        if (radius <= 0f) return;
+
+        if (whatToDamage.value == 0)
+            return;
+
         Collider[] hits = Physics.OverlapSphere(pos, radius, ~0, QueryTriggerInteraction.Collide);
         if (hits == null || hits.Length == 0) return;
 
-        HashSet<Transform> damagedEnemyRoots = new HashSet<Transform>();
-        HashSet<Transform> damagedPlayerRoots = new HashSet<Transform>();
+        HashSet<int> damagedEnemyIds = new HashSet<int>();
+        HashSet<int> damagedPlayerIds = new HashSet<int>();
+        HashSet<int> damagedCarIds = new HashSet<int>();
+        HashSet<int> damagedOtherIds = new HashSet<int>();
 
         for (int i = 0; i < hits.Length; i++)
         {
             Collider c = hits[i];
             if (c == null) continue;
 
-            // === ENEMY ===
-            Enemy enemy = c.GetComponentInParent<Enemy>();
-            if (enemy != null)
+            Car_HealthController car = c.GetComponentInParent<Car_HealthController>();
+            if (car != null)
             {
-                Transform root = enemy.transform.root;
-                if (damagedEnemyRoots.Add(root))
-                {
-                    // вот это ключ: урон через Enemy.GetHit => корректная смерть
-                    enemy.GetHit(damage);
-                }
+                bool allowed =
+                    LayerInMask(car.gameObject.layer, whatToDamage) ||
+                    (damageCarsEvenIfDefaultLayerNotInMask && car.gameObject.layer == 0);
+
+                if (!allowed)
+                    continue;
+
+                int id = car.GetInstanceID();
+                if (damagedCarIds.Add(id))
+                    car.TakeDamage(damage);
+
                 continue;
             }
 
-            // === PLAYER ===
-            // враги тебя дамажат через IDamagable, значит это самый безопасный путь
+            Enemy enemy = c.GetComponentInParent<Enemy>();
+            if (enemy != null)
+            {
+                if (!LayerInMask(enemy.gameObject.layer, whatToDamage))
+                    continue;
+
+                int id = (enemy.health != null) ? enemy.health.GetInstanceID() : enemy.GetInstanceID();
+                if (damagedEnemyIds.Add(id))
+                    enemy.GetHit(damage);
+
+                continue;
+            }
+
+            Player player = c.GetComponentInParent<Player>();
+            if (player != null)
+            {
+                if (!LayerInMask(player.gameObject.layer, whatToDamage))
+                    continue;
+
+                int id = player.GetInstanceID();
+                if (damagedPlayerIds.Add(id))
+                {
+                    IDamagable playerDmg = player.GetComponentInChildren<IDamagable>();
+                    if (playerDmg != null)
+                        playerDmg.TakeDamage(damage);
+                    else if (player.health != null)
+                        player.health.ReduceHealth(damage);
+                }
+
+                continue;
+            }
+
             IDamagable damagable = c.GetComponent<IDamagable>();
             if (damagable == null)
                 damagable = c.GetComponentInParent<IDamagable>();
 
-            if (damagable != null)
+            if (damagable == null)
+                continue;
+
+            Component dmgComp = damagable as Component;
+            if (dmgComp == null)
             {
-                Transform root = (c.transform != null) ? c.transform.root : null;
-                if (root != null)
-                {
-                    if (damagedPlayerRoots.Add(root))
-                        damagable.TakeDamage(damage);
-                }
-                else
-                {
-                    // на всякий случай
-                    damagable.TakeDamage(damage);
-                }
+                damagable.TakeDamage(damage);
+                continue;
             }
+
+            Enemy enemyFromDmg = dmgComp.GetComponentInParent<Enemy>();
+            if (enemyFromDmg != null)
+            {
+                if (!LayerInMask(enemyFromDmg.gameObject.layer, whatToDamage))
+                    continue;
+
+                int id = (enemyFromDmg.health != null) ? enemyFromDmg.health.GetInstanceID() : enemyFromDmg.GetInstanceID();
+                if (damagedEnemyIds.Add(id))
+                    enemyFromDmg.GetHit(damage);
+
+                continue;
+            }
+
+            Player playerFromDmg = dmgComp.GetComponentInParent<Player>();
+            if (playerFromDmg != null)
+            {
+                if (!LayerInMask(playerFromDmg.gameObject.layer, whatToDamage))
+                    continue;
+
+                int id = playerFromDmg.GetInstanceID();
+                if (damagedPlayerIds.Add(id))
+                {
+                    IDamagable playerDmg = playerFromDmg.GetComponentInChildren<IDamagable>();
+                    if (playerDmg != null)
+                        playerDmg.TakeDamage(damage);
+                    else if (playerFromDmg.health != null)
+                        playerFromDmg.health.ReduceHealth(damage);
+                }
+
+                continue;
+            }
+
+            if (!LayerInMask(dmgComp.gameObject.layer, whatToDamage))
+                continue;
+
+            int otherId = dmgComp.GetInstanceID();
+            if (damagedOtherIds.Add(otherId))
+                damagable.TakeDamage(damage);
         }
     }
 }

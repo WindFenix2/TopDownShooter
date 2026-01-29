@@ -16,10 +16,18 @@ public class Revolver_StuckBullet : MonoBehaviour
     private bool stuck;
     private float spawnTime;
 
+    private Vector3 lastFixedPos;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+
+        if (rb != null)
+        {
+            rb.useGravity = false;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        }
     }
 
     private void OnEnable()
@@ -34,10 +42,18 @@ public class Revolver_StuckBullet : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
+        // IMPORTANT: trigger so it doesn't push cars/objects
         if (col != null)
-            col.isTrigger = false;
+            col.isTrigger = true;
 
         transform.SetParent(null);
+        lastFixedPos = transform.position;
+    }
+
+    private void FixedUpdate()
+    {
+        // store previous physics-step position for raycast
+        lastFixedPos = transform.position;
     }
 
     public void Setup(Revolver_StickyBulletsManager newManager)
@@ -51,21 +67,51 @@ public class Revolver_StuckBullet : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (stuck) return;
-        if (collision == null || collision.contactCount == 0) return;
-        if (collision.collider == null) return;
+        if (other == null) return;
 
-        StickTo(collision);
+        StickToTrigger(other);
     }
 
-    private void StickTo(Collision collision)
+    private void StickToTrigger(Collider other)
     {
         stuck = true;
 
-        ContactPoint cp = collision.GetContact(0);
-        Vector3 normal = cp.normal;
+        Vector3 hitPoint = other.ClosestPoint(transform.position);
+        Vector3 dir = Vector3.zero;
+
+        if (rb != null && rb.velocity.sqrMagnitude > 0.0001f)
+            dir = rb.velocity.normalized;
+        else
+            dir = (transform.position - lastFixedPos).normalized;
+
+        if (dir.sqrMagnitude < 0.0001f)
+            dir = transform.forward;
+
+        // Try to get a proper normal via raycast between last and current positions
+        Vector3 origin = lastFixedPos;
+        float dist = Vector3.Distance(lastFixedPos, transform.position) + 0.25f;
+
+        Vector3 normal = -dir;
+
+        RaycastHit hit;
+        if (Physics.Raycast(origin, dir, out hit, dist, ~0, QueryTriggerInteraction.Ignore))
+        {
+            if (hit.collider == other || hit.collider.transform.IsChildOf(other.transform) || other.transform.IsChildOf(hit.collider.transform))
+            {
+                hitPoint = hit.point;
+                normal = hit.normal;
+            }
+        }
+        else
+        {
+            // fallback normal from closest point
+            Vector3 n = (transform.position - hitPoint);
+            if (n.sqrMagnitude > 0.0001f)
+                normal = n.normalized;
+        }
 
         if (rb != null)
         {
@@ -79,11 +125,9 @@ public class Revolver_StuckBullet : MonoBehaviour
             fwd = transform.forward;
 
         transform.rotation = Quaternion.LookRotation(fwd, Vector3.up);
+        transform.position = hitPoint - fwd * embedDepth;
 
-        // ВАЖНО: embed по новому направлению, а не по старому transform.forward
-        transform.position = cp.point - fwd * embedDepth;
-
-        transform.SetParent(collision.transform, true);
+        transform.SetParent(other.transform, true);
 
         if (manager != null)
             manager.Register(this);
@@ -91,7 +135,6 @@ public class Revolver_StuckBullet : MonoBehaviour
 
     public void DetonateNow(int damage, float radius, LayerMask whatToDamage)
     {
-        // FX (только Instantiate, чтобы ObjectPool НЕ падал)
         if (detonationFx != null)
         {
             GameObject fx = Instantiate(detonationFx, transform.position, Quaternion.identity);

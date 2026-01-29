@@ -22,16 +22,16 @@ public class HealthController : MonoBehaviour
     {
         currentHealth++;
 
-        if(currentHealth > maxHealth)
+        if (currentHealth > maxHealth)
             currentHealth = maxHealth;
     }
 
     public bool ShouldDie()
     {
-        if(isDead)
+        if (isDead)
             return false;
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             isDead = true;
             return true;
@@ -39,5 +39,4 @@ public class HealthController : MonoBehaviour
 
         return false;
     }
-
 }
