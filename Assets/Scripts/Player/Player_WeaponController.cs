@@ -371,7 +371,6 @@ public class Player_WeaponController : MonoBehaviour
         homing.EnableHoming(bestTarget, bestTargetLocalOffset, t, pistolHomingTurnSpeedDeg);
     }
 
-    // ¬ј∆Ќќ: дл€ револьвера R = взрыв всегда, даже если патронов на перезар€дку нет
     private void OnReloadPressed()
     {
         if (!WeaponReady())
@@ -387,7 +386,6 @@ public class Player_WeaponController : MonoBehaviour
             if (revolverManager != null)
                 revolverManager.DetonateAll(revolverDetonationDamage, revolverDetonationRadius, revolverDetonationWhatToDamage);
 
-            // если реально есть что перезар€жать Ч тогда анимаци€
             if (currentWeapon.CanReload())
                 ReloadAnimationOnly();
 

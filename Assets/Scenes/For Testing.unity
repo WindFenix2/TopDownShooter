@@ -27328,7 +27328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d7cf0cefd643643af98aaafb6be0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCarsEvenIfDefaultLayerNotInMask: 1
 --- !u!4 &1746982451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1204161983257850401, guid: c999db02088b03145a805e21e65ed57c, type: 3}

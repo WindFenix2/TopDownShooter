@@ -48,7 +48,6 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
         currentHealth -= damage;
 
-        // FIX: ломаемся и при 0 тоже
         if (currentHealth <= 0)
             BrakeTheCar();
     }

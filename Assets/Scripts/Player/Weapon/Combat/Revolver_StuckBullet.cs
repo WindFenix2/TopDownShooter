@@ -42,7 +42,6 @@ public class Revolver_StuckBullet : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
-        // IMPORTANT: trigger so it doesn't push cars/objects
         if (col != null)
             col.isTrigger = true;
 
@@ -52,7 +51,6 @@ public class Revolver_StuckBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // store previous physics-step position for raycast
         lastFixedPos = transform.position;
     }
 
@@ -90,7 +88,6 @@ public class Revolver_StuckBullet : MonoBehaviour
         if (dir.sqrMagnitude < 0.0001f)
             dir = transform.forward;
 
-        // Try to get a proper normal via raycast between last and current positions
         Vector3 origin = lastFixedPos;
         float dist = Vector3.Distance(lastFixedPos, transform.position) + 0.25f;
 
@@ -107,7 +104,6 @@ public class Revolver_StuckBullet : MonoBehaviour
         }
         else
         {
-            // fallback normal from closest point
             Vector3 n = (transform.position - hitPoint);
             if (n.sqrMagnitude > 0.0001f)
                 normal = n.normalized;
