@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletSoftHoming : MonoBehaviour
+public class Pistol_BulletSoftHoming : MonoBehaviour
 {
     private Rigidbody rb;
 

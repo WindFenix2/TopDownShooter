@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
         cd.enabled = true;
         meshRenderer.enabled = true;
 
-        BulletSoftHoming homing = GetComponent<BulletSoftHoming>();
+        Pistol_BulletSoftHoming homing = GetComponent<Pistol_BulletSoftHoming>();
         if (homing != null)
             homing.DisableHoming();
 

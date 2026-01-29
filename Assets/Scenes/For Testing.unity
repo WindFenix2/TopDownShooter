@@ -2214,6 +2214,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1073298058}
   m_LocalEulerAnglesHint: {x: -2.469, y: -248.614, z: 265.859}
+--- !u!1001 &174431024
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.379109
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1468701
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148521078808675394, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316571440960610406, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Range
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
 --- !u!1 &179325001
 GameObject:
   m_ObjectHideFlags: 0
@@ -25232,7 +25289,7 @@ MonoBehaviour:
   quickStart: 1
   quickStartDefaultWeapons:
   - {fileID: 11400000, guid: 2341707a809284748b68f961349af0d6, type: 2}
-  - {fileID: 11400000, guid: e12fe38b0ed5ce34c9defee2a30e9dbb, type: 2}
+  - {fileID: 11400000, guid: 5eb5a200539edd4489d28c444ea7d52f, type: 2}
 --- !u!4 &1687976509
 Transform:
   m_ObjectHideFlags: 0
@@ -27054,6 +27111,7 @@ GameObject:
   - component: {fileID: 1746550283}
   - component: {fileID: 1746550284}
   - component: {fileID: 1746550285}
+  - component: {fileID: 1746550286}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -27178,6 +27236,12 @@ MonoBehaviour:
   pistolHomingTimeMin: 0.05
   pistolHomingTimeMax: 0.12
   pistolHomingTurnSpeedDeg: 900
+  revolverStuckBulletPrefab: {fileID: 709851603379088992, guid: fdfa3fc99fc86f742a84f66f4405f843, type: 3}
+  revolverDetonationDamage: 150
+  revolverDetonationRadius: 2.2
+  revolverDetonationWhatToDamage:
+    serializedVersion: 2
+    m_Bits: 2304
 --- !u!114 &1746550278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27309,6 +27373,18 @@ MonoBehaviour:
   rightFoot: {fileID: 6577230386181803615}
   checkRadius: 0.041
   rayDistance: 0.008
+--- !u!114 &1746550286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746550269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d7cf0cefd643643af98aaafb6be0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1746982451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1204161983257850401, guid: c999db02088b03145a805e21e65ed57c, type: 3}
@@ -41434,3 +41510,4 @@ SceneRoots:
   - {fileID: 1889305723}
   - {fileID: 1515178050}
   - {fileID: 720912458}
+  - {fileID: 174431024}

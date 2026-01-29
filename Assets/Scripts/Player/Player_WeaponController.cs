@@ -7,7 +7,7 @@ public class Player_WeaponController : MonoBehaviour
     [SerializeField] private LayerMask whatIsAlly;
 
     private Player player;
-    private const float REFERENCE_BULLET_SPEED = 20;
+    private const float REFERENCE_BULLET_SPEED = 20f;
 
     [SerializeField] private List<Weapon_Data> defaultWeaponData;
     [SerializeField] private Weapon currentWeapon;
@@ -15,16 +15,15 @@ public class Player_WeaponController : MonoBehaviour
     private bool isShooting;
 
     [Header("Bullet details")]
-    [SerializeField] private float bulletImpactForce = 100;
+    [SerializeField] private float bulletImpactForce = 100f;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletSpeed = 15f;
 
     [SerializeField] private Transform weaponHolder;
 
     [Header("Inventory")]
     [SerializeField] private int maxSlots = 2;
     [SerializeField] private List<Weapon> weaponSlots;
-
     [SerializeField] private GameObject weaponPickupPrefab;
 
     private Collider[] playerColliders;
@@ -36,6 +35,17 @@ public class Player_WeaponController : MonoBehaviour
     [SerializeField] private float pistolHomingTimeMax = 0.12f;
     [SerializeField] private float pistolHomingTurnSpeedDeg = 900f;
 
+    [Header("Revolver - Stuck bullets")]
+    [SerializeField] private GameObject revolverStuckBulletPrefab;
+    [SerializeField] private int revolverDetonationDamage = 150;
+    [SerializeField] private float revolverDetonationRadius = 2.2f;
+    [SerializeField] private LayerMask revolverDetonationWhatToDamage;
+
+    private Revolver_StickyBulletsManager revolverManager;
+
+    private Coroutine readyFallbackRoutine;
+    private bool inputAssigned;
+
     private void Awake()
     {
         if (weaponSlots == null)
@@ -46,7 +56,22 @@ public class Player_WeaponController : MonoBehaviour
     {
         player = GetComponent<Player>();
         playerColliders = GetComponentsInChildren<Collider>(true);
+
+        revolverManager = GetComponent<Revolver_StickyBulletsManager>();
+        if (revolverManager == null)
+            revolverManager = gameObject.AddComponent<Revolver_StickyBulletsManager>();
+
         AssignInputEvents();
+    }
+
+    private void OnEnable()
+    {
+        AssignInputEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnassignInputEvents();
     }
 
     private void Update()
@@ -55,7 +80,7 @@ public class Player_WeaponController : MonoBehaviour
             Shoot();
     }
 
-    #region Slots managment - Pickup\Equip\Drop\Ready Weapon
+    #region Slots
 
     public void SetDefaultWeapon(List<Weapon_Data> newWeaponData)
     {
@@ -67,9 +92,7 @@ public class Player_WeaponController : MonoBehaviour
         weaponSlots.Clear();
 
         foreach (Weapon_Data weaponData in defaultWeaponData)
-        {
             PickupWeapon(new Weapon(weaponData));
-        }
 
         EquipWeapon(0);
     }
@@ -97,6 +120,7 @@ public class Player_WeaponController : MonoBehaviour
             player.weaponVisuals.PlayWeaponEquipAnimation();
 
         UpdateWeaponUI();
+        StartReadyFallback(0.25f);
     }
 
     public void PickupWeapon(Weapon newWeapon)
@@ -154,6 +178,8 @@ public class Player_WeaponController : MonoBehaviour
             return;
 
         GameObject droppedWeapon = ObjectPool.instance.GetObject(weaponPickupPrefab, transform);
+        if (droppedWeapon == null) return;
+
         droppedWeapon.GetComponent<Pickup_Weapon>()?.SetupPickupWeapon(currentWeapon, transform);
     }
 
@@ -180,16 +206,15 @@ public class Player_WeaponController : MonoBehaviour
     private IEnumerator BurstFire()
     {
         SetWeaponReady(false);
+        StartReadyFallback(0.6f);
 
         for (int i = 1; i <= currentWeapon.bulletsPerShot; i++)
         {
             FireSingleBullet();
-
             yield return new WaitForSeconds(currentWeapon.burstFireDelay);
-
-            if (i >= currentWeapon.bulletsPerShot)
-                SetWeaponReady(true);
         }
+
+        SetWeaponReady(true);
     }
 
     private void Shoot()
@@ -234,10 +259,18 @@ public class Player_WeaponController : MonoBehaviour
             if (model.fireSFX != null) model.fireSFX.Play();
         }
 
-        if (ObjectPool.instance == null || bulletPrefab == null)
+        if (ObjectPool.instance == null)
             return;
 
-        GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab, gunPoint);
+        bool isRevolver = currentWeapon.weaponType == WeaponType.Revolver;
+
+        GameObject prefabToSpawn = isRevolver ? revolverStuckBulletPrefab : bulletPrefab;
+        if (prefabToSpawn == null)
+            return;
+
+        GameObject newBullet = ObjectPool.instance.GetObject(prefabToSpawn, gunPoint);
+        if (newBullet == null) return;
+
         newBullet.transform.position = gunPoint.position;
         newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
 
@@ -251,25 +284,33 @@ public class Player_WeaponController : MonoBehaviour
             }
         }
 
-        Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
-        Bullet bulletScript = newBullet.GetComponent<Bullet>();
-
-        bool isPlayerBullet = true;
-
-        if (bulletScript != null)
-            bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, transform, isPlayerBullet);
-
         Vector3 bulletsDirection = currentWeapon.ApplySpread(BulletDirection());
 
+        Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
         if (rbNewBullet != null)
         {
-            rbNewBullet.mass = REFERENCE_BULLET_SPEED / bulletSpeed;
-            rbNewBullet.velocity = bulletsDirection * bulletSpeed;
+            float spd = Mathf.Max(0.01f, bulletSpeed);
+            rbNewBullet.mass = REFERENCE_BULLET_SPEED / spd;
+            rbNewBullet.velocity = bulletsDirection * spd;
         }
 
-        if (currentWeapon.weaponType == WeaponType.Pistol)
+        if (!isRevolver)
         {
-            TryApplyPistolSoftHoming(newBullet);
+            Bullet bulletScript = newBullet.GetComponent<Bullet>();
+            if (bulletScript != null)
+            {
+                bool isPlayerBullet = true;
+                bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, transform, isPlayerBullet);
+            }
+
+            if (currentWeapon.weaponType == WeaponType.Pistol)
+                TryApplyPistolSoftHoming(newBullet);
+        }
+        else
+        {
+            Revolver_StuckBullet stuck = newBullet.GetComponent<Revolver_StuckBullet>();
+            if (stuck != null)
+                stuck.Setup(revolverManager);
         }
     }
 
@@ -293,7 +334,6 @@ public class Player_WeaponController : MonoBehaviour
 
         Transform bestTarget = null;
         Vector3 bestTargetLocalOffset = Vector3.zero;
-
         float bestDist = float.MaxValue;
 
         for (int i = 0; i < hits.Length; i++)
@@ -302,7 +342,6 @@ public class Player_WeaponController : MonoBehaviour
 
             Enemy enemy = hits[i].GetComponentInParent<Enemy>();
             if (enemy == null) continue;
-
             if (enemy.IsDead) continue;
             if (!enemy.isActiveAndEnabled) continue;
 
@@ -317,7 +356,6 @@ public class Player_WeaponController : MonoBehaviour
             {
                 bestDist = d;
                 bestTarget = enemy.transform;
-
                 bestTargetLocalOffset = bestTarget.InverseTransformPoint(targetWorldPoint);
             }
         }
@@ -325,17 +363,45 @@ public class Player_WeaponController : MonoBehaviour
         if (bestTarget == null)
             return;
 
-        BulletSoftHoming homing = bulletObject.GetComponent<BulletSoftHoming>();
+        Pistol_BulletSoftHoming homing = bulletObject.GetComponent<Pistol_BulletSoftHoming>();
         if (homing == null)
-            homing = bulletObject.AddComponent<BulletSoftHoming>();
+            homing = bulletObject.AddComponent<Pistol_BulletSoftHoming>();
 
         float t = Random.Range(pistolHomingTimeMin, pistolHomingTimeMax);
         homing.EnableHoming(bestTarget, bestTargetLocalOffset, t, pistolHomingTurnSpeedDeg);
     }
 
-    private void Reload()
+    // ¬ј∆Ќќ: дл€ револьвера R = взрыв всегда, даже если патронов на перезар€дку нет
+    private void OnReloadPressed()
+    {
+        if (!WeaponReady())
+            return;
+
+        if (currentWeapon == null)
+            return;
+
+        isShooting = false;
+
+        if (currentWeapon.weaponType == WeaponType.Revolver)
+        {
+            if (revolverManager != null)
+                revolverManager.DetonateAll(revolverDetonationDamage, revolverDetonationRadius, revolverDetonationWhatToDamage);
+
+            // если реально есть что перезар€жать Ч тогда анимаци€
+            if (currentWeapon.CanReload())
+                ReloadAnimationOnly();
+
+            return;
+        }
+
+        if (currentWeapon.CanReload())
+            ReloadAnimationOnly();
+    }
+
+    private void ReloadAnimationOnly()
     {
         SetWeaponReady(false);
+        StartReadyFallback(0.8f);
 
         if (player != null && player.weaponVisuals != null)
             player.weaponVisuals.PlayReloadAnimation();
@@ -345,6 +411,21 @@ public class Player_WeaponController : MonoBehaviour
             var model = player.weaponVisuals.CurrentWeaponModel();
             if (model.realodSfx != null) model.realodSfx.Play();
         }
+    }
+
+    private void StartReadyFallback(float t)
+    {
+        if (readyFallbackRoutine != null)
+            StopCoroutine(readyFallbackRoutine);
+
+        readyFallbackRoutine = StartCoroutine(ReadyFallback(t));
+    }
+
+    private IEnumerator ReadyFallback(float t)
+    {
+        yield return new WaitForSeconds(t);
+        if (!weaponReady)
+            SetWeaponReady(true);
     }
 
     public Vector3 BulletDirection()
@@ -408,7 +489,6 @@ public class Player_WeaponController : MonoBehaviour
         if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, Mathf.Infinity))
         {
             Enemy_Melee enemy_Melee = hit.collider.gameObject.GetComponentInParent<Enemy_Melee>();
-
             if (enemy_Melee != null)
                 enemy_Melee.ActivateDodgeRoll();
         }
@@ -421,7 +501,11 @@ public class Player_WeaponController : MonoBehaviour
         if (player == null)
             return;
 
+        if (inputAssigned)
+            return;
+
         PlayerControls controls = player.controls;
+        if (controls == null) return;
 
         controls.Character.Fire.performed += context => isShooting = true;
         controls.Character.Fire.canceled += context => isShooting = false;
@@ -434,17 +518,48 @@ public class Player_WeaponController : MonoBehaviour
 
         controls.Character.DropCurrentWeapon.performed += context => DropWeapon();
 
-        controls.Character.Reload.performed += context =>
-        {
-            if (currentWeapon != null && currentWeapon.CanReload() && WeaponReady())
-                Reload();
-        };
+        controls.Character.Reload.performed += context => OnReloadPressed();
 
         controls.Character.ToogleWeaponMode.performed += context =>
         {
             if (currentWeapon != null)
                 currentWeapon.ToggleBurst();
         };
+
+        inputAssigned = true;
+    }
+
+    private void UnassignInputEvents()
+    {
+        if (player == null)
+            return;
+
+        if (!inputAssigned)
+            return;
+
+        PlayerControls controls = player.controls;
+        if (controls == null) return;
+
+        controls.Character.Fire.performed -= context => isShooting = true;
+        controls.Character.Fire.canceled -= context => isShooting = false;
+
+        controls.Character.EquipSlot1.performed -= context => EquipWeapon(0);
+        controls.Character.EquipSlot2.performed -= context => EquipWeapon(1);
+        controls.Character.EquipSlot3.performed -= context => EquipWeapon(2);
+        controls.Character.EquipSlot4.performed -= context => EquipWeapon(3);
+        controls.Character.EquipSlot5.performed -= context => EquipWeapon(4);
+
+        controls.Character.DropCurrentWeapon.performed -= context => DropWeapon();
+
+        controls.Character.Reload.performed -= context => OnReloadPressed();
+
+        controls.Character.ToogleWeaponMode.performed -= context =>
+        {
+            if (currentWeapon != null)
+                currentWeapon.ToggleBurst();
+        };
+
+        inputAssigned = false;
     }
 
     #endregion
