@@ -139,6 +139,8 @@ GameObject:
   - component: {fileID: 3568406619667237608}
   - component: {fileID: 4949052622115151655}
   - component: {fileID: 7407564213251186204}
+  - component: {fileID: 5949611682050087397}
+  - component: {fileID: 4695514403910310715}
   m_Layer: 0
   m_Name: jeep_front_wheel_L
   m_TagString: Untagged
@@ -216,6 +218,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axelType: 0
   model: {fileID: 0}
+--- !u!114 &5949611682050087397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579806760358988917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341a4fd04880d3a409f3ecc8dabd49b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4695514403910310715
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579806760358988917}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23414421, y: 0.61903185, z: 0.5731435}
+  m_Center: {x: -0.013962746, y: -0.014945, z: 0.0007994175}
 --- !u!1 &1214238485829785706
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +836,8 @@ GameObject:
   - component: {fileID: 5978821397773114438}
   - component: {fileID: 7137126475531733968}
   - component: {fileID: 4119245322368197572}
+  - component: {fileID: 240548199089505422}
+  - component: {fileID: 4589807128154922403}
   m_Layer: 0
   m_Name: jeep_front_wheel_R
   m_TagString: Untagged
@@ -878,6 +915,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axelType: 0
   model: {fileID: 0}
+--- !u!114 &240548199089505422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062761203851285437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341a4fd04880d3a409f3ecc8dabd49b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4589807128154922403
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062761203851285437}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23019409, y: 0.61903185, z: 0.5731435}
+  m_Center: {x: 0.013034821, y: -0.014945, z: 0.0007994175}
 --- !u!1 &4407749363951958528
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +959,8 @@ GameObject:
   - component: {fileID: 5109811622335573882}
   - component: {fileID: 2085569549602429072}
   - component: {fileID: 1556702543338879937}
+  - component: {fileID: 3292882144905174989}
+  - component: {fileID: 5746769611610166396}
   m_Layer: 0
   m_Name: jeep_back_wheel_L
   m_TagString: Untagged
@@ -966,6 +1038,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axelType: 1
   model: {fileID: 0}
+--- !u!114 &3292882144905174989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407749363951958528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341a4fd04880d3a409f3ecc8dabd49b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5746769611610166396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407749363951958528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23414421, y: 0.61903185, z: 0.5731435}
+  m_Center: {x: -0.013962746, y: -0.014945, z: 0.0007994175}
 --- !u!1 &4577453667302169263
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +1082,8 @@ GameObject:
   - component: {fileID: 2695924739294019050}
   - component: {fileID: 5101036663718850565}
   - component: {fileID: 6664479030925999062}
+  - component: {fileID: 3037213968284888467}
+  - component: {fileID: 2978034069437945895}
   m_Layer: 0
   m_Name: jeep_back_wheel_R
   m_TagString: Untagged
@@ -1054,6 +1161,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axelType: 1
   model: {fileID: 0}
+--- !u!114 &3037213968284888467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577453667302169263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341a4fd04880d3a409f3ecc8dabd49b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2978034069437945895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577453667302169263}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23019409, y: 0.61903185, z: 0.5731435}
+  m_Center: {x: 0.013034821, y: -0.014945, z: 0.0007994175}
 --- !u!1 &4731439689934687148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1902,7 @@ GameObject:
   - component: {fileID: 1079870527895261042}
   - component: {fileID: 6571527008771632477}
   - component: {fileID: 5828390354175764628}
+  - component: {fileID: 2509667874172596418}
   m_Layer: 0
   m_Name: jeep_body
   m_TagString: Untagged
@@ -1856,6 +1997,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6417865318569539663, guid: d2858e1f48611f643b7ba488af654dd9, type: 3}
+--- !u!114 &2509667874172596418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601206719652516593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341a4fd04880d3a409f3ecc8dabd49b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6602284262695187126
 GameObject:
   m_ObjectHideFlags: 0

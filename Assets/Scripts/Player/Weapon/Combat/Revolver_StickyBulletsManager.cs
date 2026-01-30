@@ -5,7 +5,14 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
 {
     private readonly List<Revolver_StuckBullet> stuckBullets = new List<Revolver_StuckBullet>();
 
-    private bool damageCarsEvenIfDefaultLayerNotInMask = true;
+    [Header("Special case")]
+    [SerializeField] private bool damageCarsEvenIfDefaultLayerNotInMask = true;
+
+    [Header("Explosion push (physics)")]
+    [SerializeField] private float explosionPushForce = 14f;
+    [SerializeField] private float explosionUpwards = 0.25f;
+    [SerializeField, Range(0.1f, 1f)] private float pushRadiusMultiplier = 0.8f;
+    [SerializeField] private bool pushOnlyPropsCars = true;    
 
     private static bool LayerInMask(int layer, LayerMask mask)
     {
@@ -57,10 +64,32 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
         HashSet<int> damagedCarIds = new HashSet<int>();
         HashSet<int> damagedOtherIds = new HashSet<int>();
 
+        HashSet<int> pushedRigidbodyIds = new HashSet<int>();
+
+        float pushRadius = radius * pushRadiusMultiplier;
+
         for (int i = 0; i < hits.Length; i++)
         {
             Collider c = hits[i];
             if (c == null) continue;
+
+            if (explosionPushForce > 0f && pushRadius > 0f)
+            {
+                Rigidbody hitRb = c.attachedRigidbody;
+                if (hitRb != null && !hitRb.isKinematic)
+                {
+                    if (!pushOnlyPropsCars || (c.GetComponentInParent<Player>() == null && c.GetComponentInParent<Enemy>() == null))
+                    {
+                        Vector3 rbPos = hitRb.worldCenterOfMass;
+                        if ((rbPos - pos).sqrMagnitude <= pushRadius * pushRadius)
+                        {
+                            int rbId = hitRb.GetInstanceID();
+                            if (pushedRigidbodyIds.Add(rbId))
+                                hitRb.AddExplosionForce(explosionPushForce, pos, pushRadius, explosionUpwards, ForceMode.Impulse);
+                        }
+                    }
+                }
+            }
 
             Car_HealthController car = c.GetComponentInParent<Car_HealthController>();
             if (car != null)

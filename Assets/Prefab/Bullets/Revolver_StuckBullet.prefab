@@ -261,6 +261,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   embedDepth: 0.06
+  surfaceOffset: 0.003
+  sweepExtra: 0.4
   autoReturnAfter: 0
+  useStickableMarkerOnCars: 1
+  carAllowedNames: []
   detonationFx: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   detonationFxLife: 1
+  detonationFxScale: 0.7
