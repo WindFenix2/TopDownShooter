@@ -19,12 +19,21 @@ public class Bullet : MonoBehaviour
     private LayerMask allyLayerMask;
     private Transform ownerRoot;
 
+    private WeaponType weaponTypeUsed = WeaponType.Pistol;
+    private bool isPlayerBulletCached = true;
+
     [Header("Visual (future separation player/enemy)")]
     [SerializeField] private bool useColorOverride;
     [SerializeField] private Color playerBulletColor = new Color(0.0f, 1.0f, 0.85f, 1f);
     [SerializeField] private Color enemyBulletColor = new Color(1f, 0.1f, 0.1f, 1f);
 
     private MaterialPropertyBlock mpb;
+
+    // --- PUBLIC INFO (for shield collider etc) ---
+    public int BulletDamage => bulletDamage;
+    public bool IsPlayerBullet => isPlayerBulletCached;
+    public Transform OwnerRoot => ownerRoot;
+    public WeaponType WeaponTypeUsed => weaponTypeUsed;
 
     protected virtual void Awake()
     {
@@ -42,12 +51,16 @@ public class Bullet : MonoBehaviour
         float flyDistance = 100,
         float impactForce = 100,
         Transform owner = null,
-        bool isPlayerBullet = true
+        bool isPlayerBullet = true,
+        WeaponType weaponTypeUsed = WeaponType.Pistol
     )
     {
         this.allyLayerMask = allyLayerMask;
         this.impactForce = impactForce;
         this.bulletDamage = bulletDamage;
+
+        this.weaponTypeUsed = weaponTypeUsed;
+        this.isPlayerBulletCached = isPlayerBullet;
 
         ownerRoot = owner != null ? owner.root : null;
 
@@ -81,7 +94,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            // пока не меняем цвет врага (по плану)
+            // РїРѕРєР° РЅРµ РјРµРЅСЏРµРј С†РІРµС‚ РІСЂР°РіР° (РїРѕ РїР»Р°РЅСѓ)
             // mpb.SetColor("_BaseColor", enemyBulletColor);
             // mpb.SetColor("_Color", enemyBulletColor);
         }
@@ -155,6 +168,14 @@ public class Bullet : MonoBehaviour
         CreateImpactFx();
         ReturnBulletToPool();
 
+        Enemy enemy = null;
+        if (hitCol != null)
+            enemy = hitCol.GetComponentInParent<Enemy>();
+        if (enemy == null)
+            enemy = hitTr.GetComponentInParent<Enemy>();
+
+        bool enemyWasAlive = enemy != null && enemy.IsDead == false;
+
         IDamagable damagable = null;
 
         if (hitCol != null)
@@ -177,17 +198,32 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            Enemy enemy = null;
-            if (hitCol != null)
-                enemy = hitCol.GetComponentInParent<Enemy>();
-            if (enemy == null)
-                enemy = hitTr.GetComponentInParent<Enemy>();
-
             if (enemy != null && enemy.IsDead == false)
                 enemy.GetHit(bulletDamage);
         }
 
+        if (enemyWasAlive && enemy != null && enemy.IsDead)
+            TryNotifyOwnerAboutEnemyKill();
+
         ApplyBulletImpactToEnemy(hitCol, hitPoint);
+    }
+
+    private void TryNotifyOwnerAboutEnemyKill()
+    {
+        if (!isPlayerBulletCached)
+            return;
+
+        if (weaponTypeUsed != WeaponType.Shotgun)
+            return;
+
+        if (ownerRoot == null)
+            return;
+
+        Shotgun_KillShieldAbility ability = ownerRoot.GetComponent<Shotgun_KillShieldAbility>();
+        if (ability == null)
+            return;
+
+        ability.NotifyEnemyKilled(weaponTypeUsed);
     }
 
     private void ApplyBulletImpactToEnemy(Collider hitCol, Vector3 hitPoint)
@@ -205,6 +241,12 @@ public class Bullet : MonoBehaviour
     }
 
     protected void ReturnBulletToPool(float delay = 0) => ObjectPool.instance.ReturnObject(gameObject, delay);
+
+    public void ReturnToPoolPublic(float delay = 0)
+    {
+        if (ObjectPool.instance != null)
+            ObjectPool.instance.ReturnObject(gameObject, delay);
+    }
 
     protected void CreateImpactFx()
     {

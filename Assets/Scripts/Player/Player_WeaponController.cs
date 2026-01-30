@@ -43,6 +43,8 @@ public class Player_WeaponController : MonoBehaviour
 
     private Revolver_StickyBulletsManager revolverManager;
 
+    private Shotgun_KillShieldAbility shotgunShieldAbility;
+
     private Coroutine readyFallbackRoutine;
     private bool inputAssigned;
 
@@ -55,11 +57,22 @@ public class Player_WeaponController : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
-        playerColliders = GetComponentsInChildren<Collider>(true);
+
+        RefreshPlayerColliders();
 
         revolverManager = GetComponent<Revolver_StickyBulletsManager>();
         if (revolverManager == null)
             revolverManager = gameObject.AddComponent<Revolver_StickyBulletsManager>();
+
+        shotgunShieldAbility = GetComponent<Shotgun_KillShieldAbility>();
+        if (shotgunShieldAbility == null)
+            shotgunShieldAbility = gameObject.AddComponent<Shotgun_KillShieldAbility>();
+
+        // >>> ФИКС: если оружие было выдано ДО Start() этого скрипта (quick start / порядок Start)
+        // синхронизируем способность с текущим оружием принудительно
+        if (currentWeapon != null && shotgunShieldAbility != null)
+            shotgunShieldAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
+        // <<<
 
         AssignInputEvents();
     }
@@ -78,6 +91,11 @@ public class Player_WeaponController : MonoBehaviour
     {
         if (isShooting)
             Shoot();
+    }
+
+    public void RefreshPlayerColliders()
+    {
+        playerColliders = GetComponentsInChildren<Collider>(true);
     }
 
     #region Slots
@@ -112,6 +130,9 @@ public class Player_WeaponController : MonoBehaviour
         SetWeaponReady(false);
 
         currentWeapon = weaponToEquip;
+
+        if (shotgunShieldAbility != null)
+            shotgunShieldAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
 
         if (player != null && player.aim != null)
             player.aim.SetRegularAimCameraDistance(currentWeapon.cameraDistance);
@@ -275,6 +296,11 @@ public class Player_WeaponController : MonoBehaviour
         newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
 
         Collider bulletCol = newBullet.GetComponent<Collider>();
+
+        // на всякий случай обновим коллайдеры (если щит-хитбокс появился позже)
+        if (playerColliders == null || playerColliders.Length == 0)
+            RefreshPlayerColliders();
+
         if (bulletCol != null && playerColliders != null)
         {
             for (int i = 0; i < playerColliders.Length; i++)
@@ -300,7 +326,7 @@ public class Player_WeaponController : MonoBehaviour
             if (bulletScript != null)
             {
                 bool isPlayerBullet = true;
-                bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, transform, isPlayerBullet);
+                bulletScript.BulletSetup(whatIsAlly, currentWeapon.bulletDamage, currentWeapon.gunDistance, bulletImpactForce, transform, isPlayerBullet, currentWeapon.weaponType);
             }
 
             if (currentWeapon.weaponType == WeaponType.Pistol)

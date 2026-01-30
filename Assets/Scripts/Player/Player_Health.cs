@@ -8,11 +8,25 @@ public class Player_Health : HealthController
 
     public bool isDead { get; private set; }
 
+    [Header("Debug")]
+    [SerializeField] private int debugShieldHp;
+
+    private Shotgun_KillShieldAbility shieldAbility;
+
     protected override void Awake()
     {
         base.Awake();
 
         player = GetComponent<Player>();
+        shieldAbility = GetComponent<Shotgun_KillShieldAbility>();
+    }
+
+    private void Update()
+    {
+        if (shieldAbility != null)
+            debugShieldHp = shieldAbility.CurrentShield;
+        else
+            debugShieldHp = 0;
     }
 
     public override void ReduceHealth(int damage)
@@ -23,6 +37,10 @@ public class Player_Health : HealthController
             Die();
 
         UI.instance.inGameUI.UpdateHealthUI(currentHealth, maxHealth);
+
+        // чтобы обновлялось и при получении урона тоже
+        if (shieldAbility != null)
+            debugShieldHp = shieldAbility.CurrentShield;
     }
 
     private void Die()
@@ -30,7 +48,6 @@ public class Player_Health : HealthController
         if (isDead)
             return;
 
-        //Debug.Log("Player was killed at " + Time.time);
         isDead = true;
         player.anim.enabled = false;
         player.ragdoll.RagdollActive(true);

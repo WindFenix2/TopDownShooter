@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CoverPerk { Unavalible, CanTakeCover, CanTakeAndChangeCover }
-public enum UnstoppablePerk { Unavalible, Unstoppable}
-public enum GrenadePerk { Unavalible, CanThrowGrenade}
+public enum UnstoppablePerk { Unavalible, Unstoppable }
+public enum GrenadePerk { Unavalible, CanThrowGrenade }
 public class Enemy_Range : Enemy
 {
     [Header("Enemy perks")]
@@ -23,8 +23,6 @@ public class Enemy_Range : Enemy
     public float grenadeCooldown;
     private float lastTimeGrenadeThrown = -10;
     [SerializeField] private Transform grenadeStartPoint;
-
-
 
     [Header("Advance perk")]
     public float advanceSpeed;
@@ -54,11 +52,9 @@ public class Enemy_Range : Enemy
     public Transform playersBody;
     public LayerMask whatToIgnore;
 
-
     [SerializeField] List<Enemy_RangeWeaponData> avalibleWeaponData;
 
     #region States
-
     public IdleState_Range idleState { get; private set; }
     public MoveState_Range moveState { get; private set; }
     public BattleState_Range battleState { get; private set; }
@@ -78,7 +74,7 @@ public class Enemy_Range : Enemy
         runToCoverState = new RunToCoverState_Range(this, stateMachine, "Run");
         advancePlayerState = new AdvancePlayerState_Range(this, stateMachine, "Advance");
         throwGrenadeState = new ThrowGrenadeState_Range(this, stateMachine, "ThrowGrenade");
-        deadState = new DeadState_Range(this, stateMachine, "Idle");// idle is a place holder,we using ragdoll
+        deadState = new DeadState_Range(this, stateMachine, "Idle");
     }
 
     protected override void Start()
@@ -98,7 +94,6 @@ public class Enemy_Range : Enemy
     protected override void Update()
     {
         base.Update();
-
         stateMachine.currentState.Update();
     }
 
@@ -115,7 +110,7 @@ public class Enemy_Range : Enemy
         if (grenadePerk == GrenadePerk.Unavalible)
             return false;
 
-        if(Vector3.Distance(player.transform.position, transform.position) < safeDistance)
+        if (Vector3.Distance(player.transform.position, transform.position) < safeDistance)
             return false;
 
         if (Time.time > grenadeCooldown + lastTimeGrenadeThrown)
@@ -129,16 +124,16 @@ public class Enemy_Range : Enemy
         lastTimeGrenadeThrown = Time.time;
         visuals.EnableGrenadeModel(false);
 
-        GameObject newGrenade = ObjectPool.instance.GetObject(grenadePrefab,grenadeStartPoint);
+        GameObject newGrenade = ObjectPool.instance.GetObject(grenadePrefab, grenadeStartPoint);
         Enemy_Grenade newGrenadeScript = newGrenade.GetComponent<Enemy_Grenade>();
 
         if (stateMachine.currentState == deadState)
         {
-            newGrenadeScript.SetupGrenade(whatIsAlly, transform.position, 1,explosionTimer,impactPower,grenadeDamage);
+            newGrenadeScript.SetupGrenade(whatIsAlly, transform.position, 1, explosionTimer, impactPower, grenadeDamage);
             return;
         }
 
-        newGrenadeScript.SetupGrenade(whatIsAlly,player.transform.position, timeToTarget,explosionTimer,impactPower,grenadeDamage);
+        newGrenadeScript.SetupGrenade(whatIsAlly, player.transform.position, timeToTarget, explosionTimer, impactPower, grenadeDamage);
     }
 
     protected override void InitializePerk()
@@ -148,11 +143,10 @@ public class Enemy_Range : Enemy
             ChooseRandomWeaponType();
         }
 
-
         if (IsUnstopppable())
         {
             advanceSpeed = 1;
-            anim.SetFloat("AdvanceAnimIndex", 1); // 1 is a slow walk animation
+            anim.SetFloat("AdvanceAnimIndex", 1);
         }
     }
 
@@ -177,14 +171,12 @@ public class Enemy_Range : Enemy
 
         base.EnterBattleMode();
 
-
         if (CanGetCover())
         {
             stateMachine.ChangeState(runToCoverState);
         }
         else
             stateMachine.ChangeState(battleState);
-
     }
 
     #region Cover System
@@ -236,7 +228,6 @@ public class Enemy_Range : Enemy
             return currentCover.transform;
         }
 
-
         return null;
     }
 
@@ -258,16 +249,22 @@ public class Enemy_Range : Enemy
     }
 
     #endregion
+
     public void FireSingleBullet()
     {
         anim.SetTrigger("Shoot");
 
         Vector3 bulletsDirection = (aim.position - gunPoint.position).normalized;
 
-        GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab,gunPoint);
+        GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab, gunPoint);
         newBullet.transform.rotation = Quaternion.LookRotation(gunPoint.forward);
 
-        newBullet.GetComponent<Bullet>().BulletSetup(whatIsAlly,weaponData.bulletDamage);
+        Bullet bullet = newBullet.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            // ВАЖНО: теперь сигнатура с WeaponType
+            bullet.BulletSetup(whatIsAlly, weaponData.bulletDamage, 100, 100, transform, false, WeaponType.Rifle);
+        }
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
 
@@ -275,8 +272,8 @@ public class Enemy_Range : Enemy
 
         rbNewBullet.mass = 20 / weaponData.bulletSpeed;
         rbNewBullet.velocity = bulletDirectionWithSpread * weaponData.bulletSpeed;
-
     }
+
     private void SetupWeapon()
     {
         List<Enemy_RangeWeaponData> filteredData = new List<Enemy_RangeWeaponData>();
@@ -287,7 +284,6 @@ public class Enemy_Range : Enemy
                 filteredData.Add(weaponData);
         }
 
-
         if (filteredData.Count > 0)
         {
             int random = UnityEngine.Random.Range(0, filteredData.Count);
@@ -295,8 +291,6 @@ public class Enemy_Range : Enemy
         }
         else
             Debug.LogWarning("No avalible weapon data was found!");
-
-
 
         gunPoint = visuals.currentWeaponModel.GetComponent<Enemy_RangeWeaponModel>().gunPoint;
     }
@@ -312,7 +306,6 @@ public class Enemy_Range : Enemy
     public bool IsAimOnPlayer()
     {
         float distnaceAimToPlayer = Vector3.Distance(aim.position, player.position);
-
         return distnaceAimToPlayer < 2;
     }
 
@@ -343,5 +336,4 @@ public class Enemy_Range : Enemy
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, advanceStoppingDistance);
     }
-
 }
