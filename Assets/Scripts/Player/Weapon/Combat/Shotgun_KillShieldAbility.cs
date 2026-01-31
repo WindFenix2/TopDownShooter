@@ -10,6 +10,10 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     [Header("Shield hitbox")]
     [SerializeField] private float hitboxRadius = 1.6f;
 
+    // --- DEV switch (ONLY from GameManager) ---
+    // Not serialized => not visible in Inspector, not saved in scene/prefab.
+    private bool persistShieldAfterUnequip = true;
+
     [SerializeField, HideInInspector] private GameObject shieldVfxPrefab;
     [SerializeField, HideInInspector] private Transform vfxParent;
     [SerializeField, HideInInspector] private Vector3 vfxLocalPosition = new Vector3(0f, 1f, 0f);
@@ -39,9 +43,22 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     public int CurrentShield => currentShield;
     public int MaxShield => maxShield;
 
+    public void SetPersistShield(bool value)
+    {
+        persistShieldAfterUnequip = value;
+
+        if (!persistShieldAfterUnequip && !isBoundWeaponEquipped)
+            ResetShield();
+        else
+            RefreshVisuals();
+    }
+
     private void Awake()
     {
         player = GetComponent<Player>();
+
+        if (GameManager.instance != null)
+            persistShieldAfterUnequip = GameManager.instance.shotgunShieldPersists;
 
         if (player != null && player.health != null)
             playerHealth = player.health;
@@ -71,7 +88,7 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     {
         bool nowBound = newWeaponType == boundWeaponType;
 
-        if (isBoundWeaponEquipped && !nowBound)
+        if (isBoundWeaponEquipped && !nowBound && !persistShieldAfterUnequip)
             ResetShield();
 
         isBoundWeaponEquipped = nowBound;
@@ -83,7 +100,7 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         if (usedWeapon != boundWeaponType)
             return;
 
-        if (!isBoundWeaponEquipped)
+        if (!isBoundWeaponEquipped && !persistShieldAfterUnequip)
             return;
 
         AddShield(shieldPerKill);
@@ -94,7 +111,7 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         if (damage <= 0)
             return 0;
 
-        if (!isBoundWeaponEquipped)
+        if (!ShieldIsAllowed())
             return damage;
 
         if (currentShield <= 0)
@@ -136,13 +153,18 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
 
     private void RefreshVisuals()
     {
-        bool shouldShow = isBoundWeaponEquipped && currentShield > 0;
+        bool shouldShow = ShieldIsAllowed() && currentShield > 0;
 
         UpdateVfx(shouldShow);
         UpdateHitbox(shouldShow);
 
         if (shouldShow)
             ApplyAutoScaleToVfx();
+    }
+
+    private bool ShieldIsAllowed()
+    {
+        return isBoundWeaponEquipped || persistShieldAfterUnequip;
     }
 
     private void UpdateVfx(bool shouldShow)
@@ -212,7 +234,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         for (int i = 0; i < allPs.Length; i++)
         {
             if (allPs[i] == null) continue;
-
             allPs[i].Pause(true);
         }
 

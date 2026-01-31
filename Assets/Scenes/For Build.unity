@@ -14006,6 +14006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   friendlyFire: 1
+  shotgunShieldPersists: 1
   quickStart: 0
   quickStartDefaultWeapons: []
 --- !u!4 &1687976509
@@ -22093,6 +22094,7 @@ GameObject:
   - component: {fileID: 4850869063498691477}
   - component: {fileID: 4586975635558241348}
   - component: {fileID: 7534527922069979960}
+  - component: {fileID: 7534527922069979961}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -24379,6 +24381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  debugShieldHp: 0
 --- !u!4 &6592853564411524866
 Transform:
   m_ObjectHideFlags: 0
@@ -25443,6 +25446,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d7cf0cefd643643af98aaafb6be0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCarsEvenIfDefaultLayerNotInMask: 1
+  explosionPushForce: 14
+  explosionUpwards: 0.25
+  pushRadiusMultiplier: 0.8
+  pushOnlyPropsCars: 1
+--- !u!114 &7534527922069979961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846352222451562977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6d3b4b21d46ed4ea5a244c7f8abedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldPerKill: 50
+  maxShield: 100
+  boundWeaponType: 3
+  persistShieldAfterUnequip: 0
+  hitboxRadius: 1.6
+  shieldVfxPrefab: {fileID: 0}
+  vfxParent: {fileID: 0}
+  vfxLocalPosition: {x: 0, y: 1, z: 0}
+  autoScaleVfxToHitbox: 1
+  vfxRadiusAtScaleOne: 1.6
+  vfxScaleMultiplier: 1
+  freezeVfxAfterTime: 1
+  freezeAfterSeconds: 3.5
+  spawnShieldHitbox: 1
+  hitboxLocalPosition: {x: 0, y: 1, z: 0}
+  currentShield: 0
+  isBoundWeaponEquipped: 0
 --- !u!54 &7667312168735303441
 Rigidbody:
   m_ObjectHideFlags: 0

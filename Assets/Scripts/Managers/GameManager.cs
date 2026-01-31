@@ -9,7 +9,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")]
     public bool friendlyFire;
-    [Space]
+
+    [Header("DEV: Shotgun shield behavior")]
+    [Tooltip("ON = shield stays even if you switch/throw shotgun. OFF = shield works only while shotgun is equipped.")]
+    public bool shotgunShieldPersists = true;
+
+    [Header("Dev/Debug")]
     public bool quickStart;
 
     [Header("QuickStart / Fallback weapons (for test scenes)")]
@@ -19,11 +24,21 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         player = FindObjectOfType<Player>();
+
+        int friendlyFireInt = PlayerPrefs.GetInt("FriendlyFire", friendlyFire ? 1 : 0);
+        friendlyFire = friendlyFireInt == 1;
     }
 
     public void GameStart()
     {
         SetDefaultWeaponsForPlayer();
+
+        if (player != null)
+        {
+            Shotgun_KillShieldAbility ability = player.GetComponent<Shotgun_KillShieldAbility>();
+            if (ability != null)
+                ability.SetPersistShield(shotgunShieldPersists);
+        }
     }
 
     public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
