@@ -7,11 +7,13 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     [SerializeField] private int maxShield = 100;
     [SerializeField] private WeaponType boundWeaponType = WeaponType.Shotgun;
 
+    [Header("After shield break")]
+    [Tooltip("How long the player ignores damage right after the shield is fully broken.")]
+    [SerializeField] private float invulnerableAfterBreakSeconds = 1f;
+
     [Header("Shield hitbox")]
     [SerializeField] private float hitboxRadius = 1.6f;
 
-    // --- DEV switch (ONLY from GameManager) ---
-    // Not serialized => not visible in Inspector, not saved in scene/prefab.
     private bool persistShieldAfterUnequip = true;
 
     [SerializeField, HideInInspector] private GameObject shieldVfxPrefab;
@@ -30,6 +32,8 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
 
     [SerializeField, HideInInspector] private int currentShield;
     [SerializeField, HideInInspector] private bool isBoundWeaponEquipped;
+
+    private float invulAfterBreakEndTime;
 
     private GameObject vfxInstance;
     private GameObject hitboxInstance;
@@ -111,15 +115,26 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         if (damage <= 0)
             return 0;
 
+        if (Time.time < invulAfterBreakEndTime)
+            return 0;
+
         if (!ShieldIsAllowed())
             return damage;
 
         if (currentShield <= 0)
             return damage;
 
+        int before = currentShield;
+
         currentShield -= damage;
         if (currentShield < 0)
             currentShield = 0;
+
+        if (before > 0 && currentShield <= 0)
+        {
+            float d = Mathf.Max(0f, invulnerableAfterBreakSeconds);
+            invulAfterBreakEndTime = Time.time + d;
+        }
 
         RefreshVisuals();
 
@@ -146,6 +161,7 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     private void ResetShield()
     {
         currentShield = 0;
+        invulAfterBreakEndTime = 0f;
         vfxShownTime = 0f;
         vfxFrozen = false;
         RefreshVisuals();
