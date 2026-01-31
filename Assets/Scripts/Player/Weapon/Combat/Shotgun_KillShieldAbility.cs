@@ -7,28 +7,25 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     [SerializeField] private int maxShield = 100;
     [SerializeField] private WeaponType boundWeaponType = WeaponType.Shotgun;
 
-    [Header("VFX")]
-    [SerializeField] private GameObject shieldVfxPrefab;
-    [SerializeField] private Transform vfxParent;
-    [SerializeField] private Vector3 vfxLocalPosition = new Vector3(0f, 1f, 0f);
-
-    [Header("VFX - auto size by hitbox")]
-    [SerializeField] private bool autoScaleVfxToHitbox = true;
-    [SerializeField] private float vfxRadiusAtScaleOne = 1.6f; // под какой радиус префаб выгл€дит "норм" при scale=1
-    [SerializeField] private float vfxScaleMultiplier = 1f;    // общий множитель
-
-    [Header("VFX - freeze (optional)")]
-    [SerializeField] private bool freezeVfxAfterTime = true;
-    [SerializeField] private float freezeAfterSeconds = 3.5f;
-
-    [Header("Hitbox (blocks bullets)")]
-    [SerializeField] private bool spawnShieldHitbox = true;
+    [Header("Shield hitbox")]
     [SerializeField] private float hitboxRadius = 1.6f;
-    [SerializeField] private Vector3 hitboxLocalPosition = new Vector3(0f, 1f, 0f);
 
-    [Header("Debug (read-only)")]
-    [SerializeField] private int currentShield;
-    [SerializeField] private bool isBoundWeaponEquipped;
+    [SerializeField, HideInInspector] private GameObject shieldVfxPrefab;
+    [SerializeField, HideInInspector] private Transform vfxParent;
+    [SerializeField, HideInInspector] private Vector3 vfxLocalPosition = new Vector3(0f, 1f, 0f);
+
+    [SerializeField, HideInInspector] private bool autoScaleVfxToHitbox = true;
+    [SerializeField, HideInInspector] private float vfxRadiusAtScaleOne = 1.6f;
+    [SerializeField, HideInInspector] private float vfxScaleMultiplier = 1f;
+
+    [SerializeField, HideInInspector] private bool freezeVfxAfterTime = true;
+    [SerializeField, HideInInspector] private float freezeAfterSeconds = 3.5f;
+
+    [SerializeField, HideInInspector] private bool spawnShieldHitbox = true;
+    [SerializeField, HideInInspector] private Vector3 hitboxLocalPosition = new Vector3(0f, 1f, 0f);
+
+    [SerializeField, HideInInspector] private int currentShield;
+    [SerializeField, HideInInspector] private bool isBoundWeaponEquipped;
 
     private GameObject vfxInstance;
     private GameObject hitboxInstance;
@@ -62,7 +59,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
 
     private void Update()
     {
-        // заморозка VFX через N секунд
         if (vfxInstance != null && vfxInstance.activeSelf && freezeVfxAfterTime && !vfxFrozen)
         {
             vfxShownTime += Time.deltaTime;
@@ -120,7 +116,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         int before = currentShield;
         currentShield = Mathf.Clamp(currentShield + amount, 0, maxShield);
 
-        // если щит по€вилс€ впервые (0 -> >0), перезапускаем VFX-анимацию
         if (before <= 0 && currentShield > 0)
         {
             vfxShownTime = 0f;
@@ -145,7 +140,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         UpdateVfx(shouldShow);
         UpdateHitbox(shouldShow);
 
-        // если включЄн авто-скейл Ч подгон€ем VFX под радиус
         if (shouldShow)
             ApplyAutoScaleToVfx();
     }
@@ -179,7 +173,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         {
             vfxInstance.SetActive(true);
 
-            // каждый раз при включении хотим красивое по€вление -> Play()
             vfxShownTime = 0f;
             vfxFrozen = false;
 
@@ -206,7 +199,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
 
         float k = (targetRadius / baseRadius) * Mathf.Max(0.0001f, vfxScaleMultiplier);
 
-        // масштабируем равномерно
         vfxInstance.transform.localScale = Vector3.one * k;
     }
 
@@ -220,7 +212,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         {
             if (allPs[i] == null) continue;
 
-            // стопим, но оставл€ем текущее состо€ние на экране
             allPs[i].Pause(true);
         }
 
@@ -263,7 +254,6 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
             hb.Setup(this, playerHealth);
         }
 
-        // если ты помен€л радиус в инспекторе Ч обновим коллайдер на лету
         SphereCollider existing = hitboxInstance.GetComponent<SphereCollider>();
         if (existing != null && existing.radius != hitboxRadius)
             existing.radius = hitboxRadius;

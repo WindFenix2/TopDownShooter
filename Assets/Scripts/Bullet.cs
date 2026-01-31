@@ -150,6 +150,32 @@ public class Bullet : MonoBehaviour
             return;
         }
 
+        // --- Shotgun shield special case ---
+        // The shield hitbox is a trigger placed under the player root.
+        // Player bullets must be able to fly through their own shield.
+        // Enemy bullets must still collide and deal damage to the shield.
+        if (isPlayerBulletCached && ownerRoot != null)
+        {
+            Shotgun_ShieldHitbox shieldHb = null;
+
+            if (hitCol != null)
+            {
+                shieldHb = hitCol.GetComponent<Shotgun_ShieldHitbox>();
+                if (shieldHb == null)
+                    shieldHb = hitCol.GetComponentInParent<Shotgun_ShieldHitbox>();
+            }
+
+            if (shieldHb == null)
+            {
+                shieldHb = hitTr.GetComponent<Shotgun_ShieldHitbox>();
+                if (shieldHb == null)
+                    shieldHb = hitTr.GetComponentInParent<Shotgun_ShieldHitbox>();
+            }
+
+            if (shieldHb != null && hitTr.root == ownerRoot)
+                return; // ignore the trigger and keep flying
+        }
+
         if (ownerRoot != null && hitTr.root == ownerRoot)
         {
             ReturnBulletToPool();
