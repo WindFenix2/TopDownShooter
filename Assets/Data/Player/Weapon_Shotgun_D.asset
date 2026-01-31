@@ -19,7 +19,7 @@ MonoBehaviour:
   totalReserveAmmo: 48
   shootType: 0
   bulletsPerShot: 5
-  fireRate: 2
+  fireRate: 1.5
   burstAvalible: 0
   burstActive: 0
   burstBulletsPerShot: 0

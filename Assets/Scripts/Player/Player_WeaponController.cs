@@ -18,6 +18,7 @@ public class Player_WeaponController : MonoBehaviour
     [SerializeField] private float bulletImpactForce = 100f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed = 15f;
+    [SerializeField] private float rifleBulletSpeed = 50f;
 
     [SerializeField] private Transform weaponHolder;
 
@@ -42,8 +43,8 @@ public class Player_WeaponController : MonoBehaviour
     [SerializeField] private LayerMask revolverDetonationWhatToDamage;
 
     private Revolver_StickyBulletsManager revolverManager;
-
     private Shotgun_KillShieldAbility shotgunShieldAbility;
+    private Sniper_MarkChainShotAbility sniperChainAbility;
 
     private Coroutine readyFallbackRoutine;
     private bool inputAssigned;
@@ -68,8 +69,18 @@ public class Player_WeaponController : MonoBehaviour
         if (shotgunShieldAbility == null)
             shotgunShieldAbility = gameObject.AddComponent<Shotgun_KillShieldAbility>();
 
-        if (currentWeapon != null && shotgunShieldAbility != null)
-            shotgunShieldAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
+        sniperChainAbility = GetComponent<Sniper_MarkChainShotAbility>();
+        if (sniperChainAbility == null)
+            sniperChainAbility = gameObject.AddComponent<Sniper_MarkChainShotAbility>();
+
+        if (currentWeapon != null)
+        {
+            if (shotgunShieldAbility != null)
+                shotgunShieldAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
+
+            if (sniperChainAbility != null)
+                sniperChainAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
+        }
 
         AssignInputEvents();
     }
@@ -88,6 +99,35 @@ public class Player_WeaponController : MonoBehaviour
     {
         if (isShooting)
             Shoot();
+    }
+
+    private float CurrentBulletSpeed()
+    {
+        if (currentWeapon != null && currentWeapon.weaponType == WeaponType.Rifle)
+            return Mathf.Max(0.01f, rifleBulletSpeed);
+
+        return Mathf.Max(0.01f, bulletSpeed);
+    }
+
+    private float CurrentRifleCooldown()
+    {
+        if (currentWeapon == null)
+            return 0.01f;
+
+        float fr = Mathf.Max(0.01f, currentWeapon.fireRate);
+        return 1f / fr;
+    }
+
+    private void ApplyRifleFireRateCooldown()
+    {
+        if (currentWeapon == null)
+            return;
+
+        if (currentWeapon.weaponType != WeaponType.Rifle)
+            return;
+
+        SetWeaponReady(false);
+        StartReadyFallback(CurrentRifleCooldown());
     }
 
     public void RefreshPlayerColliders()
@@ -130,6 +170,9 @@ public class Player_WeaponController : MonoBehaviour
 
         if (shotgunShieldAbility != null)
             shotgunShieldAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
+
+        if (sniperChainAbility != null)
+            sniperChainAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
 
         if (player != null && player.aim != null)
             player.aim.SetRegularAimCameraDistance(currentWeapon.cameraDistance);
@@ -287,8 +330,45 @@ public class Player_WeaponController : MonoBehaviour
             return;
         }
 
+        if (currentWeapon.weaponType == WeaponType.Rifle && sniperChainAbility != null)
+        {
+            Transform gunPoint = GunPoint();
+            if (gunPoint != null)
+            {
+                Vector3 dir = currentWeapon.ApplySpread(BulletDirection());
+                float spd = CurrentBulletSpeed();
+
+                bool chainTriggered = sniperChainAbility.TryFireChainShot(
+                    gunPoint.position,
+                    dir,
+                    currentWeapon.gunDistance,
+                    currentWeapon.bulletDamage,
+                    spd
+                );
+
+                if (chainTriggered)
+                {
+                    currentWeapon.bulletsInMagazine--;
+                    UpdateWeaponUI();
+
+                    if (player != null && player.weaponVisuals != null && player.weaponVisuals.CurrentWeaponModel() != null)
+                    {
+                        var model = player.weaponVisuals.CurrentWeaponModel();
+                        if (model.fireSFX != null) model.fireSFX.Play();
+                    }
+
+                    TriggerEnemyDodge();
+                    ApplyRifleFireRateCooldown();
+                    return;
+                }
+            }
+        }
+
         FireSingleBullet();
         TriggerEnemyDodge();
+
+        if (currentWeapon != null && currentWeapon.weaponType == WeaponType.Rifle)
+            ApplyRifleFireRateCooldown();
     }
 
     private void FireSingleBullet(bool consumeAmmo = true, bool playSfx = true)
@@ -349,7 +429,7 @@ public class Player_WeaponController : MonoBehaviour
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
         if (rbNewBullet != null)
         {
-            float spd = Mathf.Max(0.01f, bulletSpeed);
+            float spd = CurrentBulletSpeed();
             rbNewBullet.mass = REFERENCE_BULLET_SPEED / spd;
             rbNewBullet.velocity = bulletsDirection * spd;
         }
