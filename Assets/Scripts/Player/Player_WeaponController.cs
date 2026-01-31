@@ -68,11 +68,8 @@ public class Player_WeaponController : MonoBehaviour
         if (shotgunShieldAbility == null)
             shotgunShieldAbility = gameObject.AddComponent<Shotgun_KillShieldAbility>();
 
-        // >>> ФИКС: если оружие было выдано ДО Start() этого скрипта (quick start / порядок Start)
-        // синхронизируем способность с текущим оружием принудительно
         if (currentWeapon != null && shotgunShieldAbility != null)
             shotgunShieldAbility.OnEquippedWeaponChanged(currentWeapon.weaponType);
-        // <<<
 
         AssignInputEvents();
     }
@@ -229,12 +226,44 @@ public class Player_WeaponController : MonoBehaviour
         SetWeaponReady(false);
         StartReadyFallback(0.6f);
 
-        for (int i = 1; i <= currentWeapon.bulletsPerShot; i++)
+        if (currentWeapon == null)
         {
-            FireSingleBullet();
-            yield return new WaitForSeconds(currentWeapon.burstFireDelay);
+            SetWeaponReady(true);
+            yield break;
         }
 
+        bool shotgunPellets = currentWeapon.weaponType == WeaponType.Shotgun;
+
+        if (shotgunPellets)
+        {
+            if (currentWeapon.bulletsInMagazine <= 0)
+            {
+                SetWeaponReady(true);
+                yield break;
+            }
+
+            currentWeapon.bulletsInMagazine--;
+            UpdateWeaponUI();
+
+            if (player != null && player.weaponVisuals != null && player.weaponVisuals.CurrentWeaponModel() != null)
+            {
+                var model = player.weaponVisuals.CurrentWeaponModel();
+                if (model.fireSFX != null) model.fireSFX.Play();
+            }
+        }
+
+        for (int i = 1; i <= currentWeapon.bulletsPerShot; i++)
+        {
+            if (shotgunPellets)
+                FireSingleBullet(false, false);
+            else
+                FireSingleBullet(true, true);
+
+            if (currentWeapon.burstFireDelay > 0)
+                yield return new WaitForSeconds(currentWeapon.burstFireDelay);
+        }
+
+        TriggerEnemyDodge();
         SetWeaponReady(true);
     }
 
@@ -262,7 +291,7 @@ public class Player_WeaponController : MonoBehaviour
         TriggerEnemyDodge();
     }
 
-    private void FireSingleBullet()
+    private void FireSingleBullet(bool consumeAmmo = true, bool playSfx = true)
     {
         if (currentWeapon == null)
             return;
@@ -271,13 +300,19 @@ public class Player_WeaponController : MonoBehaviour
         if (gunPoint == null)
             return;
 
-        currentWeapon.bulletsInMagazine--;
-        UpdateWeaponUI();
-
-        if (player != null && player.weaponVisuals != null && player.weaponVisuals.CurrentWeaponModel() != null)
+        if (consumeAmmo)
         {
-            var model = player.weaponVisuals.CurrentWeaponModel();
-            if (model.fireSFX != null) model.fireSFX.Play();
+            currentWeapon.bulletsInMagazine--;
+            UpdateWeaponUI();
+        }
+
+        if (playSfx)
+        {
+            if (player != null && player.weaponVisuals != null && player.weaponVisuals.CurrentWeaponModel() != null)
+            {
+                var model = player.weaponVisuals.CurrentWeaponModel();
+                if (model.fireSFX != null) model.fireSFX.Play();
+            }
         }
 
         if (ObjectPool.instance == null)
@@ -297,7 +332,6 @@ public class Player_WeaponController : MonoBehaviour
 
         Collider bulletCol = newBullet.GetComponent<Collider>();
 
-        // на всякий случай обновим коллайдеры (если щит-хитбокс появился позже)
         if (playerColliders == null || playerColliders.Length == 0)
             RefreshPlayerColliders();
 

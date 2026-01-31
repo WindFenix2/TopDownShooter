@@ -16,10 +16,6 @@ public class Shotgun_ShieldHitbox : MonoBehaviour, IDamagable
         if (ability == null)
             return;
 
-        int remaining = ability.AbsorbDamage(damage);
-
-        // если щит кончилс€ и урон осталс€ Ч сразу даЄм его игроку
-        if (remaining > 0 && playerHealth != null)
-            playerHealth.ReduceHealth(remaining);
+        ability.AbsorbDamage(damage);
     }
 }

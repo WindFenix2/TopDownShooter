@@ -38,7 +38,6 @@ public class Player_Health : HealthController
 
         UI.instance.inGameUI.UpdateHealthUI(currentHealth, maxHealth);
 
-        // чтобы обновлялось и при получении урона тоже
         if (shieldAbility != null)
             debugShieldHp = shieldAbility.CurrentShield;
     }

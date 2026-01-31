@@ -100,12 +100,13 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
         if (currentShield <= 0)
             return damage;
 
-        int absorbed = Mathf.Min(currentShield, damage);
-        currentShield -= absorbed;
+        currentShield -= damage;
+        if (currentShield < 0)
+            currentShield = 0;
 
         RefreshVisuals();
 
-        return damage - absorbed;
+        return 0;
     }
 
     private void AddShield(int amount)
