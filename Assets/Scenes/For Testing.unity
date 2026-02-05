@@ -15993,7 +15993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1201845089
 Transform:
   m_ObjectHideFlags: 0
@@ -25236,7 +25236,7 @@ MonoBehaviour:
   shotgunShieldPersists: 1
   quickStart: 1
   quickStartDefaultWeapons:
-  - {fileID: 11400000, guid: 2341707a809284748b68f961349af0d6, type: 2}
+  - {fileID: 11400000, guid: e12fe38b0ed5ce34c9defee2a30e9dbb, type: 2}
   - {fileID: 11400000, guid: e3228b5e123aa934f8457c81698d3b18, type: 2}
 --- !u!4 &1687976509
 Transform:
