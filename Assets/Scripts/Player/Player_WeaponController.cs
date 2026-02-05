@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_WeaponController : MonoBehaviour
 {
@@ -118,6 +119,15 @@ public class Player_WeaponController : MonoBehaviour
         return 1f / fr;
     }
 
+    private void StopReadyFallback()
+    {
+        if (readyFallbackRoutine != null)
+        {
+            StopCoroutine(readyFallbackRoutine);
+            readyFallbackRoutine = null;
+        }
+    }
+
     private void ApplyRifleFireRateCooldown()
     {
         if (currentWeapon == null)
@@ -125,6 +135,8 @@ public class Player_WeaponController : MonoBehaviour
 
         if (currentWeapon.weaponType != WeaponType.Rifle)
             return;
+
+        StopReadyFallback();
 
         SetWeaponReady(false);
         StartReadyFallback(CurrentRifleCooldown());
@@ -164,6 +176,7 @@ public class Player_WeaponController : MonoBehaviour
         if (currentWeapon != null && weaponReady && weaponToEquip.weaponType == currentWeapon.weaponType)
             return;
 
+        StopReadyFallback();
         SetWeaponReady(false);
 
         currentWeapon = weaponToEquip;
@@ -181,7 +194,11 @@ public class Player_WeaponController : MonoBehaviour
             player.weaponVisuals.PlayWeaponEquipAnimation();
 
         UpdateWeaponUI();
-        StartReadyFallback(0.25f);
+
+        // ВАЖНО:
+        // weaponReady вернётся в true через Animation Event:
+        // Player_AnimationEvents.WeaponEquipingIsOver()
+        // и это будет зависеть от EquipSpeed.
     }
 
     public void PickupWeapon(Weapon newWeapon)
@@ -248,8 +265,14 @@ public class Player_WeaponController : MonoBehaviour
     {
         weaponReady = ready;
 
-        if (ready && player != null && player.sound != null && player.sound.weaponReady != null)
-            player.sound.weaponReady.Play();
+        if (ready)
+        {
+            if (player != null && player.weaponVisuals != null)
+                player.weaponVisuals.ResetAnimatorSpeed();
+
+            if (player != null && player.sound != null && player.sound.weaponReady != null)
+                player.sound.weaponReady.Play();
+        }
     }
 
     public bool WeaponReady() => weaponReady;
@@ -266,8 +289,8 @@ public class Player_WeaponController : MonoBehaviour
 
     private IEnumerator BurstFire()
     {
+        StopReadyFallback();
         SetWeaponReady(false);
-        StartReadyFallback(0.6f);
 
         if (currentWeapon == null)
         {
@@ -538,8 +561,8 @@ public class Player_WeaponController : MonoBehaviour
 
     private void ReloadAnimationOnly()
     {
+        StopReadyFallback();
         SetWeaponReady(false);
-        StartReadyFallback(0.8f);
 
         if (player != null && player.weaponVisuals != null)
             player.weaponVisuals.PlayReloadAnimation();
@@ -553,9 +576,7 @@ public class Player_WeaponController : MonoBehaviour
 
     private void StartReadyFallback(float t)
     {
-        if (readyFallbackRoutine != null)
-            StopCoroutine(readyFallbackRoutine);
-
+        StopReadyFallback();
         readyFallbackRoutine = StartCoroutine(ReadyFallback(t));
     }
 
@@ -645,24 +666,18 @@ public class Player_WeaponController : MonoBehaviour
         PlayerControls controls = player.controls;
         if (controls == null) return;
 
-        controls.Character.Fire.performed += context => isShooting = true;
-        controls.Character.Fire.canceled += context => isShooting = false;
+        controls.Character.Fire.performed += OnFirePerformed;
+        controls.Character.Fire.canceled += OnFireCanceled;
 
-        controls.Character.EquipSlot1.performed += context => EquipWeapon(0);
-        controls.Character.EquipSlot2.performed += context => EquipWeapon(1);
-        controls.Character.EquipSlot3.performed += context => EquipWeapon(2);
-        controls.Character.EquipSlot4.performed += context => EquipWeapon(3);
-        controls.Character.EquipSlot5.performed += context => EquipWeapon(4);
+        controls.Character.EquipSlot1.performed += OnEquipSlot1;
+        controls.Character.EquipSlot2.performed += OnEquipSlot2;
+        controls.Character.EquipSlot3.performed += OnEquipSlot3;
+        controls.Character.EquipSlot4.performed += OnEquipSlot4;
+        controls.Character.EquipSlot5.performed += OnEquipSlot5;
 
-        controls.Character.DropCurrentWeapon.performed += context => DropWeapon();
-
-        controls.Character.Reload.performed += context => OnReloadPressed();
-
-        controls.Character.ToogleWeaponMode.performed += context =>
-        {
-            if (currentWeapon != null)
-                currentWeapon.ToggleBurst();
-        };
+        controls.Character.DropCurrentWeapon.performed += OnDropWeapon;
+        controls.Character.Reload.performed += OnReload;
+        controls.Character.ToogleWeaponMode.performed += OnToggleWeaponMode;
 
         inputAssigned = true;
     }
@@ -678,26 +693,45 @@ public class Player_WeaponController : MonoBehaviour
         PlayerControls controls = player.controls;
         if (controls == null) return;
 
-        controls.Character.Fire.performed -= context => isShooting = true;
-        controls.Character.Fire.canceled -= context => isShooting = false;
+        controls.Character.Fire.performed -= OnFirePerformed;
+        controls.Character.Fire.canceled -= OnFireCanceled;
 
-        controls.Character.EquipSlot1.performed -= context => EquipWeapon(0);
-        controls.Character.EquipSlot2.performed -= context => EquipWeapon(1);
-        controls.Character.EquipSlot3.performed -= context => EquipWeapon(2);
-        controls.Character.EquipSlot4.performed -= context => EquipWeapon(3);
-        controls.Character.EquipSlot5.performed -= context => EquipWeapon(4);
+        controls.Character.EquipSlot1.performed -= OnEquipSlot1;
+        controls.Character.EquipSlot2.performed -= OnEquipSlot2;
+        controls.Character.EquipSlot3.performed -= OnEquipSlot3;
+        controls.Character.EquipSlot4.performed -= OnEquipSlot4;
+        controls.Character.EquipSlot5.performed -= OnEquipSlot5;
 
-        controls.Character.DropCurrentWeapon.performed -= context => DropWeapon();
-
-        controls.Character.Reload.performed -= context => OnReloadPressed();
-
-        controls.Character.ToogleWeaponMode.performed -= context =>
-        {
-            if (currentWeapon != null)
-                currentWeapon.ToggleBurst();
-        };
+        controls.Character.DropCurrentWeapon.performed -= OnDropWeapon;
+        controls.Character.Reload.performed -= OnReload;
+        controls.Character.ToogleWeaponMode.performed -= OnToggleWeaponMode;
 
         inputAssigned = false;
+    }
+
+    private void OnFirePerformed(InputAction.CallbackContext context)
+    {
+        isShooting = true;
+    }
+
+    private void OnFireCanceled(InputAction.CallbackContext context)
+    {
+        isShooting = false;
+    }
+
+    private void OnEquipSlot1(InputAction.CallbackContext context) => EquipWeapon(0);
+    private void OnEquipSlot2(InputAction.CallbackContext context) => EquipWeapon(1);
+    private void OnEquipSlot3(InputAction.CallbackContext context) => EquipWeapon(2);
+    private void OnEquipSlot4(InputAction.CallbackContext context) => EquipWeapon(3);
+    private void OnEquipSlot5(InputAction.CallbackContext context) => EquipWeapon(4);
+
+    private void OnDropWeapon(InputAction.CallbackContext context) => DropWeapon();
+    private void OnReload(InputAction.CallbackContext context) => OnReloadPressed();
+
+    private void OnToggleWeaponMode(InputAction.CallbackContext context)
+    {
+        if (currentWeapon != null)
+            currentWeapon.ToggleBurst();
     }
 
     #endregion

@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
 
     private MaterialPropertyBlock mpb;
 
-    // --- PUBLIC INFO (for shield collider etc) ---
     public int BulletDamage => bulletDamage;
     public bool IsPlayerBullet => isPlayerBulletCached;
     public Transform OwnerRoot => ownerRoot;

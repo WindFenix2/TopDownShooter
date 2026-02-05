@@ -41,9 +41,22 @@ public class Player_WeaponVisuals : MonoBehaviour
         UpdateLeftHandIKWeight();
     }
 
+    public void ResetAnimatorSpeed()
+    {
+        if (anim == null) return;
+        anim.speed = 1f;
+    }
+
+    private void SetAnimatorSpeed(float s)
+    {
+        if (anim == null) return;
+        anim.speed = Mathf.Clamp(s, 0.05f, 10f);
+    }
+
     public void PlayFireAnimation()
     {
         if (anim == null) return;
+        anim.speed = 1f;
         anim.SetTrigger("Fire");
     }
 
@@ -52,12 +65,13 @@ public class Player_WeaponVisuals : MonoBehaviour
         if (player == null || player.weapon == null) return;
         var w = player.weapon.CurrentWeapon();
         if (w == null) return;
-
         if (anim == null) return;
 
         float reloadSpeed = w.reloadSpeed;
 
         anim.SetFloat("ReloadSpeed", reloadSpeed);
+        SetAnimatorSpeed(reloadSpeed);
+
         anim.SetTrigger("Reload");
         ReduceRigWeight();
     }
@@ -79,9 +93,12 @@ public class Player_WeaponVisuals : MonoBehaviour
         if (leftHandIK != null) leftHandIK.weight = 0;
 
         ReduceRigWeight();
-        anim.SetTrigger("EquipWeapon");
+
         anim.SetFloat("EquipType", (float)equipType);
         anim.SetFloat("EquipSpeed", equipmentSpeed);
+        SetAnimatorSpeed(equipmentSpeed);
+
+        anim.SetTrigger("EquipWeapon");
     }
 
     public void SwitchOnCurrentWeaponModel()

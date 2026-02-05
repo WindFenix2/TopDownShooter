@@ -10,8 +10,7 @@ public class Player_AimController : MonoBehaviour
     [Header("Aim Viusal - Laser")]
     [SerializeField] private LineRenderer aimLaser;
 
-    [Header("Aim Visual - Sprite (crosshair on ground)")]
-    [SerializeField] private SpriteRenderer aimSprite;
+    private SpriteRenderer aimSprite;
 
     [Header("Aim Control")]
     [SerializeField] private float preciseAimCamDistance = 6;
