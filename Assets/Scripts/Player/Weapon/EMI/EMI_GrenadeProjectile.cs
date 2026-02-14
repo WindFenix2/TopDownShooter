@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EMI_GrenadeProjectile : MonoBehaviour
@@ -16,13 +17,13 @@ public class EMI_GrenadeProjectile : MonoBehaviour
     private LayerMask whatIsEnemy = ~0;
 
     private float enemyDuration = 10f;
-    private float enemySpeedMultiplier = 0.25f;
+    private float enemySpeedMultiplier = 0.4f;   // <- default -60%
 
     private float bossDuration = 7f;
     private float bossSpeedMultiplier = 0.5f;
 
     private float playerDuration = 10f;
-    private float playerSpeedMultiplier = 0.25f;
+    private float playerSpeedMultiplier = 0.4f;  // <- default -60%
 
     private GameObject explosionVfx;
     private GameObject hitAuraVfx;
@@ -161,8 +162,6 @@ public class EMI_GrenadeProjectile : MonoBehaviour
 
     private Vector3 ProjectToGround(Vector3 pos)
     {
-        // Если взорвалось в воздухе/на стене — пытаемся “опустить” на землю.
-        // Raycast вниз с высоты + небольшой запас.
         Vector3 origin = pos + Vector3.up * 3f;
 
         if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 20f, ~0, QueryTriggerInteraction.Ignore))
@@ -172,7 +171,6 @@ public class EMI_GrenadeProjectile : MonoBehaviour
             return p;
         }
 
-        // fallback
         pos.y += indicatorY;
         return pos;
     }
@@ -272,6 +270,9 @@ public class EMI_GrenadeProjectile : MonoBehaviour
         if (hits == null || hits.Length == 0)
             return;
 
+        // FIX: один раз на врага, а не на каждый коллайдер
+        HashSet<int> processed = new HashSet<int>();
+
         for (int i = 0; i < hits.Length; i++)
         {
             Collider c = hits[i];
@@ -280,6 +281,10 @@ public class EMI_GrenadeProjectile : MonoBehaviour
             Enemy e = c.GetComponentInParent<Enemy>();
             if (e == null) continue;
             if (e.IsDead) continue;
+
+            int id = e.gameObject.GetInstanceID();
+            if (!processed.Add(id))
+                continue;
 
             bool isBoss = e.enemyType == EnemyType.Boss || e.GetComponent<Enemy_Boss>() != null;
 

@@ -107,6 +107,9 @@ public class Enemy_Range : Enemy
 
     public bool CanThrowGrenade()
     {
+        if (!CanUseAbilities)
+            return false;
+
         if (grenadePerk == GrenadePerk.Unavalible)
             return false;
 
@@ -121,6 +124,9 @@ public class Enemy_Range : Enemy
 
     public void ThrowGrenade()
     {
+        if (!CanUseAbilities)
+            return;
+
         lastTimeGrenadeThrown = Time.time;
         visuals.EnableGrenadeModel(false);
 
@@ -252,6 +258,9 @@ public class Enemy_Range : Enemy
 
     public void FireSingleBullet()
     {
+        if (!CanAttack)
+            return;
+
         anim.SetTrigger("Shoot");
 
         Vector3 bulletsDirection = (aim.position - gunPoint.position).normalized;
@@ -262,7 +271,6 @@ public class Enemy_Range : Enemy
         Bullet bullet = newBullet.GetComponent<Bullet>();
         if (bullet != null)
         {
-            // ВАЖНО: теперь сигнатура с WeaponType
             bullet.BulletSetup(whatIsAlly, weaponData.bulletDamage, 100, 100, transform, false, WeaponType.Rifle);
         }
 

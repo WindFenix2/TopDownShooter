@@ -32,7 +32,7 @@ public class MoveState_Boss : EnemyState
         speedUpActivated = false;
         enemy.anim.SetFloat("MoveAnimSpeedMultiplier", 1);
         enemy.anim.SetFloat("MoveAnimIndex", 0);
-        enemy.agent.speed = enemy.walkSpeed;
+        enemy.agent.speed = enemy.walkSpeed * enemy.SpeedMultiplier;
     }
 
     public override void Update()
@@ -66,7 +66,7 @@ public class MoveState_Boss : EnemyState
 
     private void SpeedUp()
     {
-        enemy.agent.speed = enemy.runSpeed;
+        enemy.agent.speed = enemy.runSpeed * enemy.SpeedMultiplier;
         enemy.anim.SetFloat("MoveAnimIndex", 1);
         enemy.anim.SetFloat("MoveAnimSpeedMultiplier", 1.5f);
         speedUpActivated = true;
@@ -76,7 +76,7 @@ public class MoveState_Boss : EnemyState
     {
         actionTimer = enemy.actionCooldown;
 
-        if (Random.Range(0, 2) == 0) // rolls number from 0 to 1
+        if (Random.Range(0, 2) == 0)
         {
             TryAbility();
         }
@@ -101,11 +101,8 @@ public class MoveState_Boss : EnemyState
             return false;
 
         if (Time.time > enemy.attackState.lastTimeAttacked + timeBeforeSpeedUp)
-        {
             return true;
-        }
 
         return false;
     }
-
 }

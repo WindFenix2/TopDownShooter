@@ -16,31 +16,49 @@ public class ChaseState_Melee : EnemyState
     {
         base.Enter();
 
-
-        enemy.agent.speed = enemy.runSpeed;
         enemy.agent.isStopped = false;
+        enemy.agent.speed = enemy.runSpeed * enemy.SpeedMultiplier;
 
-    }
-    public override void Exit()
-    {
-        base.Exit();
+        enemy.agent.stoppingDistance = Mathf.Max(0.6f, enemy.attackData.attackRange * 0.9f);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (enemy.PlayerInAttackRange())
+        enemy.agent.speed = enemy.runSpeed * enemy.SpeedMultiplier;
+
+        float distToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.position);
+        float stopDist = Mathf.Max(enemy.agent.stoppingDistance, 0.6f);
+
+        if (!enemy.CanAttack)
+        {
+            if (distToPlayer <= stopDist + 0.15f)
+            {
+                stateMachine.ChangeState(enemy.waitEMIState);
+                return;
+            }
+
+            enemy.agent.isStopped = false;
+
+            if (CanUpdateDestination())
+                enemy.agent.SetDestination(enemy.player.position);
+
+            enemy.FaceTarget(GetNextPathPoint());
+            return;
+        }
+
+        if (enemy.PlayerInAttackRange() && enemy.CanAttack)
+        {
             stateMachine.ChangeState(enemy.attackState);
+            return;
+        }
 
         enemy.FaceTarget(GetNextPathPoint());
 
         if (CanUpdateDestination())
-        {
             enemy.agent.destination = enemy.player.transform.position;
-        }
     }
-
 
     private bool CanUpdateDestination()
     {

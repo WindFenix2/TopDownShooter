@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BossWeaponType {  Flamethrower, Hummer}
+public enum BossWeaponType { Flamethrower, Hummer }
 
 public class Enemy_Boss : Enemy
 {
@@ -27,7 +27,6 @@ public class Enemy_Boss : Enemy
     public GameObject activationPrefab;
     [SerializeField] private float hummerCheckRadius;
 
-
     [Header("Jump attack")]
     public int jumpAttackDamage;
     public float jumpAttackCooldown = 10;
@@ -48,7 +47,6 @@ public class Enemy_Boss : Enemy
     [SerializeField] private float attackCheckRadius;
     [SerializeField] private GameObject meleeAttackFx;
 
-
     public IdleState_Boss idleState { get; private set; }
     public MoveState_Boss moveState { get; private set; }
     public AttackState_Boss attackState { get; private set; }
@@ -57,6 +55,10 @@ public class Enemy_Boss : Enemy
     public DeadState_Boss deadState { get; private set; }
 
     public Enemy_BossVisuals bossVisuals { get; private set; }
+
+    public bool IsJumpAttackActive { get; private set; }
+    public void SetJumpAttackActive(bool active) => IsJumpAttackActive = active;
+
     protected override void Awake()
     {
         base.Awake();
@@ -68,13 +70,12 @@ public class Enemy_Boss : Enemy
         attackState = new AttackState_Boss(this, stateMachine, "Attack");
         jumpAttackState = new JumpAttackState_Boss(this, stateMachine, "JumpAttack");
         abilityState = new AbilityState_Boss(this, stateMachine, "Ability");
-        deadState = new DeadState_Boss(this, stateMachine, "Idle"); // Idle is just a placeholder we use ragdoll
+        deadState = new DeadState_Boss(this, stateMachine, "Idle");
     }
 
     protected override void Start()
     {
         base.Start();
-
         stateMachine.Initialize(idleState);
     }
 
@@ -87,14 +88,15 @@ public class Enemy_Boss : Enemy
         if (ShouldEnterBattleMode())
             EnterBattleMode();
 
-        MeleeAttackCheck(damagePoints, attackCheckRadius, meleeAttackFx,meleeAttackDamage);
-    }
+        MeleeAttackCheck(damagePoints, attackCheckRadius, meleeAttackFx, meleeAttackDamage);
 
+        if (!CanUseAbilities && flamethrowActive)
+            ActivateFlamethrower(false);
+    }
 
     public override void Die()
     {
         base.Die();
-
 
         if (stateMachine.currentState != deadState)
             stateMachine.ChangeState(deadState);
@@ -109,18 +111,26 @@ public class Enemy_Boss : Enemy
         stateMachine.ChangeState(moveState);
     }
 
-
     public void ActivateFlamethrower(bool activate)
     {
+        if (activate && !CanUseAbilities)
+            return;
+
         flamethrowActive = activate;
 
         if (!activate)
         {
-            flamethrower.Stop();
-            anim.SetTrigger("StopFlamethrower");
-            Debug.Log("flame stopped");
+            if (flamethrower != null)
+                flamethrower.Stop();
+
+            if (anim != null)
+                anim.SetTrigger("StopFlamethrower");
+
             return;
         }
+
+        if (flamethrower == null)
+            return;
 
         var mainModule = flamethrower.main;
         var extraModule = flamethrower.transform.GetChild(0).GetComponent<ParticleSystem>().main;
@@ -134,40 +144,36 @@ public class Enemy_Boss : Enemy
 
     public void ActivateHummer()
     {
+        if (!CanUseAbilities)
+            return;
+
         GameObject newActivation = ObjectPool.instance.GetObject(activationPrefab, impactPoint);
         ObjectPool.instance.ReturnObject(newActivation, 1);
 
-        MassDamage(damagePoints[0].position, hummerCheckRadius,hummerActiveDamage);
+        MassDamage(damagePoints[0].position, hummerCheckRadius, hummerActiveDamage);
     }
 
     public bool CanDoAbility()
     {
-        bool playerWithinDistance = Vector3.Distance(transform.position, player.position) < minAbilityDistance;
-
-        if (playerWithinDistance == false)
+        if (!CanUseAbilities)
             return false;
 
-        if (Time.time > lastTimeUsedAbility + abilityCooldown)
-        {
-            return true;
-        }
+        bool playerWithinDistance = Vector3.Distance(transform.position, player.position) < minAbilityDistance;
+        if (!playerWithinDistance)
+            return false;
 
-        return false;
+        return Time.time > lastTimeUsedAbility + abilityCooldown;
     }
 
     public void SetAbilityOnCooldown() => lastTimeUsedAbility = Time.time;
 
     public void JumpImpact()
     {
-        Transform impactPoint = this.impactPoint;
-
-        if (impactPoint == null)
-            impactPoint = transform;
-
-        MassDamage(impactPoint.position, impactRadius,jumpAttackDamage);
+        Transform ip = impactPoint != null ? impactPoint : transform;
+        MassDamage(ip.position, impactRadius, jumpAttackDamage);
     }
 
-    private void MassDamage(Vector3 impactPoint, float impactRadius,int damage)
+    private void MassDamage(Vector3 impactPoint, float impactRadius, int damage)
     {
         HashSet<GameObject> uniqueEntities = new HashSet<GameObject>();
         Collider[] colliders = Physics.OverlapSphere(impactPoint, impactRadius, ~whatIsAlly);
@@ -175,15 +181,12 @@ public class Enemy_Boss : Enemy
         foreach (Collider hit in colliders)
         {
             IDamagable damagable = hit.GetComponent<IDamagable>();
-
             if (damagable != null)
             {
                 GameObject rootEntity = hit.transform.root.gameObject;
-
-                if (uniqueEntities.Add(rootEntity) == false)
+                if (!uniqueEntities.Add(rootEntity))
                     continue;
 
-                Debug.Log(hit.transform.root.name + " Was damaged!!!");
                 damagable.TakeDamage(damage);
             }
 
@@ -194,24 +197,20 @@ public class Enemy_Boss : Enemy
     private void ApplyPhysicalForceTo(Vector3 impactPoint, float impactRadius, Collider hit)
     {
         Rigidbody rb = hit.GetComponent<Rigidbody>();
-
         if (rb != null)
             rb.AddExplosionForce(impactPower, impactPoint, impactRadius, upforceMultiplier, ForceMode.Impulse);
     }
 
     public bool CanDoJumpAttack()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (!CanUseAbilities)
+            return false;
 
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer < minJumpDistanceRequired)
             return false;
 
-        if (Time.time > lastTimeJumped + jumpAttackCooldown && IsPlayerInClearSight())
-        {
-            return true;
-        }
-
-        return false;
+        return Time.time > lastTimeJumped + jumpAttackCooldown && IsPlayerInClearSight();
     }
 
     public void SetJumpAttackOnCooldown() => lastTimeJumped = Time.time;
@@ -230,26 +229,14 @@ public class Enemy_Boss : Enemy
 
         return false;
     }
-    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackRange;
 
+    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackRange;
 
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
 
         Gizmos.DrawWireSphere(transform.position, attackRange);
-
-        if (player != null)
-        {
-            Vector3 myPos = transform.position + new Vector3(0, 1.5f, 0);
-            Vector3 playerPos = player.position + Vector3.up;
-
-            Gizmos.color = Color.yellow;
-
-            Gizmos.DrawLine(myPos, playerPos);
-        }
-
-        
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, minAbilityDistance);
@@ -260,19 +247,13 @@ public class Enemy_Boss : Enemy
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, minJumpDistanceRequired);
 
-        if (damagePoints.Length > 0)
+        if (damagePoints != null && damagePoints.Length > 0)
         {
-            foreach(var damagePoint in damagePoints)
-            {
+            foreach (var damagePoint in damagePoints)
                 Gizmos.DrawWireSphere(damagePoint.position, attackCheckRadius);
-            }
 
             Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(damagePoints[0].position, hummerCheckRadius);
         }
-
-
-        
     }
-
 }

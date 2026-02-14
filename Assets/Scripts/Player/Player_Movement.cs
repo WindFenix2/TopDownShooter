@@ -5,6 +5,8 @@ public class Player_Movement : MonoBehaviour
 {
     private Player player;
 
+    private Player_EMIStatus emiStatus;
+
     private CharacterController characterController;
     private PlayerControls controls;
     private Animator animator;
@@ -13,7 +15,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float turnSpeed;
-    private float speed;
+    private float baseSpeed;
     private float verticalVelocity;
 
     public Vector2 moveInput { get; private set; }
@@ -24,6 +26,8 @@ public class Player_Movement : MonoBehaviour
     private AudioSource walkSFX;
     private AudioSource runSFX;
     private bool canPlayFootsteps;
+
+    private float baseAnimSpeed = 1f;
 
     private void Start()
     {
@@ -36,7 +40,14 @@ public class Player_Movement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
 
-        speed = walkSpeed;
+        if (animator != null)
+            baseAnimSpeed = animator.speed;
+
+        emiStatus = GetComponent<Player_EMIStatus>();
+        if (emiStatus == null)
+            emiStatus = gameObject.AddComponent<Player_EMIStatus>();
+
+        baseSpeed = walkSpeed;
 
         AssignInputEvents();
     }
@@ -55,6 +66,20 @@ public class Player_Movement : MonoBehaviour
         ApplyMovement();
         ApplyRotation();
         AnimatorControllers();
+        ApplyAnimatorSpeedByEMI();
+    }
+
+    private void ApplyAnimatorSpeedByEMI()
+    {
+        if (animator == null)
+            return;
+
+        float mul = 1f;
+        if (emiStatus != null)
+            mul = emiStatus.GetSpeedMultiplier();
+
+        float animMul = Mathf.Clamp(mul, 0.25f, 1f);
+        animator.speed = baseAnimSpeed * animMul;
     }
 
     private void AnimatorControllers()
@@ -91,10 +116,16 @@ public class Player_Movement : MonoBehaviour
         movementDirection = new Vector3(moveInput.x, 0, moveInput.y);
         ApplyGravity();
 
+        float mul = 1f;
+        if (emiStatus != null)
+            mul = emiStatus.GetSpeedMultiplier();
+
+        float finalSpeed = baseSpeed * Mathf.Clamp(mul, 0.05f, 1f);
+
         if (movementDirection.magnitude > 0)
         {
             PlayFootstepsSFX();
-            characterController.Move(movementDirection * Time.deltaTime * speed);
+            characterController.Move(movementDirection * Time.deltaTime * finalSpeed);
         }
     }
 
@@ -149,13 +180,13 @@ public class Player_Movement : MonoBehaviour
 
         controls.Character.Run.performed += context =>
         {
-            speed = runSpeed;
+            baseSpeed = runSpeed;
             isRunning = true;
         };
 
         controls.Character.Run.canceled += context =>
         {
-            speed = walkSpeed;
+            baseSpeed = walkSpeed;
             isRunning = false;
         };
     }
@@ -164,5 +195,8 @@ public class Player_Movement : MonoBehaviour
     {
         StopFootstepsSFX();
         moveInput = Vector2.zero;
+
+        if (animator != null)
+            animator.speed = baseAnimSpeed;
     }
 }

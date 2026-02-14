@@ -16,7 +16,6 @@ public class Enemy_AnimationEvents : MonoBehaviour
     public void AnimationTrigger() => enemy.AnimationTrigger();
 
     public void StartManualMovement() => enemy.ActivateManualMovement(true);
-
     public void StopManualMovement() => enemy.ActivateManualMovement(false);
 
     public void StartManualRotation() => enemy.ActivateManualRotation(true);
@@ -38,6 +37,9 @@ public class Enemy_AnimationEvents : MonoBehaviour
 
     public void BeginMeleeAttackCheck()
     {
+        if (enemy != null && !enemy.CanAttack)
+            return;
+
         enemy?.EnableMeleeAttackCheck(true);
         enemy?.audioManager.PlaySFX(enemyMelee?.meleeSFX.swoosh, true);
     }

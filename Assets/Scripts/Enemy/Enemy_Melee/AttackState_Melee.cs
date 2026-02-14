@@ -18,6 +18,13 @@ public class AttackState_Melee : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        if (!enemy.CanAttack)
+        {
+            stateMachine.ChangeState(enemy.chaseState);
+            return;
+        }
+
         enemy.UpdateAttackData();
         enemy.visuals.EnableWeaponModel(true);
         enemy.visuals.EnableWeaponTrail(true);
@@ -25,8 +32,7 @@ public class AttackState_Melee : EnemyState
         attackMoveSpeed = enemy.attackData.moveSpeed;
         enemy.anim.SetFloat("AttackAnimationSpeed", enemy.attackData.animationSpeed);
         enemy.anim.SetFloat("AttackIndex", enemy.attackData.attackIndex);
-        enemy.anim.SetFloat("SlashAttackIndex", Random.Range(0, 6)); // we have 6 attacks with index from 0 to 5
-
+        enemy.anim.SetFloat("SlashAttackIndex", Random.Range(0, 6));
 
         enemy.agent.isStopped = true;
         enemy.agent.velocity = Vector3.zero;
@@ -54,16 +60,21 @@ public class AttackState_Melee : EnemyState
     {
         base.Update();
 
+        if (!enemy.CanAttack)
+        {
+            stateMachine.ChangeState(enemy.chaseState);
+            return;
+        }
+
         if (enemy.ManualRotationActive())
         {
             enemy.FaceTarget(enemy.player.position);
             attackDirection = enemy.transform.position + (enemy.transform.forward * MAX_ATTACK_DISTANCE);
         }
-        
 
         if (enemy.ManualMovementActive())
         {
-            enemy.transform.position = 
+            enemy.transform.position =
                 Vector3.MoveTowards(enemy.transform.position, attackDirection, attackMoveSpeed * Time.deltaTime);
         }
 
@@ -87,7 +98,7 @@ public class AttackState_Melee : EnemyState
         if (PlayerClose())
             validAttacks.RemoveAll(parameter => parameter.attackType == AttackType_Melee.Charge);
 
-        int random = Random.Range(0,validAttacks.Count);
+        int random = Random.Range(0, validAttacks.Count);
         return validAttacks[random];
     }
 }

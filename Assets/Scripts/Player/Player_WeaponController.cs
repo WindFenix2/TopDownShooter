@@ -8,6 +8,7 @@ public class Player_WeaponController : MonoBehaviour
     [SerializeField] private LayerMask whatIsAlly;
 
     private Player player;
+    private Player_EMIStatus emiStatus;
     private const float REFERENCE_BULLET_SPEED = 20f;
 
     [SerializeField] private List<Weapon_Data> defaultWeaponData;
@@ -59,6 +60,10 @@ public class Player_WeaponController : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+
+        emiStatus = GetComponent<Player_EMIStatus>();
+        if (emiStatus == null)
+            emiStatus = gameObject.AddComponent<Player_EMIStatus>();
 
         RefreshPlayerColliders();
 
@@ -195,10 +200,6 @@ public class Player_WeaponController : MonoBehaviour
 
         UpdateWeaponUI();
 
-        // ВАЖНО:
-        // weaponReady вернётся в true через Animation Event:
-        // Player_AnimationEvents.WeaponEquipingIsOver()
-        // и это будет зависеть от EquipSpeed.
     }
 
     public void PickupWeapon(Weapon newWeapon)
@@ -338,6 +339,9 @@ public class Player_WeaponController : MonoBehaviour
         if (WeaponReady() == false)
             return;
 
+        if (emiStatus != null && !emiStatus.CanShoot)
+            return;
+
         if (currentWeapon == null || currentWeapon.CanShoot() == false)
             return;
 
@@ -355,34 +359,41 @@ public class Player_WeaponController : MonoBehaviour
 
         if (currentWeapon.weaponType == WeaponType.Rifle && sniperChainAbility != null)
         {
-            Transform gunPoint = GunPoint();
-            if (gunPoint != null)
+            if (emiStatus != null && !emiStatus.CanUseAbilities)
             {
-                Vector3 dir = currentWeapon.ApplySpread(BulletDirection());
-                float spd = CurrentBulletSpeed();
-
-                bool chainTriggered = sniperChainAbility.TryFireChainShot(
-                    gunPoint.position,
-                    dir,
-                    currentWeapon.gunDistance,
-                    currentWeapon.bulletDamage,
-                    spd
-                );
-
-                if (chainTriggered)
+                // no chain shot, continue with regular bullet
+            }
+            else
+            {
+                Transform gunPoint = GunPoint();
+                if (gunPoint != null)
                 {
-                    currentWeapon.bulletsInMagazine--;
-                    UpdateWeaponUI();
+                    Vector3 dir = currentWeapon.ApplySpread(BulletDirection());
+                    float spd = CurrentBulletSpeed();
 
-                    if (player != null && player.weaponVisuals != null && player.weaponVisuals.CurrentWeaponModel() != null)
+                    bool chainTriggered = sniperChainAbility.TryFireChainShot(
+                        gunPoint.position,
+                        dir,
+                        currentWeapon.gunDistance,
+                        currentWeapon.bulletDamage,
+                        spd
+                    );
+
+                    if (chainTriggered)
                     {
-                        var model = player.weaponVisuals.CurrentWeaponModel();
-                        if (model.fireSFX != null) model.fireSFX.Play();
-                    }
+                        currentWeapon.bulletsInMagazine--;
+                        UpdateWeaponUI();
 
-                    TriggerEnemyDodge();
-                    ApplyRifleFireRateCooldown();
-                    return;
+                        if (player != null && player.weaponVisuals != null && player.weaponVisuals.CurrentWeaponModel() != null)
+                        {
+                            var model = player.weaponVisuals.CurrentWeaponModel();
+                            if (model.fireSFX != null) model.fireSFX.Play();
+                        }
+
+                        TriggerEnemyDodge();
+                        ApplyRifleFireRateCooldown();
+                        return;
+                    }
                 }
             }
         }

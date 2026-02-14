@@ -39,7 +39,7 @@ public class EMI_GrenadeLauncher : MonoBehaviour
     [SerializeField] private GameObject explosionVfx;
     [SerializeField] private GameObject hitAuraVfx;
 
-    [Header("Radius indicator (NEW)")]
+    [Header("Radius indicator")]
     [Tooltip("Плоский круг/кольцо, которое показывает реальный радиус взрыва 1:1.")]
     [SerializeField] private GameObject radiusIndicatorVfx;
 

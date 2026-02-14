@@ -29,6 +29,8 @@ public class Enemy_Melee : Enemy
     public AttackState_Melee attackState { get; private set; }
     public DeadState_Melee deadState { get; private set; }
     public AbilityState_Melee abilityState { get; private set; }
+
+    public WaitEMIState_Melee waitEMIState { get; private set; }
     #endregion
 
     [Header("Enemy Settings")]
@@ -73,6 +75,8 @@ public class Enemy_Melee : Enemy
         deadState = new DeadState_Melee(this, stateMachine, "Idle"); // placeholder (ragdoll)
         abilityState = new AbilityState_Melee(this, stateMachine, "AxeThrow");
 
+        waitEMIState = new WaitEMIState_Melee(this, stateMachine, "Idle");
+
         meleeSFX = GetComponent<Enemy_MeleeSFX>();
     }
 
@@ -93,7 +97,6 @@ public class Enemy_Melee : Enemy
         base.Update();
         stateMachine.currentState.Update();
 
-        // ВОТ ЭТО БЫЛО ВАЖНО: проверяем попадание КАЖДЫЙ КАДР, пока окно удара включено
         if (currentWeapon != null)
             MeleeAttackCheck(currentWeapon.damagePoints, currentWeapon.attackRadius, meleeAttackFx, attackData.attackDamage);
     }
@@ -155,6 +158,9 @@ public class Enemy_Melee : Enemy
 
     public void ActivateDodgeRoll()
     {
+        if (!CanUseAbilities)
+            return;
+
         if (meleeType != EnemyMelee_Type.Dodge)
             return;
 
@@ -175,12 +181,18 @@ public class Enemy_Melee : Enemy
 
     public void ThrowAxe()
     {
+        if (!CanUseAbilities)
+            return;
+
         GameObject newAxe = ObjectPool.instance.GetObject(axePrefab, axeStartPoint);
         newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer, axeDamage);
     }
 
     public bool CanThrowAxe()
     {
+        if (!CanUseAbilities)
+            return false;
+
         if (meleeType != EnemyMelee_Type.AxeThrow)
             return false;
 
@@ -218,8 +230,5 @@ public class Enemy_Melee : Enemy
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackData.attackRange);
     }
 }

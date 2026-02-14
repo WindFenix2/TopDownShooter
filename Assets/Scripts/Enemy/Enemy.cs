@@ -49,16 +49,18 @@ public class Enemy : MonoBehaviour
     private Collider[] meleeHitsBuffer;
     private bool meleeAlreadyHitThisSwing;
 
-    // =========================
-    // EMI / STATUS SYSTEM (NEW)
-    // =========================
-    public bool CanAttack { get; private set; } = true;          // блокирует ближние удары/стрельбу (мы допатчим Range/Melee позже)
-    public bool CanUseAbilities { get; private set; } = true;     // блокирует уникальные абилки (прыжки/огнеметы/скиллы)
-    public float SpeedMultiplier { get; private set; } = 1f;      // множитель скорости
+    public bool CanAttack { get; private set; } = true;
+    public bool CanUseAbilities { get; private set; } = true;
+    public float SpeedMultiplier { get; private set; } = 1f;
 
     private Coroutine emiRoutine;
-    private float cachedAgentSpeed;
+
+    private float cachedAgentBaseSpeed;
+    private float cachedAnimBaseSpeed;
     private bool cachedSpeedReady;
+    private bool cachedAnimSpeedReady;
+
+    private bool emiSkippedAnim;
 
     protected virtual void Awake()
     {
@@ -158,13 +160,26 @@ public class Enemy : MonoBehaviour
         huntTarget?.InvokeOnTargetKilled();
     }
 
-    // ¬о врем€ окна удара (см. Enemy_Melee.Update) Ч вызываетс€ каждый кадр
+    public virtual void BulletImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    {
+        if (rb == null)
+            return;
+
+        if (health != null && health.ShouldDie())
+            StartCoroutine(DeathImpactCourutine(force, hitPoint, rb));
+    }
+
+    private IEnumerator DeathImpactCourutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    {
+        yield return new WaitForSeconds(.1f);
+        rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
+    }
+
     public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius, GameObject fx, int damage)
     {
         if (IsDead)
             return;
 
-        // NEW: EMI блок атаки
         if (!CanAttack)
             return;
 
@@ -218,25 +233,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // дергают Animation Events: BeginMeleeAttackCheck / FinishMeleeAttackCheck
     public void EnableMeleeAttackCheck(bool enable)
     {
         isMeleeAttackReady = enable;
-
         if (enable)
             meleeAlreadyHitThisSwing = false;
-    }
-
-    public virtual void BulletImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
-    {
-        if (health.ShouldDie())
-            StartCoroutine(DeathImpactCourutine(force, hitPoint, rb));
-    }
-
-    private IEnumerator DeathImpactCourutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
-    {
-        yield return new WaitForSeconds(.1f);
-        rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 
     public void FaceTarget(Vector3 target, float turnSpeed = 0)
@@ -271,7 +272,6 @@ public class Enemy : MonoBehaviour
 
     public virtual void AbilityTrigger()
     {
-        // NEW: EMI блок абилок
         if (!CanUseAbilities)
             return;
 
@@ -285,7 +285,6 @@ public class Enemy : MonoBehaviour
         Vector3 destination = patrolPointsPosition[currentPatrolIndex];
 
         currentPatrolIndex++;
-
         if (currentPatrolIndex >= patrolPoints.Length)
             currentPatrolIndex = 0;
 
@@ -317,30 +316,56 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, aggresionRange);
     }
 
-    // ==========================================
-    // EMI API (NEW) Ч used by EMI grenade
-    // ==========================================
     public void ApplyEMIDebuff(float speedMultiplier, float duration, bool disableAttacks, bool disableAbilities)
     {
         if (IsDead)
             return;
 
+        float prevMul = Mathf.Max(0.05f, SpeedMultiplier);
+
+        emiSkippedAnim = false;
+        Enemy_Boss boss = GetComponent<Enemy_Boss>();
+        if (boss != null && boss.IsJumpAttackActive)
+            emiSkippedAnim = true;
+
+        if (agent != null)
+        {
+            cachedAgentBaseSpeed = agent.speed / prevMul;
+            cachedSpeedReady = true;
+        }
+
+        if (!emiSkippedAnim && anim != null)
+        {
+            cachedAnimBaseSpeed = anim.speed / Mathf.Clamp(prevMul, 0.25f, 1f);
+            cachedAnimSpeedReady = true;
+        }
+
         SpeedMultiplier = Mathf.Clamp(speedMultiplier, 0.05f, 1f);
 
         if (disableAttacks)
+        {
             CanAttack = false;
+            EnableMeleeAttackCheck(false);
+
+            Enemy_Melee melee = GetComponent<Enemy_Melee>();
+            if (melee != null && melee.meleeSFX != null && melee.meleeSFX.swoosh != null)
+            {
+                if (melee.meleeSFX.swoosh.isPlaying)
+                    melee.meleeSFX.swoosh.Stop();
+            }
+        }
 
         if (disableAbilities)
             CanUseAbilities = false;
 
-        if (agent != null && !cachedSpeedReady)
-        {
-            cachedSpeedReady = true;
-            cachedAgentSpeed = agent.speed;
-        }
-
         if (agent != null && cachedSpeedReady)
-            agent.speed = cachedAgentSpeed * SpeedMultiplier;
+            agent.speed = cachedAgentBaseSpeed * SpeedMultiplier;
+
+        if (!emiSkippedAnim && anim != null && cachedAnimSpeedReady)
+        {
+            float animMul = Mathf.Clamp(SpeedMultiplier, 0.25f, 1f);
+            anim.speed = cachedAnimBaseSpeed * animMul;
+        }
 
         if (emiRoutine != null)
             StopCoroutine(emiRoutine);
@@ -357,7 +382,10 @@ public class Enemy : MonoBehaviour
         CanUseAbilities = true;
 
         if (agent != null && cachedSpeedReady)
-            agent.speed = cachedAgentSpeed;
+            agent.speed = cachedAgentBaseSpeed;
+
+        if (!emiSkippedAnim && anim != null && cachedAnimSpeedReady)
+            anim.speed = cachedAnimBaseSpeed;
 
         emiRoutine = null;
     }

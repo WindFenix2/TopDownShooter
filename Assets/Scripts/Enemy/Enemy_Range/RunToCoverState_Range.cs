@@ -19,17 +19,16 @@ public class RunToCoverState_Range : EnemyState
         base.Enter();
         destination = enemy.currentCover.transform.position;
 
-        enemy.visuals.EnableIK(true,false);
+        enemy.visuals.EnableIK(true, false);
 
         enemy.agent.isStopped = false;
-        enemy.agent.speed = enemy.runSpeed;
+        enemy.agent.speed = enemy.runSpeed * enemy.SpeedMultiplier;
         enemy.agent.SetDestination(destination);
     }
 
     public override void Exit()
     {
         base.Exit();
-
         lastTimeTookCover = Time.time;
     }
 
