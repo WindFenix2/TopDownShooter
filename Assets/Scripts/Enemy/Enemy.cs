@@ -49,6 +49,17 @@ public class Enemy : MonoBehaviour
     private Collider[] meleeHitsBuffer;
     private bool meleeAlreadyHitThisSwing;
 
+    // =========================
+    // EMI / STATUS SYSTEM (NEW)
+    // =========================
+    public bool CanAttack { get; private set; } = true;          // блокирует ближние удары/стрельбу (мы допатчим Range/Melee позже)
+    public bool CanUseAbilities { get; private set; } = true;     // блокирует уникальные абилки (прыжки/огнеметы/скиллы)
+    public float SpeedMultiplier { get; private set; } = 1f;      // множитель скорости
+
+    private Coroutine emiRoutine;
+    private float cachedAgentSpeed;
+    private bool cachedSpeedReady;
+
     protected virtual void Awake()
     {
         stateMachine = new EnemyStateMachine();
@@ -59,7 +70,10 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         dropController = GetComponent<Enemy_DropController>();
-        player = GameObject.Find("Player").GetComponent<Transform>();
+
+        GameObject playerGo = GameObject.Find("Player");
+        if (playerGo != null)
+            player = playerGo.GetComponent<Transform>();
 
         meleeHitsBuffer = new Collider[Mathf.Max(4, meleeNonAllocBufferSize)];
     }
@@ -144,10 +158,14 @@ public class Enemy : MonoBehaviour
         huntTarget?.InvokeOnTargetKilled();
     }
 
-    // ВАЖНО: Эту функцию надо вызывать КАЖДЫЙ КАДР во время окна удара (см. Enemy_Melee.Update)
+    // Во время окна удара (см. Enemy_Melee.Update) — вызывается каждый кадр
     public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius, GameObject fx, int damage)
     {
         if (IsDead)
+            return;
+
+        // NEW: EMI блок атаки
+        if (!CanAttack)
             return;
 
         if (!isMeleeAttackReady)
@@ -200,7 +218,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Эту функцию дергают Animation Events: BeginMeleeAttackCheck / FinishMeleeAttackCheck
+    // дергают Animation Events: BeginMeleeAttackCheck / FinishMeleeAttackCheck
     public void EnableMeleeAttackCheck(bool enable)
     {
         isMeleeAttackReady = enable;
@@ -253,6 +271,10 @@ public class Enemy : MonoBehaviour
 
     public virtual void AbilityTrigger()
     {
+        // NEW: EMI блок абилок
+        if (!CanUseAbilities)
+            return;
+
         stateMachine.currentState.AbilityTrigger();
     }
     #endregion
@@ -282,10 +304,61 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    public bool IsPlayerInAgrresionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
+    public bool IsPlayerInAgrresionRange()
+    {
+        if (player == null)
+            return false;
+
+        return Vector3.Distance(transform.position, player.position) < aggresionRange;
+    }
 
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, aggresionRange);
+    }
+
+    // ==========================================
+    // EMI API (NEW) — used by EMI grenade
+    // ==========================================
+    public void ApplyEMIDebuff(float speedMultiplier, float duration, bool disableAttacks, bool disableAbilities)
+    {
+        if (IsDead)
+            return;
+
+        SpeedMultiplier = Mathf.Clamp(speedMultiplier, 0.05f, 1f);
+
+        if (disableAttacks)
+            CanAttack = false;
+
+        if (disableAbilities)
+            CanUseAbilities = false;
+
+        if (agent != null && !cachedSpeedReady)
+        {
+            cachedSpeedReady = true;
+            cachedAgentSpeed = agent.speed;
+        }
+
+        if (agent != null && cachedSpeedReady)
+            agent.speed = cachedAgentSpeed * SpeedMultiplier;
+
+        if (emiRoutine != null)
+            StopCoroutine(emiRoutine);
+
+        emiRoutine = StartCoroutine(EMIRestoreRoutine(Mathf.Max(0.05f, duration)));
+    }
+
+    private IEnumerator EMIRestoreRoutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        SpeedMultiplier = 1f;
+        CanAttack = true;
+        CanUseAbilities = true;
+
+        if (agent != null && cachedSpeedReady)
+            agent.speed = cachedAgentSpeed;
+
+        emiRoutine = null;
     }
 }
