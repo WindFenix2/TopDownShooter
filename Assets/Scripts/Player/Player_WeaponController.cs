@@ -730,19 +730,35 @@ public class Player_WeaponController : MonoBehaviour
         isShooting = false;
     }
 
-    private void OnEquipSlot1(InputAction.CallbackContext context) => EquipWeapon(0);
-    private void OnEquipSlot2(InputAction.CallbackContext context) => EquipWeapon(1);
-    private void OnEquipSlot3(InputAction.CallbackContext context) => EquipWeapon(2);
-    private void OnEquipSlot4(InputAction.CallbackContext context) => EquipWeapon(3);
-    private void OnEquipSlot5(InputAction.CallbackContext context) => EquipWeapon(4);
+    private void OnEquipSlot1(InputAction.CallbackContext context) => TryEquipWeaponFromInput(0);
+    private void OnEquipSlot2(InputAction.CallbackContext context) => TryEquipWeaponFromInput(1);
+    private void OnEquipSlot3(InputAction.CallbackContext context) => TryEquipWeaponFromInput(2);
+    private void OnEquipSlot4(InputAction.CallbackContext context) => TryEquipWeaponFromInput(3);
+    private void OnEquipSlot5(InputAction.CallbackContext context) => TryEquipWeaponFromInput(4);
 
-    private void OnDropWeapon(InputAction.CallbackContext context) => DropWeapon();
+    private void OnDropWeapon(InputAction.CallbackContext context)
+    {
+        if (!WeaponReady())
+            return;
+
+        DropWeapon();
+    }
+
     private void OnReload(InputAction.CallbackContext context) => OnReloadPressed();
 
     private void OnToggleWeaponMode(InputAction.CallbackContext context)
     {
         if (currentWeapon != null)
             currentWeapon.ToggleBurst();
+    }
+
+    private void TryEquipWeaponFromInput(int slotIndex)
+    {
+        // Prevent weapon switching while draw/reload animations are still playing.
+        if (!WeaponReady())
+            return;
+
+        EquipWeapon(slotIndex);
     }
 
     #endregion

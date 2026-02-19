@@ -25237,7 +25237,7 @@ MonoBehaviour:
   quickStart: 1
   quickStartDefaultWeapons:
   - {fileID: 11400000, guid: e12fe38b0ed5ce34c9defee2a30e9dbb, type: 2}
-  - {fileID: 11400000, guid: e3228b5e123aa934f8457c81698d3b18, type: 2}
+  - {fileID: 11400000, guid: 2341707a809284748b68f961349af0d6, type: 2}
 --- !u!4 &1687976509
 Transform:
   m_ObjectHideFlags: 0
@@ -27385,7 +27385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireKey: 116
-  cooldown: 15
+  cooldown: 20
   grenadesPerShot: 1
   emiGrenadeProjectilePrefab: {fileID: 1258905586863561638, guid: 1c2db0c03b9527a45bc9d4a467264713, type: 3}
   projectileSpeed: 12
@@ -27423,8 +27423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4edaedba9c760c841ae81edefde88302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAmount: 10
-  maxAmount: 10
+  startAmount: 500
+  maxAmount: 500
 --- !u!114 &1746550290
 MonoBehaviour:
   m_ObjectHideFlags: 0

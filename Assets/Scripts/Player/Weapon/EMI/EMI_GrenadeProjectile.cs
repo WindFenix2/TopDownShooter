@@ -17,13 +17,13 @@ public class EMI_GrenadeProjectile : MonoBehaviour
     private LayerMask whatIsEnemy = ~0;
 
     private float enemyDuration = 10f;
-    private float enemySpeedMultiplier = 0.4f;   // <- default -60%
+    private float enemySpeedMultiplier = 0.4f;
 
     private float bossDuration = 7f;
     private float bossSpeedMultiplier = 0.5f;
 
     private float playerDuration = 10f;
-    private float playerSpeedMultiplier = 0.4f;  // <- default -60%
+    private float playerSpeedMultiplier = 0.4f;
 
     private GameObject explosionVfx;
     private GameObject hitAuraVfx;
@@ -270,7 +270,7 @@ public class EMI_GrenadeProjectile : MonoBehaviour
         if (hits == null || hits.Length == 0)
             return;
 
-        // FIX: один раз на врага, а не на каждый коллайдер
+        // FIX: process each enemy only once (not per collider)
         HashSet<int> processed = new HashSet<int>();
 
         for (int i = 0; i < hits.Length; i++)
@@ -310,6 +310,11 @@ public class EMI_GrenadeProjectile : MonoBehaviour
         float distXZ = Vector2.Distance(p, e);
 
         if (distXZ > radius)
+            return;
+
+        // If player has Shotgun shield, EMI should remove the shield and NOT apply negative effects.
+        Shotgun_KillShieldAbility shield = owner.GetComponent<Shotgun_KillShieldAbility>();
+        if (shield != null && shield.TryConsumeShieldForEMI())
             return;
 
         Player_EMIStatus status = owner.GetComponent<Player_EMIStatus>();

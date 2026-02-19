@@ -47,6 +47,21 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
     public int CurrentShield => currentShield;
     public int MaxShield => maxShield;
 
+    // If the player gets hit by an EMI stun while having this shield,
+    // the shield should be removed and the negative effects should NOT be applied.
+    // Returns true if the shield was present and got removed.
+    public bool TryConsumeShieldForEMI()
+    {
+        if (currentShield <= 0)
+            return false;
+
+        if (!ShieldIsAllowed())
+            return false;
+
+        ResetShield();
+        return true;
+    }
+
     public void SetPersistShield(bool value)
     {
         persistShieldAfterUnequip = value;
