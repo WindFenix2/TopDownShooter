@@ -3,7 +3,10 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     protected Player_WeaponController weaponController;
-    [SerializeField] protected  MeshRenderer mesh;
+    [SerializeField] protected MeshRenderer mesh;
+
+    [Header("Physics")]
+    [SerializeField] private bool blockPhysicsPush = true;
 
 
     [SerializeField] private Material highlightMaterial;
@@ -22,6 +25,8 @@ public class Interactable : MonoBehaviour
         mesh = newMesh;
         defaultMaterial = newMesh.sharedMaterial;
     }
+
+    public bool BlockPhysicsPush() => blockPhysicsPush;
 
     public virtual void Interaction()
     {

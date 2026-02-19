@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 3ea6f72a11abfb849937c1e24064c870, type: 2}
@@ -13542,6 +13543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   weaponData: {fileID: 11400000, guid: e3228b5e123aa934f8457c81698d3b18, type: 2}
@@ -19981,6 +19983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 5eb5a200539edd4489d28c444ea7d52f, type: 2}
@@ -21394,6 +21397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   weaponData: {fileID: 11400000, guid: e12fe38b0ed5ce34c9defee2a30e9dbb, type: 2}
@@ -22869,6 +22873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   weaponData: {fileID: 11400000, guid: e12fe38b0ed5ce34c9defee2a30e9dbb, type: 2}
@@ -25237,7 +25242,7 @@ MonoBehaviour:
   quickStart: 1
   quickStartDefaultWeapons:
   - {fileID: 11400000, guid: e12fe38b0ed5ce34c9defee2a30e9dbb, type: 2}
-  - {fileID: 11400000, guid: 2341707a809284748b68f961349af0d6, type: 2}
+  - {fileID: 11400000, guid: 5eb5a200539edd4489d28c444ea7d52f, type: 2}
 --- !u!4 &1687976509
 Transform:
   m_ObjectHideFlags: 0
@@ -25752,6 +25757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   boxType: 1
@@ -35526,6 +35532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   boxType: 0
@@ -40753,6 +40760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  blockPhysicsPush: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 2341707a809284748b68f961349af0d6, type: 2}

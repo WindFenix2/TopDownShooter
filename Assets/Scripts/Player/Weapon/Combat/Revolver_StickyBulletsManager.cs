@@ -12,7 +12,7 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
     [SerializeField] private float explosionPushForce = 14f;
     [SerializeField] private float explosionUpwards = 0.25f;
     [SerializeField, Range(0.1f, 1f)] private float pushRadiusMultiplier = 0.8f;
-    [SerializeField] private bool pushOnlyPropsCars = true;    
+    [SerializeField] private bool pushOnlyPropsCars = true;
 
     private static bool LayerInMask(int layer, LayerMask mask)
     {
@@ -78,6 +78,10 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
                 Rigidbody hitRb = c.attachedRigidbody;
                 if (hitRb != null && !hitRb.isKinematic)
                 {
+                    Interactable interactable = c.GetComponentInParent<Interactable>();
+                    if (interactable != null && interactable.BlockPhysicsPush())
+                        continue;
+
                     if (!pushOnlyPropsCars || (c.GetComponentInParent<Player>() == null && c.GetComponentInParent<Enemy>() == null))
                     {
                         Vector3 rbPos = hitRb.worldCenterOfMass;

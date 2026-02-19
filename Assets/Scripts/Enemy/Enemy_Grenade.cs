@@ -60,6 +60,10 @@ public class Enemy_Grenade : MonoBehaviour
 
     private void ApplyPhysicalForceTo(Collider hit)
     {
+        Interactable interactable = hit.GetComponentInParent<Interactable>();
+        if (interactable != null && interactable.BlockPhysicsPush())
+            return;
+
         Rigidbody rb = hit.GetComponent<Rigidbody>();
 
         if (rb != null)
@@ -94,7 +98,7 @@ public class Enemy_Grenade : MonoBehaviour
             return true;
 
         //If collider is on allyLayer, target is not valid
-        if((allyLayerMask.value & (1 << collider.gameObject.layer)) > 0)
+        if ((allyLayerMask.value & (1 << collider.gameObject.layer)) > 0)
             return false;
 
         return true;
@@ -103,7 +107,7 @@ public class Enemy_Grenade : MonoBehaviour
     private Vector3 CalculateLaunchVelocity(Vector3 target, float timeToTarget)
     {
         Vector3 direction = target - transform.position;
-        Vector3 directionXZ = new Vector3(direction.x, 0 , direction.z);
+        Vector3 directionXZ = new Vector3(direction.x, 0, direction.z);
 
         Vector3 velocityXZ = directionXZ / timeToTarget;
 
