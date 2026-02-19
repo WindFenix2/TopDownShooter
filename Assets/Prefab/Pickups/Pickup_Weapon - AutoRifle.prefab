@@ -110,8 +110,9 @@ GameObject:
   - component: {fileID: 9098806234339047566}
   - component: {fileID: 5663434343196805614}
   - component: {fileID: 4561677296694951226}
+  - component: {fileID: 3141588552189519744}
   m_Layer: 0
-  m_Name: Pickup_Weapon - Weapon
+  m_Name: Pickup_Weapon - AutoRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,6 +214,21 @@ MonoBehaviour:
   - {fileID: 6392022850121503040}
   - {fileID: 8885059300173101695}
   - {fileID: 5334886457370846058}
+--- !u!114 &3141588552189519744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274772880390725256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6727862124c0224a8c4db81c7ffb734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalPrefab: {fileID: 4274772880390725256, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+  isInPool: 0
+  returnScheduled: 0
 --- !u!1 &6040450151986584990
 GameObject:
   m_ObjectHideFlags: 0
