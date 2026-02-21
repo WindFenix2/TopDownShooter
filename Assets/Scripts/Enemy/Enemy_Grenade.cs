@@ -32,7 +32,6 @@ public class Enemy_Grenade : MonoBehaviour
         canExplode = false;
         PlayExplosionFx();
 
-
         HashSet<GameObject> uniqueEntities = new HashSet<GameObject>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, impactRadius);
 
@@ -60,16 +59,21 @@ public class Enemy_Grenade : MonoBehaviour
 
     private void ApplyPhysicalForceTo(Collider hit)
     {
+        float pushMult = 1f;
         Interactable interactable = hit.GetComponentInParent<Interactable>();
-        if (interactable != null && interactable.BlockPhysicsPush())
-            return;
+        if (interactable != null)
+        {
+            pushMult = interactable.GetPhysicsPushMultiplier();
+            if (pushMult <= 0f)
+                return;
+        }
 
         Rigidbody rb = hit.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
             rb.isKinematic = false;
-            rb.AddExplosionForce(impactPower, transform.position, impactRadius, upwardsMultiplier, ForceMode.Impulse);
+            rb.AddExplosionForce(impactPower * pushMult, transform.position, impactRadius, upwardsMultiplier, ForceMode.Impulse);
         }
     }
 
@@ -93,11 +97,9 @@ public class Enemy_Grenade : MonoBehaviour
 
     private bool IsTargetValid(Collider collider)
     {
-        //If friendly fire is enabled, all colliders are valid targets
         if (GameManager.instance.friendlyFire)
             return true;
 
-        //If collider is on allyLayer, target is not valid
         if ((allyLayerMask.value & (1 << collider.gameObject.layer)) > 0)
             return false;
 

@@ -196,13 +196,18 @@ public class Enemy_Boss : Enemy
 
     private void ApplyPhysicalForceTo(Vector3 impactPoint, float impactRadius, Collider hit)
     {
+        float pushMult = 1f;
         Interactable interactable = hit.GetComponentInParent<Interactable>();
-        if (interactable != null && interactable.BlockPhysicsPush())
-            return;
+        if (interactable != null)
+        {
+            pushMult = interactable.GetPhysicsPushMultiplier();
+            if (pushMult <= 0f)
+                return;
+        }
 
         Rigidbody rb = hit.GetComponent<Rigidbody>();
         if (rb != null)
-            rb.AddExplosionForce(impactPower, impactPoint, impactRadius, upforceMultiplier, ForceMode.Impulse);
+            rb.AddExplosionForce(impactPower * pushMult, impactPoint, impactRadius, upforceMultiplier, ForceMode.Impulse);
     }
 
     public bool CanDoJumpAttack()

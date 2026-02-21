@@ -78,9 +78,14 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
                 Rigidbody hitRb = c.attachedRigidbody;
                 if (hitRb != null && !hitRb.isKinematic)
                 {
+                    float pushMult = 1f;
                     Interactable interactable = c.GetComponentInParent<Interactable>();
-                    if (interactable != null && interactable.BlockPhysicsPush())
-                        continue;
+                    if (interactable != null)
+                    {
+                        pushMult = interactable.GetPhysicsPushMultiplier();
+                        if (pushMult <= 0f)
+                            continue;
+                    }
 
                     if (!pushOnlyPropsCars || (c.GetComponentInParent<Player>() == null && c.GetComponentInParent<Enemy>() == null))
                     {
@@ -89,7 +94,7 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
                         {
                             int rbId = hitRb.GetInstanceID();
                             if (pushedRigidbodyIds.Add(rbId))
-                                hitRb.AddExplosionForce(explosionPushForce, pos, pushRadius, explosionUpwards, ForceMode.Impulse);
+                                hitRb.AddExplosionForce(explosionPushForce * pushMult, pos, pushRadius, explosionUpwards, ForceMode.Impulse);
                         }
                     }
                 }

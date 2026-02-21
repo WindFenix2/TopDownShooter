@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Pickup_Weapon : Interactable
@@ -7,36 +8,110 @@ public class Pickup_Weapon : Interactable
 
     [SerializeField] private BackupWeaponModel[] models;
 
+    [Header("Drop physics")]
+    [SerializeField] private bool usePhysicsDrop = true;
+    [SerializeField] private float spawnUpOffset = 0.15f;
+    [SerializeField] private float maxLinearSpeed = 5f;
+    [SerializeField] private float maxAngularSpeed = 10f;
+    [SerializeField] private float settleTime = 0.35f;
+    [SerializeField] private float minYKill = -50f;
 
+    private Rigidbody rb;
     private bool oldWeapon;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        if (usePhysicsDrop && rb != null)
+            rb.maxAngularVelocity = maxAngularSpeed;
+    }
 
     private void Start()
     {
         if (oldWeapon == false)
             weapon = new Weapon(weaponData);
 
-
         SetupGameObject();
+
+        if (usePhysicsDrop && rb != null)
+            rb.maxAngularVelocity = maxAngularSpeed;
     }
 
-    public void SetupPickupWeapon(Weapon weapon, Transform transform)
+    public void SetupPickupWeapon(Weapon weapon, Transform dropFrom)
     {
         oldWeapon = true;
 
         this.weapon = weapon;
         weaponData = weapon.weaponData;
 
-        this.transform.position = transform.position + new Vector3(0, .75f, 0);
+        Vector3 pos = dropFrom.position;
+        if (usePhysicsDrop)
+            pos += Vector3.up * spawnUpOffset;
+
+        transform.position = pos;
+
+        SetupGameObject();
+
+        if (usePhysicsDrop && rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.WakeUp();
+
+            rb.maxAngularVelocity = maxAngularSpeed;
+
+            StopAllCoroutines();
+            StartCoroutine(SettleRoutine());
+        }
+    }
+
+    private IEnumerator SettleRoutine()
+    {
+        float t = 0f;
+        while (t < settleTime)
+        {
+            ClampPhysics();
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        ClampPhysics();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!usePhysicsDrop || rb == null)
+            return;
+
+        ClampPhysics();
+
+        if (transform.position.y < minYKill)
+            ObjectPool.instance.ReturnObject(gameObject);
+    }
+
+    private void ClampPhysics()
+    {
+        Vector3 v = rb.velocity;
+        float speed = v.magnitude;
+        if (speed > maxLinearSpeed)
+            rb.velocity = v.normalized * maxLinearSpeed;
+
+        Vector3 av = rb.angularVelocity;
+        float aSpeed = av.magnitude;
+        if (aSpeed > maxAngularSpeed)
+            rb.angularVelocity = av.normalized * maxAngularSpeed;
     }
 
     [ContextMenu("Update Item Model")]
     public void SetupGameObject()
     {
         gameObject.name = "Pickup_Weapon - " + weaponData.weaponType.ToString();
-
         SetupWeaponModel();
     }
-
 
     private void SetupWeaponModel()
     {
@@ -55,7 +130,6 @@ public class Pickup_Weapon : Interactable
     public override void Interaction()
     {
         weaponController.PickupWeapon(weapon);
-
         ObjectPool.instance.ReturnObject(gameObject);
     }
 }

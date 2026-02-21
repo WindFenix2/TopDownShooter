@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Physics")]
     [SerializeField] private bool blockPhysicsPush = true;
-
+    [SerializeField, Range(0f, 1f)] private float physicsPushMultiplier = 1f;
 
     [SerializeField] private Material highlightMaterial;
     [SerializeField] protected Material defaultMaterial;
@@ -26,7 +26,16 @@ public class Interactable : MonoBehaviour
         defaultMaterial = newMesh.sharedMaterial;
     }
 
-    public bool BlockPhysicsPush() => blockPhysicsPush;
+    public virtual bool BlockPhysicsPush() => blockPhysicsPush;
+
+    // 0 = no push at all, 1 = full push. Used by explosions/impacts.
+    public virtual float GetPhysicsPushMultiplier()
+    {
+        if (blockPhysicsPush)
+            return 0f;
+
+        return Mathf.Clamp01(physicsPushMultiplier);
+    }
 
     public virtual void Interaction()
     {
@@ -40,7 +49,6 @@ public class Interactable : MonoBehaviour
         else
             mesh.material = defaultMaterial;
     }
-
 
     protected virtual void OnTriggerEnter(Collider other)
     {
