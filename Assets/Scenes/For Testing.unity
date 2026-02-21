@@ -35822,6 +35822,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1567743234}
     m_Modifications:
+    - target: {fileID: 4965861980751261801, guid: 8d0059b0f4b9500438e33b9d9e437364, type: 3}
+      propertyPath: blockPhysicsPush
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965861980751261801, guid: 8d0059b0f4b9500438e33b9d9e437364, type: 3}
+      propertyPath: physicsPushMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5423553762247825356, guid: 8d0059b0f4b9500438e33b9d9e437364, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.639999

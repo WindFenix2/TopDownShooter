@@ -148,8 +148,6 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        // ✅ FIX: ignore interaction triggers (Pickup_Weapon / Pickup_Ammo etc.)
-        // These are Interactable trigger colliders used only for player interaction.
         if (hitCol != null && hitCol.isTrigger)
         {
             Interactable interactable = hitCol.GetComponentInParent<Interactable>();

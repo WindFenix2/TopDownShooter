@@ -5025,12 +5025,12 @@ MonoBehaviour:
   axeThrowCooldown: 10
   axeStartPoint: {fileID: 1599501723409535013}
   attackData:
-    attackDamage: 0
-    attackName: 
+    attackDamage: 21
+    attackName: Sword slash
     attackRange: 1
     moveSpeed: 0
     attackIndex: 1
-    animationSpeed: 1.4
+    animationSpeed: 1.7
     attackType: 0
   attackList:
   - attackDamage: 25

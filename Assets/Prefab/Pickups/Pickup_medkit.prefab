@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5423553762247825356}
   - component: {fileID: 8984123355099540649}
   - component: {fileID: 574581698776353158}
+  - component: {fileID: 4965861980751261801}
   - component: {fileID: 5622576931108950112}
   m_Layer: 0
   m_Name: Pickup_medkit
@@ -54,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.55133104, z: 1}
-  m_Center: {x: 0, y: 0.2920705, z: 0}
+  m_Size: {x: 1.2126772, y: 0.6423934, z: 1.2602124}
+  m_Center: {x: -0.016560912, y: 0.3376017, z: -0.035144806}
 --- !u!54 &574581698776353158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -83,6 +84,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &4965861980751261801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466695851414228191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628fb2a1ffcabea4a9046c43d882d96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
+  blockPhysicsPush: 0
+  physicsPushMultiplier: 1
+  highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
+  defaultMaterial: {fileID: 3758952881610933197, guid: df6b0bcb80551a44e8e1650144b3398c, type: 3}
+  healAmount: 50
 --- !u!114 &5622576931108950112
 MonoBehaviour:
   m_ObjectHideFlags: 0

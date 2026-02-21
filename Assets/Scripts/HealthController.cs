@@ -20,7 +20,15 @@ public class HealthController : MonoBehaviour
 
     public virtual void IncreaseHealth()
     {
-        currentHealth++;
+        IncreaseHealth(1);
+    }
+
+    public virtual void IncreaseHealth(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        currentHealth += amount;
 
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;

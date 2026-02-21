@@ -42,6 +42,18 @@ public class Player_Health : HealthController
             debugShieldHp = shieldAbility.CurrentShield;
     }
 
+    public override void IncreaseHealth(int amount)
+    {
+        if (isDead)
+            return;
+
+        base.IncreaseHealth(amount);
+        UI.instance.inGameUI.UpdateHealthUI(currentHealth, maxHealth);
+
+        if (shieldAbility != null)
+            debugShieldHp = shieldAbility.CurrentShield;
+    }
+
     private void Die()
     {
         if (isDead)
