@@ -4,29 +4,39 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Car delivery - Mission", menuName = "Missions/Car delivery - Mission")]
-
 public class Mission_CarDelivery : Mission
 {
     private bool carWasDelivered;
+    private bool gasolinePickedUp;
+
     public override void StartMission()
     {
         FindObjectOfType<MissionObject_CarDeliveryZone>(true).gameObject.SetActive(true);
 
-        string missionText = "Find a functional vehicle.";
-        string missionDetails = "Deliver it to the evacuation point.";
-
-        UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
-
         carWasDelivered = false;
+        gasolinePickedUp = false;
+
         MissionObject_CarToDeliver.OnCarDelivery += CarDeliveryCompleted;
+        Pickup_Gasoline.OnGasolinePickedUp += GasolinePicked;
+
+        if (MissionManager.instance != null)
+            MissionManager.instance.ClearMissionItems();
 
         Car_Controller[] cars = FindObjectsOfType<Car_Controller>();
 
         foreach (var car in cars)
         {
             car.AddComponent<MissionObject_CarToDeliver>();
+
+            Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
+            if (fuel == null)
+                fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
+
+            fuel.SetRequiresFuel(true);
+            fuel.SetRefueled(false);
         }
 
+        UI.instance?.inGameUI?.ShowCenterMessage("Find gasoline and refuel the vehicle.");
     }
 
     public override bool MissionCompleted()
@@ -37,9 +47,19 @@ public class Mission_CarDelivery : Mission
     private void CarDeliveryCompleted()
     {
         carWasDelivered = true;
-        MissionObject_CarToDeliver.OnCarDelivery -= CarDeliveryCompleted;
 
-        UI.instance.inGameUI.UpdateMissionInfo("Get to the evacuation point.");
+        MissionObject_CarToDeliver.OnCarDelivery -= CarDeliveryCompleted;
+        Pickup_Gasoline.OnGasolinePickedUp -= GasolinePicked;
+
+        UI.instance?.inGameUI?.ShowCenterMessage("Vehicle delivered!");
     }
-    
+
+    private void GasolinePicked()
+    {
+        if (gasolinePickedUp)
+            return;
+
+        gasolinePickedUp = true;
+        UI.instance?.inGameUI?.ShowCenterMessage("Gasoline collected.");
+    }
 }

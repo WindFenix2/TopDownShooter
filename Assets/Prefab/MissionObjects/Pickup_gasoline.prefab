@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3649770339493267723}
   - component: {fileID: 557496406189675393}
   - component: {fileID: 3728369762613070932}
+  - component: {fileID: 3531526686774287361}
   - component: {fileID: 8719597456163527946}
   m_Layer: 0
   m_Name: Pickup_gasoline
@@ -83,6 +84,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &3531526686774287361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525145353576247336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30d591c2e8f2594a833efe0619516fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
+  blockPhysicsPush: 1
+  physicsPushMultiplier: 1
+  highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
+  defaultMaterial: {fileID: 3758952881610933197, guid: df6b0bcb80551a44e8e1650144b3398c, type: 3}
+  amount: 1
 --- !u!114 &8719597456163527946
 MonoBehaviour:
   m_ObjectHideFlags: 0

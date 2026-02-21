@@ -6,6 +6,7 @@ public class Car_Interaction : Interactable
 {
     private Car_HealthController carHealthController;
     private Car_Controller carController;
+    private Car_FuelRequirement fuelRequirement;
     private Transform player;
 
     private float defaultPlayerScale;
@@ -19,6 +20,7 @@ public class Car_Interaction : Interactable
     {
         carHealthController = GetComponent<Car_HealthController>();
         carController = GetComponent<Car_Controller>();
+        fuelRequirement = GetComponent<Car_FuelRequirement>();
         player = GameManager.instance.player.transform;
 
         foreach (var point in exitPoints)
@@ -31,7 +33,46 @@ public class Car_Interaction : Interactable
     public override void Interaction()
     {
         base.Interaction();
+
+        if (CanUseCar() == false)
+            return;
+
         GetIntoTheCar();
+    }
+
+    private bool CanUseCar()
+    {
+        if (MissionManager.instance == null)
+            return true;
+
+        if (MissionManager.instance.currentMission is Mission_CarDelivery == false)
+            return true;
+
+        if (fuelRequirement == null)
+            fuelRequirement = GetComponent<Car_FuelRequirement>();
+
+        if (fuelRequirement == null)
+        {
+            fuelRequirement = gameObject.AddComponent<Car_FuelRequirement>();
+            fuelRequirement.SetRequiresFuel(true);
+            fuelRequirement.SetRefueled(false);
+        }
+
+        if (fuelRequirement.RequiresFuel() == false)
+            return true;
+
+        if (fuelRequirement.refueled)
+            return true;
+
+        if (MissionManager.instance.ConsumeItem(fuelRequirement.RequiredItem(), 1))
+        {
+            fuelRequirement.SetRefueled(true);
+            UI.instance?.inGameUI?.ShowCenterMessage("Vehicle refueled.");
+            return true;
+        }
+
+        UI.instance?.inGameUI?.ShowCenterMessage("Not enough fuel.");
+        return false;
     }
 
     private void GetIntoTheCar()
