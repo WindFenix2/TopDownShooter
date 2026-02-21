@@ -22,6 +22,9 @@ public class Pickup_Weapon : Interactable
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        if (!oldWeapon)
+            SyncWeaponDataFromActiveModelRuntime();
     }
 
     private void OnEnable()
@@ -32,13 +35,22 @@ public class Pickup_Weapon : Interactable
 
     private void Start()
     {
-        if (oldWeapon == false)
+        if (!oldWeapon)
+            SyncWeaponDataFromActiveModelRuntime();
+
+        if (!oldWeapon && weaponData != null)
             weapon = new Weapon(weaponData);
 
         SetupGameObject();
 
         if (usePhysicsDrop && rb != null)
             rb.maxAngularVelocity = maxAngularSpeed;
+    }
+
+    private void OnDisable()
+    {
+        oldWeapon = false;
+        weapon = null;
     }
 
     public void SetupPickupWeapon(Weapon weapon, Transform dropFrom)
@@ -109,14 +121,28 @@ public class Pickup_Weapon : Interactable
     [ContextMenu("Update Item Model")]
     public void SetupGameObject()
     {
+        if (weaponData == null)
+            return;
+
+        if (!oldWeapon && (weapon == null || weapon.weaponData != weaponData))
+            weapon = new Weapon(weaponData);
+
+        if (rb != null)
+            rb.mass = weaponData.pickupMass;
+
         gameObject.name = "Pickup_Weapon - " + weaponData.weaponType.ToString();
         SetupWeaponModel();
     }
 
     private void SetupWeaponModel()
     {
+        if (weaponData == null)
+            return;
+
         foreach (BackupWeaponModel model in models)
         {
+            if (model == null) continue;
+
             model.gameObject.SetActive(false);
 
             if (model.weaponType == weaponData.weaponType)
@@ -131,5 +157,80 @@ public class Pickup_Weapon : Interactable
     {
         weaponController.PickupWeapon(weapon);
         ObjectPool.instance.ReturnObject(gameObject);
+    }
+
+    private void SyncWeaponDataFromActiveModelRuntime()
+    {
+        if (models == null || models.Length == 0)
+            return;
+
+        BackupWeaponModel activeModel = null;
+        int activeCount = 0;
+
+        for (int i = 0; i < models.Length; i++)
+        {
+            if (models[i] == null) continue;
+
+            if (models[i].gameObject.activeSelf)
+            {
+                activeModel = models[i];
+                activeCount++;
+            }
+        }
+
+        if (activeCount != 1 || activeModel == null)
+            return;
+
+        if (weaponData != null && weaponData.weaponType == activeModel.weaponType)
+            return;
+
+        Weapon_Data found = FindWeaponDataByType(activeModel.weaponType);
+        if (found != null)
+            weaponData = found;
+    }
+
+    private void OnValidate()
+    {
+        if (Application.isPlaying)
+            return;
+
+        if (models == null || models.Length == 0)
+            return;
+
+        BackupWeaponModel activeModel = null;
+        int activeCount = 0;
+
+        for (int i = 0; i < models.Length; i++)
+        {
+            if (models[i] == null) continue;
+
+            if (models[i].gameObject.activeSelf)
+            {
+                activeModel = models[i];
+                activeCount++;
+            }
+        }
+
+        if (activeCount != 1 || activeModel == null)
+            return;
+
+        if (weaponData != null && weaponData.weaponType == activeModel.weaponType)
+            return;
+
+        Weapon_Data found = FindWeaponDataByType(activeModel.weaponType);
+        if (found != null)
+            weaponData = found;
+    }
+
+    private Weapon_Data FindWeaponDataByType(WeaponType type)
+    {
+        Weapon_Data[] all = Resources.FindObjectsOfTypeAll<Weapon_Data>();
+        for (int i = 0; i < all.Length; i++)
+        {
+            if (all[i] != null && all[i].weaponType == type)
+                return all[i];
+        }
+
+        return null;
     }
 }

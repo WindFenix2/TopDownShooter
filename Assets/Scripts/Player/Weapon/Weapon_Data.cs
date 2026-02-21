@@ -44,6 +44,10 @@ public class Weapon_Data : ScriptableObject
     [Range(4, 10)]
     public float cameraDistance = 6;
 
+    [Header("Pickup physics")]
+    [Min(0.01f)]
+    public float pickupMass = 3f;
+
     [Header("UI elements")]
     public Sprite weaponIcon;
     public string weaponInfo;

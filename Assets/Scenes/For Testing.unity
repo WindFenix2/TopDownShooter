@@ -1357,11 +1357,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4274772880390725256, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
       propertyPath: m_Name
-      value: Pickup_Weapon - Weapon
+      value: Pickup_Weapon - Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561677296694951226, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+      propertyPath: mesh
+      value: 
+      objectReference: {fileID: 2008222890}
+    - target: {fileID: 4561677296694951226, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: e3228b5e123aa934f8457c81698d3b18, type: 2}
+    - target: {fileID: 4561677296694951226, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+      propertyPath: defaultMaterial
+      value: 
+      objectReference: {fileID: 3758952881610933197, guid: 1111cc7c6dec9244a8b0abfacf917284, type: 3}
+    - target: {fileID: 6040450151986584990, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7382502191061910114, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8182283875631285734, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
       propertyPath: m_IsActive
@@ -14093,6 +14109,10 @@ PrefabInstance:
     - target: {fileID: 4127714724278660348, guid: 4eb4eb48413d77340b13531e54c31b85, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369783793773595545, guid: 4eb4eb48413d77340b13531e54c31b85, type: 3}
+      propertyPath: m_Mass
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8205553691608393929, guid: 4eb4eb48413d77340b13531e54c31b85, type: 3}
       propertyPath: boxType
@@ -29329,6 +29349,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002359715}
   m_CullTransparentMesh: 1
+--- !u!23 &2008222890 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1424717222489755022, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+  m_PrefabInstance: {fileID: 116127501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014225612
 GameObject:
   m_ObjectHideFlags: 0

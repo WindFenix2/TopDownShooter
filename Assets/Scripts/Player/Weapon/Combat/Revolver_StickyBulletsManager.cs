@@ -195,11 +195,13 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
                 continue;
             }
 
-            if (!LayerInMask(dmgComp.gameObject.layer, whatToDamage))
+            GameObject root = dmgComp.transform.root.gameObject;
+            int rootId = root.GetInstanceID();
+
+            if (!LayerInMask(root.layer, whatToDamage))
                 continue;
 
-            int otherId = dmgComp.GetInstanceID();
-            if (damagedOtherIds.Add(otherId))
+            if (damagedOtherIds.Add(rootId))
                 damagable.TakeDamage(damage);
         }
     }

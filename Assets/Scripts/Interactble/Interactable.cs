@@ -12,6 +12,13 @@ public class Interactable : MonoBehaviour
     [SerializeField] private Material highlightMaterial;
     [SerializeField] protected Material defaultMaterial;
 
+    private void Awake()
+    {
+        Collider c = GetComponent<Collider>();
+        if (c != null)
+            c.isTrigger = true;
+    }
+
     private void Start()
     {
         if (mesh == null)
@@ -28,7 +35,6 @@ public class Interactable : MonoBehaviour
 
     public virtual bool BlockPhysicsPush() => blockPhysicsPush;
 
-    // 0 = no push at all, 1 = full push. Used by explosions/impacts.
     public virtual float GetPhysicsPushMultiplier()
     {
         if (blockPhysicsPush)
@@ -73,5 +79,12 @@ public class Interactable : MonoBehaviour
 
         playerInteraction.GetInteracbles().Remove(this);
         playerInteraction.UpdateClosestInteractble();
+    }
+
+    private void OnValidate()
+    {
+        Collider c = GetComponent<Collider>();
+        if (c != null)
+            c.isTrigger = true;
     }
 }

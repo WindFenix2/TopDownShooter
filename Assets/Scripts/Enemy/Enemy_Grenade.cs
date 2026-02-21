@@ -68,7 +68,18 @@ public class Enemy_Grenade : MonoBehaviour
                 return;
         }
 
-        Rigidbody rb = hit.GetComponent<Rigidbody>();
+        Rigidbody rb = hit.attachedRigidbody;
+
+        if (rb == null)
+        {
+            Interactable i = hit.GetComponentInParent<Interactable>();
+            if (i != null)
+            {
+                rb = i.GetComponent<Rigidbody>();
+                if (rb == null)
+                    rb = i.GetComponentInChildren<Rigidbody>();
+            }
+        }
 
         if (rb != null)
         {

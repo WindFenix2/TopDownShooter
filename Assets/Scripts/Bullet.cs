@@ -93,7 +93,6 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            // пока не меняем цвет врага (по плану)
             // mpb.SetColor("_BaseColor", enemyBulletColor);
             // mpb.SetColor("_Color", enemyBulletColor);
         }
@@ -147,6 +146,15 @@ public class Bullet : MonoBehaviour
         {
             ReturnBulletToPool();
             return;
+        }
+
+        // ✅ FIX: ignore interaction triggers (Pickup_Weapon / Pickup_Ammo etc.)
+        // These are Interactable trigger colliders used only for player interaction.
+        if (hitCol != null && hitCol.isTrigger)
+        {
+            Interactable interactable = hitCol.GetComponentInParent<Interactable>();
+            if (interactable != null)
+                return;
         }
 
         if (isPlayerBulletCached && ownerRoot != null)
