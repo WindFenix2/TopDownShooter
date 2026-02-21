@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 4561677296694951226}
   - component: {fileID: 1705506735305633744}
   m_Layer: 0
-  m_Name: Pickup_Weapon - AutoRifle
+  m_Name: Pickup_Weapon - Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,8 +175,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.7842577, z: 1}
+  m_Center: {x: 0, y: 0.107871145, z: 0}
 --- !u!54 &7899973763426129893
 Rigidbody:
   m_ObjectHideFlags: 0
