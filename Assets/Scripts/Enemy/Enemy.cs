@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     public float idleTime;
     public float aggresionRange;
 
+    [Header("Team aggro")]
+    [SerializeField] private bool alertNearbyAlliesOnHit = true;
+    [SerializeField] private float allyAlertRadius = 10f;
+
     [Header("Move data")]
     public float walkSpeed = 1.5f;
     public float runSpeed = 3;
@@ -129,10 +133,50 @@ public class Enemy : MonoBehaviour
             return;
 
         EnterBattleMode();
+
+        if (alertNearbyAlliesOnHit)
+            AlertNearbyAllies();
+
         health.ReduceHealth(damage);
 
         if (health.ShouldDie())
             Die();
+    }
+
+    private void AlertNearbyAllies()
+    {
+        if (IsDead)
+            return;
+
+        float radius = allyAlertRadius;
+        if (radius <= 0)
+            radius = aggresionRange;
+
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius, whatIsAlly);
+        if (hits == null || hits.Length == 0)
+            return;
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            Collider col = hits[i];
+            if (col == null)
+                continue;
+
+            Enemy ally = col.GetComponent<Enemy>();
+            if (ally == null)
+                ally = col.GetComponentInParent<Enemy>();
+
+            if (ally == null)
+                continue;
+
+            if (ally == this)
+                continue;
+
+            if (ally.IsDead)
+                continue;
+
+            ally.EnterBattleMode();
+        }
     }
 
     public virtual void Die()
