@@ -1522,6 +1522,8 @@ MonoBehaviour:
     m_Bits: 256
   idleTime: 3
   aggresionRange: 15
+  alertNearbyAlliesOnHit: 1
+  allyAlertRadius: 10
   walkSpeed: 1.5
   runSpeed: 3
   turnSpeed: 5
@@ -1530,7 +1532,7 @@ MonoBehaviour:
   - {fileID: 5673001054955848948}
   - {fileID: 2103080116678446538}
   meleeNonAllocBufferSize: 16
-  weaponType: 2
+  weaponType: 0
   coverPerk: 0
   unstoppablePerk: 0
   grenadePerk: 0
@@ -1637,6 +1639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionObjectKey: {fileID: 0}
+  enableResourceDrops: 1
 --- !u!1 &1416550309579397773
 GameObject:
   m_ObjectHideFlags: 0

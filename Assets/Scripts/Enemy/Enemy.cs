@@ -82,6 +82,9 @@ public class Enemy : MonoBehaviour
             player = playerGo.GetComponent<Transform>();
 
         meleeHitsBuffer = new Collider[Mathf.Max(4, meleeNonAllocBufferSize)];
+
+        // Register for dynamic drop scaling (scene enemies + enemies spawned during gameplay).
+        DropDirector.RegisterEnemy(this);
     }
 
     protected virtual void Start()

@@ -14,6 +14,10 @@ public class ObjectPool : MonoBehaviour
     [Header("To Initialize")]
     [SerializeField] private GameObject weaponPickup;
     [SerializeField] private GameObject ammoPickup;
+    [SerializeField] private GameObject medkitPickup;
+
+    public GameObject AmmoPickupPrefab => ammoPickup;
+    public GameObject MedkitPickupPrefab => medkitPickup;
 
     private void Awake()
     {
@@ -27,6 +31,7 @@ public class ObjectPool : MonoBehaviour
     {
         InitializeNewPool(weaponPickup);
         InitializeNewPool(ammoPickup);
+        InitializeNewPool(medkitPickup);
     }
 
     public GameObject GetObject(GameObject prefab, Transform target)
