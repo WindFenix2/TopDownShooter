@@ -201,7 +201,6 @@ public class Weapon
     public void RefillBullets()
     {
         totalReserveAmmo += bulletsInMagazine;
-        // this will add bullets in magazine to total amount of bullets
 
 
         int bulletsToReload = magazineCapacity;

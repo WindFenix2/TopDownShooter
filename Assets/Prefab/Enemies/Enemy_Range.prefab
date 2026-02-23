@@ -1601,6 +1601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdollParent: {fileID: 8938312745787488569}
+  settleDelay: 5
 --- !u!114 &1334087555910019399
 MonoBehaviour:
   m_ObjectHideFlags: 0

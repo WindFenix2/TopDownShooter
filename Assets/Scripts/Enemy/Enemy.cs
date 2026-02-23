@@ -83,7 +83,6 @@ public class Enemy : MonoBehaviour
 
         meleeHitsBuffer = new Collider[Mathf.Max(4, meleeNonAllocBufferSize)];
 
-        // Register for dynamic drop scaling (scene enemies + enemies spawned during gameplay).
         DropDirector.RegisterEnemy(this);
     }
 
@@ -199,6 +198,10 @@ public class Enemy : MonoBehaviour
             agent.isStopped = true;
             agent.enabled = false;
         }
+
+        Collider mainCollider = GetComponent<Collider>();
+        if (mainCollider != null)
+            mainCollider.enabled = false;
 
         if (ragdoll != null)
             ragdoll.RagdollActive(true);

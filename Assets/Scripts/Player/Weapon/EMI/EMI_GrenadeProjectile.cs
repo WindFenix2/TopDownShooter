@@ -270,7 +270,7 @@ public class EMI_GrenadeProjectile : MonoBehaviour
         if (hits == null || hits.Length == 0)
             return;
 
-        // FIX: process each enemy only once (not per collider)
+
         HashSet<int> processed = new HashSet<int>();
 
         for (int i = 0; i < hits.Length; i++)
@@ -312,7 +312,7 @@ public class EMI_GrenadeProjectile : MonoBehaviour
         if (distXZ > radius)
             return;
 
-        // If player has Shotgun shield, EMI should remove the shield and NOT apply negative effects.
+
         Shotgun_KillShieldAbility shield = owner.GetComponent<Shotgun_KillShieldAbility>();
         if (shield != null && shield.TryConsumeShieldForEMI())
             return;

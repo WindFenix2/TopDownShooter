@@ -361,7 +361,7 @@ public class Player_WeaponController : MonoBehaviour
         {
             if (emiStatus != null && !emiStatus.CanUseAbilities)
             {
-                // no chain shot, continue with regular bullet
+
             }
             else
             {
@@ -754,7 +754,7 @@ public class Player_WeaponController : MonoBehaviour
 
     private void TryEquipWeaponFromInput(int slotIndex)
     {
-        // Prevent weapon switching while draw/reload animations are still playing.
+
         if (!WeaponReady())
             return;
 

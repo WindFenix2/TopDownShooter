@@ -156,6 +156,7 @@ public class Pickup_Weapon : Interactable
     public override void Interaction()
     {
         weaponController.PickupWeapon(weapon);
+        WakeNearbyRagdolls();
         ObjectPool.instance.ReturnObject(gameObject);
     }
 

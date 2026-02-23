@@ -5,6 +5,8 @@ public class Interactable : MonoBehaviour
     protected Player_WeaponController weaponController;
     [SerializeField] protected MeshRenderer mesh;
 
+    [HideInInspector] public bool spawnedByDropDirector;
+
     [Header("Physics")]
     [SerializeField] private bool blockPhysicsPush = true;
     [SerializeField, Range(0f, 1f)] private float physicsPushMultiplier = 1f;
@@ -46,6 +48,19 @@ public class Interactable : MonoBehaviour
     public virtual void Interaction()
     {
         Debug.Log("Interacted with " + gameObject.name);
+    }
+
+    protected void WakeNearbyRagdolls(float radius = 2f)
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i] == null) continue;
+
+            Ragdoll ragdoll = hits[i].GetComponentInParent<Ragdoll>();
+            if (ragdoll != null)
+                ragdoll.WakeUp();
+        }
     }
 
     public void HighlightActive(bool active)

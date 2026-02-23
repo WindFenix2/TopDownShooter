@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7690489326780936557
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4127714724278660348}
@@ -123,7 +123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5561531833375937843
 Transform:
   m_ObjectHideFlags: 0
@@ -134,8 +134,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4127714724278660348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  spawnedByDropDirector: 0
   blockPhysicsPush: 1
   physicsPushMultiplier: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
@@ -315,36 +316,36 @@ MonoBehaviour:
   boxType: 0
   smallBoxAmmo:
   - weaponType: 0
-    minAmount: 12
-    maxAmount: 26
+    minAmount: 6
+    maxAmount: 18
   - weaponType: 1
-    minAmount: 19
-    maxAmount: 30
+    minAmount: 6
+    maxAmount: 18
   - weaponType: 3
-    minAmount: 11
-    maxAmount: 20
+    minAmount: 4
+    maxAmount: 10
   - weaponType: 2
-    minAmount: 11
-    maxAmount: 20
+    minAmount: 10
+    maxAmount: 30
   - weaponType: 4
-    minAmount: 11
-    maxAmount: 20
+    minAmount: 8
+    maxAmount: 16
   bigBoxAmmo:
   - weaponType: 2
-    minAmount: 56
-    maxAmount: 78
+    minAmount: 30
+    maxAmount: 60
   - weaponType: 3
-    minAmount: 35
-    maxAmount: 56
+    minAmount: 10
+    maxAmount: 20
   - weaponType: 4
-    minAmount: 44
-    maxAmount: 71
+    minAmount: 16
+    maxAmount: 32
   - weaponType: 0
-    minAmount: 40
-    maxAmount: 73
+    minAmount: 18
+    maxAmount: 36
   - weaponType: 1
-    minAmount: 44
-    maxAmount: 72
+    minAmount: 18
+    maxAmount: 37
   boxModel:
   - {fileID: 3033193397465657819}
   - {fileID: 22427970833977495}

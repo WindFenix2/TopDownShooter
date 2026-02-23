@@ -5,8 +5,8 @@ using UnityEngine;
 public struct AmmoData
 {
     public WeaponType weaponType;
-    [Range(10, 100)] public int minAmount;
-    [Range(10, 100)] public int maxAmount;
+    [Range(1, 100)] public int minAmount;
+    [Range(1, 100)] public int maxAmount;
 }
 public enum AmmoBoxType { smallBox, bigBox }
 
@@ -39,6 +39,14 @@ public class Pickup_Ammo : Interactable
 
         weaponController.UpdateWeaponUI();
 
+        if (spawnedByDropDirector && DropDirector.instance != null)
+        {
+            DropDirector.instance.NotifyAmmoPickedUp();
+            DropDirector.instance.UnregisterActiveDrop(gameObject, DropType.Ammo);
+            spawnedByDropDirector = false;
+        }
+
+        WakeNearbyRagdolls();
         ObjectPool.instance.ReturnObject(gameObject);
     }
 

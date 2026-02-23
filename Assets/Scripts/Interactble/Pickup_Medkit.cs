@@ -15,6 +15,15 @@ public class Pickup_Medkit : Interactable
             return;
 
         playerHealth.IncreaseHealth(healAmount);
+
+        if (spawnedByDropDirector && DropDirector.instance != null)
+        {
+            DropDirector.instance.NotifyMedkitPickedUp();
+            DropDirector.instance.UnregisterActiveDrop(gameObject, DropType.Medkit);
+            spawnedByDropDirector = false;
+        }
+
+        WakeNearbyRagdolls();
         ObjectPool.instance.ReturnObject(gameObject);
     }
 
