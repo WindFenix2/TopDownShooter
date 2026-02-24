@@ -18,6 +18,7 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject AmmoPickupPrefab => ammoPickup;
     public GameObject MedkitPickupPrefab => medkitPickup;
+    public GameObject WeaponPickupPrefab => weaponPickup;
 
     private void Awake()
     {

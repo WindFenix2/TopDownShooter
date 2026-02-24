@@ -160,6 +160,21 @@ public class Pickup_Weapon : Interactable
         ObjectPool.instance.ReturnObject(gameObject);
     }
 
+    public void SetupRandomWeapon()
+    {
+        WeaponType[] allTypes = (WeaponType[])System.Enum.GetValues(typeof(WeaponType));
+        WeaponType randomType = allTypes[Random.Range(0, allTypes.Length)];
+
+        Weapon_Data data = FindWeaponDataByType(randomType);
+        if (data == null)
+            return;
+
+        weaponData = data;
+        oldWeapon = false;
+        weapon = new Weapon(data);
+        SetupGameObject();
+    }
+
     private void SyncWeaponDataFromActiveModelRuntime()
     {
         if (models == null || models.Length == 0)

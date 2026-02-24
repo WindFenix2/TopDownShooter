@@ -195,7 +195,8 @@ public class Enemy : MonoBehaviour
 
         if (agent != null)
         {
-            agent.isStopped = true;
+            if (agent.isOnNavMesh)
+                agent.isStopped = true;
             agent.enabled = false;
         }
 

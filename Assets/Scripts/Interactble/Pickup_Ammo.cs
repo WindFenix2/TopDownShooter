@@ -21,6 +21,12 @@ public class Pickup_Ammo : Interactable
 
     private void Start() => SetupBoxModel();
 
+    public void SetBoxType(AmmoBoxType newType)
+    {
+        boxType = newType;
+        SetupBoxModel();
+    }
+
     public override void Interaction()
     {
         if (weaponController == null)

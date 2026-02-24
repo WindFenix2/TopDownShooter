@@ -13042,6 +13042,8 @@ MonoBehaviour:
     m_Bits: 256
   idleTime: 3
   aggresionRange: 15
+  alertNearbyAlliesOnHit: 1
+  allyAlertRadius: 10
   walkSpeed: 1.25
   runSpeed: 4
   turnSpeed: 8
@@ -13122,6 +13124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionObjectKey: {fileID: 0}
+  enableResourceDrops: 1
+  isBoss: 1
+  bossWeaponDropChance: 0.5
 --- !u!1 &5552655481784955523
 GameObject:
   m_ObjectHideFlags: 0
