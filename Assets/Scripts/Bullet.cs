@@ -81,23 +81,44 @@ public class Bullet : MonoBehaviour
 
     private void ApplyVisual(bool isPlayerBullet)
     {
-        if (!useColorOverride || meshRenderer == null)
+        if (meshRenderer == null)
             return;
 
         meshRenderer.GetPropertyBlock(mpb);
 
+        Color bulletColor;
+
         if (isPlayerBullet)
         {
-            mpb.SetColor("_BaseColor", playerBulletColor);
-            mpb.SetColor("_Color", playerBulletColor);
+            bulletColor = playerBulletColor;
         }
         else
         {
-            // mpb.SetColor("_BaseColor", enemyBulletColor);
-            // mpb.SetColor("_Color", enemyBulletColor);
+            bulletColor = enemyBulletColor;
         }
 
+
+        float hdrIntensity = 2f;
+        Color hdrColor = bulletColor * hdrIntensity;
+        hdrColor.a = 1f;
+
+        mpb.SetColor("_BaseColor", bulletColor);
+        mpb.SetColor("_Color", bulletColor);
+        mpb.SetColor("_EmissionColor", hdrColor);
         meshRenderer.SetPropertyBlock(mpb);
+
+
+        if (trailRenderer != null)
+        {
+            trailRenderer.startColor = bulletColor;
+            trailRenderer.endColor = new Color(bulletColor.r, bulletColor.g, bulletColor.b, 0f);
+
+            trailRenderer.GetPropertyBlock(mpb);
+            mpb.SetColor("_BaseColor", bulletColor);
+            mpb.SetColor("_Color", bulletColor);
+            mpb.SetColor("_EmissionColor", hdrColor);
+            trailRenderer.SetPropertyBlock(mpb);
+        }
     }
 
     protected virtual void Update()

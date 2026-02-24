@@ -147,11 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b01eebccf705f4ba5e091b8f54d56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cd: {fileID: 7162561838308465631}
-  rb: {fileID: 1630541982037577260}
-  meshRenderer: {fileID: 3640774188930598250}
-  trailRenderer: {fileID: -6479415848919586009}
   bulletImpactFX: {fileID: 4266559762961818354, guid: 7326ad26c6337224d8144cf0e2f4fa68, type: 3}
+  useColorOverride: 1
+  playerBulletColor: {r: 0, g: 1, b: 0.85, a: 1}
+  enemyBulletColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!96 &-6479415848919586009
 TrailRenderer:
   serializedVersion: 3

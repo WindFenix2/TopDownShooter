@@ -35,14 +35,14 @@ public class Enemy_DropController : MonoBehaviour
     {
         Vector3 dropPos = transform.position;
         float dropRadius = 1.5f;
-        float angleStep = 120f; // 3 items spread evenly in a circle
-        float startAngle = Random.Range(0f, 360f); // random rotation so drops aren't always in the same spots
+        float angleStep = 120f;
+        float startAngle = Random.Range(0f, 360f);
 
-        // Guaranteed medkit
+
         Vector3 medkitOffset = Quaternion.Euler(0, startAngle, 0) * Vector3.forward * dropRadius;
         SpawnFromPool(ObjectPool.instance.MedkitPickupPrefab, dropPos + medkitOffset);
 
-        // Guaranteed big ammo box
+
         Vector3 ammoOffset = Quaternion.Euler(0, startAngle + angleStep, 0) * Vector3.forward * dropRadius;
         GameObject ammoGo = SpawnFromPool(ObjectPool.instance.AmmoPickupPrefab, dropPos + ammoOffset);
         if (ammoGo != null)
@@ -52,7 +52,7 @@ public class Enemy_DropController : MonoBehaviour
                 ammoPickup.SetBoxType(AmmoBoxType.bigBox);
         }
 
-        // 50% chance weapon
+
         if (Random.value < bossWeaponDropChance && ObjectPool.instance != null)
         {
             Vector3 weaponOffset = Quaternion.Euler(0, startAngle + angleStep * 2, 0) * Vector3.forward * dropRadius;

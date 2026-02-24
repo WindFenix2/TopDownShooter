@@ -27,12 +27,48 @@ public class Enemy_BossVisuals : MonoBehaviour
         landindZoneFx.Stop();
 
         ResetBatteries();
+
+
+        ApplyTrailColors();
+    }
+
+    private void ApplyTrailColors()
+    {
+        if (weaponTrails == null || weaponTrails.Length <= 0)
+            return;
+
+        if (trailMPB == null)
+            trailMPB = new MaterialPropertyBlock();
+
+        Color hdrColor = trailColor * 2f;
+        hdrColor.a = 1f;
+
+        foreach (var trail in weaponTrails)
+        {
+            TrailRenderer tr = trail.GetComponent<TrailRenderer>();
+            if (tr != null)
+            {
+                tr.startColor = trailColor;
+                tr.endColor = new Color(trailColor.r, trailColor.g, trailColor.b, 0f);
+
+                tr.GetPropertyBlock(trailMPB);
+                trailMPB.SetColor("_EmissionColor", hdrColor);
+                trailMPB.SetColor("_BaseColor", trailColor);
+                trailMPB.SetColor("_Color", trailColor);
+                tr.SetPropertyBlock(trailMPB);
+            }
+        }
     }
 
     private void Update()
     {
         UpdateBatteriesScale();
     }
+
+    [Header("Trail color")]
+    [SerializeField] private Color trailColor = new Color(1f, 0.1f, 0.1f, 1f);
+
+    private MaterialPropertyBlock trailMPB;
 
     public void EnableWeaponTrail(bool active)
     {
@@ -42,9 +78,31 @@ public class Enemy_BossVisuals : MonoBehaviour
             return;
         }
 
+        if (trailMPB == null)
+            trailMPB = new MaterialPropertyBlock();
+
         foreach (var trail in weaponTrails)
         {
             trail.gameObject.SetActive(active);
+
+            if (active)
+            {
+                TrailRenderer tr = trail.GetComponent<TrailRenderer>();
+                if (tr != null)
+                {
+                    tr.startColor = trailColor;
+                    tr.endColor = new Color(trailColor.r, trailColor.g, trailColor.b, 0f);
+
+                    Color hdrColor = trailColor * 2f;
+                    hdrColor.a = 1f;
+
+                    tr.GetPropertyBlock(trailMPB);
+                    trailMPB.SetColor("_EmissionColor", hdrColor);
+                    trailMPB.SetColor("_BaseColor", trailColor);
+                    trailMPB.SetColor("_Color", trailColor);
+                    tr.SetPropertyBlock(trailMPB);
+                }
+            }
         }
     }
 
