@@ -14,6 +14,7 @@ public class Mission_Timer : Mission
     public override void StartMission()
     {
         currentTime = time;
+        UI.instance.inGameUI.UpdateMissionInfo("Reach the evacuation point in time.");
     }
 
     public override void UpdateMission()
@@ -22,11 +23,10 @@ public class Mission_Timer : Mission
 
         if (currentTime < 0)
         {
-            //GameManager.instance.GameOver();
         }
 
         string timeText = System.TimeSpan.FromSeconds(currentTime).ToString("mm':'ss");
-        string missionText = "Get to evacuation point before plane take off.";
+        string missionText = "Reach the evacuation point in time.";
         string missionDetails = "Time left: " + timeText;
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);

@@ -34,7 +34,7 @@ public class Mission_LastDefence : Mission
         defencePoint = FindObjectOfType<MissionEnd_Trigger>().transform.position;
         respawnPoints = new List<Transform>(ClosestPoints(amountOfRespawnPoints));
 
-        UI.instance.inGameUI.UpdateMissionInfo("Get to the evacuation point.");
+        UI.instance.inGameUI.UpdateMissionInfo("Prepare for the attack and get to the evacuation point.");
     }
 
     public override bool MissionCompleted()
@@ -65,7 +65,7 @@ public class Mission_LastDefence : Mission
 
         defenceTimerText = System.TimeSpan.FromSeconds(defenceTimer).ToString("mm':'ss");
 
-        string missionText = "Defend yourself till plane is ready to take off.";
+        string missionText = "Hold your position.";
         string missionDetails = "Time left: " + defenceTimerText;
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);

@@ -53,7 +53,6 @@ public class UI_ComicPanel : MonoBehaviour, IPointerDownHandler
             FinishComicShow();
         }
 
-        // Call the cimpletion method if it exists
         onComplete?.Invoke();
     }
 
@@ -72,14 +71,23 @@ public class UI_ComicPanel : MonoBehaviour, IPointerDownHandler
 
     private void ShowNextImageOnClick()
     {
+        if (comicShowOver)
+            return;
+
+        if (imageIndex >= comicPanel.Length)
+        {
+            FinishComicShow();
+            return;
+        }
+
         comicPanel[imageIndex].color = Color.white;
         imageIndex++;
 
         if (imageIndex >= comicPanel.Length)
+        {
             FinishComicShow();
-
-        if (comicShowOver)
             return;
+        }
 
         ShowNextImage();
     }

@@ -100,9 +100,6 @@ public class MissionManager : MonoBehaviour
             yield return null;
         }
 
-        if (UI.instance != null && UI.instance.inGameUI != null && currentMission != null)
-            UI.instance.inGameUI.UpdateMissionFromData(currentMission);
-
         uiSyncRoutine = null;
     }
 }

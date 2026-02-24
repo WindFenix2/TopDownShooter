@@ -39,6 +39,23 @@ public class UI_InGame : MonoBehaviour
     {
         weaponSlots_UI = GetComponentsInChildren<UI_WeaponSlot>();
         EnsureCenterMessageUI();
+        SyncMissionTooltipWidth();
+    }
+
+    private void SyncMissionTooltipWidth()
+    {
+        if (missionTooltipParent == null || missionHelpTooltip == null)
+            return;
+
+        RectTransform helpRT = missionHelpTooltip.GetComponent<RectTransform>();
+        if (helpRT == null)
+            return;
+
+        LayoutElement le = missionTooltipParent.GetComponent<LayoutElement>();
+        if (le == null)
+            le = missionTooltipParent.AddComponent<LayoutElement>();
+
+        le.minWidth = helpRT.rect.width;
     }
 
     private void EnsureCenterMessageUI()

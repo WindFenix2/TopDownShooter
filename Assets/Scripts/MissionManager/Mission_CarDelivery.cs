@@ -37,6 +37,7 @@ public class Mission_CarDelivery : Mission
         }
 
         UI.instance?.inGameUI?.ShowCenterMessage("Find gasoline and refuel the vehicle.");
+        UI.instance?.inGameUI?.UpdateMissionInfo("Find gasoline and refuel a vehicle.");
     }
 
     public override bool MissionCompleted()
@@ -52,6 +53,7 @@ public class Mission_CarDelivery : Mission
         Pickup_Gasoline.OnGasolinePickedUp -= GasolinePicked;
 
         UI.instance?.inGameUI?.ShowCenterMessage("Vehicle delivered!");
+        UI.instance?.inGameUI?.UpdateMissionInfo("Vehicle delivered!");
     }
 
     private void GasolinePicked()
@@ -61,5 +63,6 @@ public class Mission_CarDelivery : Mission
 
         gasolinePickedUp = true;
         UI.instance?.inGameUI?.ShowCenterMessage("Gasoline collected.");
+        UI.instance?.inGameUI?.UpdateMissionInfo("Deliver the vehicle to the drop zone.");
     }
 }

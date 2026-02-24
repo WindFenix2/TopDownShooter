@@ -54,15 +54,15 @@ public class Mission_EnemyHunt : Mission
 
         if (killsToGo <= 0)
         {
-            UI.instance.inGameUI.UpdateMissionInfo("Get to the evacuation point.");
+            UI.instance.inGameUI.UpdateMissionInfo("All targets eliminated.");
             MissionObject_HuntTarget.OnTargetKilled -= EliminateTarget;
         }
     }
 
     private void UpdateMissionUI()
     {
-        string missionText = "Eliminate " + amountToKill + " enemies with signal disruptor.";
-        string missionDetaiils = "Targets left: " + killsToGo;
+        string missionText = "Eliminate targets.";
+        string missionDetaiils = "Left: " + killsToGo;
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetaiils);
     }

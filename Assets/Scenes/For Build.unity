@@ -2025,9 +2025,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolSize: 20
-  weaponPickup: {fileID: 8396333148451498682, guid: 69c7326fdde85914a85f03d1501aca1c, type: 3}
-  ammoPickup: {fileID: 3180721079669588953, guid: 0dfc8df7c694d224286d020ef5f2a3d9, type: 3}
-  medkitPickup: {fileID: 0}
+  weaponPickup: {fileID: 4274772880390725256, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
+  ammoPickup: {fileID: 3227363847221596209, guid: 4eb4eb48413d77340b13531e54c31b85, type: 3}
+  medkitPickup: {fileID: 5466695851414228191, guid: 8d0059b0f4b9500438e33b9d9e437364, type: 3}
 --- !u!4 &269619838
 Transform:
   m_ObjectHideFlags: 0
@@ -3382,6 +3382,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491346025}
   m_CullTransparentMesh: 1
+--- !u!1 &494952044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 494952046}
+  - component: {fileID: 494952045}
+  m_Layer: 0
+  m_Name: '*** DropDirector ***'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &494952045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494952044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d08423894089534c9dc9fb86f9c9594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPickupPrefab: {fileID: 3227363847221596209, guid: 4eb4eb48413d77340b13531e54c31b85, type: 3}
+  medkitPickupPrefab: {fileID: 5466695851414228191, guid: 8d0059b0f4b9500438e33b9d9e437364, type: 3}
+  fewEnemiesThreshold: 20
+  manyEnemiesThreshold: 200
+  dropChanceWhenFewEnemies: 0.65
+  dropChanceWhenManyEnemies: 0.12
+  baseAmmoWeight: 1
+  baseMedkitWeight: 1
+  healthNeedWeightMultiplier: 3.5
+  ammoNeedWeightMultiplier: 3
+  ammoCriticalMagazines: 1
+  ammoLowMagazines: 2
+  ammoOkMagazines: 3
+  spawnOffset: {x: 0, y: 0.25, z: 0}
+  minDistFromPlayer: 2
+  safeCheckRadius: 0.5
+  offsetRange: 1.5
+  obstacleCheckHeight: 0.5
+  maxPlacementAttempts: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  navMeshSampleRange: 3
+  maxMedkitsOnGround: 3
+  maxAmmoOnGround: 4
+  pityThreshold: 4
+  budgetCooldown: 1
+  budgetOverrideChance: 0.15
+  pickupCooldownDuration: 30
+  cooldownWeightMultiplier: 0.15
+--- !u!4 &494952046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494952044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18, y: 0.709, z: -3.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519377376
 GameObject:
   m_ObjectHideFlags: 0
@@ -11364,63 +11438,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512026601}
   m_CullTransparentMesh: 1
---- !u!1001 &1515178050
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4249707792083270989, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6630811048521316626, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
-      propertyPath: m_Name
-      value: Car_Jeep
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6dbdd1cb2da349849a89bb7a36366023, type: 3}
 --- !u!1 &1516102842
 GameObject:
   m_ObjectHideFlags: 0
@@ -27450,6 +27467,7 @@ SceneRoots:
   - {fileID: 5961874}
   - {fileID: 1687976509}
   - {fileID: 269619838}
+  - {fileID: 494952046}
   - {fileID: 1697233988}
   - {fileID: 952644914}
   - {fileID: 7173095136623736774}
@@ -27458,5 +27476,4 @@ SceneRoots:
   - {fileID: 9068588822124900792}
   - {fileID: 1712936374}
   - {fileID: 1597402941}
-  - {fileID: 1515178050}
   - {fileID: 720912458}
