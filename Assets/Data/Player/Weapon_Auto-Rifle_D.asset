@@ -13,25 +13,26 @@ MonoBehaviour:
   m_Name: Weapon_Auto-Rifle_D
   m_EditorClassIdentifier: 
   weaponName: Blaster K-567
-  bulletDamage: 12
-  bulletsInMagazine: 32
-  magazineCapacity: 32
-  totalReserveAmmo: 192
+  bulletDamage: 10
+  bulletsInMagazine: 30
+  magazineCapacity: 30
+  totalReserveAmmo: 180
   shootType: 1
   bulletsPerShot: 1
-  fireRate: 8
+  fireRate: 10
   burstAvalible: 1
   burstActive: 0
   burstBulletsPerShot: 3
-  burstFireRate: 1.5
+  burstFireRate: 2
   burstFireDelay: 0.1
-  baseSpread: 0.15
-  maxSpread: 3
-  spreadIncreaseRate: 0.15
+  baseSpread: 0.2
+  maxSpread: 3.5
+  spreadIncreaseRate: 0.2
   weaponType: 2
   reloadSpeed: 1
   equipmentSpeed: 1
-  gunDistance: 25
+  gunDistance: 20
   cameraDistance: 7
+  pickupMass: 3
   weaponIcon: {fileID: -91878611, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
   weaponInfo: Good shreder for enemies

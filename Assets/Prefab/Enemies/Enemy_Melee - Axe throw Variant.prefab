@@ -9,12 +9,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1798904469698207450, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
+      propertyPath: axeDamage
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798904469698207450, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: meleeType
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1798904469698207450, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: axeThrowCooldown
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2683697981695365485, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4895822366045627693, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: maxHealth
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5957605082017663771, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: m_Name

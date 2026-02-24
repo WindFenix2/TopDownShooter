@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239057773979472322, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: weaponType
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7239057773979472322, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: grenadePerk
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239057773979472322, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: grenadeCooldown
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalPosition.x

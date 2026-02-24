@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Auto-Rifle_Data
   m_EditorClassIdentifier: 
   weaponType: 3
-  fireRate: 10
-  minBulletsPerAttack: 7
-  maxBulletsPerAttack: 10
+  fireRate: 8
+  minBulletsPerAttack: 5
+  maxBulletsPerAttack: 8
   minWeaponCooldown: 2
   maxWeaponCooldown: 3
-  bulletDamage: 4
-  bulletSpeed: 25
+  bulletDamage: 3
+  bulletSpeed: 22
   weaponSpread: 1

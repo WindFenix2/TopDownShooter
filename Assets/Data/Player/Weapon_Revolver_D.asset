@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: Weapon_Revolver_D
   m_EditorClassIdentifier: 
   weaponName: Bolt R-7
-  bulletDamage: 35
+  bulletDamage: 0
   bulletsInMagazine: 6
   magazineCapacity: 6
-  totalReserveAmmo: 36
+  totalReserveAmmo: 30
   shootType: 0
   bulletsPerShot: 1
-  fireRate: 2.5
+  fireRate: 3
   burstAvalible: 0
   burstActive: 0
   burstBulletsPerShot: 0
   burstFireRate: 0
   burstFireDelay: 0.1
-  baseSpread: 0.2
-  maxSpread: 2.5
+  baseSpread: 0.3
+  maxSpread: 2
   spreadIncreaseRate: 0.3
   weaponType: 1
-  reloadSpeed: 1.63
-  equipmentSpeed: 1.25
-  gunDistance: 25
+  reloadSpeed: 1.5
+  equipmentSpeed: 1
+  gunDistance: 15
   cameraDistance: 7
   pickupMass: 2.5
   weaponIcon: {fileID: 1440921872, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}

@@ -25442,15 +25442,15 @@ MonoBehaviour:
     bulletsInMagazine: 100
     magazineCapacity: 50
     totalReserveAmmo: 6161
-  weaponPickupPrefab: {fileID: 8396333148451498682, guid: 69c7326fdde85914a85f03d1501aca1c, type: 3}
+  weaponPickupPrefab: {fileID: 4274772880390725256, guid: 2abd3d2096550a446b4b040ca55b6a04, type: 3}
   pistolHomingRadius: 2
   pistolHomingMaxDistanceFromPlayer: 12
   pistolHomingTimeMin: 0.05
   pistolHomingTimeMax: 0.12
   pistolHomingTurnSpeedDeg: 900
   revolverStuckBulletPrefab: {fileID: 709851603379088992, guid: fdfa3fc99fc86f742a84f66f4405f843, type: 3}
-  revolverDetonationDamage: 150
-  revolverDetonationRadius: 2.2
+  revolverDetonationDamage: 100
+  revolverDetonationRadius: 2.5
   revolverDetonationWhatToDamage:
     serializedVersion: 2
     m_Bits: 2304

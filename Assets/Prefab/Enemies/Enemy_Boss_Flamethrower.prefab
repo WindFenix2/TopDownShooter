@@ -18763,7 +18763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2000
+  maxHealth: 1500
   currentHealth: 0
 --- !u!114 &8579631330992450095
 MonoBehaviour:
@@ -18808,7 +18808,7 @@ MonoBehaviour:
   hummerActiveDamage: 0
   activationPrefab: {fileID: 0}
   hummerCheckRadius: 0
-  jumpAttackDamage: 25
+  jumpAttackDamage: 50
   jumpAttackCooldown: 5
   travelTimeToTarget: 0.6
   minJumpDistanceRequired: 5
@@ -18846,6 +18846,7 @@ MonoBehaviour:
   - {fileID: 7523983396194334223}
   - {fileID: 7588972969450879627}
   initalBatterySclaeY: 0.2
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!114 &1220252299848808864
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1522754735549448092, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
       propertyPath: weaponType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1522754735549448092, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
       propertyPath: unstoppablePerk
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1522754735549448092, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
       propertyPath: advanceStoppingDistance
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5385993778063973254, guid: a60407b8a6a86714d80c91866e7b12fe, type: 3}
       propertyPath: maxHealth

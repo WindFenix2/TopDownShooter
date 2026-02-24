@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Rifle_Data
   m_EditorClassIdentifier: 
   weaponType: 4
-  fireRate: 1
+  fireRate: 0.8
   minBulletsPerAttack: 1
   maxBulletsPerAttack: 1
-  minWeaponCooldown: 2
-  maxWeaponCooldown: 3
-  bulletDamage: 35
-  bulletSpeed: 35
+  minWeaponCooldown: 3
+  maxWeaponCooldown: 5
+  bulletDamage: 25
+  bulletSpeed: 30
   weaponSpread: 0

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Revolver_Data
   m_EditorClassIdentifier: 
   weaponType: 1
-  fireRate: 1.4
-  minBulletsPerAttack: 3
-  maxBulletsPerAttack: 5
-  minWeaponCooldown: 2
-  maxWeaponCooldown: 3
-  bulletDamage: 12
-  bulletSpeed: 25
+  fireRate: 1.2
+  minBulletsPerAttack: 2
+  maxBulletsPerAttack: 4
+  minWeaponCooldown: 1.5
+  maxWeaponCooldown: 2.5
+  bulletDamage: 15
+  bulletSpeed: 22
   weaponSpread: 0.1

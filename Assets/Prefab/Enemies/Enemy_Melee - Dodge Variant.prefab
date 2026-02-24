@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: meleeType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1798904469698207450, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
+      propertyPath: dodgeCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2683697981695365485, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.73
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4895822366045627693, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: maxHealth
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5957605082017663771, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
       propertyPath: m_Name

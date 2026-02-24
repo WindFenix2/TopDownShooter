@@ -2352,6 +2352,7 @@ MonoBehaviour:
   damagePoints:
   - {fileID: 1811393193378666075}
   attackRadius: 0.3
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!1 &3036481154623336642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,6 +3981,7 @@ MonoBehaviour:
   damagePoints:
   - {fileID: 7417555368889897548}
   attackRadius: 0.3
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!1 &4930476608646041847
 GameObject:
   m_ObjectHideFlags: 0
@@ -4474,6 +4476,7 @@ MonoBehaviour:
   - {fileID: 4726011346821419786}
   - {fileID: 9026187821916486595}
   attackRadius: 0.3
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!1 &5622337649236672337
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,6 +5008,8 @@ MonoBehaviour:
     m_Bits: 256
   idleTime: 60
   aggresionRange: 10
+  alertNearbyAlliesOnHit: 1
+  allyAlertRadius: 10
   walkSpeed: 1.5
   runSpeed: 4
   turnSpeed: 5
@@ -5025,7 +5030,7 @@ MonoBehaviour:
   axeThrowCooldown: 10
   axeStartPoint: {fileID: 1599501723409535013}
   attackData:
-    attackDamage: 21
+    attackDamage: 18
     attackName: Sword slash
     attackRange: 1
     moveSpeed: 0
@@ -5040,7 +5045,7 @@ MonoBehaviour:
     attackIndex: 0
     animationSpeed: 1
     attackType: 1
-  - attackDamage: 21
+  - attackDamage: 18
     attackName: Sword slash
     attackRange: 1
     moveSpeed: 0
@@ -5121,6 +5126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionObjectKey: {fileID: 0}
+  enableResourceDrops: 1
+  isBoss: 0
+  bossWeaponDropChance: 0.5
 --- !u!114 &2860086688743086101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5271,6 +5279,7 @@ MonoBehaviour:
   damagePoints:
   - {fileID: 8335203767821661525}
   attackRadius: 0.3
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!1 &6167075257268542298
 GameObject:
   m_ObjectHideFlags: 0
@@ -7051,6 +7060,7 @@ MonoBehaviour:
   damagePoints:
   - {fileID: 6693899764724879696}
   attackRadius: 0.3
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!1 &8632151989016426222
 GameObject:
   m_ObjectHideFlags: 0
@@ -7548,6 +7558,7 @@ MonoBehaviour:
   damagePoints:
   - {fileID: 5645384499789356947}
   attackRadius: 0.4
+  trailColor: {r: 1, g: 0.1, b: 0.1, a: 1}
 --- !u!1 &9095967208251191565
 GameObject:
   m_ObjectHideFlags: 0
