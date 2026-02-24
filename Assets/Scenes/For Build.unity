@@ -2027,6 +2027,7 @@ MonoBehaviour:
   poolSize: 20
   weaponPickup: {fileID: 8396333148451498682, guid: 69c7326fdde85914a85f03d1501aca1c, type: 3}
   ammoPickup: {fileID: 3180721079669588953, guid: 0dfc8df7c694d224286d020ef5f2a3d9, type: 3}
+  medkitPickup: {fileID: 0}
 --- !u!4 &269619838
 Transform:
   m_ObjectHideFlags: 0
@@ -7434,7 +7435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107, y: -14}
+  m_AnchoredPosition: {x: 107, y: -27}
   m_SizeDelta: {x: 531.1403, y: 298.7666}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1126358733
@@ -7457,7 +7458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b6f6a8e8307d2374e93d10fc9794581a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb4cba2750cc5194682a6af56ab34795, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8219,7 +8220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1194937553
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8259,7 +8260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DUNE DASH
+  m_text: EVAC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88acd1008e7fd3e4f97b7b05c772012f, type: 2}
   m_sharedMaterial: {fileID: 7344536288787732611, guid: 88acd1008e7fd3e4f97b7b05c772012f, type: 2}
@@ -9241,7 +9242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -593.67, y: 38.184}
+  m_AnchoredPosition: {x: -593.67, y: -35}
   m_SizeDelta: {x: 388.66, y: 526.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348320288
@@ -9731,7 +9732,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 172, y: 0}
-  m_SizeDelta: {x: 388.6555, y: 827.965}
+  m_SizeDelta: {x: 388.6555, y: 790}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1411408853
 MonoBehaviour:
@@ -15832,6 +15833,8 @@ MonoBehaviour:
   missionDetails: {fileID: 2063005283}
   carHealthBar: {fileID: 1379589895}
   carSpeedText: {fileID: 1451440572}
+  defaultCenterMessageDuration: 1.4
+  defaultCenterMessageFadeTime: 0.5
 --- !u!1 &1841824831
 GameObject:
   m_ObjectHideFlags: 0
@@ -18189,7 +18192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2017327581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18205,10 +18208,10 @@ RectTransform:
   - {fileID: 1843567163}
   m_Father: {fileID: 1348320287}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 194.33, y: -165}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017327582
 MonoBehaviour:
@@ -23105,7 +23108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimLaser: {fileID: 5705817702565076673}
-  aimSprite: {fileID: 0}
   preciseAimCamDistance: 6
   regularAimCamDistance: 7
   camChangeRate: 5
@@ -25411,6 +25413,7 @@ MonoBehaviour:
   bulletImpactForce: 100
   bulletPrefab: {fileID: 709851603379088992, guid: 5d6f9576cecc23b428a0b635b90998be, type: 3}
   bulletSpeed: 15
+  rifleBulletSpeed: 50
   weaponHolder: {fileID: 25774589421338122}
   maxSlots: 2
   weaponSlots:
@@ -25466,7 +25469,7 @@ MonoBehaviour:
   shieldPerKill: 50
   maxShield: 100
   boundWeaponType: 3
-  persistShieldAfterUnequip: 0
+  invulnerableAfterBreakSeconds: 1
   hitboxRadius: 1.6
   shieldVfxPrefab: {fileID: 0}
   vfxParent: {fileID: 0}
