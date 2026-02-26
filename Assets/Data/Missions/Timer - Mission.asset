@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Timer - Mission
   m_EditorClassIdentifier: 
   missionName: Race against time!
-  missionDescription: Your scanners detected upcoming sandstorm.You have less than
+  missionDescription: Your scanners detected upcoming sandstorm. You have less than
     15 minutes to reach the airplane before the conditions become untenable for a
     safe takeoff.
-  time: 300
+  availableLevelParts: []
+  lastLevelPartOverride: {fileID: 0}
+  hasExit: 1
+  maxLevelParts: 0
+  time: 900

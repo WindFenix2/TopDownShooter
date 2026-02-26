@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Car delivery - Mission
   m_EditorClassIdentifier: 
   missionName: A Mechanical Lifeline
-  missionDescription: You need to find a functioning vehicle and deliver it to evacuation
-    spot. The parts of the vehicle can be used to repair evacuation plane.
+  missionDescription: Your task is to find the right car and steal it from enemy
+    territory. It might be out of gas, so it's best to find some in advance.
+  availableLevelParts: []
+  lastLevelPartOverride: {fileID: 0}
+  hasExit: 1
+  maxLevelParts: 0
+  vehiclesToSpawn: 1
+  gasolineToSpawn: 3

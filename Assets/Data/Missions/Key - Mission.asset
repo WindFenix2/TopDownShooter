@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Key - Mission
   m_EditorClassIdentifier: 
   missionName: The Key to Flight
-  missionDescription: You must locate and defeat the key-holder to retrieve the key.
-    Be cautious, as this enemy is might be heavily guarded.
+  missionDescription: Your task is to escape the trap. To do this, you need to find
+    the plane key from one of the enemies and fly away. Be careful, as this enemy
+    may be heavily guarded.
+  availableLevelParts: []
+  lastLevelPartOverride: {fileID: 0}
+  hasExit: 1
+  maxLevelParts: 0
   key: {fileID: 2738367108384721903, guid: e393f6204e0cd3b43b66828356769121, type: 3}

@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Hunt - Mission
   m_EditorClassIdentifier: 
   missionName: Scavenger Hunt
-  missionDescription: Hunt 12 enemies equipped with signal disruptors. These devices
-    are interfering with the plane's radar system, preventing a safe takeoff. Eliminate
-    the threat and clear the path for your escape.
+  missionDescription: You've received information about a group of enemies in the
+    area. Your task is to eliminate all VIP targets.
   availableLevelParts: []
   lastLevelPartOverride: {fileID: 0}
   hasExit: 0
   maxLevelParts: 0
   amountToKill: 12
-  enemyType: 0
   showEnemyTracker: 1

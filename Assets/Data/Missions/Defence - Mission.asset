@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Defence - Mission
   m_EditorClassIdentifier: 
   missionName: Final Defense
-  missionDescription: "Get to the exit point and defend the airplane till it\u2019s
-    ready to take off."
+  missionDescription: The enemies have learned of the location of our radio tower.
+    You must protect this object from waves of enemies.
   availableLevelParts: []
   lastLevelPartOverride: {fileID: 0}
   hasExit: 0
