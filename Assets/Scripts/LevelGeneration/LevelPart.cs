@@ -117,4 +117,32 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
     }
 
     public Enemy[] MyEnemies() => GetComponentsInChildren<Enemy>(true);
+
+    public List<Enemy> SpawnEnemiesFromSpawnPoints()
+    {
+        List<Enemy> spawnedEnemies = new List<Enemy>();
+        EnemySpawnPoint[] spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
+
+        foreach (EnemySpawnPoint spawnPoint in spawnPoints)
+        {
+            Enemy enemy = spawnPoint.SpawnRandomEnemy();
+            if (enemy != null)
+                spawnedEnemies.Add(enemy);
+        }
+
+        return spawnedEnemies;
+    }
+
+    public void ActivatePickupSpawnPoints()
+    {
+        PickupSpawnPoint[] pickupPoints = GetComponentsInChildren<PickupSpawnPoint>();
+
+        foreach (PickupSpawnPoint pickupPoint in pickupPoints)
+        {
+            pickupPoint.SpawnPickup();
+        }
+    }
+
+    public EnemySpawnPoint[] GetEnemySpawnPoints() => GetComponentsInChildren<EnemySpawnPoint>();
 }
+

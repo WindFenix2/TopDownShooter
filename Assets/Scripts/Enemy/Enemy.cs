@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
     public AudioManager audioManager { get; private set; }
 
     public bool IsDead { get; private set; }
+    public event Action onDeath;
 
     [Header("Melee check (stable hit)")]
     [SerializeField] private int meleeNonAllocBufferSize = 16;
@@ -187,6 +189,7 @@ public class Enemy : MonoBehaviour
             return;
 
         IsDead = true;
+        onDeath?.Invoke();
 
         dropController.DropItems();
 

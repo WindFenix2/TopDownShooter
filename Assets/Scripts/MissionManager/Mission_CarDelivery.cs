@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Car delivery - Mission", menuName = "Missions/Car delivery - Mission")]
@@ -9,9 +9,16 @@ public class Mission_CarDelivery : Mission
     private bool carWasDelivered;
     private bool gasolinePickedUp;
 
+    [Header("Spawn Config")]
+    [Tooltip("How many vehicles to spawn (1 recommended).")]
+    public int vehiclesToSpawn = 1;
+
+    [Tooltip("How many gasoline pickups to spawn from available points.")]
+    public int gasolineToSpawn = 3;
+
     public override void StartMission()
     {
-        FindObjectOfType<MissionObject_CarDeliveryZone>(true).gameObject.SetActive(true);
+        FindObjectOfType<MissionObject_CarDeliveryZone>(true)?.gameObject.SetActive(true);
 
         carWasDelivered = false;
         gasolinePickedUp = false;
@@ -22,18 +29,53 @@ public class Mission_CarDelivery : Mission
         if (MissionManager.instance != null)
             MissionManager.instance.ClearMissionItems();
 
-        Car_Controller[] cars = FindObjectsOfType<Car_Controller>();
+        MissionSpawnPoint[] allPoints = FindObjectsOfType<MissionSpawnPoint>();
 
-        foreach (var car in cars)
+        MissionSpawnPoint[] vehiclePoints = allPoints
+            .Where(p => p.category == MissionSpawnPoint.SpawnCategory.Vehicle).ToArray();
+        MissionSpawnPoint[] gasolinePoints = allPoints
+            .Where(p => p.category == MissionSpawnPoint.SpawnCategory.Gasoline).ToArray();
+
+        if (vehiclePoints.Length > 0)
         {
-            car.AddComponent<MissionObject_CarToDeliver>();
+            GameObject[] vehicles = MissionSpawnPoint.SpawnRandom(vehiclePoints, vehiclesToSpawn);
+            foreach (GameObject vehicleGO in vehicles)
+            {
+                if (vehicleGO == null) continue;
 
-            Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
-            if (fuel == null)
-                fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
+                Car_Controller car = vehicleGO.GetComponent<Car_Controller>();
+                if (car != null)
+                {
+                    car.gameObject.AddComponent<MissionObject_CarToDeliver>();
 
-            fuel.SetRequiresFuel(true);
-            fuel.SetRefueled(false);
+                    Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
+                    if (fuel == null)
+                        fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
+
+                    fuel.SetRequiresFuel(true);
+                    fuel.SetRefueled(false);
+                }
+            }
+        }
+        else
+        {
+            Car_Controller[] cars = FindObjectsOfType<Car_Controller>();
+            foreach (var car in cars)
+            {
+                car.gameObject.AddComponent<MissionObject_CarToDeliver>();
+
+                Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
+                if (fuel == null)
+                    fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
+
+                fuel.SetRequiresFuel(true);
+                fuel.SetRefueled(false);
+            }
+        }
+
+        if (gasolinePoints.Length > 0)
+        {
+            MissionSpawnPoint.SpawnRandom(gasolinePoints, gasolineToSpawn);
         }
 
         UI.instance?.inGameUI?.ShowCenterMessage("Find gasoline and refuel the vehicle.");

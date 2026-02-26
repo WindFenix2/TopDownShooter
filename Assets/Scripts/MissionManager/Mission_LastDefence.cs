@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,35 +5,45 @@ using UnityEngine;
 public class Mission_LastDefence : Mission
 {
     public bool defenceBegun = false;
+    private bool defenceCompleted = false;
 
-    [Header("Cooldown and duration")]
-    public float defenceDuration = 120;
-    private float defenceTimer;
-    public float waveCooldown = 15;
-    private float waveTimer;
+    [Header("Defence Object")]
+    [Tooltip("Name of the object being defended (shown in UI).")]
+    public string defenceObjectName = "the radio tower";
+
+    [Header("Wave System")]
+    public List<WaveData> waves = new List<WaveData>();
+    private int currentWaveIndex = -1;
+    private int enemiesAliveInWave;
+    private float waveCountdownTimer;
+    private bool waitingForNextWave;
+
+    [Header("Cooldown between waves")]
+    public float timeBetweenWaves = 10f;
 
     [Header("Respawn details")]
+    [Tooltip("How many of the closest MissionObject_EnemyRespawnPoint to use for spawning.")]
     public int amountOfRespawnPoints = 2;
-    public List<Transform> respawnPoints;
+
+    private List<Transform> respawnPoints;
     private Vector3 defencePoint;
-    [Space]
-
-    public int enemiesPerWave;
-    public GameObject[] possibleEnemies;
-
-    private string defenceTimerText;
 
     private void OnEnable()
     {
         defenceBegun = false;
+        defenceCompleted = false;
+        currentWaveIndex = -1;
+        enemiesAliveInWave = 0;
+        waitingForNextWave = false;
     }
 
     public override void StartMission()
     {
-        defencePoint = FindObjectOfType<MissionEnd_Trigger>().transform.position;
+        defencePoint = FindObjectOfType<MissionEnd_Trigger>()?.transform.position ?? Vector3.zero;
         respawnPoints = new List<Transform>(ClosestPoints(amountOfRespawnPoints));
 
-        UI.instance.inGameUI.UpdateMissionInfo("Prepare for the attack and get to the evacuation point.");
+        UI.instance.inGameUI.UpdateMissionInfo(
+            $"Prepare for the attack! Defend {defenceObjectName}.");
     }
 
     public override bool MissionCompleted()
@@ -45,54 +54,128 @@ public class Mission_LastDefence : Mission
             return false;
         }
 
-        return defenceTimer < 0;
+        return defenceCompleted;
     }
 
     public override void UpdateMission()
     {
-        if (defenceBegun == false)
+        if (defenceBegun == false || defenceCompleted)
             return;
 
-        waveTimer -= Time.deltaTime;
-        if(defenceTimer > 0)
-            defenceTimer -= Time.deltaTime;
 
-        if (waveTimer < 0)
+        if (waitingForNextWave)
         {
-            CreateNewEnemies(enemiesPerWave);
-            waveTimer = waveCooldown;
+            waveCountdownTimer -= Time.deltaTime;
+
+            if (waveCountdownTimer <= 0)
+            {
+                waitingForNextWave = false;
+                StartNextWave();
+            }
+            else
+            {
+                string countdownText = Mathf.CeilToInt(waveCountdownTimer).ToString();
+                UI.instance.inGameUI.UpdateMissionInfo(
+                    $"Wave {currentWaveIndex + 2} incoming!",
+                    $"Prepare yourself... {countdownText}s");
+            }
+            return;
         }
 
-        defenceTimerText = System.TimeSpan.FromSeconds(defenceTimer).ToString("mm':'ss");
 
-        string missionText = "Hold your position.";
-        string missionDetails = "Time left: " + defenceTimerText;
+        if (currentWaveIndex >= 0 && enemiesAliveInWave <= 0)
+        {
+            if (currentWaveIndex >= waves.Count - 1)
+            {
+                defenceCompleted = true;
+                UI.instance.inGameUI.UpdateMissionInfo("Defence complete! You survived!");
 
-        UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
-        
+                if (!hasExit)
+                    GameManager.instance.GameCompleted();
+
+                return;
+            }
+            else
+            {
+                waitingForNextWave = true;
+                waveCountdownTimer = timeBetweenWaves;
+                UI.instance.inGameUI.UpdateMissionInfo(
+                    $"Wave {currentWaveIndex + 1} cleared!",
+                    "Next wave approaching...");
+            }
+        }
+        else
+        {
+            string missionText = $"Defend {defenceObjectName}!";
+            string missionDetails = $"Wave {currentWaveIndex + 1}/{waves.Count} — Enemies left: {enemiesAliveInWave}";
+            UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
+        }
     }
 
     private void StartDefenceEvent()
     {
-        waveTimer = .5f;
-        defenceTimer = defenceDuration;
         defenceBegun = true;
+        StartNextWave();
     }
 
-    private void CreateNewEnemies(int amount)
+    private void StartNextWave()
     {
-        for (int i = 0; i < amount; i++)
+        currentWaveIndex++;
+
+        if (currentWaveIndex >= waves.Count)
         {
-            int randomEnemyIndex = Random.Range(0,possibleEnemies.Length);
-            int randomRespawnIndex = Random.Range(0, respawnPoints.Count);
-
-            Transform randomRespawnPoint = respawnPoints[randomRespawnIndex];
-            GameObject randomEnemy = possibleEnemies[randomEnemyIndex];
-
-            randomEnemy.GetComponent<Enemy>().aggresionRange = 100;
-
-            ObjectPool.instance.GetObject(randomEnemy, randomRespawnPoint);
+            defenceCompleted = true;
+            return;
         }
+
+        WaveData wave = waves[currentWaveIndex];
+        enemiesAliveInWave = 0;
+
+        SpawnEnemiesForWave(wave.meleeEnemies, wave.meleeCount);
+        SpawnEnemiesForWave(wave.rangeEnemies, wave.rangeCount);
+        SpawnEnemiesForWave(wave.bossPrefabs, wave.bossCount);
+
+        string waveInfo = $"Wave {currentWaveIndex + 1}/{waves.Count} started!";
+        UI.instance.inGameUI.ShowCenterMessage(waveInfo);
+    }
+
+    private void SpawnEnemiesForWave(GameObject[] possiblePrefabs, int count)
+    {
+        if (possiblePrefabs == null || possiblePrefabs.Length == 0 || count <= 0)
+            return;
+
+        for (int i = 0; i < count; i++)
+        {
+            int randomEnemyIndex = Random.Range(0, possiblePrefabs.Length);
+            SpawnSingleEnemy(possiblePrefabs[randomEnemyIndex]);
+        }
+    }
+
+    private void SpawnSingleEnemy(GameObject prefab)
+    {
+        if (prefab == null || respawnPoints == null || respawnPoints.Count == 0)
+            return;
+
+        int randomRespawnIndex = Random.Range(0, respawnPoints.Count);
+        Transform spawnPoint = respawnPoints[randomRespawnIndex];
+
+        prefab.GetComponent<Enemy>().aggresionRange = 100;
+        GameObject spawned = ObjectPool.instance.GetObject(prefab, spawnPoint);
+
+        if (spawned != null)
+        {
+            Enemy enemy = spawned.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemiesAliveInWave++;
+                enemy.onDeath += OnWaveEnemyDied;
+            }
+        }
+    }
+
+    private void OnWaveEnemyDied()
+    {
+        enemiesAliveInWave = Mathf.Max(0, enemiesAliveInWave - 1);
     }
 
     private List<Transform> ClosestPoints(int amount)
@@ -101,7 +184,7 @@ public class Mission_LastDefence : Mission
         List<MissionObject_EnemyRespawnPoint> allPoints =
             new List<MissionObject_EnemyRespawnPoint>(FindObjectsOfType<MissionObject_EnemyRespawnPoint>());
 
-        while(closestPoints.Count < amount && allPoints.Count > 0)
+        while (closestPoints.Count < amount && allPoints.Count > 0)
         {
             float shortestDistance = float.MaxValue;
             MissionObject_EnemyRespawnPoint closestPoint = null;
@@ -127,3 +210,28 @@ public class Mission_LastDefence : Mission
         return closestPoints;
     }
 }
+
+[System.Serializable]
+public struct WaveData
+{
+    public string waveName;
+
+    [Header("Melee")]
+    [Tooltip("Possible melee enemy prefabs (random pick).")]
+    public GameObject[] meleeEnemies;
+    [Tooltip("How many melee enemies to spawn.")]
+    public int meleeCount;
+
+    [Header("Range")]
+    [Tooltip("Possible range enemy prefabs (random pick).")]
+    public GameObject[] rangeEnemies;
+    [Tooltip("How many range enemies to spawn.")]
+    public int rangeCount;
+
+    [Header("Boss")]
+    [Tooltip("Possible boss enemy prefabs (random pick).")]
+    public GameObject[] bossPrefabs;
+    [Tooltip("How many bosses to spawn.")]
+    public int bossCount;
+}
+

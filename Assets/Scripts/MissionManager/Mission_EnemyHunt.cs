@@ -1,13 +1,16 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Hunt - Mission", menuName = "Missions/Hunt - Mission")]
 
 public class Mission_EnemyHunt : Mission
 {
+    [Tooltip("Total enemies to eliminate.")]
     public int amountToKill = 12;
-    public EnemyType enemyType;
+
+    [Header("Enemy Tracker")]
+    [Tooltip("Show arrow pointing to nearest target enemy.")]
+    public bool showEnemyTracker = true;
 
     private int killsToGo;
 
@@ -18,28 +21,18 @@ public class Mission_EnemyHunt : Mission
 
         MissionObject_HuntTarget.OnTargetKilled += EliminateTarget;
 
-        List<Enemy> validEnemies = new List<Enemy>();
+        List<Enemy> allEnemies = new List<Enemy>(LevelGenerator.instance.GetEnemyList());
 
-        if (enemyType == EnemyType.Random)
-            validEnemies = LevelGenerator.instance.GetEnemyList();
-        else
+        int toMark = Mathf.Min(amountToKill, allEnemies.Count);
+        for (int i = 0; i < toMark; i++)
         {
-            foreach (Enemy enemy in LevelGenerator.instance.GetEnemyList())
-            {
-                if (enemy.enemyType == enemyType)
-                    validEnemies.Add(enemy);
-            }
+            int randomIndex = Random.Range(0, allEnemies.Count);
+            allEnemies[randomIndex].gameObject.AddComponent<MissionObject_HuntTarget>();
+            allEnemies.RemoveAt(randomIndex);
         }
 
-        for (int i = 0; i < amountToKill; i++)
-        {
-            if (validEnemies.Count <= 0)
-                return;
-
-            int randomIndex = Random.Range(0, validEnemies.Count);
-            validEnemies[randomIndex].AddComponent<MissionObject_HuntTarget>();
-            validEnemies.RemoveAt(randomIndex);
-        }
+        if (showEnemyTracker && UI_EnemyTracker.instance != null)
+            UI_EnemyTracker.instance.SetTracking(true);
     }
 
     public override bool MissionCompleted()
@@ -56,6 +49,14 @@ public class Mission_EnemyHunt : Mission
         {
             UI.instance.inGameUI.UpdateMissionInfo("All targets eliminated.");
             MissionObject_HuntTarget.OnTargetKilled -= EliminateTarget;
+
+            if (UI_EnemyTracker.instance != null)
+                UI_EnemyTracker.instance.SetTracking(false);
+
+            if (!hasExit)
+            {
+                GameManager.instance.GameCompleted();
+            }
         }
     }
 
@@ -68,3 +69,4 @@ public class Mission_EnemyHunt : Mission
     }
 
 }
+

@@ -8,7 +8,19 @@ public abstract class Mission : ScriptableObject
 
     [TextArea]
     public string missionDescription;
-    
+
+    [Header("Level Generation Config")]
+    [Tooltip("Level parts available for this mission. If empty, uses LevelGenerator defaults.")]
+    public List<Transform> availableLevelParts;
+
+    [Tooltip("Override for the last level part (e.g. plane exit, empty exit). If null, uses LevelGenerator default.")]
+    public Transform lastLevelPartOverride;
+
+    [Tooltip("If false, no exit is generated (e.g. EnemyHunt, LastDefence). Player wins by completing the objective.")]
+    public bool hasExit = true;
+
+    [Tooltip("Max number of level parts to generate (0 = use LevelGenerator default). Use small values for arena missions.")]
+    public int maxLevelParts = 0;
 
     public abstract void StartMission();
     public abstract bool MissionCompleted();

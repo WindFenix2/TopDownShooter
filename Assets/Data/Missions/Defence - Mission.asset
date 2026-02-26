@@ -15,21 +15,78 @@ MonoBehaviour:
   missionName: Final Defense
   missionDescription: "Get to the exit point and defend the airplane till it\u2019s
     ready to take off."
+  availableLevelParts: []
+  lastLevelPartOverride: {fileID: 0}
+  hasExit: 0
+  maxLevelParts: 3
   defenceBegun: 0
-  defenceDuration: 120
-  waveCooldown: 15
+  defenceObjectName: the radio tower
+  waves:
+  - waveName: Wave 1
+    meleeEnemies:
+    - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+    - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+    - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+    - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
+    meleeCount: 5
+    rangeEnemies: []
+    rangeCount: 0
+    bossPrefabs: []
+    bossCount: 0
+  - waveName: Wave 2
+    meleeEnemies: []
+    meleeCount: 0
+    rangeEnemies:
+    - {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
+    - {fileID: 5134440609213329090, guid: 184991c25f5707c48864e99f9015fbd2, type: 3}
+    - {fileID: 2316178017613053871, guid: 1644fab0bb72a214faaaf3c40ea46ae7, type: 3}
+    - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
+    - {fileID: 6153876283241352372, guid: 7f79f90bf4369e84c9ca0ea17848904d, type: 3}
+    rangeCount: 5
+    bossPrefabs: []
+    bossCount: 0
+  - waveName: Wave 3
+    meleeEnemies:
+    - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+    - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+    - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+    - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
+    meleeCount: 3
+    rangeEnemies:
+    - {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
+    - {fileID: 5134440609213329090, guid: 184991c25f5707c48864e99f9015fbd2, type: 3}
+    - {fileID: 2316178017613053871, guid: 1644fab0bb72a214faaaf3c40ea46ae7, type: 3}
+    - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
+    - {fileID: 6153876283241352372, guid: 7f79f90bf4369e84c9ca0ea17848904d, type: 3}
+    rangeCount: 3
+    bossPrefabs: []
+    bossCount: 0
+  - waveName: Wave 4
+    meleeEnemies: []
+    meleeCount: 0
+    rangeEnemies: []
+    rangeCount: 0
+    bossPrefabs:
+    - {fileID: 7364281645933512702, guid: a02d3f5acaa542e4f8a453a3bc7e1916, type: 3}
+    - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
+    bossCount: 1
+  - waveName: Wave 5
+    meleeEnemies:
+    - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+    - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+    - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+    - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
+    meleeCount: 2
+    rangeEnemies:
+    - {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
+    - {fileID: 5134440609213329090, guid: 184991c25f5707c48864e99f9015fbd2, type: 3}
+    - {fileID: 2316178017613053871, guid: 1644fab0bb72a214faaaf3c40ea46ae7, type: 3}
+    - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
+    - {fileID: 6153876283241352372, guid: 7f79f90bf4369e84c9ca0ea17848904d, type: 3}
+    rangeCount: 2
+    bossPrefabs:
+    - {fileID: 7364281645933512702, guid: a02d3f5acaa542e4f8a453a3bc7e1916, type: 3}
+    - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
+    bossCount: 1
+  timeBetweenWaves: 10
   amountOfRespawnPoints: 2
-  respawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  enemiesPerWave: 4
-  possibleEnemies:
-  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
-  - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
-  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
-  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  - {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
-  - {fileID: 5134440609213329090, guid: 184991c25f5707c48864e99f9015fbd2, type: 3}
-  - {fileID: 2316178017613053871, guid: 1644fab0bb72a214faaaf3c40ea46ae7, type: 3}
-  - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  - {fileID: 6153876283241352372, guid: 7f79f90bf4369e84c9ca0ea17848904d, type: 3}

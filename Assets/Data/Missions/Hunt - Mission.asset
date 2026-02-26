@@ -16,5 +16,10 @@ MonoBehaviour:
   missionDescription: Hunt 12 enemies equipped with signal disruptors. These devices
     are interfering with the plane's radar system, preventing a safe takeoff. Eliminate
     the threat and clear the path for your escape.
+  availableLevelParts: []
+  lastLevelPartOverride: {fileID: 0}
+  hasExit: 0
+  maxLevelParts: 0
   amountToKill: 12
   enemyType: 0
+  showEnemyTracker: 1

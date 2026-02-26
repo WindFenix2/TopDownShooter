@@ -10,22 +10,25 @@ public class LevelGenerator : MonoBehaviour
     // Enemies
     private List<Enemy> enemyList;
 
-    // NavMesh
     [SerializeField] private NavMeshSurface navMeshSurface;
     [Space]
 
-    // Level parts
+    [Header("Shared Level Parts Pool")]
+    [Tooltip("Default exit part. Missions can override this via 'lastLevelPartOverride'.")]
     [SerializeField] private Transform lastLevelPart;
+    [Tooltip("Default level parts list. Missions can override via 'availableLevelParts'. If mission leaves it empty, these are used.")]
     [SerializeField] private List<Transform> levelParts;
     private List<Transform> currentLevelParts;
     private List<Transform> generatedLevelParts = new List<Transform>();
 
-    // Snap points
+    private Transform activeLastLevelPart;
+    private bool activeHasExit = true;
+
     [SerializeField] private SnapPoint nextSnapPoint;
     private SnapPoint defaultSnapPoint;
 
-    // Cooldown
     [Space]
+    [Tooltip("Delay between generating each level part (seconds). Controls generation speed.")]
     [SerializeField] private float generationCooldown;
     private float cooldownTimer;
     private bool generationOver = true;
@@ -68,7 +71,39 @@ public class LevelGenerator : MonoBehaviour
     {
         nextSnapPoint = defaultSnapPoint;
         generationOver = false;
-        currentLevelParts = new List<Transform>(levelParts);
+
+        // Resolve mission config
+        Mission mission = MissionManager.instance != null ? MissionManager.instance.currentMission : null;
+
+        if (mission != null && mission.availableLevelParts != null && mission.availableLevelParts.Count > 0)
+            currentLevelParts = new List<Transform>(mission.availableLevelParts);
+        else
+            currentLevelParts = new List<Transform>(levelParts);
+
+        // Limit level parts count if mission specifies it
+        if (mission != null && mission.maxLevelParts > 0 && currentLevelParts.Count > mission.maxLevelParts)
+        {
+            // Shuffle and trim to desired count
+            for (int i = currentLevelParts.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                Transform temp = currentLevelParts[i];
+                currentLevelParts[i] = currentLevelParts[j];
+                currentLevelParts[j] = temp;
+            }
+            currentLevelParts.RemoveRange(mission.maxLevelParts, currentLevelParts.Count - mission.maxLevelParts);
+        }
+
+        if (mission != null)
+        {
+            activeHasExit = mission.hasExit;
+            activeLastLevelPart = mission.lastLevelPartOverride != null ? mission.lastLevelPartOverride : lastLevelPart;
+        }
+        else
+        {
+            activeHasExit = true;
+            activeLastLevelPart = lastLevelPart;
+        }
 
         DestroyOldLevelPartsAndEnemies();
     }
@@ -92,7 +127,9 @@ public class LevelGenerator : MonoBehaviour
     private void FinishGeneration()
     {
         generationOver = true;
-        GenerateNextLevelPart();
+
+        if (activeHasExit && activeLastLevelPart != null)
+            GenerateNextLevelPart();
 
         navMeshSurface.BuildNavMesh();
 
@@ -111,7 +148,7 @@ public class LevelGenerator : MonoBehaviour
         Transform newPart = null;
 
         if (generationOver)
-            newPart = Instantiate(lastLevelPart);
+            newPart = Instantiate(activeLastLevelPart);
         else
             newPart = Instantiate(ChooseRandomPart());
 
@@ -127,7 +164,11 @@ public class LevelGenerator : MonoBehaviour
         }
 
         nextSnapPoint = levelPartScript.GetExitPoint();
+
         enemyList.AddRange(levelPartScript.MyEnemies());
+        enemyList.AddRange(levelPartScript.SpawnEnemiesFromSpawnPoints());
+
+        levelPartScript.ActivatePickupSpawnPoints();
     }
 
     private Transform ChooseRandomPart()
@@ -143,7 +184,7 @@ public class LevelGenerator : MonoBehaviour
 
     public Enemy GetRandomEnemy()
     {
-        int randomIndex = Random.Range(0,enemyList.Count);
+        int randomIndex = Random.Range(0, enemyList.Count);
 
         return enemyList[randomIndex];
     }
