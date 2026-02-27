@@ -1,5 +1,217 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &29897741261982910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7711347764511195760}
+  - component: {fileID: 2500658084964844435}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (38)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7711347764511195760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29897741261982910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.53, y: 0.59, z: -83.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2500658084964844435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29897741261982910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &39404599269639461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8735743304053721938}
+  - component: {fileID: 1781231073980651750}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8735743304053721938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39404599269639461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.62, y: 0.59, z: -100.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1781231073980651750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39404599269639461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &53373158548191380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829869610744173487}
+  - component: {fileID: 2960374365666270179}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1829869610744173487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53373158548191380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.55, y: 0.54, z: -43.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2960374365666270179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53373158548191380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &80831737483617068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7038085704676726549}
+  - component: {fileID: 5622140197785112791}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7038085704676726549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80831737483617068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.88, y: 0.54, z: -74.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5622140197785112791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80831737483617068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &91923806497817800
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +386,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5085716, y: 1, z: 2.4827118}
   m_Center: {x: -0.2196436, y: 0, z: -0.000024193383}
+--- !u!1 &209479947095894030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6576550950943453825}
+  - component: {fileID: 3265611832868680340}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6576550950943453825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209479947095894030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.84, y: 0.59, z: -109.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3265611832868680340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209479947095894030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &215432252014905298
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +472,59 @@ Transform:
   - {fileID: 4482945112136614773}
   m_Father: {fileID: 293428019962968012}
   m_LocalEulerAnglesHint: {x: 0, y: -542.199, z: 0}
+--- !u!1 &249576669710971098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6787743324143400471}
+  - component: {fileID: 2935584517823570301}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (28)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6787743324143400471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249576669710971098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.55, y: 0.54, z: -43.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2935584517823570301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249576669710971098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &566760480872980747
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +777,536 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &706423467477365688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3681368868436532643}
+  - component: {fileID: 5673935230267069787}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3681368868436532643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706423467477365688}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.61, y: 0.59, z: -114.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5673935230267069787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706423467477365688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &747631226262693173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5003475800737309192}
+  - component: {fileID: 4299380235818120390}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5003475800737309192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747631226262693173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 35.67, y: 0.54, z: -74.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4299380235818120390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747631226262693173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &809576750846541868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6778146964641804884}
+  - component: {fileID: 7243327952561834553}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (34)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6778146964641804884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809576750846541868}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -47.01, y: 0.54, z: -40.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5840549089928712868}
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7243327952561834553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809576750846541868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &970409571609413042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424773566248209211}
+  - component: {fileID: 7442175148816545041}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424773566248209211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970409571609413042}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.5, y: 0.54, z: -51.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7442175148816545041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970409571609413042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &1021552727263321447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4673492632392946671}
+  - component: {fileID: 5953968652724217447}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4673492632392946671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021552727263321447}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.98, y: 0.54, z: -39.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5953968652724217447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021552727263321447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &1164139416847125932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6302022080783182102}
+  - component: {fileID: 5612546245351499887}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (22)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6302022080783182102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164139416847125932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.01, y: 0.54, z: -52.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5612546245351499887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164139416847125932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &1483492273327833909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8846123723585592765}
+  - component: {fileID: 4623764715941133593}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8846123723585592765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483492273327833909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.62, y: 0.59, z: -83.95638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4623764715941133593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483492273327833909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 5957605082017663771, guid: c6f7c97c0776f5545820ad52b6aeba38, type: 3}
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &1567895521765899235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2605883178993016684}
+  - component: {fileID: 6740713909014953191}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (37)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2605883178993016684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567895521765899235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.96, y: 0.59, z: -100.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6740713909014953191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567895521765899235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &1621592528204173403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6122913295049675034}
+  - component: {fileID: 1946298282071520138}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6122913295049675034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621592528204173403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.27, y: 0.54, z: -51.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1946298282071520138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621592528204173403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &1628827495182277212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5840549089928712868}
+  - component: {fileID: 2790835949294914675}
+  m_Layer: 0
+  m_Name: EnemySpawn_Boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5840549089928712868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628827495182277212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 91.77, y: 0.93, z: 9.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6778146964641804884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2790835949294914675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628827495182277212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 2
+  possibleEnemies:
+  - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &1665494798216211725
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +1341,218 @@ Transform:
   - {fileID: 6544923391431268152}
   m_Father: {fileID: 293428019962968012}
   m_LocalEulerAnglesHint: {x: 0, y: -414.03, z: 0}
+--- !u!1 &1791093461510398065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8756556933670053116}
+  - component: {fileID: 5695127207379025981}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (30)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8756556933670053116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791093461510398065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.01, y: 0.54, z: -50.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5695127207379025981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791093461510398065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &2342847117016124996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826534212731573742}
+  - component: {fileID: 6698687993775479177}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826534212731573742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342847117016124996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.97, y: 0.54, z: -39.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6698687993775479177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342847117016124996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &2716945291979149244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741318327551416980}
+  - component: {fileID: 6503075697794011056}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (24)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &741318327551416980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716945291979149244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.37, y: 0.54, z: -52.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6503075697794011056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716945291979149244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &3032459553573625576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7306622418814314803}
+  - component: {fileID: 3778194775613098458}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (23)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7306622418814314803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3032459553573625576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.01, y: 0.54, z: -52.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3778194775613098458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3032459553573625576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &3120270503510060743
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +1636,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3355968424942033014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3839955647326428356}
+  - component: {fileID: 4635196377083166111}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3839955647326428356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355968424942033014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.97, y: 0.54, z: -39.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4635196377083166111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355968424942033014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &3371970695366528024
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +1808,430 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+--- !u!1 &3528372685220823658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1852840617080602523}
+  - component: {fileID: 8943850188463225255}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1852840617080602523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528372685220823658}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.24, y: 0.54, z: -58.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8943850188463225255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528372685220823658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &3748875698301744735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2437005006961371769}
+  - component: {fileID: 6499984620795014341}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2437005006961371769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748875698301744735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.53, y: 0.54, z: -74.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6499984620795014341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748875698301744735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &3853403294957764896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5393347512860689240}
+  - component: {fileID: 4259398584182912051}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (25)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5393347512860689240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853403294957764896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.37, y: 0.54, z: -52.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4259398584182912051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853403294957764896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &3998082404528888852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2765281659570131293}
+  - component: {fileID: 8784759660637737163}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (31)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2765281659570131293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998082404528888852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.01, y: 0.54, z: -50.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8784759660637737163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998082404528888852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &4383480912780417590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1365232512745655577}
+  - component: {fileID: 4053829431287865271}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (35)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1365232512745655577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383480912780417590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -47.01, y: 0.54, z: -40.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4053829431287865271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383480912780417590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &4690454799014635059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4419562194282885329}
+  - component: {fileID: 2570443884461940192}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4419562194282885329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4690454799014635059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.98, y: 0.54, z: -39.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2570443884461940192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4690454799014635059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &5056679505167777578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2389782406424419139}
+  - component: {fileID: 4617250711731703432}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (26)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2389782406424419139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056679505167777578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.37, y: 0.54, z: -43.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4617250711731703432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056679505167777578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &5262386146027857371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2398976929875767785}
+  - component: {fileID: 5073422368756997224}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2398976929875767785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262386146027857371}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.17, y: 0.54, z: -58.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5073422368756997224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262386146027857371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &5569589012960685948
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +2337,165 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5601201440169004919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6550188314026772233}
+  - component: {fileID: 2589065768637776676}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6550188314026772233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601201440169004919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.62, y: 0.59, z: -90.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2589065768637776676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601201440169004919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &5816830768599521759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6305648312222743513}
+  - component: {fileID: 3238249314456143864}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6305648312222743513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816830768599521759}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.28, y: 0.54, z: -66.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3238249314456143864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816830768599521759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &5855914930015160045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5883269244569333093}
+  - component: {fileID: 8260664246578783306}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (32)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5883269244569333093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855914930015160045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -35.89, y: 0.54, z: -40.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8260664246578783306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855914930015160045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &6096905740302644145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +2728,326 @@ Transform:
   - {fileID: 1394463295296560986}
   m_Father: {fileID: 2761732783408733036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7342393758858996263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6638304746434725649}
+  - component: {fileID: 3225197203651588265}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6638304746434725649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342393758858996263}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.53, y: 1.35, z: -114.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3225197203651588265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342393758858996263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &7579170143735249271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4688387016799141912}
+  - component: {fileID: 5482608193329309102}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4688387016799141912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579170143735249271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.45, y: 0.54, z: -66.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5482608193329309102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579170143735249271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &7602069103603828967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3166186783251429515}
+  - component: {fileID: 4222467663908917299}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3166186783251429515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602069103603828967}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.74, y: 0.59, z: -99.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4222467663908917299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602069103603828967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &7731887895228715776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8252397575372608655}
+  - component: {fileID: 3122845051609177470}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8252397575372608655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731887895228715776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.28, y: 0.54, z: -74.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3122845051609177470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731887895228715776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &8000603575257411951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3934574596195465592}
+  - component: {fileID: 7891194002948626612}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3934574596195465592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000603575257411951}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.89, y: 0.59, z: -100.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7891194002948626612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000603575257411951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
+--- !u!1 &8023684315650697524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7952857220092636812}
+  - component: {fileID: 5777847643366516969}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (27)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7952857220092636812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023684315650697524}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.37, y: 0.54, z: -43.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5777847643366516969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023684315650697524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &8316720572905075762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +3106,59 @@ MonoBehaviour:
   intersectionCheckColliders:
   - {fileID: 6585394705948984387}
   intersectionCheckParent: {fileID: 8685714774063503783}
+--- !u!1 &8352514908195876637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2565595905829090124}
+  - component: {fileID: 4587746003068006849}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (36)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2565595905829090124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352514908195876637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.02, y: 0.59, z: -100.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4587746003068006849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352514908195876637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1 &8524947895389342440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +3234,59 @@ Transform:
   - {fileID: 6800043569112541693}
   m_Father: {fileID: 293428019962968012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8633465383673385628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5946557043962687310}
+  - component: {fileID: 7421983296135884594}
+  m_Layer: 0
+  m_Name: EnemySpawn_Melee (33)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5946557043962687310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633465383673385628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -35.89, y: 0.54, z: -40.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6491205806902850946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7421983296135884594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633465383673385628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  possibleEnemies:
+  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+  - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
+  - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
+  possibleWeapons: []
+  minSpawnDelay: 0
+  maxSpawnDelay: 2
+  gizmoRadius: 0.5
 --- !u!1001 &257099398282143878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12886,7 +15008,124 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8846123723585592765}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6550188314026772233}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8735743304053721938}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2565595905829090124}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2605883178993016684}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7711347764511195760}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3934574596195465592}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3166186783251429515}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6576550950943453825}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3681368868436532643}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6638304746434725649}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2437005006961371769}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7038085704676726549}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5003475800737309192}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8252397575372608655}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6305648312222743513}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4688387016799141912}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2398976929875767785}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1852840617080602523}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6122913295049675034}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 424773566248209211}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3839955647326428356}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1826534212731573742}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4419562194282885329}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6302022080783182102}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 741318327551416980}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5393347512860689240}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2389782406424419139}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7952857220092636812}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6787743324143400471}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8756556933670053116}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5883269244569333093}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6778146964641804884}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1365232512745655577}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5946557043962687310}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2765281659570131293}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1829869610744173487}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7306622418814314803}
+    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4673492632392946671}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
 --- !u!4 &6491205806902850946 stripped
