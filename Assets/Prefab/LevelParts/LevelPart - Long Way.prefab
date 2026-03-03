@@ -47,7 +47,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -98,7 +97,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -254,7 +252,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -305,7 +302,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -356,7 +352,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -407,7 +402,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -458,7 +452,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -930,7 +923,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -981,7 +973,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -1032,58 +1023,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
-  minSpawnDelay: 0
-  maxSpawnDelay: 2
-  gizmoRadius: 0.5
---- !u!1 &1770185891151270482
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2305166953814738744}
-  - component: {fileID: 694264892138466585}
-  m_Layer: 0
-  m_Name: EnemySpawn_Melee (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2305166953814738744
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770185891151270482}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.56, y: 1.03, z: -35.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4645260898507506302}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &694264892138466585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770185891151270482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnType: 0
-  possibleEnemies:
-  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -1441,108 +1380,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2993679098962268469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 219909337084087770}
-  - component: {fileID: 843621171174272326}
-  m_Layer: 0
-  m_Name: EnemySpawn_Melee (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &219909337084087770
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2993679098962268469}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.56, y: 1.03, z: -34.06}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4645260898507506302}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &843621171174272326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2993679098962268469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnType: 0
-  possibleEnemies:
-  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
-  minSpawnDelay: 0
-  maxSpawnDelay: 2
-  gizmoRadius: 0.5
---- !u!1 &3065070587771760751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1915550022246099974}
-  - component: {fileID: 4727235506178482865}
-  m_Layer: 0
-  m_Name: EnemySpawn_Melee (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1915550022246099974
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065070587771760751}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.91, y: 1.03, z: -38.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4645260898507506302}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4727235506178482865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065070587771760751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnType: 0
-  possibleEnemies:
-  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
-  minSpawnDelay: 0
-  maxSpawnDelay: 2
-  gizmoRadius: 0.5
 --- !u!1 &3127734538236794257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,58 +1474,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
-  minSpawnDelay: 0
-  maxSpawnDelay: 2
-  gizmoRadius: 0.5
---- !u!1 &3591798841051973433
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 643900255085555139}
-  - component: {fileID: 2563741846001176356}
-  m_Layer: 0
-  m_Name: EnemySpawn_Melee (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &643900255085555139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3591798841051973433}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.39, y: 1.03, z: -38.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4645260898507506302}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2563741846001176356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3591798841051973433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnType: 0
-  possibleEnemies:
-  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -1792,7 +1577,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -1843,7 +1627,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -1999,7 +1782,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2050,58 +1832,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
-  minSpawnDelay: 0
-  maxSpawnDelay: 2
-  gizmoRadius: 0.5
---- !u!1 &5739419132532892326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7361731361411473115}
-  - component: {fileID: 3679432491415653774}
-  m_Layer: 0
-  m_Name: EnemySpawn_Melee (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7361731361411473115
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5739419132532892326}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.56, y: 1.03, z: -38.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4645260898507506302}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3679432491415653774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5739419132532892326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnType: 0
-  possibleEnemies:
-  - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2152,7 +1882,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2308,7 +2037,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2456,7 +2184,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2507,7 +2234,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2605,7 +2331,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2656,7 +2381,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2707,7 +2431,6 @@ MonoBehaviour:
   spawnType: 0
   possibleEnemies:
   - {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -32733,22 +32456,7 @@ PrefabInstance:
       addedObject: {fileID: 8347354340981550021}
     - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1915550022246099974}
-    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 643900255085555139}
-    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7361731361411473115}
-    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 612650051000827795}
-    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2305166953814738744}
-    - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 219909337084087770}
     - targetCorrespondingSourceObject: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5030915650204370196}

@@ -7,9 +7,6 @@ public class EnemySpawnPoint : MonoBehaviour
     public EnemyType spawnType = EnemyType.Melee;
     public GameObject[] possibleEnemies;
 
-    [Header("Weapon Override (Range enemies)")]
-    public Weapon_Data[] possibleWeapons;
-
     [Header("Spawn Timing")]
     public float minSpawnDelay = 0f;
     public float maxSpawnDelay = 2f;
@@ -37,15 +34,6 @@ public class EnemySpawnPoint : MonoBehaviour
             return null;
         }
 
-        if (possibleWeapons != null && possibleWeapons.Length > 0)
-        {
-            Enemy_RangeWeaponModel weaponModel = spawned.GetComponentInChildren<Enemy_RangeWeaponModel>();
-            if (weaponModel != null)
-            {
-                int weaponIndex = Random.Range(0, possibleWeapons.Length);
-            }
-        }
-
         spawned.SetActive(false);
         return enemy;
     }
@@ -62,8 +50,10 @@ public class EnemySpawnPoint : MonoBehaviour
             return null;
 
         GameObject spawned = ObjectPool.instance.GetObject(chosenPrefab, transform);
-        Enemy enemy = spawned?.GetComponent<Enemy>();
+        if (spawned == null)
+            return null;
 
+        Enemy enemy = spawned.GetComponent<Enemy>();
         return enemy;
     }
 

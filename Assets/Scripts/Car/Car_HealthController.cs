@@ -12,6 +12,8 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
     private bool carBroken;
 
+    public static System.Action OnCarDestroyed;
+
     [Header("Explosion Info")]
     [SerializeField] private int explosionDamage = 350;
     [Space]
@@ -56,6 +58,8 @@ public class Car_HealthController : MonoBehaviour, IDamagable
     {
         carBroken = true;
         carController.BrakeTheCar();
+
+        OnCarDestroyed?.Invoke();
 
         fireFx.gameObject.SetActive(true);
         StartCoroutine(ExplosionCo(explosionDelay));

@@ -271,10 +271,36 @@ public class Car_Controller : MonoBehaviour
         if (carSounds != null)
             carSounds.ActivateCarSFX(activate);
 
-        //if(!activate)
-        //    rb.constraints = RigidbodyConstraints.FreezeAll;
-        //else
-        //    rb.constraints = RigidbodyConstraints.None;
+        if (!activate)
+        {
+            foreach (var wheel in wheels)
+                wheel.cd.motorTorque = 0;
+
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            StartCoroutine(SlowDownCo());
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            rb.drag = 0;
+        }
+    }
+
+    private IEnumerator SlowDownCo()
+    {
+        float duration = 2f;
+        float timer = 0;
+        Vector3 startVelocity = rb.velocity;
+
+        while (timer < duration && rb.velocity.magnitude > 0.1f)
+        {
+            timer += Time.fixedDeltaTime;
+            float t = timer / duration;
+            rb.velocity = Vector3.Lerp(startVelocity, Vector3.zero, t);
+            yield return new WaitForFixedUpdate();
+        }
+
+        rb.velocity = Vector3.zero;
     }
 
     public void BrakeTheCar()

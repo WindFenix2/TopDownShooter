@@ -47,7 +47,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -98,7 +97,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -512,7 +510,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -828,7 +825,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -2025,7 +2021,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -4201,7 +4196,6 @@ MonoBehaviour:
   possibleEnemies:
   - {fileID: 7364281645933512702, guid: a02d3f5acaa542e4f8a453a3bc7e1916, type: 3}
   - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -4283,7 +4277,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -4807,7 +4800,6 @@ MonoBehaviour:
   spawnType: 1
   possibleEnemies:
   - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5
@@ -5283,7 +5275,6 @@ MonoBehaviour:
   possibleEnemies:
   - {fileID: 7364281645933512702, guid: a02d3f5acaa542e4f8a453a3bc7e1916, type: 3}
   - {fileID: 5522898272314983028, guid: 331ca337b3b39aa4e97d96ae844a487d, type: 3}
-  possibleWeapons: []
   minSpawnDelay: 0
   maxSpawnDelay: 2
   gizmoRadius: 0.5

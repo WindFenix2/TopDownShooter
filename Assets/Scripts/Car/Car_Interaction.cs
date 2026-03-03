@@ -23,10 +23,28 @@ public class Car_Interaction : Interactable
         fuelRequirement = GetComponent<Car_FuelRequirement>();
         player = GameManager.instance.player.transform;
 
-        foreach (var point in exitPoints)
+        if (exitPoints == null || exitPoints.Length == 0)
         {
-            point.GetComponent<MeshRenderer>().enabled = false;
-            point.GetComponent<SphereCollider>().enabled = false;
+            List<Transform> found = new List<Transform>();
+            foreach (Transform child in GetComponentsInChildren<Transform>())
+            {
+                if (child.name.Contains("ExitPoint") && child != transform)
+                    found.Add(child);
+            }
+            if (found.Count > 0)
+                exitPoints = found.ToArray();
+        }
+
+        if (exitPoints != null)
+        {
+            foreach (var point in exitPoints)
+            {
+                if (point == null) continue;
+                var mr = point.GetComponent<MeshRenderer>();
+                var sc = point.GetComponent<SphereCollider>();
+                if (mr != null) mr.enabled = false;
+                if (sc != null) sc.enabled = false;
+            }
         }
     }
 
@@ -96,6 +114,7 @@ public class Car_Interaction : Interactable
             return;
 
         carController.ActivateCar(false);
+        carController.rb.angularVelocity = Vector3.zero;
 
         player.parent = null;
         player.position = GetExitPoint();
@@ -121,13 +140,19 @@ public class Car_Interaction : Interactable
 
     private Vector3 GetExitPoint()
     {
-        for (int i = 0; i < exitPoints.Length; i++)
+        if (exitPoints != null)
         {
-            if (IsExitClear(exitPoints[i].position))
-                return exitPoints[i].position;
+            for (int i = 0; i < exitPoints.Length; i++)
+            {
+                if (exitPoints[i] != null && IsExitClear(exitPoints[i].position))
+                    return exitPoints[i].position;
+            }
+
+            if (exitPoints.Length > 0 && exitPoints[0] != null)
+                return exitPoints[0].position;
         }
 
-        return exitPoints[0].position;
+        return transform.position + Vector3.up * 0.5f;
     }
 
     private bool IsExitClear(Vector3 point)

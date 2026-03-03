@@ -25,6 +25,7 @@ public class Mission_CarDelivery : Mission
 
         MissionObject_CarToDeliver.OnCarDelivery += CarDeliveryCompleted;
         Pickup_Gasoline.OnGasolinePickedUp += GasolinePicked;
+        Car_HealthController.OnCarDestroyed += OnCarDestroyed;
 
         if (MissionManager.instance != null)
             MissionManager.instance.ClearMissionItems();
@@ -93,6 +94,7 @@ public class Mission_CarDelivery : Mission
 
         MissionObject_CarToDeliver.OnCarDelivery -= CarDeliveryCompleted;
         Pickup_Gasoline.OnGasolinePickedUp -= GasolinePicked;
+        Car_HealthController.OnCarDestroyed -= OnCarDestroyed;
 
         UI.instance?.inGameUI?.ShowCenterMessage("Vehicle delivered!");
         UI.instance?.inGameUI?.UpdateMissionInfo("Vehicle delivered!");
@@ -106,5 +108,15 @@ public class Mission_CarDelivery : Mission
         gasolinePickedUp = true;
         UI.instance?.inGameUI?.ShowCenterMessage("Gasoline collected.");
         UI.instance?.inGameUI?.UpdateMissionInfo("Deliver the vehicle to the drop zone.");
+    }
+
+    private void OnCarDestroyed()
+    {
+        Car_HealthController.OnCarDestroyed -= OnCarDestroyed;
+        MissionObject_CarToDeliver.OnCarDelivery -= CarDeliveryCompleted;
+        Pickup_Gasoline.OnGasolinePickedUp -= GasolinePicked;
+
+        UI.instance?.inGameUI?.ShowCenterMessage("Vehicle destroyed! Mission failed.");
+        GameManager.instance.GameOver();
     }
 }
