@@ -96,6 +96,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (agent != null && !agent.isOnNavMesh)
+            return;
+
         if (ShouldEnterBattleMode())
             EnterBattleMode();
     }
@@ -300,19 +303,20 @@ public class Enemy : MonoBehaviour
             return;
 
         Vector3 dir = target - transform.position;
+        dir.y = 0;
+
         if (dir.sqrMagnitude < 0.000001f)
             return;
 
         Quaternion targetRotation = Quaternion.LookRotation(dir);
-        Vector3 currentEulerAngels = transform.rotation.eulerAngles;
 
         if (turnSpeed == 0)
             turnSpeed = this.turnSpeed;
 
         float yRotation =
-            Mathf.LerpAngle(currentEulerAngels.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
+            Mathf.LerpAngle(transform.eulerAngles.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
 
-        transform.rotation = Quaternion.Euler(currentEulerAngels.x, yRotation, currentEulerAngels.z);
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     #region Animation events

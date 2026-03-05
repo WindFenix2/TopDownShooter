@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4953390652089780460}
   - component: {fileID: 622289762521180959}
   - component: {fileID: 6461836768395585468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weap_pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 8479190214394245141}
   - component: {fileID: 1424717222489755022}
   - component: {fileID: 8885059300173101695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weap_shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 7839728081504000526}
   - component: {fileID: 2901624303098286800}
   - component: {fileID: 3453017067980834915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weap_revolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 1731367440393481360}
   - component: {fileID: 262386505538758515}
   - component: {fileID: 6392022850121503040}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weap_auto-rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 5916608635911346806}
   - component: {fileID: 7047885163304768631}
   - component: {fileID: 5334886457370846058}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: weap_rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1805980311620572952}
   - component: {fileID: 790257334444794938}
   - component: {fileID: 7989559074012669837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoxAmmo_Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1982275101091918240}
   - component: {fileID: 2134213663959950468}
   - component: {fileID: 3077174867066242452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoxAmmo_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,6 +314,7 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
   defaultMaterial: {fileID: 0}
   boxType: 0
+  randomizeOnSpawn: 0
   smallBoxAmmo:
   - weaponType: 0
     minAmount: 6

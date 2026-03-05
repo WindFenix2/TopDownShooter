@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5844196371828364464}
   - component: {fileID: 1637427184160378557}
   - component: {fileID: 4531272002814729688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_orange (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4695138864607302780}
   - component: {fileID: 8834790917842685243}
   - component: {fileID: 8118168962971620021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_red (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 7118778467049491640}
   - component: {fileID: 3483482055463845105}
   - component: {fileID: 1475829437810931638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_lamp (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 7955221028733378074}
   - component: {fileID: 5052535241922531651}
   - component: {fileID: 3398068179320699120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 5014055254067163321}
   - component: {fileID: 1808893095226016199}
   - component: {fileID: 4675585530584837017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 798837251555630748}
   - component: {fileID: 5149474839741277777}
   - component: {fileID: 5902986347180542993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_lamp (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1206,7 +1206,7 @@ GameObject:
   - component: {fileID: 4147697366809456189}
   - component: {fileID: 3309219638709649019}
   - component: {fileID: 4351730896518005830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_orange (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ Transform:
   m_GameObject: {fileID: 1704294811370303298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 93.85, y: 0.39000002, z: 267.68}
+  m_LocalPosition: {x: 89.44, y: 0.39000002, z: 266.1}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1714,7 +1714,7 @@ GameObject:
   - component: {fileID: 3506234058567853586}
   - component: {fileID: 2764321174984149726}
   - component: {fileID: 392379792621290845}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,7 +1797,7 @@ GameObject:
   - component: {fileID: 2410868676981470882}
   - component: {fileID: 546818602479840672}
   - component: {fileID: 2674565527231690890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2176,7 +2176,7 @@ GameObject:
   - component: {fileID: 1429358590059013981}
   - component: {fileID: 4722350609955528977}
   - component: {fileID: 3502182015266980541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2434,7 +2434,7 @@ GameObject:
   - component: {fileID: 4923961243962705338}
   - component: {fileID: 559755459081582635}
   - component: {fileID: 4394306878761625890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2542,7 +2542,7 @@ GameObject:
   - component: {fileID: 7206376201195877379}
   - component: {fileID: 1426879989712949}
   - component: {fileID: 1665480194240982117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2627,7 +2627,7 @@ GameObject:
   - component: {fileID: 5199157043136531224}
   - component: {fileID: 2865628417864302525}
   - component: {fileID: 8154166294294165884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_lamp (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2825,7 @@ GameObject:
   - component: {fileID: 4738150166494928212}
   - component: {fileID: 3340948359386806782}
   - component: {fileID: 2735299921272429790}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_lamp (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2945,56 +2945,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &4966602236622042587
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1752466458147909474}
-  - component: {fileID: 5561223632717537726}
-  m_Layer: 0
-  m_Name: EnemySpawn_Range (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1752466458147909474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4966602236622042587}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8267636, z: -0, w: 0.56254953}
-  m_LocalPosition: {x: 58.395275, y: 3.1920002, z: 248.95563}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7758567255085758932}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5561223632717537726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4966602236622042587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9127fade11eacd4e99c85fef4f834b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnType: 1
-  possibleEnemies:
-  - {fileID: 3687767855000607258, guid: afe1df5651ecec24d8d12bcfcdf01c3f, type: 3}
-  minSpawnDelay: 0
-  maxSpawnDelay: 2
-  gizmoRadius: 0.5
 --- !u!1 &5137796510768130394
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,7 +3042,7 @@ GameObject:
   - component: {fileID: 7839829619845111424}
   - component: {fileID: 1351140789972831234}
   - component: {fileID: 4811584183298209940}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_red (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3350,7 +3300,7 @@ GameObject:
   - component: {fileID: 6774951940946324436}
   - component: {fileID: 3181868786560596986}
   - component: {fileID: 7863008260490952294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3452,7 +3402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8031305794212088273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fair_preset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3586,7 +3536,7 @@ GameObject:
   - component: {fileID: 8945398390447042384}
   - component: {fileID: 9115012883790576558}
   - component: {fileID: 8793973713913319550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3759,7 +3709,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6041754581021661095}
-  - {fileID: 1752466458147909474}
   - {fileID: 7458764475842147261}
   - {fileID: 6962807066925025095}
   - {fileID: 3695528156217541690}
@@ -3790,7 +3739,7 @@ GameObject:
   - component: {fileID: 1063887322617954587}
   - component: {fileID: 2356675071912715165}
   - component: {fileID: 8344955483828460599}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_red (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3994,7 +3943,7 @@ GameObject:
   - component: {fileID: 840365412581956126}
   - component: {fileID: 8238307108559627045}
   - component: {fileID: 8301269659105137815}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4078,7 +4027,7 @@ GameObject:
   - component: {fileID: 7039781659695825226}
   - component: {fileID: 2335936001184214404}
   - component: {fileID: 4881907644344106112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: banch_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4182,7 +4131,7 @@ GameObject:
   - component: {fileID: 2551395851482913055}
   - component: {fileID: 6854410451396115174}
   - component: {fileID: 2607763487052055851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ferris_wheel_cabin (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4490,7 +4439,7 @@ GameObject:
   - component: {fileID: 5589465435832657624}
   - component: {fileID: 259119549903280821}
   - component: {fileID: 6171036570752517786}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4753,7 +4702,7 @@ GameObject:
   - component: {fileID: 7366821877839517070}
   - component: {fileID: 3252460573558430802}
   - component: {fileID: 5474652242138918113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: carousel_seat_orange (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4998,6 +4947,10 @@ PrefabInstance:
     - target: {fileID: 7529818310757064429, guid: 58810684ab72f05499a117ba13ab4d28, type: 3}
       propertyPath: m_Name
       value: chair_metallic_black
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529818310757064429, guid: 58810684ab72f05499a117ba13ab4d28, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5375,6 +5328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: banch_dark
       objectReference: {fileID: 0}
+    - target: {fileID: 7617328935693093217, guid: 8e7622171ec1d334292b024f55188bba, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5533,6 +5490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cart_corn_dog.001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 893064630658471743, guid: 7f88b5395f258574b9324fcf47f0e9b9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1873982622835175997, guid: 7f88b5395f258574b9324fcf47f0e9b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.06189
@@ -5594,6 +5555,10 @@ PrefabInstance:
     - target: {fileID: 893064630658471743, guid: 7f88b5395f258574b9324fcf47f0e9b9, type: 3}
       propertyPath: m_Name
       value: cart_corn_dog.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 893064630658471743, guid: 7f88b5395f258574b9324fcf47f0e9b9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1873982622835175997, guid: 7f88b5395f258574b9324fcf47f0e9b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5797,6 +5762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: carousel_wheel_small_bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 5465121115707562333, guid: 12b7bfef29241ab44be6ee8f12530783, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5766155271019641936, guid: 12b7bfef29241ab44be6ee8f12530783, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.318115
@@ -5836,6 +5805,10 @@ PrefabInstance:
     - target: {fileID: 5766155271019641936, guid: 12b7bfef29241ab44be6ee8f12530783, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227849521034186042, guid: 12b7bfef29241ab44be6ee8f12530783, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6189,6 +6162,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8031305794212088273}
     m_Modifications:
+    - target: {fileID: 319084866747928345, guid: a8ef6798d2ed80544965fde5ec2d2b77, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 644393316705481629, guid: a8ef6798d2ed80544965fde5ec2d2b77, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1772356371237079512, guid: a8ef6798d2ed80544965fde5ec2d2b77, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.55188
@@ -6232,6 +6213,14 @@ PrefabInstance:
     - target: {fileID: 3089806673978368028, guid: a8ef6798d2ed80544965fde5ec2d2b77, type: 3}
       propertyPath: m_Name
       value: table_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089806673978368028, guid: a8ef6798d2ed80544965fde5ec2d2b77, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202736340015867834, guid: a8ef6798d2ed80544965fde5ec2d2b77, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6608,9 +6597,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3476073122495217979, guid: 41bcb00323410284eabc2a151707ae1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7835992307585724615, guid: 41bcb00323410284eabc2a151707ae1f, type: 3}
       propertyPath: m_Name
       value: stool_wooden_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835992307585724615, guid: 41bcb00323410284eabc2a151707ae1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6904,6 +6901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bucket_grey
       objectReference: {fileID: 0}
+    - target: {fileID: 1269145402384963228, guid: c999db02088b03145a805e21e65ed57c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6965,6 +6966,10 @@ PrefabInstance:
     - target: {fileID: 9071434848758991197, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
       propertyPath: m_Name
       value: slate_dark_grey (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071434848758991197, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3825385368041659996, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
@@ -7342,6 +7347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stool_child_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 2838707993036821165, guid: efc0876c5a203a243a654fdab7946c2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3686572829772075693, guid: efc0876c5a203a243a654fdab7946c2c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
@@ -7501,9 +7510,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5129847259257069066, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6912802800947923215, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
       propertyPath: m_Name
       value: stool_wooden_2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912802800947923215, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 997157220216657124, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
@@ -8042,6 +8059,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: carousel_wheel_small_2
       objectReference: {fileID: 0}
+    - target: {fileID: 791694169447347574, guid: a7b1721188bec8043a18c67b726d5e93, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436711675966251879, guid: a7b1721188bec8043a18c67b726d5e93, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5539199118878328250, guid: a7b1721188bec8043a18c67b726d5e93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.94812
@@ -8081,6 +8106,10 @@ PrefabInstance:
     - target: {fileID: 5539199118878328250, guid: a7b1721188bec8043a18c67b726d5e93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096111890923936755, guid: a7b1721188bec8043a18c67b726d5e93, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8226,6 +8255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slate_dark_grey
       objectReference: {fileID: 0}
+    - target: {fileID: 9071434848758991197, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3825385368041659996, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
     m_RemovedGameObjects: []
@@ -8359,6 +8392,10 @@ PrefabInstance:
     - target: {fileID: 5857643924949829594, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
       propertyPath: m_Name
       value: garbage_bag_smooth
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857643924949829594, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6265020249085672408, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
       propertyPath: m_LocalScale.x
@@ -8723,6 +8760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slate_dark_grey (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9071434848758991197, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3825385368041659996, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
     m_RemovedGameObjects: []
@@ -9041,6 +9082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: concrete_block_grey (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4423406177563025107, guid: 026f7bee78ba4384b91fc63108a19ba7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9062,6 +9107,10 @@ PrefabInstance:
     - target: {fileID: 2163609090293231860, guid: 1fb2d705da572024b8ce1fed2d3086e0, type: 3}
       propertyPath: m_Name
       value: chair_metallic_green
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163609090293231860, guid: 1fb2d705da572024b8ce1fed2d3086e0, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7619719905070817791, guid: 1fb2d705da572024b8ce1fed2d3086e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9306,6 +9355,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3373959701010674127, guid: afc2a93516d888f48813b4600ab3e8e4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373959701010674127, guid: afc2a93516d888f48813b4600ab3e8e4, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -9314,6 +9367,10 @@ PrefabInstance:
       value: ferris_wheel_rack
       objectReference: {fileID: 0}
     - target: {fileID: 7278181653497711315, guid: afc2a93516d888f48813b4600ab3e8e4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440782254977063782, guid: afc2a93516d888f48813b4600ab3e8e4, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
@@ -9411,6 +9468,10 @@ PrefabInstance:
     - target: {fileID: 4423406177563025107, guid: 026f7bee78ba4384b91fc63108a19ba7, type: 3}
       propertyPath: m_Name
       value: concrete_block_grey (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423406177563025107, guid: 026f7bee78ba4384b91fc63108a19ba7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9540,6 +9601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair_plastic_purple (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7274472364535432689, guid: a9a7dda0f0ced444e8aa9545ca8343db, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9561,6 +9626,10 @@ PrefabInstance:
     - target: {fileID: 7789878054648976521, guid: f71a1f036bbbd41468525ba685508963, type: 3}
       propertyPath: m_Name
       value: cart_ice_cream
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789878054648976521, guid: f71a1f036bbbd41468525ba685508963, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8106085289799362006, guid: f71a1f036bbbd41468525ba685508963, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9825,6 +9894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair_plastic_purple
       objectReference: {fileID: 0}
+    - target: {fileID: 7274472364535432689, guid: a9a7dda0f0ced444e8aa9545ca8343db, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10000,9 +10073,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8031305794212088273}
     m_Modifications:
+    - target: {fileID: 2734169102795354686, guid: 170a3ffcb18cfe747bd68df80295f18a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3959025935447955157, guid: 170a3ffcb18cfe747bd68df80295f18a, type: 3}
       propertyPath: m_Name
       value: cart_cotton_candy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959025935447955157, guid: 170a3ffcb18cfe747bd68df80295f18a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4233921951974230410, guid: 170a3ffcb18cfe747bd68df80295f18a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10172,6 +10253,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair_plastic_yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 5267213701937215161, guid: 31504b9e736d97949a112f991610e168, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10230,9 +10315,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3476073122495217979, guid: 41bcb00323410284eabc2a151707ae1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7835992307585724615, guid: 41bcb00323410284eabc2a151707ae1f, type: 3}
       propertyPath: m_Name
       value: stool_wooden_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835992307585724615, guid: 41bcb00323410284eabc2a151707ae1f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10935,6 +11028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair_plastic_green
       objectReference: {fileID: 0}
+    - target: {fileID: 4008514716094454442, guid: 71238d660a2995c438a55af5ce9856b3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8930003558635560053, guid: 71238d660a2995c438a55af5ce9856b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.09
@@ -10996,6 +11093,10 @@ PrefabInstance:
     - target: {fileID: 5410522907475763042, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
       propertyPath: m_Name
       value: gasbag_white (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410522907475763042, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6115672747997130705, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11409,6 +11510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: garbage_can_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 225455175439091365, guid: 4cd154bca69af1143831fbd557ab5957, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3257864471771377257, guid: 4cd154bca69af1143831fbd557ab5957, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32.91516
@@ -11448,6 +11553,10 @@ PrefabInstance:
     - target: {fileID: 3257864471771377257, guid: 4cd154bca69af1143831fbd557ab5957, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.666
+      objectReference: {fileID: 0}
+    - target: {fileID: 8133236550712485761, guid: 4cd154bca69af1143831fbd557ab5957, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8996486082860461996, guid: 4cd154bca69af1143831fbd557ab5957, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11954,6 +12063,10 @@ PrefabInstance:
     - target: {fileID: 5857643924949829594, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
       propertyPath: m_Name
       value: garbage_bag_smooth (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857643924949829594, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6265020249085672408, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
       propertyPath: m_LocalScale.x
@@ -13426,6 +13539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: garbage_can_orange
       objectReference: {fileID: 0}
+    - target: {fileID: 5334942735685817584, guid: 8fa5bff9e46a21b43a4d314203827591, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5556412998905547831, guid: 8fa5bff9e46a21b43a4d314203827591, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1
@@ -13485,6 +13602,10 @@ PrefabInstance:
     - target: {fileID: 6883410300349651579, guid: 8fa5bff9e46a21b43a4d314203827591, type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615499168604049290, guid: 8fa5bff9e46a21b43a4d314203827591, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13780,6 +13901,10 @@ PrefabInstance:
     - target: {fileID: 7987256786829919625, guid: 9025db8ef8884d242b542beb4f1217e4, type: 3}
       propertyPath: m_Name
       value: stool_child_orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987256786829919625, guid: 9025db8ef8884d242b542beb4f1217e4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14206,6 +14331,10 @@ PrefabInstance:
     - target: {fileID: 5410522907475763042, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
       propertyPath: m_Name
       value: gasbag_white
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410522907475763042, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6115672747997130705, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15001,9 +15130,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5129847259257069066, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6912802800947923215, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
       propertyPath: m_Name
       value: stool_wooden_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912802800947923215, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 997157220216657124, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
@@ -15306,9 +15443,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5129847259257069066, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6912802800947923215, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
       propertyPath: m_Name
       value: stool_wooden_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912802800947923215, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 997157220216657124, guid: 661cbb3f394c5fc4194b3158c7bfea23, type: 3}
@@ -15332,6 +15477,22 @@ PrefabInstance:
     - target: {fileID: 1543667380422735997, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_Name
       value: table_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543667380422735997, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813332022231310937, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012847735169540098, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158466958984303574, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2598560109658285999, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15380,6 +15541,10 @@ PrefabInstance:
     - target: {fileID: 2719143127364563571, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.126
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566952761851135906, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5593871615949906597, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15477,6 +15642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -42.406
       objectReference: {fileID: 0}
+    - target: {fileID: 7661232735900255511, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8184517481529887660, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.328
@@ -15516,6 +15685,10 @@ PrefabInstance:
     - target: {fileID: 8184517481529887660, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.608
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252164286110412593, guid: 75d05940850b4e841b44cf1724660021, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8401095892447536613, guid: 75d05940850b4e841b44cf1724660021, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15822,6 +15995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: garbage_bin_green
       objectReference: {fileID: 0}
+    - target: {fileID: 5139310223275283382, guid: e0196260fbf2d9342b732fa0c7a98bf9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7973120000589690253, guid: e0196260fbf2d9342b732fa0c7a98bf9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.827148
@@ -15861,6 +16038,10 @@ PrefabInstance:
     - target: {fileID: 7973120000589690253, guid: e0196260fbf2d9342b732fa0c7a98bf9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055032703061905832, guid: e0196260fbf2d9342b732fa0c7a98bf9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15988,7 +16169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2579892275529380703, guid: 8202ade3c214f994bb493e6864d2513a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.2653894
+      value: -7.61
       objectReference: {fileID: 0}
     - target: {fileID: 2579892275529380703, guid: 8202ade3c214f994bb493e6864d2513a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16027,6 +16208,10 @@ PrefabInstance:
       value: roller_coaster
       objectReference: {fileID: 0}
     - target: {fileID: 3358405066366417168, guid: 8202ade3c214f994bb493e6864d2513a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402404924283755731, guid: 8202ade3c214f994bb493e6864d2513a, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
@@ -16443,6 +16628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair_metallic_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 2801153596330528190, guid: 647de686cfe543a4db9e2ef631a4fd18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6243999010328825406, guid: 647de686cfe543a4db9e2ef631a4fd18, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.108154
@@ -16614,6 +16803,10 @@ PrefabInstance:
     - target: {fileID: 4423406177563025107, guid: 026f7bee78ba4384b91fc63108a19ba7, type: 3}
       propertyPath: m_Name
       value: concrete_block_grey
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423406177563025107, guid: 026f7bee78ba4384b91fc63108a19ba7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16851,6 +17044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gasbag_white (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5410522907475763042, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6115672747997130705, guid: 4c5e380a42e989b4b9adb54db2631fb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.068115
@@ -17018,6 +17215,10 @@ PrefabInstance:
     - target: {fileID: 5558131273787946104, guid: 8ca98dd69de43df449261117d86439a1, type: 3}
       propertyPath: m_Name
       value: garbage_can_2_black
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558131273787946104, guid: 8ca98dd69de43df449261117d86439a1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17358,6 +17559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cart_ice_cream (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7789878054648976521, guid: f71a1f036bbbd41468525ba685508963, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8106085289799362006, guid: f71a1f036bbbd41468525ba685508963, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.961914
@@ -17564,6 +17769,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: garbage_bin_grey
       objectReference: {fileID: 0}
+    - target: {fileID: 336235335011790764, guid: 40e2302ea97e6fc4aafe02fae3cd933b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 486612296558639751, guid: 40e2302ea97e6fc4aafe02fae3cd933b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -17651,6 +17860,10 @@ PrefabInstance:
     - target: {fileID: 1085909739402186343, guid: 40e2302ea97e6fc4aafe02fae3cd933b, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556028439556910114, guid: 40e2302ea97e6fc4aafe02fae3cd933b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18055,6 +18268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8031305794212088273}
     m_Modifications:
+    - target: {fileID: 219465669634375307, guid: f2ba1b79307adfd47ab5abb45eb4751f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1180902335418037495, guid: f2ba1b79307adfd47ab5abb45eb4751f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.608154
@@ -18108,6 +18325,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1936306450580423142, guid: f2ba1b79307adfd47ab5abb45eb4751f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367241627188687303, guid: f2ba1b79307adfd47ab5abb45eb4751f, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
@@ -18327,6 +18548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: concrete_block_grey (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4423406177563025107, guid: 026f7bee78ba4384b91fc63108a19ba7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18486,6 +18711,10 @@ PrefabInstance:
     - target: {fileID: 6271766455404904118, guid: 280ebbf7c8082ce4d882c3341d314e7b, type: 3}
       propertyPath: m_Name
       value: stool_child_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271766455404904118, guid: 280ebbf7c8082ce4d882c3341d314e7b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18795,6 +19024,10 @@ PrefabInstance:
     - target: {fileID: 9071434848758991197, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
       propertyPath: m_Name
       value: slate_dark_grey (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071434848758991197, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3825385368041659996, guid: 97d7b1864e40c774d9c08e209a9d5c4f, type: 3}
@@ -19252,6 +19485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: garbage_bag_smooth (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5857643924949829594, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6265020249085672408, guid: 8317009dcb2ed3447968676971b511bd, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
@@ -19369,6 +19606,10 @@ PrefabInstance:
     - target: {fileID: 7165776226889948657, guid: 62b249061b4497f41a835522b3219b58, type: 3}
       propertyPath: m_Name
       value: banch_light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165776226889948657, guid: 62b249061b4497f41a835522b3219b58, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19711,6 +19952,10 @@ PrefabInstance:
     - target: {fileID: 7617328935693093217, guid: 8e7622171ec1d334292b024f55188bba, type: 3}
       propertyPath: m_Name
       value: banch_dark (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617328935693093217, guid: 8e7622171ec1d334292b024f55188bba, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,9 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 309513639821732707, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 593296202396551607, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
       propertyPath: m_Name
       value: LevelPart - End (Airplane)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790581845164246272, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791175963462930463, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3966566735694463111, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +63,18 @@ PrefabInstance:
     - target: {fileID: 3966566735694463111, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610211332569093175, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306109610556605702, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324447519254494215, guid: 6cb3d9e910d878c48a0daa1e0848ca0f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

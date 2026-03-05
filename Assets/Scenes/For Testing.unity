@@ -19339,6 +19339,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483694987}
   m_CullTransparentMesh: 1
+--- !u!1001 &1492144760
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Melee - Axe throw Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
 --- !u!1001 &1492687974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23606,7 +23663,7 @@ MonoBehaviour:
   quickStart: 1
   quickStartDefaultWeapons:
   - {fileID: 11400000, guid: 2341707a809284748b68f961349af0d6, type: 2}
-  - {fileID: 11400000, guid: 3ea6f72a11abfb849937c1e24064c870, type: 2}
+  - {fileID: 11400000, guid: e3228b5e123aa934f8457c81698d3b18, type: 2}
 --- !u!4 &1687976509
 Transform:
   m_ObjectHideFlags: 0
@@ -38293,3 +38350,4 @@ SceneRoots:
   - {fileID: 1889305723}
   - {fileID: 1515178050}
   - {fileID: 720912458}
+  - {fileID: 1492144760}

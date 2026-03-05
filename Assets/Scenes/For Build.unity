@@ -1971,9 +1971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3bde87debb67944a81a64070149b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowSprite: {fileID: 21300000, guid: bb4f2fc5c62149442b94fe537b36bdce, type: 3}
-  arrowSize: 50
-  edgeOffset: 80
+  arrowSprite: {fileID: 21300000, guid: 7bbafe56cd97c50499e724ba3d196a94, type: 3}
+  arrowSize: 60
+  edgeOffset: 60
   arrowColor: {r: 1, g: 0, b: 0, a: 1}
   distanceFontSize: 20
 --- !u!1 &263272505
@@ -22172,10 +22172,10 @@ GameObject:
   - component: {fileID: 4850869063498691477}
   - component: {fileID: 4586975635558241348}
   - component: {fileID: 7534527922069979960}
-  - component: {fileID: 7534527922069979961}
   - component: {fileID: 7534527922069979964}
   - component: {fileID: 7534527922069979963}
   - component: {fileID: 7534527922069979962}
+  - component: {fileID: 7534527922069979965}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -25532,35 +25532,6 @@ MonoBehaviour:
   explosionUpwards: 0.25
   pushRadiusMultiplier: 0.8
   pushOnlyPropsCars: 1
---- !u!114 &7534527922069979961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3846352222451562977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c6d3b4b21d46ed4ea5a244c7f8abedc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shieldPerKill: 50
-  maxShield: 100
-  boundWeaponType: 3
-  invulnerableAfterBreakSeconds: 1
-  hitboxRadius: 1.6
-  shieldVfxPrefab: {fileID: 0}
-  vfxParent: {fileID: 0}
-  vfxLocalPosition: {x: 0, y: 1, z: 0}
-  autoScaleVfxToHitbox: 1
-  vfxRadiusAtScaleOne: 1.6
-  vfxScaleMultiplier: 1
-  freezeVfxAfterTime: 1
-  freezeAfterSeconds: 3.5
-  spawnShieldHitbox: 1
-  hitboxLocalPosition: {x: 0, y: 1, z: 0}
-  currentShield: 0
-  isBoundWeaponEquipped: 0
 --- !u!114 &7534527922069979962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25626,6 +25597,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba898f283f9944e4ca10960d685c1426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7534527922069979965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846352222451562977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6d3b4b21d46ed4ea5a244c7f8abedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldPerKill: 50
+  maxShield: 100
+  boundWeaponType: 3
+  invulnerableAfterBreakSeconds: 1
+  hitboxRadius: 1
+  shieldVfxPrefab: {fileID: 1289543790355709915, guid: b99922c2f59b1a542bdd06ae8bee47ae, type: 3}
+  vfxParent: {fileID: 3274292614168777124}
+  vfxLocalPosition: {x: 0, y: 0, z: 0}
+  autoScaleVfxToHitbox: 1
+  vfxRadiusAtScaleOne: 1.6
+  vfxScaleMultiplier: 1
+  freezeVfxAfterTime: 1
+  freezeAfterSeconds: 3.5
+  spawnShieldHitbox: 1
+  hitboxLocalPosition: {x: 0, y: 1, z: 0}
+  currentShield: 0
+  isBoundWeaponEquipped: 0
 --- !u!54 &7667312168735303441
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -16,19 +16,21 @@ public class Shotgun_KillShieldAbility : MonoBehaviour
 
     private bool persistShieldAfterUnequip = true;
 
-    [SerializeField, HideInInspector] private GameObject shieldVfxPrefab;
-    [SerializeField, HideInInspector] private Transform vfxParent;
-    [SerializeField, HideInInspector] private Vector3 vfxLocalPosition = new Vector3(0f, 1f, 0f);
+    [Header("Shield VFX")]
+    [SerializeField] private GameObject shieldVfxPrefab;
+    [SerializeField] private Transform vfxParent;
+    [SerializeField] private Vector3 vfxLocalPosition = new Vector3(0f, 1f, 0f);
 
-    [SerializeField, HideInInspector] private bool autoScaleVfxToHitbox = true;
-    [SerializeField, HideInInspector] private float vfxRadiusAtScaleOne = 1.6f;
-    [SerializeField, HideInInspector] private float vfxScaleMultiplier = 1f;
+    [SerializeField] private bool autoScaleVfxToHitbox = true;
+    [SerializeField] private float vfxRadiusAtScaleOne = 1.6f;
+    [SerializeField] private float vfxScaleMultiplier = 1f;
 
-    [SerializeField, HideInInspector] private bool freezeVfxAfterTime = true;
-    [SerializeField, HideInInspector] private float freezeAfterSeconds = 3.5f;
+    [SerializeField] private bool freezeVfxAfterTime = true;
+    [SerializeField] private float freezeAfterSeconds = 3.5f;
 
-    [SerializeField, HideInInspector] private bool spawnShieldHitbox = true;
-    [SerializeField, HideInInspector] private Vector3 hitboxLocalPosition = new Vector3(0f, 1f, 0f);
+    [Header("Shield Hitbox Spawner")]
+    [SerializeField] private bool spawnShieldHitbox = true;
+    [SerializeField] private Vector3 hitboxLocalPosition = new Vector3(0f, 1f, 0f);
 
     [SerializeField, HideInInspector] private int currentShield;
     [SerializeField, HideInInspector] private bool isBoundWeaponEquipped;

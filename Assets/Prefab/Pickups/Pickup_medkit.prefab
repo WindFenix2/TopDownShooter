@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 0}
+  spawnedByDropDirector: 0
   blockPhysicsPush: 0
   physicsPushMultiplier: 1
   highlightMaterial: {fileID: 2100000, guid: 265df4365c4bb0740b9c026e3b52a181, type: 2}
@@ -128,6 +129,10 @@ PrefabInstance:
     - target: {fileID: 2199081453616021304, guid: acdaeec2648876a45be92501ed07b6a5, type: 3}
       propertyPath: m_Name
       value: medkit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199081453616021304, guid: acdaeec2648876a45be92501ed07b6a5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5647196396636149808, guid: acdaeec2648876a45be92501ed07b6a5, type: 3}
       propertyPath: m_LocalScale.x
