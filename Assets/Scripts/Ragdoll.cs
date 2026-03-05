@@ -6,7 +6,7 @@ public class Ragdoll : MonoBehaviour
 {
     [SerializeField] private Transform ragdollParent;
 
-    private float settleDelay = 5f;
+    private float settleDelay = 15f;
 
     private Collider[] ragdollColliders;
     private Rigidbody[] ragdollRigidbodies;
@@ -28,6 +28,7 @@ public class Ragdoll : MonoBehaviour
     public void RagdollActive(bool active)
     {
         isFrozen = false;
+        StopAllCoroutines();
 
         foreach (Rigidbody rb in ragdollRigidbodies)
         {
@@ -51,8 +52,11 @@ public class Ragdoll : MonoBehaviour
 
         foreach (Rigidbody rb in ragdollRigidbodies)
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            if (!rb.isKinematic)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
             rb.isKinematic = true;
         }
     }

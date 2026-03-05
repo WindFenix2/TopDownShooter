@@ -131,6 +131,13 @@ public class LevelGenerator : MonoBehaviour
         if (activeHasExit && activeLastLevelPart != null)
             GenerateNextLevelPart();
 
+        LevelPart startPart = defaultSnapPoint.GetComponentInParent<LevelPart>();
+        if (startPart != null)
+        {
+            startPart.ActivatePickupSpawnPoints();
+            enemyList.AddRange(startPart.SpawnEnemiesFromSpawnPoints());
+        }
+
         navMeshSurface.BuildNavMesh();
 
         foreach (Enemy enemy in enemyList)

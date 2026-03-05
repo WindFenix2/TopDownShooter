@@ -1521,9 +1521,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   idleTime: 3
-  aggresionRange: 15
+  aggresionRange: 8
   alertNearbyAlliesOnHit: 1
-  allyAlertRadius: 10
+  allyAlertRadius: 8
   walkSpeed: 1.5
   runSpeed: 3
   turnSpeed: 5
@@ -1601,7 +1601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdollParent: {fileID: 8938312745787488569}
-  settleDelay: 5
 --- !u!114 &1334087555910019399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1640,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionObjectKey: {fileID: 0}
   enableResourceDrops: 1
+  isBoss: 0
+  bossWeaponDropChance: 0.5
 --- !u!1 &1416550309579397773
 GameObject:
   m_ObjectHideFlags: 0

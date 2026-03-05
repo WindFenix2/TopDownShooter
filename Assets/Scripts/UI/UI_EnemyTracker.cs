@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -118,10 +119,24 @@ public class UI_EnemyTracker : MonoBehaviour
 
     public void SetTracking(bool enabled)
     {
-        isTracking = enabled;
+        StopAllCoroutines();
 
-        if (trackerParent != null)
-            trackerParent.SetActive(enabled);
+        if (enabled)
+        {
+            StartCoroutine(DelayedTracking());
+        }
+        else
+        {
+            isTracking = false;
+            if (trackerParent != null)
+                trackerParent.SetActive(false);
+        }
+    }
+
+    private IEnumerator DelayedTracking()
+    {
+        yield return new WaitForSeconds(5f);
+        isTracking = true;
     }
 
     private Transform FindClosestHuntTarget()
@@ -175,11 +190,13 @@ public class UI_EnemyTracker : MonoBehaviour
 
         if (isOnScreen)
         {
+            arrowImage.enabled = false;
             trackerParent.transform.position = screenPos;
-            arrowRect.localRotation = Quaternion.identity;
         }
         else
         {
+            arrowImage.enabled = true;
+
             Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
             Vector3 dir = (screenPos - screenCenter).normalized;
 

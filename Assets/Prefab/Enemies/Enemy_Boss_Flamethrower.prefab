@@ -18763,7 +18763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797e27742cfb9084aad99797a0e62d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1500
+  maxHealth: 750
   currentHealth: 0
 --- !u!114 &8579631330992450095
 MonoBehaviour:
@@ -18785,9 +18785,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   idleTime: 3
-  aggresionRange: 15
+  aggresionRange: 7
   alertNearbyAlliesOnHit: 1
-  allyAlertRadius: 10
+  allyAlertRadius: 7
   walkSpeed: 1.25
   runSpeed: 4
   turnSpeed: 8

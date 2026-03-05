@@ -13,13 +13,20 @@ public enum AmmoBoxType { smallBox, bigBox }
 public class Pickup_Ammo : Interactable
 {
     [SerializeField] private AmmoBoxType boxType;
+    [HideInInspector] public bool randomizeOnSpawn;
 
     [SerializeField] private List<AmmoData> smallBoxAmmo;
     [SerializeField] private List<AmmoData> bigBoxAmmo;
 
     [SerializeField] private GameObject[] boxModel;
 
-    private void Start() => SetupBoxModel();
+    private void Start()
+    {
+        if (randomizeOnSpawn)
+            boxType = Random.value > 0.5f ? AmmoBoxType.bigBox : AmmoBoxType.smallBox;
+
+        SetupBoxModel();
+    }
 
     public void SetBoxType(AmmoBoxType newType)
     {

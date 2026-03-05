@@ -5007,9 +5007,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   idleTime: 60
-  aggresionRange: 10
+  aggresionRange: 6
   alertNearbyAlliesOnHit: 1
-  allyAlertRadius: 10
+  allyAlertRadius: 6
   walkSpeed: 1.5
   runSpeed: 4
   turnSpeed: 5

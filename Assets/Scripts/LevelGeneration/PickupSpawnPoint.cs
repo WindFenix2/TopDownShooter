@@ -43,6 +43,14 @@ public class PickupSpawnPoint : MonoBehaviour
         }
 
         spawnedPickup = Instantiate(pickupPrefab, spawnPos, spawnRot);
+
+        Pickup_Ammo ammo = spawnedPickup.GetComponent<Pickup_Ammo>();
+        if (ammo != null)
+            ammo.randomizeOnSpawn = true;
+
+        Pickup_Weapon weaponPickup = spawnedPickup.GetComponent<Pickup_Weapon>();
+        if (weaponPickup != null)
+            weaponPickup.SetupRandomWeapon();
     }
 
     private void OnDrawGizmos()
