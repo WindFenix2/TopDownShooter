@@ -16,8 +16,8 @@ MonoBehaviour:
   missionDescription: You've received information about a group of enemies in the
     area. Your task is to eliminate all VIP targets.
   availableLevelParts: []
-  lastLevelPartOverride: {fileID: 0}
-  hasExit: 0
+  lastLevelPartOverride: {fileID: 3966566735694463111, guid: 865a97ee491635f439531fdf430efd71, type: 3}
+  hasExit: 1
   maxLevelParts: 5
   penultimateLevelPartOverride: {fileID: 0}
   disableCarSpawns: 0

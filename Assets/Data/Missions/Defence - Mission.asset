@@ -15,10 +15,13 @@ MonoBehaviour:
   missionName: Final Defense
   missionDescription: The enemies have learned of the location of our radio tower.
     You must protect this object from waves of enemies.
-  availableLevelParts: []
+  availableLevelParts:
+  - {fileID: 1961009257641033207, guid: 94683822f4d5752478550a9229597dfe, type: 3}
   lastLevelPartOverride: {fileID: 0}
   hasExit: 0
-  maxLevelParts: 3
+  maxLevelParts: 2
+  penultimateLevelPartOverride: {fileID: 0}
+  disableCarSpawns: 0
   defenceBegun: 0
   defenceObjectName: the radio tower
   waves:
@@ -28,6 +31,7 @@ MonoBehaviour:
     - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
     - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
     - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
+    - {fileID: 9022075838272794855, guid: ae87e69006cd2c6448bf78e89579fd14, type: 3}
     meleeCount: 5
     rangeEnemies: []
     rangeCount: 0
@@ -51,6 +55,7 @@ MonoBehaviour:
     - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
     - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
     - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
+    - {fileID: 9022075838272794855, guid: ae87e69006cd2c6448bf78e89579fd14, type: 3}
     meleeCount: 3
     rangeEnemies:
     - {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
@@ -76,6 +81,7 @@ MonoBehaviour:
     - {fileID: 5538225278542372513, guid: 4ad91cb8471a3f04591b82c6d088cf17, type: 3}
     - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
     - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}
+    - {fileID: 9022075838272794855, guid: ae87e69006cd2c6448bf78e89579fd14, type: 3}
     meleeCount: 2
     rangeEnemies:
     - {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
