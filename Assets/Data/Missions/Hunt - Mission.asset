@@ -18,6 +18,8 @@ MonoBehaviour:
   availableLevelParts: []
   lastLevelPartOverride: {fileID: 0}
   hasExit: 0
-  maxLevelParts: 0
+  maxLevelParts: 5
+  penultimateLevelPartOverride: {fileID: 0}
+  disableCarSpawns: 0
   amountToKill: 12
   showEnemyTracker: 1

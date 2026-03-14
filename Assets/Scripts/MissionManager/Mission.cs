@@ -22,6 +22,12 @@ public abstract class Mission : ScriptableObject
     [Tooltip("Max number of level parts to generate (0 = use LevelGenerator default). Use small values for arena missions.")]
     public int maxLevelParts = 0;
 
+    [Tooltip("Override for the penultimate (second-to-last) level part. If set, this prefab is inserted before the exit.")]
+    public Transform penultimateLevelPartOverride;
+
+    [Tooltip("If true, the general car spawn system is disabled for this mission (mission handles its own car spawning).")]
+    public bool disableCarSpawns = false;
+
     public abstract void StartMission();
     public abstract bool MissionCompleted();
 

@@ -118,20 +118,75 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
 
     public Enemy[] MyEnemies() => GetComponentsInChildren<Enemy>(true);
 
-    public List<Enemy> SpawnEnemiesFromSpawnPoints()
+    public List<Enemy> SpawnEnemiesFromSpawnPoints(int minEnemies = 6)
     {
         List<Enemy> spawnedEnemies = new List<Enemy>();
         EnemySpawnPoint[] spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
 
+        // Shuffle spawn points
+        for (int i = spawnPoints.Length - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            EnemySpawnPoint temp = spawnPoints[i];
+            spawnPoints[i] = spawnPoints[j];
+            spawnPoints[j] = temp;
+        }
+
+        List<EnemySpawnPoint> unusedPoints = new List<EnemySpawnPoint>();
+
+        // First pass: 70% chance each, no upper cap
         foreach (EnemySpawnPoint spawnPoint in spawnPoints)
         {
-            Enemy enemy = spawnPoint.SpawnRandomEnemy();
+            if (Random.value < 0.70f)
+            {
+                Enemy enemy = spawnPoint.SpawnRandomEnemy();
+                if (enemy != null)
+                    spawnedEnemies.Add(enemy);
+                else
+                    unusedPoints.Add(spawnPoint);
+            }
+            else
+            {
+                unusedPoints.Add(spawnPoint);
+            }
+        }
+
+        // Guarantee minimum: force-spawn at random unused points
+        while (spawnedEnemies.Count < minEnemies && unusedPoints.Count > 0)
+        {
+            int idx = Random.Range(0, unusedPoints.Count);
+            Enemy enemy = unusedPoints[idx].SpawnRandomEnemy();
+            unusedPoints.RemoveAt(idx);
+
             if (enemy != null)
                 spawnedEnemies.Add(enemy);
         }
 
         return spawnedEnemies;
     }
+
+    public int SpawnCarsFromSpawnPoints(int currentCarCount, int maxCars)
+    {
+        CarSpawnPoint[] carPoints = GetComponentsInChildren<CarSpawnPoint>();
+        int spawned = 0;
+
+        foreach (CarSpawnPoint point in carPoints)
+        {
+            if (currentCarCount + spawned >= maxCars)
+                break;
+
+            if (Random.value < 0.50f)
+            {
+                GameObject car = point.SpawnCar();
+                if (car != null)
+                    spawned++;
+            }
+        }
+
+        return spawned;
+    }
+
+    public CarSpawnPoint[] GetCarSpawnPoints() => GetComponentsInChildren<CarSpawnPoint>();
 
     public void ActivatePickupSpawnPoints()
     {
@@ -145,4 +200,3 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
 
     public EnemySpawnPoint[] GetEnemySpawnPoints() => GetComponentsInChildren<EnemySpawnPoint>();
 }
-

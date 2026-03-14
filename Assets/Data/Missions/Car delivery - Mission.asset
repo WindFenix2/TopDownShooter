@@ -18,6 +18,8 @@ MonoBehaviour:
   availableLevelParts: []
   lastLevelPartOverride: {fileID: 0}
   hasExit: 1
-  maxLevelParts: 0
+  maxLevelParts: 5
+  penultimateLevelPartOverride: {fileID: 1990789868430406224, guid: 1d7d46429e009bb4585eb449a59464bc, type: 3}
+  disableCarSpawns: 0
   vehiclesToSpawn: 1
   gasolineToSpawn: 3

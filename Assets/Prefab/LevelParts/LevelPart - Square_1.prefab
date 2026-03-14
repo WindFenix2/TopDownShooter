@@ -516,6 +516,53 @@ Transform:
   - {fileID: 4482945112136614773}
   m_Father: {fileID: 293428019962968012}
   m_LocalEulerAnglesHint: {x: 0, y: -542.199, z: 0}
+--- !u!1 &349907099580233728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2639829154727580962}
+  - component: {fileID: 7472556773198996421}
+  m_Layer: 0
+  m_Name: MissionSpawn_Gasoline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2639829154727580962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349907099580233728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 47.813, y: -0.562, z: -12.552}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8771930459050205549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7472556773198996421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349907099580233728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d583a3832cdd342a26ea0ee0a2fa5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: 1
+  prefab: {fileID: 2525145353576247336, guid: f6a53c6123c1dbb4f9b0f619f7c681be, type: 3}
+  gizmoRadius: 1
 --- !u!1 &566760480872980747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,6 +2360,7 @@ Transform:
   - {fileID: 4456991912282399954}
   - {fileID: 6821247322153196713}
   - {fileID: 4824892280266309128}
+  - {fileID: 2639829154727580962}
   m_Father: {fileID: 8430654170725799944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4922671705596696388
@@ -17738,7 +17786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5222530997942339644, guid: 996f37b1e670d6e4a8f48fd401ef2953, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22497559
+      value: -3.12
       objectReference: {fileID: 0}
     - target: {fileID: 5222530997942339644, guid: 996f37b1e670d6e4a8f48fd401ef2953, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17746,7 +17794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5222530997942339644, guid: 996f37b1e670d6e4a8f48fd401ef2953, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.333008
+      value: -24.8
       objectReference: {fileID: 0}
     - target: {fileID: 5222530997942339644, guid: 996f37b1e670d6e4a8f48fd401ef2953, type: 3}
       propertyPath: m_LocalRotation.w

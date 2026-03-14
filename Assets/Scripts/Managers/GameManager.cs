@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
             if (ability != null)
                 ability.SetPersistShield(shotgunShieldPersists);
         }
+
+        UI.instance?.inGameUI?.ShowControlsHint();
     }
 
     public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);

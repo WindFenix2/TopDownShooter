@@ -5032,7 +5032,7 @@ MonoBehaviour:
   attackData:
     attackDamage: 18
     attackName: Sword slash
-    attackRange: 1
+    attackRange: 0.8
     moveSpeed: 0
     attackIndex: 1
     animationSpeed: 1.7
@@ -5047,7 +5047,7 @@ MonoBehaviour:
     attackType: 1
   - attackDamage: 18
     attackName: Sword slash
-    attackRange: 1
+    attackRange: 0.8
     moveSpeed: 0
     attackIndex: 1
     animationSpeed: 1.7

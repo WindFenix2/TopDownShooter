@@ -19,5 +19,7 @@ MonoBehaviour:
   availableLevelParts: []
   lastLevelPartOverride: {fileID: 0}
   hasExit: 1
-  maxLevelParts: 0
+  maxLevelParts: 5
+  penultimateLevelPartOverride: {fileID: 0}
+  disableCarSpawns: 0
   time: 900

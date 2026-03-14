@@ -22,10 +22,17 @@ public class LevelGenerator : MonoBehaviour
     private List<Transform> generatedLevelParts = new List<Transform>();
 
     private Transform activeLastLevelPart;
+    private Transform activePenultimatePart;
     private bool activeHasExit = true;
+    private bool activeDisableCarSpawns = false;
 
     [SerializeField] private SnapPoint nextSnapPoint;
     private SnapPoint defaultSnapPoint;
+
+    [Header("Car Spawns")]
+    [SerializeField] private int minCars = 1;
+    [SerializeField] private int maxCars = 3;
+    private int carCount;
 
     [Space]
     [Tooltip("Delay between generating each level part (seconds). Controls generation speed.")]
@@ -98,13 +105,18 @@ public class LevelGenerator : MonoBehaviour
         {
             activeHasExit = mission.hasExit;
             activeLastLevelPart = mission.lastLevelPartOverride != null ? mission.lastLevelPartOverride : lastLevelPart;
+            activePenultimatePart = mission.penultimateLevelPartOverride;
+            activeDisableCarSpawns = mission.disableCarSpawns;
         }
         else
         {
             activeHasExit = true;
             activeLastLevelPart = lastLevelPart;
+            activePenultimatePart = null;
+            activeDisableCarSpawns = false;
         }
 
+        carCount = 0;
         DestroyOldLevelPartsAndEnemies();
     }
 
@@ -128,14 +140,29 @@ public class LevelGenerator : MonoBehaviour
     {
         generationOver = true;
 
+        // Insert penultimate part (e.g. long road) before the exit if mission specifies one
+        if (activePenultimatePart != null)
+        {
+            GeneratePenultimatePart();
+        }
+
         if (activeHasExit && activeLastLevelPart != null)
-            GenerateNextLevelPart();
+            GenerateLastLevelPart();
 
         LevelPart startPart = defaultSnapPoint.GetComponentInParent<LevelPart>();
         if (startPart != null)
         {
             startPart.ActivatePickupSpawnPoints();
             enemyList.AddRange(startPart.SpawnEnemiesFromSpawnPoints());
+
+            if (!activeDisableCarSpawns)
+                carCount += startPart.SpawnCarsFromSpawnPoints(carCount, maxCars);
+        }
+
+        // Guarantee minimum cars
+        if (!activeDisableCarSpawns && carCount < minCars)
+        {
+            ForceSpawnMinCars();
         }
 
         navMeshSurface.BuildNavMesh();
@@ -152,12 +179,7 @@ public class LevelGenerator : MonoBehaviour
     [ContextMenu("Create next level part")]
     private void GenerateNextLevelPart()
     {
-        Transform newPart = null;
-
-        if (generationOver)
-            newPart = Instantiate(activeLastLevelPart);
-        else
-            newPart = Instantiate(ChooseRandomPart());
+        Transform newPart = Instantiate(ChooseRandomPart());
 
         generatedLevelParts.Add(newPart);
 
@@ -176,6 +198,94 @@ public class LevelGenerator : MonoBehaviour
         enemyList.AddRange(levelPartScript.SpawnEnemiesFromSpawnPoints());
 
         levelPartScript.ActivatePickupSpawnPoints();
+
+        if (!activeDisableCarSpawns)
+            carCount += levelPartScript.SpawnCarsFromSpawnPoints(carCount, maxCars);
+    }
+
+    private void GenerateLastLevelPart()
+    {
+        Transform newPart = Instantiate(activeLastLevelPart);
+        generatedLevelParts.Add(newPart);
+
+        LevelPart levelPartScript = newPart.GetComponent<LevelPart>();
+        levelPartScript.SnapAndAlignPartTo(nextSnapPoint);
+
+        if (levelPartScript.IntersectionDetected())
+        {
+            InitializeGeneration();
+            return;
+        }
+
+        nextSnapPoint = levelPartScript.GetExitPoint();
+
+        enemyList.AddRange(levelPartScript.MyEnemies());
+        enemyList.AddRange(levelPartScript.SpawnEnemiesFromSpawnPoints());
+        levelPartScript.ActivatePickupSpawnPoints();
+    }
+
+    private void GeneratePenultimatePart()
+    {
+        Transform newPart = Instantiate(activePenultimatePart);
+        generatedLevelParts.Add(newPart);
+
+        LevelPart levelPartScript = newPart.GetComponent<LevelPart>();
+        levelPartScript.SnapAndAlignPartTo(nextSnapPoint);
+
+        if (levelPartScript.IntersectionDetected())
+        {
+            InitializeGeneration();
+            return;
+        }
+
+        nextSnapPoint = levelPartScript.GetExitPoint();
+
+        enemyList.AddRange(levelPartScript.MyEnemies());
+        enemyList.AddRange(levelPartScript.SpawnEnemiesFromSpawnPoints());
+        levelPartScript.ActivatePickupSpawnPoints();
+
+        // For car mission: spawn exactly 1 car on the penultimate part
+        CarSpawnPoint[] penultimateCarPoints = levelPartScript.GetCarSpawnPoints();
+        if (penultimateCarPoints.Length > 0)
+        {
+            GameObject car = penultimateCarPoints[0].SpawnCar();
+            if (car != null)
+                carCount++;
+        }
+    }
+
+    private void ForceSpawnMinCars()
+    {
+        List<CarSpawnPoint> allAvailable = new List<CarSpawnPoint>();
+
+        foreach (Transform part in generatedLevelParts)
+        {
+            LevelPart lp = part.GetComponent<LevelPart>();
+            if (lp != null)
+            {
+                CarSpawnPoint[] points = lp.GetCarSpawnPoints();
+                allAvailable.AddRange(points);
+            }
+        }
+
+        // Shuffle
+        for (int i = allAvailable.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            CarSpawnPoint t = allAvailable[i];
+            allAvailable[i] = allAvailable[j];
+            allAvailable[j] = t;
+        }
+
+        foreach (CarSpawnPoint point in allAvailable)
+        {
+            if (carCount >= minCars)
+                break;
+
+            GameObject car = point.SpawnCar();
+            if (car != null)
+                carCount++;
+        }
     }
 
     private Transform ChooseRandomPart()

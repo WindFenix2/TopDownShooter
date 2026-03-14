@@ -156,6 +156,8 @@ MonoBehaviour:
   levelParts:
   - {fileID: 1990789868430406224, guid: 1d7d46429e009bb4585eb449a59464bc, type: 3}
   nextSnapPoint: {fileID: 0}
+  minCars: 1
+  maxCars: 3
   generationCooldown: 0.25
 --- !u!4 &5961874
 Transform:
@@ -12385,9 +12387,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use Q - to slow down time
-
-    Use RMB - to aim'
+  m_text: "\nR \u2014 Reload\r\nF \u2014 Interact\r\n1/2 \u2014 Switch Weapon\r\nG
+    \u2014 Drop Weapon\r\nT \u2014 Weapon Ability\r\nQ \u2014 Slow Motion"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
   m_sharedMaterial: {fileID: -3459236091167403587, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
@@ -12414,8 +12415,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19339,63 +19340,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483694987}
   m_CullTransparentMesh: 1
---- !u!1001 &1492144760
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0000009536743
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233323451183421440, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6578863872019612278, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
-      propertyPath: m_Name
-      value: Enemy_Melee - Axe throw Variant
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0a4299f84e9a8c24886ddd6cd870ec4b, type: 3}
 --- !u!1001 &1492687974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38350,4 +38294,3 @@ SceneRoots:
   - {fileID: 1889305723}
   - {fileID: 1515178050}
   - {fileID: 720912458}
-  - {fileID: 1492144760}

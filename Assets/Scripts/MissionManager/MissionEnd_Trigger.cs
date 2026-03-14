@@ -21,5 +21,9 @@ public class MissionEnd_Trigger : MonoBehaviour
             GameManager.instance.GameCompleted();
             Debug.Log("Level completed!");
         }
+        else
+        {
+            UI.instance?.inGameUI?.ShowCenterMessage("You can't escape yet! Complete the mission first.");
+        }
     }
 }

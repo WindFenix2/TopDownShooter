@@ -51,6 +51,13 @@ public class SpawnPointCreator : Editor
         sp.pickupType = PickupSpawnPoint.PickupType.Weapon;
     }
 
+    [MenuItem("GameObject/Spawn Points/Car Spawn", false, 40)]
+    static void CreateCarSpawn()
+    {
+        var go = CreateSpawnPointGO("CarSpawn");
+        go.AddComponent<CarSpawnPoint>();
+    }
+
     [MenuItem("GameObject/Spawn Points/Mission - Vehicle Spawn", false, 50)]
     static void CreateVehicleSpawn()
     {

@@ -161,6 +161,8 @@ MonoBehaviour:
   - {fileID: 1990789868430406224, guid: 1d7d46429e009bb4585eb449a59464bc, type: 3}
   - {fileID: 1961009257641033207, guid: ebdada50b9e90ac409a065fefa1ebb10, type: 3}
   nextSnapPoint: {fileID: 819654112}
+  minCars: 1
+  maxCars: 3
   generationCooldown: 0.25
 --- !u!4 &5961874
 Transform:
@@ -7269,9 +7271,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use Q - to slow down time
-
-    Use RMB - to aim'
+  m_text: "\nR \u2014 Reload\r\nF \u2014 Interact\r\n1/2 \u2014 Switch Weapon\r\nG
+    \u2014 Drop Weapon\r\nT \u2014 Weapon Ability\r\nQ \u2014 Slow Motion"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
   m_sharedMaterial: {fileID: -3459236091167403587, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
@@ -7298,8 +7299,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

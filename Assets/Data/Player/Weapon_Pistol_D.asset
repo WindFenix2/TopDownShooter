@@ -35,4 +35,4 @@ MonoBehaviour:
   cameraDistance: 7
   pickupMass: 2
   weaponIcon: {fileID: 1068215163, guid: 3477fe9a26e0faa42b5a9b5b258229c1, type: 3}
-  weaponInfo: Quick to draw,Quick to use, Quick to Kill
+  weaponInfo: His bullets fly right on target

@@ -11,6 +11,8 @@ public class Mission_KeyFind : Mission
 
     public override void StartMission()
     {
+        keyFound = false;
+
         MissionObject_Key.OnKeyPickedUp += PickUpKey;
 
         UI.instance.inGameUI.UpdateMissionInfo("Find a key-holder. Retrive the key.");

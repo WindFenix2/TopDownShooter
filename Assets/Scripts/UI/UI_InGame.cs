@@ -35,10 +35,19 @@ public class UI_InGame : MonoBehaviour
     [SerializeField] private float defaultCenterMessageDuration = 1.4f;
     [SerializeField] private float defaultCenterMessageFadeTime = 0.5f;
 
+    // Controls hint
+    private GameObject controlsHintParent;
+    private CanvasGroup controlsHintCanvasGroup;
+    private bool controlsHintActive;
+    private float controlsHintStartTime;
+    private float controlsHintDisplayTime = 8f;
+    private float controlsHintFadeTime = 1f;
+
     private void Awake()
     {
         weaponSlots_UI = GetComponentsInChildren<UI_WeaponSlot>();
         EnsureCenterMessageUI();
+        EnsureControlsHintUI();
         SyncMissionTooltipWidth();
     }
 
@@ -199,4 +208,105 @@ public class UI_InGame : MonoBehaviour
     }
 
     public void UpdateSpeedText(string text) => carSpeedText.text = text;
+
+    #region Controls Hint
+
+    private void EnsureControlsHintUI()
+    {
+        if (controlsHintParent != null)
+            return;
+
+        controlsHintParent = new GameObject("ControlsHint_UI");
+        controlsHintParent.transform.SetParent(transform, false);
+
+        var rt = controlsHintParent.AddComponent<RectTransform>();
+        rt.anchorMin = new Vector2(0f, 0.5f);
+        rt.anchorMax = new Vector2(0f, 0.5f);
+        rt.pivot = new Vector2(0f, 0.5f);
+        rt.anchoredPosition = new Vector2(20f, 0f);
+        rt.sizeDelta = new Vector2(380f, 520f);
+
+        // Semi-transparent background
+        var bg = controlsHintParent.AddComponent<Image>();
+        bg.color = new Color(0f, 0f, 0f, 0.55f);
+
+        controlsHintCanvasGroup = controlsHintParent.AddComponent<CanvasGroup>();
+        controlsHintCanvasGroup.alpha = 0f;
+        controlsHintParent.SetActive(false);
+
+        // Text child
+        var textGO = new GameObject("ControlsHint_Text");
+        textGO.transform.SetParent(controlsHintParent.transform, false);
+
+        var trt = textGO.AddComponent<RectTransform>();
+        trt.anchorMin = new Vector2(0f, 0f);
+        trt.anchorMax = new Vector2(1f, 1f);
+        trt.pivot = new Vector2(0.5f, 0.5f);
+        trt.offsetMin = new Vector2(18f, 14f);
+        trt.offsetMax = new Vector2(-18f, -14f);
+
+        var tmp = textGO.AddComponent<TextMeshProUGUI>();
+        tmp.text =
+            "<b>Controls</b>\n" +
+            "WASD — Move\n" +
+            "Mouse — Aim\n" +
+            "LMB — Shoot\n" +
+            "RMB — Aim Down Sights\n" +
+            "R — Reload\n" +
+            "F — Interact\n" +
+            "1/2 — Switch Weapon\n" +
+            "G — Drop Weapon\n" +
+            "T — Weapon Ability\n" +
+            "Q — Slow Motion\n" +
+            "H — Mission Info\n" +
+            "Esc — Pause";
+        tmp.alignment = TextAlignmentOptions.TopLeft;
+        tmp.enableWordWrapping = true;
+        tmp.fontSize = 24;
+        tmp.color = Color.white;
+
+        if (missionText != null && missionText.font != null)
+            tmp.font = missionText.font;
+        if (missionText != null && missionText.fontMaterial != null)
+            tmp.fontMaterial = missionText.fontMaterial;
+    }
+
+    public void ShowControlsHint()
+    {
+        EnsureControlsHintUI();
+
+        controlsHintParent.SetActive(true);
+        controlsHintCanvasGroup.alpha = 1f;
+        controlsHintActive = true;
+        controlsHintStartTime = Time.realtimeSinceStartup;
+    }
+
+    private void Update()
+    {
+        if (!controlsHintActive || controlsHintParent == null)
+            return;
+
+        float elapsed = Time.realtimeSinceStartup - controlsHintStartTime;
+
+        if (elapsed < controlsHintDisplayTime)
+        {
+            // Still showing
+            controlsHintCanvasGroup.alpha = 1f;
+        }
+        else if (elapsed < controlsHintDisplayTime + controlsHintFadeTime)
+        {
+            // Fading out
+            float fadeProgress = (elapsed - controlsHintDisplayTime) / controlsHintFadeTime;
+            controlsHintCanvasGroup.alpha = 1f - fadeProgress;
+        }
+        else
+        {
+            // Done
+            controlsHintCanvasGroup.alpha = 0f;
+            controlsHintParent.SetActive(false);
+            controlsHintActive = false;
+        }
+    }
+
+    #endregion
 }
