@@ -174,6 +174,10 @@ public class Bullet : MonoBehaviour
             Interactable interactable = hitCol.GetComponentInParent<Interactable>();
             if (interactable != null)
                 return;
+
+            // Skip boss flamethrower damage area trigger colliders
+            if (hitCol.GetComponentInParent<Flamethrow_DamageArea>() != null)
+                return;
         }
 
         if (isPlayerBulletCached && ownerRoot != null)

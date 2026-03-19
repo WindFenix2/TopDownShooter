@@ -145,6 +145,9 @@ public class UI_InGame : MonoBehaviour
 
     public void ShowCenterMessage(string text, float duration = -1f, float fadeTime = -1f)
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         EnsureCenterMessageUI();
 
         if (duration <= 0f) duration = defaultCenterMessageDuration;

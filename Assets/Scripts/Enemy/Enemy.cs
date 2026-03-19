@@ -287,6 +287,31 @@ public class Enemy : MonoBehaviour
                     return;
                 }
             }
+
+            // If player is in a car, also check for car damage (car is not on Player layer)
+            if (player != null)
+            {
+                Car_HealthController carHealth = player.GetComponentInParent<Car_HealthController>();
+                if (carHealth != null)
+                {
+                    float distToCar = Vector3.Distance(attackPoint.position, carHealth.transform.position);
+                    if (distToCar < attackCheckRadius + 2.5f)
+                    {
+                        carHealth.TakeDamage(damage);
+
+                        meleeAlreadyHitThisSwing = true;
+                        isMeleeAttackReady = false;
+
+                        if (ObjectPool.instance != null && fx != null)
+                        {
+                            GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
+                            ObjectPool.instance.ReturnObject(newAttackFx, 1);
+                        }
+
+                        return;
+                    }
+                }
+            }
         }
     }
 

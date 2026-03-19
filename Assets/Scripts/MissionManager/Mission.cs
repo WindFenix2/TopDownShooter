@@ -28,6 +28,9 @@ public abstract class Mission : ScriptableObject
     [Tooltip("If true, the general car spawn system is disabled for this mission (mission handles its own car spawning).")]
     public bool disableCarSpawns = false;
 
+    [Tooltip("If true, an exit marker arrow appears when the mission is completed. Disable for timer/escape missions.")]
+    public bool showExitMarker = true;
+
     public abstract void StartMission();
     public abstract bool MissionCompleted();
 

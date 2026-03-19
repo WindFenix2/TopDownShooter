@@ -2773,6 +2773,7 @@ MonoBehaviour:
   intersectionCheckColliders:
   - {fileID: 62096729072487379}
   intersectionCheckParent: {fileID: 8934857020434593339}
+  entranceBlocker: {fileID: 0}
 --- !u!1 &5737414137792400450
 GameObject:
   m_ObjectHideFlags: 0

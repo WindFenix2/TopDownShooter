@@ -37,12 +37,16 @@ public class TimeManager : MonoBehaviour
     {
         timeAdjustRate = pauseRate;
         targetTimeScale = 0;
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetSFXPause(true);
     }
 
     public void ResumeTime()
     {
         timeAdjustRate = resumeRate;
         targetTimeScale = 1;
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetSFXPause(false);
     }
 
     public void SlowMotionFor(float seconds) => StartCoroutine(SlowTimeCo(seconds));

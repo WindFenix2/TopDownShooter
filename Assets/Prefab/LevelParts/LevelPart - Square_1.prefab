@@ -3522,6 +3522,7 @@ MonoBehaviour:
   intersectionCheckColliders:
   - {fileID: 6585394705948984387}
   intersectionCheckParent: {fileID: 8685714774063503783}
+  entranceBlocker: {fileID: 0}
 --- !u!1 &8352514908195876637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7803,15 +7804,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6724884685478902785, guid: 573d411e3cf8b494f86a5ba05663106d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.88
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 6724884685478902785, guid: 573d411e3cf8b494f86a5ba05663106d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.54
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 6724884685478902785, guid: 573d411e3cf8b494f86a5ba05663106d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.32
+      value: -2.27
       objectReference: {fileID: 0}
     - target: {fileID: 6724884685478902785, guid: 573d411e3cf8b494f86a5ba05663106d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7847,7 +7848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932933208757251027, guid: 573d411e3cf8b494f86a5ba05663106d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 6932933208757251027, guid: 573d411e3cf8b494f86a5ba05663106d, type: 3}
       propertyPath: m_LocalPosition.z

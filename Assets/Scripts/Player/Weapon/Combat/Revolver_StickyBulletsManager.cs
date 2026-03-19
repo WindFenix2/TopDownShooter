@@ -73,6 +73,14 @@ public class Revolver_StickyBulletsManager : MonoBehaviour
             Collider c = hits[i];
             if (c == null) continue;
 
+            // Destroy thrown axes caught in the blast
+            Enemy_Axe axe = c.GetComponentInParent<Enemy_Axe>();
+            if (axe != null)
+            {
+                ObjectPool.instance.ReturnObject(axe.gameObject);
+                continue;
+            }
+
             if (explosionPushForce > 0f && pushRadius > 0f)
             {
                 Rigidbody hitRb = c.attachedRigidbody;

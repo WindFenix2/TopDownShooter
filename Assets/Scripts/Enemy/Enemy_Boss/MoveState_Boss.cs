@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MoveState_Boss : EnemyState
 {
@@ -22,6 +23,18 @@ public class MoveState_Boss : EnemyState
         enemy.agent.isStopped = false;
 
         destination = enemy.GetPatrolDestination();
+
+        // If patrol destination is too close, pick a random NavMesh point instead
+        if (Vector3.Distance(enemy.transform.position, destination) < 1f)
+        {
+            Vector3 randomDir = Random.insideUnitSphere * 8f;
+            randomDir.y = 0;
+            Vector3 randomPoint = enemy.transform.position + randomDir;
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit navHit, 8f, NavMesh.AllAreas))
+                destination = navHit.position;
+        }
+
         enemy.agent.SetDestination(destination);
 
         actionTimer = enemy.actionCooldown;
@@ -59,7 +72,7 @@ public class MoveState_Boss : EnemyState
         }
         else
         {
-            if (Vector3.Distance(enemy.transform.position, destination) < .25f)
+            if (Vector3.Distance(enemy.transform.position, destination) < 1.5f)
                 stateMachine.ChangeState(enemy.idleState);
         }
     }

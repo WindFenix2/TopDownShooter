@@ -732,6 +732,7 @@ MonoBehaviour:
   - {fileID: 5568425508303109133}
   - {fileID: 984480609753146867}
   intersectionCheckParent: {fileID: 1218840575468945100}
+  entranceBlocker: {fileID: 3966566735694463111, guid: 252422c2962adbe449e2f216a0ff641e, type: 3}
 --- !u!1 &738917368999969795
 GameObject:
   m_ObjectHideFlags: 0

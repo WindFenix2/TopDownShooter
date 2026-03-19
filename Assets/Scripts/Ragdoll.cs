@@ -6,11 +6,8 @@ public class Ragdoll : MonoBehaviour
 {
     [SerializeField] private Transform ragdollParent;
 
-    private float settleDelay = 15f;
-
     private Collider[] ragdollColliders;
     private Rigidbody[] ragdollRigidbodies;
-    private bool isFrozen;
 
     private void Awake()
     {
@@ -27,50 +24,14 @@ public class Ragdoll : MonoBehaviour
 
     public void RagdollActive(bool active)
     {
-        isFrozen = false;
-        StopAllCoroutines();
-
         foreach (Rigidbody rb in ragdollRigidbodies)
         {
             rb.isKinematic = !active;
-
-            if (active)
-            {
-                rb.sleepThreshold = 0f;
-            }
-        }
-
-        if (active && settleDelay > 0f)
-            StartCoroutine(FreezeAfterSettle());
-    }
-
-    private IEnumerator FreezeAfterSettle()
-    {
-        yield return new WaitForSeconds(settleDelay);
-
-        isFrozen = true;
-
-        foreach (Rigidbody rb in ragdollRigidbodies)
-        {
-            if (!rb.isKinematic)
-            {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-            }
-            rb.isKinematic = true;
         }
     }
 
-    public void WakeUp()
-    {
-        if (isFrozen) return;
-
-        foreach (Rigidbody rb in ragdollRigidbodies)
-        {
-            if (rb != null && !rb.isKinematic)
-                rb.WakeUp();
-        }
-    }
+    // No-op: ragdolls no longer freeze, but kept for backward compatibility
+    public void WakeUp() { }
 
     public void CollidersActive(bool active)
     {

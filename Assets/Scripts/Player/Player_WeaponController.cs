@@ -664,6 +664,19 @@ public class Player_WeaponController : MonoBehaviour
         }
     }
 
+    public void StopAllWeaponSounds()
+    {
+        if (player != null && player.weaponVisuals != null)
+        {
+            var model = player.weaponVisuals.CurrentWeaponModel();
+            if (model != null)
+            {
+                if (model.realodSfx != null) model.realodSfx.Stop();
+                if (model.fireSFX != null) model.fireSFX.Stop();
+            }
+        }
+    }
+
     #region Input Events
 
     private void AssignInputEvents()

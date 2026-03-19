@@ -8,6 +8,11 @@ public class LevelPart : MonoBehaviour
     [SerializeField] private Collider[] intersectionCheckColliders;
     [SerializeField] private Transform intersectionCheckParent;
 
+    [Header("Multi-entrance blocker")]
+    [Tooltip("Prefab to spawn at unused entrances (e.g. End Close piece). Leave empty if part has only one entrance.")]
+    [SerializeField] private Transform entranceBlocker;
+
+    private SnapPoint usedEntrance;
 
     [ContextMenu("Set static to envoirment layer")]
     private void AdjustLayerForStaticObjcets()
@@ -52,16 +57,74 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
         
     }
 
+    /// <summary>
+    /// Disables intersection check colliders. Call after level generation is complete
+    /// so bullets and other physics objects don't collide with invisible generation-only colliders.
+    /// </summary>
+    public void DisableIntersectionColliders()
+    {
+        if (intersectionCheckColliders == null)
+            return;
+
+        foreach (var col in intersectionCheckColliders)
+        {
+            if (col != null)
+                col.enabled = false;
+        }
+    }
+
 
     public void SnapAndAlignPartTo(SnapPoint targetSnapPoint)
     {
         SnapPoint entrancePoint = GetEntrancePoint();
+        usedEntrance = entrancePoint;
 
         AlignTo(entrancePoint, targetSnapPoint); // IMPROTANT: Alignment should be before position snapping
         SnapTo(entrancePoint, targetSnapPoint);
     }
 
-    private void AlignTo(SnapPoint ownSnapPoint, SnapPoint targetSnapPoint)
+    /// <summary>
+    /// Spawns the entranceBlocker prefab at any entrance snap points that were NOT used for connecting.
+    /// Call this after SnapAndAlignPartTo() for parts with multiple entrances (e.g. T-shaped parts).
+    /// </summary>
+    public void CloseUnusedEntrances()
+    {
+        if (entranceBlocker == null)
+            return;
+
+        SnapPoint[] snapPoints = GetComponentsInChildren<SnapPoint>();
+
+        foreach (SnapPoint sp in snapPoints)
+        {
+            if (sp.pointType != SnapPointType.Enter)
+                continue;
+
+            if (sp == usedEntrance)
+                continue;
+
+            // Spawn blocker and snap it to the unused entrance
+            Transform blocker = Instantiate(entranceBlocker);
+            LevelPart blockerPart = blocker.GetComponent<LevelPart>();
+
+            if (blockerPart != null)
+            {
+                SnapPoint blockerEntrance = blockerPart.GetEntrancePoint();
+                if (blockerEntrance != null)
+                {
+                    blockerPart.AlignTo(blockerEntrance, sp);
+                    blockerPart.SnapTo(blockerEntrance, sp);
+                }
+            }
+            else
+            {
+                // Simple fallback: just place the blocker at the snap point position/rotation
+                blocker.position = sp.transform.position;
+                blocker.rotation = sp.transform.rotation;
+            }
+        }
+    }
+
+    internal void AlignTo(SnapPoint ownSnapPoint, SnapPoint targetSnapPoint)
     {
 
         var rotationOffset =
@@ -77,7 +140,7 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
         transform.Rotate(0, -rotationOffset, 0);
     }
 
-    private void SnapTo(SnapPoint ownSnapPoint, SnapPoint targetSnapPoint)
+    internal void SnapTo(SnapPoint ownSnapPoint, SnapPoint targetSnapPoint)
     {
 
         var offset = transform.position - ownSnapPoint.transform.position;

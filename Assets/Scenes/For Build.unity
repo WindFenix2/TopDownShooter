@@ -1974,6 +1974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowSprite: {fileID: 21300000, guid: 7bbafe56cd97c50499e724ba3d196a94, type: 3}
+  exitSprite: {fileID: 21300000, guid: f6fd8068350256748af90dcf0dfeceb7, type: 3}
   arrowSize: 60
   edgeOffset: 60
   arrowColor: {r: 1, g: 0, b: 0, a: 1}
@@ -14227,6 +14228,11 @@ MonoBehaviour:
   - {fileID: 1918257544}
   - {fileID: 1435805279}
   - {fileID: 2054039059}
+  audioMixer: {fileID: 24100000, guid: 613451a505d6d99469bb9ae272f196ea, type: 2}
+  sfxMixerGroup: {fileID: 7240266472886219749, guid: 613451a505d6d99469bb9ae272f196ea, type: 2}
+  sfxMixerParam: sfx
+  bgmMixerParam: bgm
+  sliderMultiplier: 25
   playBgm: 1
   bgmIndex: 0
 --- !u!4 &1697233988
@@ -27299,6 +27305,10 @@ PrefabInstance:
     - target: {fileID: 2517693102136785997, guid: 70b023cb9c6f52342a00c3d4f6ac14ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -17.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 2662153698700016358, guid: 70b023cb9c6f52342a00c3d4f6ac14ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 2680344260384576824, guid: 70b023cb9c6f52342a00c3d4f6ac14ff, type: 3}
       propertyPath: m_Layer

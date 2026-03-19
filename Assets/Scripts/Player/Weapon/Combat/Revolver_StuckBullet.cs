@@ -55,8 +55,10 @@ public class Revolver_StuckBullet : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = false;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+            rb.detectCollisions = true;
         }
 
         if (col != null)
@@ -69,6 +71,17 @@ public class Revolver_StuckBullet : MonoBehaviour
     public void Setup(Revolver_StickyBulletsManager newManager)
     {
         manager = newManager;
+
+        // Register after bullet is fully initialized (has velocity, manager, etc.)
+        if (manager != null)
+            manager.Register(this);
+    }
+
+    private void OnDisable()
+    {
+        // Always unregister when deactivated (pooled, detonated, auto-returned, etc.)
+        if (manager != null)
+            manager.Unregister(this);
     }
 
     private void Update()
@@ -103,6 +116,9 @@ public class Revolver_StuckBullet : MonoBehaviour
                     if (hits[i].collider == null) continue;
                     if (col != null && hits[i].collider == col) continue;
 
+                    // Skip boss flamethrower damage area trigger colliders
+                    if (hits[i].collider.GetComponentInParent<Flamethrow_DamageArea>() != null) continue;
+
                     Transform stickParent = ResolveStickParent(hits[i].collider.transform, hits[i].collider);
                     if (stickParent == null)
                         continue;
@@ -136,6 +152,13 @@ public class Revolver_StuckBullet : MonoBehaviour
         if (stuck) return;
         if (other == null) return;
         if (col != null && other == col) return;
+
+        // Skip boss flamethrower damage area trigger colliders
+        if (other.GetComponentInParent<Flamethrow_DamageArea>() != null) return;
+
+        // Skip non-car trigger colliders (zone limits, spawn points, interaction zones, etc.)
+        bool isCar = other.GetComponentInParent<Car_Controller>() != null;
+        if (!isCar && other.isTrigger) return;
 
         Transform parent = ResolveStickParent(other.transform, other);
         if (parent == null)
@@ -200,6 +223,8 @@ public class Revolver_StuckBullet : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             rb.isKinematic = true;
+            rb.interpolation = RigidbodyInterpolation.None;
+            rb.detectCollisions = false;
         }
 
         Vector3 normal = hit.normal;

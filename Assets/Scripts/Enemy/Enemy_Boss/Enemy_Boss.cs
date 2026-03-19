@@ -251,7 +251,21 @@ public class Enemy_Boss : Enemy
         return false;
     }
 
-    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackRange;
+    public bool PlayerInAttackRange()
+    {
+        float distToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distToPlayer < attackRange)
+            return true;
+
+        Car_Controller car = player.GetComponentInParent<Car_Controller>();
+        if (car != null)
+        {
+            float distToCar = Vector3.Distance(transform.position, car.transform.position);
+            return distToCar < attackRange + 2f;
+        }
+
+        return false;
+    }
 
     protected override void OnDrawGizmos()
     {

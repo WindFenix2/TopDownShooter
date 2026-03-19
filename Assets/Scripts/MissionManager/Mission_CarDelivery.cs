@@ -30,22 +30,63 @@ public class Mission_CarDelivery : Mission
         if (MissionManager.instance != null)
             MissionManager.instance.ClearMissionItems();
 
-        MissionSpawnPoint[] allPoints = FindObjectsOfType<MissionSpawnPoint>();
+        // If penultimate part was used, the car was already spawned by LevelGenerator
+        // Just find it and attach mission components
+        bool foundExistingCar = false;
 
-        MissionSpawnPoint[] vehiclePoints = allPoints
-            .Where(p => p.category == MissionSpawnPoint.SpawnCategory.Vehicle).ToArray();
-        MissionSpawnPoint[] gasolinePoints = allPoints
-            .Where(p => p.category == MissionSpawnPoint.SpawnCategory.Gasoline).ToArray();
-
-        if (vehiclePoints.Length > 0)
+        if (penultimateLevelPartOverride != null)
         {
-            GameObject[] vehicles = MissionSpawnPoint.SpawnRandom(vehiclePoints, vehiclesToSpawn);
-            foreach (GameObject vehicleGO in vehicles)
+            Car_Controller[] existingCars = FindObjectsOfType<Car_Controller>();
+            foreach (Car_Controller car in existingCars)
             {
-                if (vehicleGO == null) continue;
+                if (car.GetComponent<MissionObject_CarToDeliver>() == null)
+                {
+                    car.gameObject.AddComponent<MissionObject_CarToDeliver>();
 
-                Car_Controller car = vehicleGO.GetComponent<Car_Controller>();
-                if (car != null)
+                    Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
+                    if (fuel == null)
+                        fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
+
+                    fuel.SetRequiresFuel(true);
+                    fuel.SetRefueled(false);
+                    foundExistingCar = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundExistingCar)
+        {
+            MissionSpawnPoint[] allPoints = FindObjectsOfType<MissionSpawnPoint>();
+
+            MissionSpawnPoint[] vehiclePoints = allPoints
+                .Where(p => p.category == MissionSpawnPoint.SpawnCategory.Vehicle).ToArray();
+
+            if (vehiclePoints.Length > 0)
+            {
+                GameObject[] vehicles = MissionSpawnPoint.SpawnRandom(vehiclePoints, vehiclesToSpawn);
+                foreach (GameObject vehicleGO in vehicles)
+                {
+                    if (vehicleGO == null) continue;
+
+                    Car_Controller car = vehicleGO.GetComponent<Car_Controller>();
+                    if (car != null)
+                    {
+                        car.gameObject.AddComponent<MissionObject_CarToDeliver>();
+
+                        Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
+                        if (fuel == null)
+                            fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
+
+                        fuel.SetRequiresFuel(true);
+                        fuel.SetRefueled(false);
+                    }
+                }
+            }
+            else
+            {
+                Car_Controller[] cars = FindObjectsOfType<Car_Controller>();
+                foreach (var car in cars)
                 {
                     car.gameObject.AddComponent<MissionObject_CarToDeliver>();
 
@@ -58,21 +99,9 @@ public class Mission_CarDelivery : Mission
                 }
             }
         }
-        else
-        {
-            Car_Controller[] cars = FindObjectsOfType<Car_Controller>();
-            foreach (var car in cars)
-            {
-                car.gameObject.AddComponent<MissionObject_CarToDeliver>();
 
-                Car_FuelRequirement fuel = car.GetComponent<Car_FuelRequirement>();
-                if (fuel == null)
-                    fuel = car.gameObject.AddComponent<Car_FuelRequirement>();
-
-                fuel.SetRequiresFuel(true);
-                fuel.SetRefueled(false);
-            }
-        }
+        MissionSpawnPoint[] gasolinePoints = FindObjectsOfType<MissionSpawnPoint>()
+            .Where(p => p.category == MissionSpawnPoint.SpawnCategory.Gasoline).ToArray();
 
         if (gasolinePoints.Length > 0)
         {

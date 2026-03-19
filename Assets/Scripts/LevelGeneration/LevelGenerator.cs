@@ -107,6 +107,10 @@ public class LevelGenerator : MonoBehaviour
             activeLastLevelPart = mission.lastLevelPartOverride != null ? mission.lastLevelPartOverride : lastLevelPart;
             activePenultimatePart = mission.penultimateLevelPartOverride;
             activeDisableCarSpawns = mission.disableCarSpawns;
+
+            // Remove penultimate part from random pool so it only appears once
+            if (activePenultimatePart != null)
+                currentLevelParts.Remove(activePenultimatePart);
         }
         else
         {
@@ -165,12 +169,33 @@ public class LevelGenerator : MonoBehaviour
             ForceSpawnMinCars();
         }
 
+        // Disable NavMeshAgents before building NavMesh to prevent
+        // "Failed to create agent because there is no valid NavMesh" warnings
+        foreach (Enemy enemy in enemyList)
+        {
+            if (enemy.agent != null)
+                enemy.agent.enabled = false;
+        }
+
         navMeshSurface.BuildNavMesh();
 
         foreach (Enemy enemy in enemyList)
         {
             enemy.transform.parent = null;
+            if (enemy.agent != null)
+                enemy.agent.enabled = true;
             enemy.gameObject.SetActive(true);
+        }
+        // Disable intersection check colliders on all parts (no longer needed at runtime)
+        // Prevents bullets from hitting invisible generation-only colliders
+        if (startPart != null)
+            startPart.DisableIntersectionColliders();
+
+        foreach (Transform part in generatedLevelParts)
+        {
+            LevelPart lp = part.GetComponent<LevelPart>();
+            if (lp != null)
+                lp.DisableIntersectionColliders();
         }
 
         MissionManager.instance.StartMission();
@@ -191,6 +216,9 @@ public class LevelGenerator : MonoBehaviour
             InitializeGeneration();
             return;
         }
+
+        // Close any unused entrances (e.g. second entrance on T-shaped parts)
+        levelPartScript.CloseUnusedEntrances();
 
         nextSnapPoint = levelPartScript.GetExitPoint();
 

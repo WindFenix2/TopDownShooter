@@ -225,7 +225,22 @@ public class Enemy_Melee : Enemy
         return 0;
     }
 
-    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackData.attackRange;
+    public bool PlayerInAttackRange()
+    {
+        float distToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distToPlayer < attackData.attackRange)
+            return true;
+
+        // If player is in a car, also check distance to the car
+        Car_Controller car = player.GetComponentInParent<Car_Controller>();
+        if (car != null)
+        {
+            float distToCar = Vector3.Distance(transform.position, car.transform.position);
+            return distToCar < attackData.attackRange + 2f;
+        }
+
+        return false;
+    }
 
     protected override void OnDrawGizmos()
     {

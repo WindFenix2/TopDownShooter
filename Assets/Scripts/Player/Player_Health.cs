@@ -60,6 +60,11 @@ public class Player_Health : HealthController
             return;
 
         isDead = true;
+
+        // Stop reload and other weapon SFX to prevent looping after death
+        if (player.weapon != null)
+            player.weapon.StopAllWeaponSounds();
+
         player.anim.enabled = false;
         player.ragdoll.RagdollActive(true);
 

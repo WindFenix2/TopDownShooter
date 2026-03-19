@@ -56,14 +56,33 @@ public class MissionManager : MonoBehaviour
         return true;
     }
 
+    private bool exitMarkerPlaced;
+
     private void Update()
     {
         currentMission?.UpdateMission();
+
+        // When mission is complete, show an exit marker (if mission allows it)
+        if (!exitMarkerPlaced && currentMission != null && currentMission.showExitMarker && MissionCompleted())
+        {
+            exitMarkerPlaced = true;
+
+            MissionEnd_Trigger exitTrigger = FindObjectOfType<MissionEnd_Trigger>();
+            if (exitTrigger != null)
+            {
+                if (exitTrigger.GetComponent<MissionObject_HuntTarget>() == null)
+                    exitTrigger.gameObject.AddComponent<MissionObject_HuntTarget>();
+
+                if (UI_EnemyTracker.instance != null)
+                    UI_EnemyTracker.instance.SetTracking(true);
+            }
+        }
     }
 
     public void SetCurrentMission(Mission newMission)
     {
         currentMission = newMission;
+        exitMarkerPlaced = false;
         ClearMissionItems();
         TrySyncMissionUI();
     }

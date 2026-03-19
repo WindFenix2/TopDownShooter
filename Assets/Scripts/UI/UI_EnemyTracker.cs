@@ -7,8 +7,10 @@ public class UI_EnemyTracker : MonoBehaviour
 {
     public static UI_EnemyTracker instance;
 
-    [Header("Arrow Sprite")]
+    [Header("Sprites")]
     public Sprite arrowSprite;
+    [Tooltip("Icon shown when tracking the exit point instead of an enemy.")]
+    public Sprite exitSprite;
 
     [Header("Settings")]
     [SerializeField] private float arrowSize = 50f;
@@ -114,6 +116,13 @@ public class UI_EnemyTracker : MonoBehaviour
         }
 
         trackerParent.SetActive(true);
+
+        // Swap icon based on target type (enemy vs exit)
+        bool isExit = closestTarget.GetComponent<Enemy>() == null;
+        Sprite targetSprite = (isExit && exitSprite != null) ? exitSprite : arrowSprite;
+        if (arrowImage.sprite != targetSprite)
+            arrowImage.sprite = targetSprite;
+
         UpdateArrowPosition(closestTarget);
     }
 
@@ -153,6 +162,7 @@ public class UI_EnemyTracker : MonoBehaviour
         {
             if (target == null) continue;
 
+            // Skip dead enemies, but allow non-enemy targets (e.g. exit markers)
             Enemy enemy = target.GetComponent<Enemy>();
             if (enemy != null && enemy.IsDead) continue;
 

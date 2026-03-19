@@ -3910,6 +3910,7 @@ MonoBehaviour:
     m_Bits: 8192
   intersectionCheckColliders: []
   intersectionCheckParent: {fileID: 6830602459391707597}
+  entranceBlocker: {fileID: 0}
 --- !u!1 &4826680891754609072
 GameObject:
   m_ObjectHideFlags: 0
