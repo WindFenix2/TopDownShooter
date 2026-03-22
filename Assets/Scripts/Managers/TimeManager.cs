@@ -12,6 +12,8 @@ public class TimeManager : MonoBehaviour
     private float timeAdjustRate;
     private float targetTimeScale = 1;
 
+    [SerializeField] private float slowMotionTimeScale = .5f;
+    private bool isSlowMotionHeld;
 
     private void Awake()
     {
@@ -21,8 +23,21 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-            SlowMotionFor(1f);
+        // Hold Ctrl to keep slow motion, release to smoothly resume
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (!isSlowMotionHeld)
+            {
+                isSlowMotionHeld = true;
+                targetTimeScale = slowMotionTimeScale;
+                Time.timeScale = slowMotionTimeScale;
+            }
+        }
+        else if (isSlowMotionHeld)
+        {
+            isSlowMotionHeld = false;
+            ResumeTime();
+        }
 
         if (Mathf.Abs(Time.timeScale - targetTimeScale) > .05f)
         {
@@ -53,7 +68,7 @@ public class TimeManager : MonoBehaviour
 
     private IEnumerator SlowTimeCo(float seconds)
     {
-        targetTimeScale = .5f;
+        targetTimeScale = slowMotionTimeScale;
         Time.timeScale = targetTimeScale;
         yield return new WaitForSecondsRealtime(seconds);
         ResumeTime();
