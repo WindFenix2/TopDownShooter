@@ -40,6 +40,10 @@ public class UI : MonoBehaviour
             Transform t = transform.Find("MainMenu_UI");
             if (t != null) mainMenuUI = t.gameObject;
         }
+
+        // Start with a fully black screen to hide loading
+        if (fadeImage != null)
+            fadeImage.color = Color.black;
     }
 
     private void Start()
