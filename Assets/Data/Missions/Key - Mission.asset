@@ -22,4 +22,7 @@ MonoBehaviour:
   maxLevelParts: 5
   penultimateLevelPartOverride: {fileID: 0}
   disableCarSpawns: 0
+  showExitMarker: 1
+  victoryComicIndex: 1
   key: {fileID: 2738367108384721903, guid: e393f6204e0cd3b43b66828356769121, type: 3}
+  trackerActivationDistance: 100

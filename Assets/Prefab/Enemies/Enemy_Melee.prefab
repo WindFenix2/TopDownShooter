@@ -5006,7 +5006,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  idleTime: 60
+  idleTime: 3
   aggresionRange: 6
   alertNearbyAlliesOnHit: 1
   allyAlertRadius: 6

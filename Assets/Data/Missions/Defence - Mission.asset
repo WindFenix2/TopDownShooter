@@ -22,6 +22,8 @@ MonoBehaviour:
   maxLevelParts: 2
   penultimateLevelPartOverride: {fileID: 0}
   disableCarSpawns: 0
+  showExitMarker: 0
+  victoryComicIndex: 3
   defenceBegun: 0
   defenceObjectName: the radio tower
   waves:
@@ -96,3 +98,4 @@ MonoBehaviour:
     bossCount: 1
   timeBetweenWaves: 10
   amountOfRespawnPoints: 2
+  spawnSpreadRadius: 3

@@ -93,7 +93,6 @@ public class UI : MonoBehaviour
         if (GameManager.instance == null || GameManager.instance.player == null)
             return false;
 
-        // В твоей логике "в машине" = игрок запарентен к машине
         return GameManager.instance.player.transform.parent != null;
     }
 
@@ -125,7 +124,7 @@ public class UI : MonoBehaviour
             isPaused = false;
             TimeManager.instance.ResumeTime();
 
-            // если рестарт из паузы в машине — не включаем character controls
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ character controls
             if (IsPlayerInCar())
                 ControlsManager.instance.SwitchToCarControls();
             else
@@ -176,7 +175,7 @@ public class UI : MonoBehaviour
         {
             SwitchTo(inGameUI.gameObject);
 
-            // КЛЮЧЕВОЕ: возвращаемся в тот режим, в котором были (машина/персонаж)
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
             if (IsPlayerInCar())
                 ControlsManager.instance.SwitchToCarControls();
             else
@@ -197,16 +196,24 @@ public class UI : MonoBehaviour
         SetCursorMenu();
     }
 
-    public void ShowVictoryScreenUI()
+    private int pendingVictoryComicIndex = -1;
+
+    public void ShowVictoryScreenUI(int comicIndex = -1)
     {
+        pendingVictoryComicIndex = comicIndex;
         gameHasStarted = false;
         isPaused = false;
-
         StartCoroutine(ChangeImageAlpha(1, 1.5f, SwitchToVictoryScreenUI));
     }
 
     private void SwitchToVictoryScreenUI()
     {
+        if (pendingVictoryComicIndex >= 0 && victoryScreenUI != null)
+        {
+            UI_ComicPanel comicPanel = victoryScreenUI.GetComponentInChildren<UI_ComicPanel>(true);
+            if (comicPanel != null)
+                comicPanel.SetSingleImage(pendingVictoryComicIndex - 1);
+        }
         SwitchTo(victoryScreenUI);
 
         Color color = fadeImage.color;
@@ -215,6 +222,7 @@ public class UI : MonoBehaviour
 
         SetCursorMenu();
     }
+  
 
     private void AssignInputsUI()
     {

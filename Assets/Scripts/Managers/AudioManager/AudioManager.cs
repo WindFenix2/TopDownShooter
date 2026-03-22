@@ -71,14 +71,22 @@ public class AudioManager : MonoBehaviour
         if (sfx == null)
             return;
 
-        // Ensure this SFX goes through the SFX mixer group
-        if (sfxMixerGroup != null && sfx.outputAudioMixerGroup != sfxMixerGroup)
-            sfx.outputAudioMixerGroup = sfxMixerGroup;
+        RouteSFX(sfx);
 
         float pitch = Random.Range(minPitch, maxPitch);
 
         sfx.pitch = pitch;
         sfx.Play();
+    }
+
+    /// <summary>
+    /// Routes an AudioSource to the SFX mixer group without playing it.
+    /// Use this for Play On Awake sources that are already playing.
+    /// </summary>
+    public void RouteSFX(AudioSource source)
+    {
+        if (source != null && sfxMixerGroup != null)
+            source.outputAudioMixerGroup = sfxMixerGroup;
     }
 
     public void SFXDelayAndFade(AudioSource source, bool play, float taretVolume, float delay = 0, float fadeDuratuin = 1)
@@ -154,7 +162,8 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Routes all AudioSources in the scene (except BGM) to the SFX mixer group.
+    /// Routes ALL AudioSources in the scene (except BGM) to the SFX mixer group.
+    /// This guarantees every sound respects the SFX volume slider.
     /// </summary>
     public void RouteAllSFXSources()
     {
@@ -169,19 +178,18 @@ public class AudioManager : MonoBehaviour
             if (bgmSet.Contains(source))
                 continue;
 
-            if (source.outputAudioMixerGroup == null)
-                source.outputAudioMixerGroup = sfxMixerGroup;
+            source.outputAudioMixerGroup = sfxMixerGroup;
         }
     }
 
     /// <summary>
-    /// Periodically routes new AudioSources (from spawned enemies etc.) to SFX group.
+    /// Periodically routes new AudioSources (from spawned enemies, bullets, FX etc.) to SFX group.
     /// </summary>
     private IEnumerator PeriodicSFXRoutingCo()
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             RouteAllSFXSources();
         }
     }

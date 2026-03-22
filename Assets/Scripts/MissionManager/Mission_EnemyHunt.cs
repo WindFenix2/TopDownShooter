@@ -19,6 +19,9 @@ public class Mission_EnemyHunt : Mission
         killsToGo = amountToKill;
         UpdateMissionUI();
 
+        // Unsubscribe first to prevent duplicate handlers from previous play sessions
+        // (ScriptableObjects persist in the Editor, so static events accumulate)
+        MissionObject_HuntTarget.OnTargetKilled -= EliminateTarget;
         MissionObject_HuntTarget.OnTargetKilled += EliminateTarget;
 
         List<Enemy> allEnemies = new List<Enemy>(LevelGenerator.instance.GetEnemyList());

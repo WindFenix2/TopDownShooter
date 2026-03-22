@@ -341,6 +341,7 @@ public class EMI_GrenadeProjectile : MonoBehaviour
                 aura.transform.localRotation = Quaternion.identity;
 
                 ApplyScaleWithCache(aura.transform, auraScaleMultiplier);
+                DisableAllColliders(aura);
 
                 ObjectPool.instance.ReturnObject(aura, ttl);
             }
@@ -353,9 +354,17 @@ public class EMI_GrenadeProjectile : MonoBehaviour
             aura.transform.localRotation = Quaternion.identity;
 
             ApplyScaleWithCache(aura.transform, auraScaleMultiplier);
+            DisableAllColliders(aura);
 
             Destroy(aura, ttl);
         }
+    }
+
+    private void DisableAllColliders(GameObject obj)
+    {
+        Collider[] colliders = obj.GetComponentsInChildren<Collider>(true);
+        for (int i = 0; i < colliders.Length; i++)
+            colliders[i].enabled = false;
     }
 
     private void ApplyScaleWithCache(Transform t, float mul)

@@ -281,6 +281,14 @@ public class Enemy : MonoBehaviour
                     if (ObjectPool.instance != null && fx != null)
                     {
                         GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
+
+                        // Route impact FX sounds through SFX mixer
+                        if (AudioManager.instance != null)
+                        {
+                            foreach (AudioSource src in newAttackFx.GetComponentsInChildren<AudioSource>())
+                                AudioManager.instance.RouteSFX(src);
+                        }
+
                         ObjectPool.instance.ReturnObject(newAttackFx, 1);
                     }
 
@@ -305,6 +313,14 @@ public class Enemy : MonoBehaviour
                         if (ObjectPool.instance != null && fx != null)
                         {
                             GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
+
+                            // Route impact FX sounds through SFX mixer
+                            if (AudioManager.instance != null)
+                            {
+                                foreach (AudioSource src in newAttackFx.GetComponentsInChildren<AudioSource>())
+                                    AudioManager.instance.RouteSFX(src);
+                            }
+
                             ObjectPool.instance.ReturnObject(newAttackFx, 1);
                         }
 
@@ -464,11 +480,11 @@ public class Enemy : MonoBehaviour
         CanAttack = true;
         CanUseAbilities = true;
 
-        if (agent != null && cachedSpeedReady)
-            agent.speed = cachedAgentBaseSpeed;
-
-        if (!emiSkippedAnim && anim != null && cachedAnimSpeedReady)
-            anim.speed = cachedAnimBaseSpeed;
+        // Don't manually set agent.speed — states already apply
+        // SpeedMultiplier each frame (e.g. enemy.runSpeed * SpeedMultiplier).
+        // Just restore animator speed.
+        if (!emiSkippedAnim && anim != null)
+            anim.speed = 1f;
 
         emiRoutine = null;
     }

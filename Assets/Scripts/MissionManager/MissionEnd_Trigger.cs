@@ -13,8 +13,27 @@ public class MissionEnd_Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != player)
+        // Check for player on foot
+        bool isPlayer = other.gameObject == player;
+
+        // Check for player driving a car
+        if (!isPlayer)
+        {
+            Car_Controller car = other.GetComponentInParent<Car_Controller>();
+            if (car != null && car.carActive)
+                isPlayer = true;
+        }
+
+        if (!isPlayer)
             return;
+
+        // Special case: LastDefence mission starts when player reaches the defence point
+        Mission_LastDefence defence = MissionManager.instance.currentMission as Mission_LastDefence;
+        if (defence != null && !defence.defenceBegun)
+        {
+            defence.StartDefenceEvent();
+            return;
+        }
 
         if (MissionManager.instance.MissionCompleted())
         {

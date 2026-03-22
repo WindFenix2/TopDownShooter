@@ -252,8 +252,6 @@ Transform:
   m_Children:
   - {fileID: 1218840575468945100}
   - {fileID: 7017185785254751818}
-  - {fileID: 311976470841087697}
-  - {fileID: 4278355243842075717}
   - {fileID: 5642471099483599947}
   - {fileID: 8540002307919429321}
   - {fileID: 7494596816690955327}
@@ -814,6 +812,8 @@ Transform:
   - {fileID: 933766031951489154}
   - {fileID: 7896135037470374376}
   - {fileID: 7698830055220583903}
+  - {fileID: 311976470841087697}
+  - {fileID: 4278355243842075717}
   m_Father: {fileID: 1961009257641033207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1967879892107480063
@@ -5802,7 +5802,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1961009257641033207}
+    m_TransformParent: {fileID: 5642471099483599947}
     m_Modifications:
     - target: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
       propertyPath: m_LocalScale.x
@@ -12454,7 +12454,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1961009257641033207}
+    m_TransformParent: {fileID: 5642471099483599947}
     m_Modifications:
     - target: {fileID: 3541317979279162026, guid: 85c5ba035e9c64a448c8327fa9804461, type: 3}
       propertyPath: m_LocalScale.x
@@ -25545,9 +25545,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2458649301746657434, guid: 9605eb1fa03b39b46ac7d84c5428c317, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770998137967024102, guid: 9605eb1fa03b39b46ac7d84c5428c317, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648367947209976267, guid: 9605eb1fa03b39b46ac7d84c5428c317, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7768495169901464022, guid: 9605eb1fa03b39b46ac7d84c5428c317, type: 3}
       propertyPath: m_Name
       value: Radio Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768495169901464022, guid: 9605eb1fa03b39b46ac7d84c5428c317, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

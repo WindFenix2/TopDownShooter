@@ -23,4 +23,5 @@ MonoBehaviour:
   penultimateLevelPartOverride: {fileID: 0}
   disableCarSpawns: 0
   showExitMarker: 0
+  victoryComicIndex: 3
   time: 900

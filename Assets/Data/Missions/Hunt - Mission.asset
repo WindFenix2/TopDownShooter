@@ -17,9 +17,11 @@ MonoBehaviour:
     area. Your task is to eliminate all VIP targets.
   availableLevelParts: []
   lastLevelPartOverride: {fileID: 3966566735694463111, guid: 252422c2962adbe449e2f216a0ff641e, type: 3}
-  hasExit: 1
+  hasExit: 0
   maxLevelParts: 5
   penultimateLevelPartOverride: {fileID: 0}
   disableCarSpawns: 0
+  showExitMarker: 0
+  victoryComicIndex: 3
   amountToKill: 12
   showEnemyTracker: 1

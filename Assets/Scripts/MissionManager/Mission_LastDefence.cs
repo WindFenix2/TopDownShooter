@@ -25,6 +25,9 @@ public class Mission_LastDefence : Mission
     [Tooltip("How many of the closest MissionObject_EnemyRespawnPoint to use for spawning.")]
     public int amountOfRespawnPoints = 2;
 
+    [Tooltip("Random XZ offset for each spawned enemy to prevent overlapping.")]
+    public float spawnSpreadRadius = 3f;
+
     private List<Transform> respawnPoints;
     private Vector3 defencePoint;
 
@@ -39,27 +42,26 @@ public class Mission_LastDefence : Mission
 
     public override void StartMission()
     {
-        defencePoint = FindObjectOfType<MissionEnd_Trigger>()?.transform.position ?? Vector3.zero;
-        respawnPoints = new List<Transform>(ClosestPoints(amountOfRespawnPoints));
+        // Reset all runtime state (ScriptableObjects persist between Editor play sessions!)
+        defenceBegun = false;
+        defenceCompleted = false;
+        currentWaveIndex = -1;
+        enemiesAliveInWave = 0;
+        waitingForNextWave = false;
+        respawnPoints = null;
 
         UI.instance.inGameUI.UpdateMissionInfo(
-            $"Prepare for the attack! Defend {defenceObjectName}.");
+            $"Approach {defenceObjectName} to begin defence.");
     }
 
     public override bool MissionCompleted()
     {
-        if (defenceBegun == false)
-        {
-            StartDefenceEvent();
-            return false;
-        }
-
         return defenceCompleted;
     }
 
     public override void UpdateMission()
     {
-        if (defenceBegun == false || defenceCompleted)
+        if (!defenceBegun || defenceCompleted)
             return;
 
 
@@ -112,9 +114,20 @@ public class Mission_LastDefence : Mission
         }
     }
 
-    private void StartDefenceEvent()
+    public void StartDefenceEvent()
     {
+        if (defenceBegun)
+            return;
+
         defenceBegun = true;
+
+        // Initialize respawn points now (not in StartMission) to avoid stale ScriptableObject references
+        defencePoint = Object.FindObjectOfType<MissionEnd_Trigger>()?.transform.position ?? Vector3.zero;
+        respawnPoints = new List<Transform>(ClosestPoints(amountOfRespawnPoints));
+
+        UI.instance.inGameUI.UpdateMissionInfo(
+            $"Defend {defenceObjectName}!");
+
         StartNextWave();
     }
 
@@ -159,14 +172,19 @@ public class Mission_LastDefence : Mission
         int randomRespawnIndex = Random.Range(0, respawnPoints.Count);
         Transform spawnPoint = respawnPoints[randomRespawnIndex];
 
-        prefab.GetComponent<Enemy>().aggresionRange = 100;
         GameObject spawned = ObjectPool.instance.GetObject(prefab, spawnPoint);
 
         if (spawned != null)
         {
+            // Apply random spread so enemies don't stack on top of each other
+            Vector2 rndCircle = Random.insideUnitCircle * spawnSpreadRadius;
+            spawned.transform.position = spawnPoint.position + new Vector3(rndCircle.x, 0f, rndCircle.y);
+
             Enemy enemy = spawned.GetComponent<Enemy>();
             if (enemy != null)
             {
+                // Set high aggression on the INSTANCE, not the prefab!
+                enemy.aggresionRange = 100;
                 enemiesAliveInWave++;
                 enemy.onDeath += OnWaveEnemyDied;
             }

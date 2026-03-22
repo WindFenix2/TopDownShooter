@@ -31,6 +31,10 @@ public abstract class Mission : ScriptableObject
     [Tooltip("If true, an exit marker arrow appears when the mission is completed. Disable for timer/escape missions.")]
     public bool showExitMarker = true;
 
+    [Header("Victory Screen")]
+    [Tooltip("Index of the comic image to show on victory (e.g. 6=plane, 7=car, 8=explosion).")]
+    public int victoryComicIndex = 6;
+
     public abstract void StartMission();
     public abstract bool MissionCompleted();
 

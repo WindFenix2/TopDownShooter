@@ -58,6 +58,12 @@ public class Enemy_Visuals : MonoBehaviour
 
     public void SetupLook()
     {
+        // Force mesh to always render — prevents invisible enemies after
+        // Instantiate → SetActive(false) → unparent → SetActive(true) sequence,
+        // which can leave SkinnedMeshRenderer bounds in a bad state.
+        if (skinnedMeshRenderer != null)
+            skinnedMeshRenderer.updateWhenOffscreen = true;
+
         SetupRandomColor();
         SetupRandomWeapon();
         SetupRandomCorrution();

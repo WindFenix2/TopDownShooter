@@ -178,6 +178,10 @@ public class Bullet : MonoBehaviour
             // Skip boss flamethrower damage area trigger colliders
             if (hitCol.GetComponentInParent<Flamethrow_DamageArea>() != null)
                 return;
+
+            // Skip mission end trigger colliders (e.g. radio tower in defence mission)
+            if (hitCol.GetComponentInParent<MissionEnd_Trigger>() != null)
+                return;
         }
 
         if (isPlayerBulletCached && ownerRoot != null)
@@ -307,6 +311,16 @@ public class Bullet : MonoBehaviour
 
         GameObject newFx = Instantiate(bulletImpactFX);
         newFx.transform.position = transform.position;
+
+        // Route all AudioSources on impact FX through SFX mixer immediately.
+        // The sounds may use Play On Awake, so we just set the mixer group
+        // without calling Play() again.
+        if (AudioManager.instance != null)
+        {
+            foreach (AudioSource src in newFx.GetComponentsInChildren<AudioSource>())
+                AudioManager.instance.RouteSFX(src);
+        }
+
         Destroy(newFx, 1);
     }
 

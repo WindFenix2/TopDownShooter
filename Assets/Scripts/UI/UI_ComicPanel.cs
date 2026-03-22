@@ -21,6 +21,27 @@ public class UI_ComicPanel : MonoBehaviour, IPointerDownHandler
         ShowNextImage();
     }
 
+    /// <summary>
+    /// Call before showing to display only the image at the given index.
+    /// </summary>
+    public void SetSingleImage(int index)
+    {
+        if (comicPanel == null || comicPanel.Length == 0)
+            return;
+
+        index = Mathf.Clamp(index, 0, comicPanel.Length - 1);
+
+        // Hide all images, then show only the selected one
+        for (int i = 0; i < comicPanel.Length; i++)
+        {
+            comicPanel[i].gameObject.SetActive(i == index);
+        }
+
+        // Reset the array to contain only the selected image
+        comicPanel = new Image[] { comicPanel[index] };
+        imageIndex = 0;
+    }
+
     protected void ShowNextImage()
     {
         if (comicShowOver)

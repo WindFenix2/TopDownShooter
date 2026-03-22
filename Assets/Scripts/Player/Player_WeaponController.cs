@@ -519,10 +519,10 @@ public class Player_WeaponController : MonoBehaviour
             if (enemy.IsDead) continue;
             if (!enemy.isActiveAndEnabled) continue;
 
-            Collider enemyCol = enemy.GetComponentInChildren<Collider>();
+            Collider enemyCol = enemy.GetComponent<Collider>();
             Vector3 targetWorldPoint = enemy.transform.position + Vector3.up * 1.0f;
 
-            if (enemyCol != null)
+            if (enemyCol != null && enemyCol.enabled)
                 targetWorldPoint = enemyCol.bounds.center;
 
             float d = Vector3.Distance(aimPoint, targetWorldPoint);

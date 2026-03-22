@@ -150,7 +150,11 @@ public class LevelGenerator : MonoBehaviour
             GeneratePenultimatePart();
         }
 
-        if (activeHasExit && activeLastLevelPart != null)
+        // Always generate the closing level part to seal the map,
+        // regardless of whether the mission uses an exit trigger.
+        // But only if there's a valid snap point to attach it to
+        // (defence missions use a fixed map with no snap points).
+        if (activeLastLevelPart != null && nextSnapPoint != null)
             GenerateLastLevelPart();
 
         LevelPart startPart = defaultSnapPoint.GetComponentInParent<LevelPart>();

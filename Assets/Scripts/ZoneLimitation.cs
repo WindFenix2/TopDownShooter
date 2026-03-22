@@ -6,56 +6,39 @@ public class ZoneLimitation : MonoBehaviour
 {
     private ParticleSystem[] lines;
     private BoxCollider zoneCollider;
-    private int overlapCount;
 
     private void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
         zoneCollider = GetComponent<BoxCollider>();
         lines = GetComponentsInChildren<ParticleSystem>();
-        ActivateWall(false);
+
+        // Wall is ALWAYS solid - no more trigger/solid swapping
+        // This prevents cars at high speed from bypassing the boundary
+        zoneCollider.isTrigger = false;
+
+        foreach (var line in lines)
+            line.Stop();
     }
 
-
-    private void ActivateWall(bool activate)
+    private void OnCollisionEnter(Collision collision)
     {
-        foreach(var line in lines)
+        if (collision.collider.GetComponentInParent<Player>() != null ||
+            collision.collider.GetComponentInParent<Car_Controller>() != null)
         {
-            if (activate)
-            {
-                line.Play();
-            }
-            else
-            {
-                line.Stop();
-            }
-        }
-
-        zoneCollider.isTrigger = !activate;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Detect player, car, or any rigidbody approaching the boundary
-        if (other.GetComponentInParent<Player>() != null ||
-            other.GetComponentInParent<Car_Controller>() != null ||
-            other.attachedRigidbody != null)
-        {
-            overlapCount++;
-            if (overlapCount == 1)
-                ActivateWall(true);
+            StartCoroutine(WallVisualCo());
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private IEnumerator WallVisualCo()
     {
-        if (other.GetComponentInParent<Player>() != null ||
-            other.GetComponentInParent<Car_Controller>() != null ||
-            other.attachedRigidbody != null)
-        {
-            overlapCount = Mathf.Max(0, overlapCount - 1);
-            if (overlapCount == 0)
-                ActivateWall(false);
-        }
+        foreach (var line in lines)
+            line.Play();
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (var line in lines)
+            line.Stop();
     }
 }
+

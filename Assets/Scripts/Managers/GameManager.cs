@@ -47,7 +47,12 @@ public class GameManager : MonoBehaviour
 
     public void GameCompleted()
     {
-        UI.instance.ShowVictoryScreenUI();
+        int comicIndex = -1;
+        Mission mission = MissionManager.instance != null ? MissionManager.instance.currentMission : null;
+        if (mission != null)
+            comicIndex = mission.victoryComicIndex;
+
+        UI.instance.ShowVictoryScreenUI(comicIndex);
         ControlsManager.instance.controls.Character.Disable();
         player.health.currentHealth += 99999;
     }
