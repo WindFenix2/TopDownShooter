@@ -17,6 +17,13 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float distanceChangeRate;
     [SerializeField] private float targetCameraDistance;
 
+    [Header("Camera rotation (Q/E)")]
+    [SerializeField] private float rotationStep = 45f;
+    [SerializeField] private float rotationSpeed = 8f;
+    private float currentYawAngle;
+    private float targetYawAngle;
+    private Quaternion initialRotation;
+
     private void Awake()
     {
         if (instance == null)
@@ -31,12 +38,36 @@ public class CameraManager : MonoBehaviour
         virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
 
+        initialRotation = transform.rotation;
     }
 
     private void Update()
     {
+        UpdateCameraRotationInput();
+        UpdateCameraRotation();
         UpdateCameraDistance();
     }
+
+    #region Camera Rotation
+
+    private void UpdateCameraRotationInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            targetYawAngle -= rotationStep;
+
+        if (Input.GetKeyDown(KeyCode.E))
+            targetYawAngle += rotationStep;
+    }
+
+    private void UpdateCameraRotation()
+    {
+        currentYawAngle = Mathf.LerpAngle(currentYawAngle, targetYawAngle, rotationSpeed * Time.unscaledDeltaTime);
+        transform.rotation = initialRotation * Quaternion.Euler(0f, currentYawAngle, 0f);
+    }
+
+    public float GetCurrentYawAngle() => currentYawAngle;
+
+    #endregion
 
     private void UpdateCameraDistance()
     {

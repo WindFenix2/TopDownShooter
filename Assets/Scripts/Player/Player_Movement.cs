@@ -114,6 +114,13 @@ public class Player_Movement : MonoBehaviour
     private void ApplyMovement()
     {
         movementDirection = new Vector3(moveInput.x, 0, moveInput.y);
+
+        // Rotate movement input to match camera orientation
+        if (CameraManager.instance != null)
+        {
+            float yaw = CameraManager.instance.GetCurrentYawAngle();
+            movementDirection = Quaternion.Euler(0f, yaw, 0f) * movementDirection;
+        }
         ApplyGravity();
 
         float mul = 1f;
@@ -198,5 +205,11 @@ public class Player_Movement : MonoBehaviour
 
         if (animator != null)
             animator.speed = baseAnimSpeed;
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        ZoneLimitation zone = hit.collider.GetComponent<ZoneLimitation>();
+        if (zone != null)
+            zone.ShowWallVisual();
     }
 }

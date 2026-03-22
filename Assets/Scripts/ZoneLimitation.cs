@@ -6,6 +6,7 @@ public class ZoneLimitation : MonoBehaviour
 {
     private ParticleSystem[] lines;
     private BoxCollider zoneCollider;
+    private bool isShowingVisual;
 
     private void Start()
     {
@@ -26,12 +27,22 @@ public class ZoneLimitation : MonoBehaviour
         if (collision.collider.GetComponentInParent<Player>() != null ||
             collision.collider.GetComponentInParent<Car_Controller>() != null)
         {
-            StartCoroutine(WallVisualCo());
+            ShowWallVisual();
         }
+    }
+
+    public void ShowWallVisual()
+    {
+        if (isShowingVisual)
+            return;
+
+        StartCoroutine(WallVisualCo());
     }
 
     private IEnumerator WallVisualCo()
     {
+        isShowingVisual = true;
+
         foreach (var line in lines)
             line.Play();
 
@@ -39,6 +50,8 @@ public class ZoneLimitation : MonoBehaviour
 
         foreach (var line in lines)
             line.Stop();
+
+        isShowingVisual = false;
     }
 }
 

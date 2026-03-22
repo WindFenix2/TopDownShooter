@@ -19,6 +19,9 @@ public class Mission_KeyFind : Mission
     {
         keyFound = false;
 
+        // Unsubscribe first to prevent duplicate handlers from previous play sessions
+        // (ScriptableObjects persist in the Editor, so static events accumulate)
+        MissionObject_Key.OnKeyPickedUp -= PickUpKey;
         MissionObject_Key.OnKeyPickedUp += PickUpKey;
 
         UI.instance.inGameUI.UpdateMissionInfo("Find a key-holder. Retrive the key.");

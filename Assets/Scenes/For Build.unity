@@ -6776,6 +6776,8 @@ MonoBehaviour:
   canChangeCameraDistance: 1
   distanceChangeRate: 5
   targetCameraDistance: 7
+  rotationStep: 45
+  rotationSpeed: 8
 --- !u!1 &958470777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7351,7 +7353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nR \u2014 Reload\r\nF \u2014 Interact\r\n1/2 \u2014 Switch Weapon\r\nG
+  m_text: "\nR \u2014 Reload\r\nF \u2014 Interact\r\nQ/E \u2014 Camera Rotation\nG
     \u2014 Drop Weapon\r\nT \u2014 Weapon Ability\r\nCtrl \u2014 Slow Motion"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4c4e05f7d8b56542a1dce510e21d3e7, type: 2}
@@ -14294,6 +14296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resumeRate: 1.5
   pauseRate: 7
+  slowMotionTimeScale: 0.5
 --- !u!1 &1696223392
 GameObject:
   m_ObjectHideFlags: 0
@@ -24621,7 +24624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   debugShieldHp: 0
 --- !u!4 &6592853564411524866
 Transform:

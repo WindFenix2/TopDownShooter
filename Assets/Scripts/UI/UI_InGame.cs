@@ -261,6 +261,7 @@ public class UI_InGame : MonoBehaviour
             "G — Drop Weapon\n" +
             "T — Weapon Ability\n" +
             "Ctrl — Slow Motion\n" +
+            "Q/E — Rotate Camera\n" +
             "H — Mission Info\n" +
             "Esc — Pause";
         tmp.alignment = TextAlignmentOptions.TopLeft;
