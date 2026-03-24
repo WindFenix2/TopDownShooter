@@ -89,6 +89,11 @@ public class Enemy_DropController : MonoBehaviour
 
     private void CreateItem(GameObject go)
     {
-        GameObject newItem = Instantiate(go, transform.position + Vector3.up, Quaternion.identity);
+        Vector3 spawnPos = transform.position + Vector3.up;
+
+        if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hit, 50f))
+            spawnPos = hit.point + Vector3.up * 0.5f;
+
+        GameObject newItem = Instantiate(go, spawnPos, Quaternion.identity);
     }
 }

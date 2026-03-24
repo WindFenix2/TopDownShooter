@@ -6,6 +6,7 @@ using UnityEngine;
 public class MissionObject_CarToDeliver : MonoBehaviour
 {
     public static event Action OnCarDelivery;
+    public static void ClearEvent() => OnCarDelivery = null;
 
     public void InvokeOnCarDelivery() => OnCarDelivery?.Invoke();
 }

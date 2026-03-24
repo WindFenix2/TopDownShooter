@@ -72,14 +72,12 @@ public class Revolver_StuckBullet : MonoBehaviour
     {
         manager = newManager;
 
-        // Register after bullet is fully initialized (has velocity, manager, etc.)
         if (manager != null)
             manager.Register(this);
     }
 
     private void OnDisable()
     {
-        // Always unregister when deactivated (pooled, detonated, auto-returned, etc.)
         if (manager != null)
             manager.Unregister(this);
     }
@@ -88,6 +86,17 @@ public class Revolver_StuckBullet : MonoBehaviour
     {
         if (!stuck && autoReturnAfter > 0f && Time.time - spawnTime > autoReturnAfter)
             gameObject.SetActive(false);
+
+        if (stuck && transform.parent == null)
+        {
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+                rb.useGravity = true;
+                rb.detectCollisions = false;
+            }
+            stuck = false;
+        }
     }
 
     private void FixedUpdate()
@@ -116,7 +125,6 @@ public class Revolver_StuckBullet : MonoBehaviour
                     if (hits[i].collider == null) continue;
                     if (col != null && hits[i].collider == col) continue;
 
-                    // Skip boss flamethrower damage area trigger colliders
                     if (hits[i].collider.GetComponentInParent<Flamethrow_DamageArea>() != null) continue;
 
                     Transform stickParent = ResolveStickParent(hits[i].collider.transform, hits[i].collider);
@@ -153,10 +161,8 @@ public class Revolver_StuckBullet : MonoBehaviour
         if (other == null) return;
         if (col != null && other == col) return;
 
-        // Skip boss flamethrower damage area trigger colliders
         if (other.GetComponentInParent<Flamethrow_DamageArea>() != null) return;
 
-        // Skip non-car trigger colliders (zone limits, spawn points, interaction zones, etc.)
         bool isCar = other.GetComponentInParent<Car_Controller>() != null;
         if (!isCar && other.isTrigger) return;
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "Defence - Mission", menuName = "Missions/Defence - Mission")]
 public class Mission_LastDefence : Mission
@@ -17,6 +18,10 @@ public class Mission_LastDefence : Mission
     private int enemiesAliveInWave;
     private float waveCountdownTimer;
     private bool waitingForNextWave;
+
+    private List<GameObject> waveEnemies = new List<GameObject>();
+    private float corpseCleanupTimer = -1f;
+    private const float corpseCleanupDelay = 10f;
 
     [Header("Cooldown between waves")]
     public float timeBetweenWaves = 10f;
@@ -49,6 +54,8 @@ public class Mission_LastDefence : Mission
         enemiesAliveInWave = 0;
         waitingForNextWave = false;
         respawnPoints = null;
+        waveEnemies.Clear();
+        corpseCleanupTimer = -1f;
 
         UI.instance.inGameUI.UpdateMissionInfo(
             $"Approach {defenceObjectName} to begin defence.");
@@ -84,6 +91,13 @@ public class Mission_LastDefence : Mission
             return;
         }
 
+        if (corpseCleanupTimer > 0f)
+        {
+            corpseCleanupTimer -= Time.deltaTime;
+            if (corpseCleanupTimer <= 0f)
+                CleanupDeadWaveEnemies();
+        }
+
 
         if (currentWaveIndex >= 0 && enemiesAliveInWave <= 0)
         {
@@ -101,6 +115,7 @@ public class Mission_LastDefence : Mission
             {
                 waitingForNextWave = true;
                 waveCountdownTimer = timeBetweenWaves;
+                corpseCleanupTimer = corpseCleanupDelay;
                 UI.instance.inGameUI.UpdateMissionInfo(
                     $"Wave {currentWaveIndex + 1} cleared!",
                     "Next wave approaching...");
@@ -183,10 +198,10 @@ public class Mission_LastDefence : Mission
             Enemy enemy = spawned.GetComponent<Enemy>();
             if (enemy != null)
             {
-                // Set high aggression on the INSTANCE, not the prefab!
                 enemy.aggresionRange = 100;
                 enemiesAliveInWave++;
                 enemy.onDeath += OnWaveEnemyDied;
+                waveEnemies.Add(spawned);
             }
         }
     }
@@ -226,6 +241,37 @@ public class Mission_LastDefence : Mission
         }
 
         return closestPoints;
+    }
+
+    public override void CleanupMission()
+    {
+        defenceBegun = false;
+        defenceCompleted = false;
+        currentWaveIndex = -1;
+        enemiesAliveInWave = 0;
+        waitingForNextWave = false;
+        respawnPoints = null;
+        waveEnemies.Clear();
+        corpseCleanupTimer = -1f;
+    }
+
+    private void CleanupDeadWaveEnemies()
+    {
+        for (int i = waveEnemies.Count - 1; i >= 0; i--)
+        {
+            if (waveEnemies[i] == null)
+            {
+                waveEnemies.RemoveAt(i);
+                continue;
+            }
+
+            Enemy e = waveEnemies[i].GetComponent<Enemy>();
+            if (e != null && e.IsDead)
+            {
+                Object.Destroy(waveEnemies[i]);
+                waveEnemies.RemoveAt(i);
+            }
+        }
     }
 }
 

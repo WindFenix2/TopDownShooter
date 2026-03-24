@@ -61,7 +61,6 @@ public class Player_Health : HealthController
 
         isDead = true;
 
-        // Stop reload and other weapon SFX to prevent looping after death
         if (player.weapon != null)
             player.weapon.StopAllWeaponSounds();
 

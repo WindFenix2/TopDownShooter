@@ -43,5 +43,11 @@ public class Mission_Timer : Mission
     {
         return currentTime > 0;
     }
+
+    public override void CleanupMission()
+    {
+        currentTime = 0;
+        timedOut = false;
+    }
 }
 

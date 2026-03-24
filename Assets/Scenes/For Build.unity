@@ -14379,12 +14379,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm:
-  - {fileID: 557195761}
-  - {fileID: 1365296082}
-  - {fileID: 1521823780}
-  - {fileID: 1918257544}
   - {fileID: 1435805279}
   - {fileID: 2054039059}
+  - {fileID: 1365296082}
+  - {fileID: 1521823780}
+  - {fileID: 557195761}
+  - {fileID: 1918257544}
   audioMixer: {fileID: 24100000, guid: 613451a505d6d99469bb9ae272f196ea, type: 2}
   sfxMixerGroup: {fileID: 7240266472886219749, guid: 613451a505d6d99469bb9ae272f196ea, type: 2}
   sfxMixerParam: sfx

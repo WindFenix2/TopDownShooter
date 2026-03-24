@@ -29,7 +29,14 @@ public class AbilityState_Boss : EnemyState
         if (ShouldDisableFlamethrower())
             DisableFlamethrower();
 
-        if (triggerCalled)
+        if (!enemy.CanUseAbilities)
+        {
+            DisableFlamethrower();
+            stateMachine.ChangeState(enemy.moveState);
+            return;
+        }
+
+        if (triggerCalled || stateTimer < -enemy.flamethrowDuration)
             stateMachine.ChangeState(enemy.moveState);
     }
 

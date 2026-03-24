@@ -59,6 +59,9 @@ public class Enemy_Boss : Enemy
     public bool IsJumpAttackActive { get; private set; }
     public void SetJumpAttackActive(bool active) => IsJumpAttackActive = active;
 
+    private Vector3 landingZoneCenter;
+    public void SetLandingZoneCenter(Vector3 center) => landingZoneCenter = center;
+
     protected override void Awake()
     {
         base.Awake();
@@ -169,8 +172,7 @@ public class Enemy_Boss : Enemy
 
     public void JumpImpact()
     {
-        Transform ip = impactPoint != null ? impactPoint : transform;
-        MassDamage(ip.position, impactRadius, jumpAttackDamage);
+        MassDamage(landingZoneCenter, impactRadius, jumpAttackDamage);
     }
 
     private void MassDamage(Vector3 impactPoint, float impactRadius, int damage)

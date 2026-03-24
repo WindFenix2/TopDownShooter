@@ -52,6 +52,9 @@ public class Car_Interaction : Interactable
     {
         base.Interaction();
 
+        if (carHealthController != null && carHealthController.carBroken)
+            return;
+
         if (CanUseCar() == false)
             return;
 
@@ -140,25 +143,47 @@ public class Car_Interaction : Interactable
 
     private Vector3 GetExitPoint()
     {
+        Vector3 result = transform.position + Vector3.up * 0.5f;
+
         if (exitPoints != null)
         {
             for (int i = 0; i < exitPoints.Length; i++)
             {
                 if (exitPoints[i] != null && IsExitClear(exitPoints[i].position))
-                    return exitPoints[i].position;
+                {
+                    result = exitPoints[i].position;
+                    break;
+                }
             }
 
-            if (exitPoints.Length > 0 && exitPoints[0] != null)
-                return exitPoints[0].position;
+            if (result == transform.position + Vector3.up * 0.5f && exitPoints.Length > 0 && exitPoints[0] != null)
+                result = exitPoints[0].position;
         }
 
-        return transform.position + Vector3.up * 0.5f;
+        Vector3 rayStart = new Vector3(result.x, transform.position.y + 10f, result.z);
+        if (Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, 50f))
+            result = hit.point + Vector3.up * 0.1f;
+
+        return result;
     }
 
     private bool IsExitClear(Vector3 point)
     {
         Collider[] colliders = Physics.OverlapSphere(point, exitCheckRadius, ~whatToIngoreForExit);
         return colliders.Length == 0;
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (carHealthController != null && carHealthController.carBroken)
+            return;
+
+        base.OnTriggerEnter(other);
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
     }
 
     private void OnDrawGizmos()

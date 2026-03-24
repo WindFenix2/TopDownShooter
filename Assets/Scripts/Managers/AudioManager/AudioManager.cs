@@ -23,7 +23,6 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
 
-        // BGM should keep playing even when AudioListener is paused
         for (int i = 0; i < bgm.Length; i++)
         {
             bgm[i].ignoreListenerPause = true;
@@ -40,7 +39,6 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator ApplySavedAudioSettings()
     {
-        // AudioMixer.SetFloat doesn't work on the first frame, wait one frame
         yield return null;
 
         if (audioMixer == null)
@@ -79,10 +77,6 @@ public class AudioManager : MonoBehaviour
         sfx.Play();
     }
 
-    /// <summary>
-    /// Routes an AudioSource to the SFX mixer group without playing it.
-    /// Use this for Play On Awake sources that are already playing.
-    /// </summary>
     public void RouteSFX(AudioSource source)
     {
         if (source != null && sfxMixerGroup != null)
@@ -161,10 +155,6 @@ public class AudioManager : MonoBehaviour
         AudioListener.pause = paused;
     }
 
-    /// <summary>
-    /// Routes ALL AudioSources in the scene (except BGM) to the SFX mixer group.
-    /// This guarantees every sound respects the SFX volume slider.
-    /// </summary>
     public void RouteAllSFXSources()
     {
         if (sfxMixerGroup == null)
@@ -182,9 +172,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Periodically routes new AudioSources (from spawned enemies, bullets, FX etc.) to SFX group.
-    /// </summary>
     private IEnumerator PeriodicSFXRoutingCo()
     {
         while (true)

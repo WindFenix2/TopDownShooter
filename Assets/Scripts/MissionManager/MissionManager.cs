@@ -10,6 +10,7 @@ public class MissionManager : MonoBehaviour
 
     private Dictionary<MissionItemType, int> missionItems = new Dictionary<MissionItemType, int>();
     private Coroutine uiSyncRoutine;
+    private bool missionActive;
 
     private void Awake()
     {
@@ -19,6 +20,11 @@ public class MissionManager : MonoBehaviour
     private void Start()
     {
         TrySyncMissionUI();
+    }
+
+    private void OnDestroy()
+    {
+        CleanupCurrentMission();
     }
 
     public void ClearMissionItems() => missionItems.Clear();
@@ -60,9 +66,9 @@ public class MissionManager : MonoBehaviour
 
     private void Update()
     {
-        currentMission?.UpdateMission();
+        if (missionActive)
+            currentMission?.UpdateMission();
 
-        // When mission is complete, show an exit marker (if mission allows it)
         if (!exitMarkerPlaced && currentMission != null && currentMission.showExitMarker && MissionCompleted())
         {
             exitMarkerPlaced = true;
@@ -81,6 +87,8 @@ public class MissionManager : MonoBehaviour
 
     public void SetCurrentMission(Mission newMission)
     {
+        CleanupCurrentMission();
+
         currentMission = newMission;
         exitMarkerPlaced = false;
         ClearMissionItems();
@@ -93,8 +101,20 @@ public class MissionManager : MonoBehaviour
             return;
 
         TrySyncMissionUI();
-
         currentMission.StartMission();
+        missionActive = true;
+    }
+
+    public void CleanupCurrentMission()
+    {
+        missionActive = false;
+        currentMission?.CleanupMission();
+
+        MissionObject_HuntTarget.ClearEvent();
+        MissionObject_Key.ClearEvent();
+        MissionObject_CarToDeliver.ClearEvent();
+        Car_HealthController.ClearEvent();
+        Pickup_Gasoline.ClearEvent();
     }
 
     public bool MissionCompleted()

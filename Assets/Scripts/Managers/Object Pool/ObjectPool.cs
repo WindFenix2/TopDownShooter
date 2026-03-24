@@ -59,7 +59,6 @@ public class ObjectPool : MonoBehaviour
         objectToGet.transform.parent = null;
         objectToGet.SetActive(true);
 
-        // Route any AudioSources to SFX mixer (for Play On Awake sounds)
         if (AudioManager.instance != null)
         {
             AudioSource[] sources = objectToGet.GetComponentsInChildren<AudioSource>();

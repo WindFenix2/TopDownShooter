@@ -40,7 +40,7 @@ public class UI_InGame : MonoBehaviour
     private CanvasGroup controlsHintCanvasGroup;
     private bool controlsHintActive;
     private float controlsHintStartTime;
-    private float controlsHintDisplayTime = 8f;
+    private float controlsHintDisplayTime = 20f;
     private float controlsHintFadeTime = 1f;
 
     private void Awake()
@@ -229,7 +229,6 @@ public class UI_InGame : MonoBehaviour
         rt.anchoredPosition = new Vector2(20f, 0f);
         rt.sizeDelta = new Vector2(380f, 520f);
 
-        // Semi-transparent background
         var bg = controlsHintParent.AddComponent<Image>();
         bg.color = new Color(0f, 0f, 0f, 0.55f);
 
@@ -237,7 +236,6 @@ public class UI_InGame : MonoBehaviour
         controlsHintCanvasGroup.alpha = 0f;
         controlsHintParent.SetActive(false);
 
-        // Text child
         var textGO = new GameObject("ControlsHint_Text");
         textGO.transform.SetParent(controlsHintParent.transform, false);
 
@@ -294,18 +292,15 @@ public class UI_InGame : MonoBehaviour
 
         if (elapsed < controlsHintDisplayTime)
         {
-            // Still showing
             controlsHintCanvasGroup.alpha = 1f;
         }
         else if (elapsed < controlsHintDisplayTime + controlsHintFadeTime)
         {
-            // Fading out
             float fadeProgress = (elapsed - controlsHintDisplayTime) / controlsHintFadeTime;
             controlsHintCanvasGroup.alpha = 1f - fadeProgress;
         }
         else
         {
-            // Done
             controlsHintCanvasGroup.alpha = 0f;
             controlsHintParent.SetActive(false);
             controlsHintActive = false;

@@ -300,7 +300,7 @@ public class UI : MonoBehaviour
     private void SetCursorGameplay()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private IEnumerator ChangeImageAlpha(float targetAlpha, float duration, System.Action onComplete)
@@ -311,7 +311,7 @@ public class UI : MonoBehaviour
 
         while (time < duration)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             float alpha = Mathf.Lerp(startAlpha, targetAlpha, time / duration);
             fadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
             yield return null;

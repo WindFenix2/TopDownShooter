@@ -99,6 +99,9 @@ public class Enemy : MonoBehaviour
         if (agent != null && !agent.isOnNavMesh)
             return;
 
+        if (player == null && GameManager.instance != null && GameManager.instance.player != null)
+            player = GameManager.instance.player.transform;
+
         if (ShouldEnterBattleMode())
             EnterBattleMode();
     }
@@ -282,7 +285,6 @@ public class Enemy : MonoBehaviour
                     {
                         GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
 
-                        // Route impact FX sounds through SFX mixer
                         if (AudioManager.instance != null)
                         {
                             foreach (AudioSource src in newAttackFx.GetComponentsInChildren<AudioSource>())
@@ -296,7 +298,6 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            // If player is in a car, also check for car damage (car is not on Player layer)
             if (player != null)
             {
                 Car_HealthController carHealth = player.GetComponentInParent<Car_HealthController>();
@@ -314,7 +315,6 @@ public class Enemy : MonoBehaviour
                         {
                             GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
 
-                            // Route impact FX sounds through SFX mixer
                             if (AudioManager.instance != null)
                             {
                                 foreach (AudioSource src in newAttackFx.GetComponentsInChildren<AudioSource>())
@@ -480,9 +480,6 @@ public class Enemy : MonoBehaviour
         CanAttack = true;
         CanUseAbilities = true;
 
-        // Don't manually set agent.speed — states already apply
-        // SpeedMultiplier each frame (e.g. enemy.runSpeed * SpeedMultiplier).
-        // Just restore animator speed.
         if (!emiSkippedAnim && anim != null)
             anim.speed = 1f;
 

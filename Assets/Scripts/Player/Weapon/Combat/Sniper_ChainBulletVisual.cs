@@ -53,10 +53,15 @@ public class Sniper_ChainBulletVisual : MonoBehaviour
         mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         mr.receiveShadows = false;
 
-        Shader bulletShader = Shader.Find("Universal Render Pipeline/Lit");
+        Shader bulletShader = Shader.Find("Universal Render Pipeline/Unlit");
         if (bulletShader == null)
-            bulletShader = Shader.Find("Standard");
-        mr.material = new Material(bulletShader);
+            bulletShader = Shader.Find("Sprites/Default");
+        Material bulletMat = new Material(bulletShader);
+        if (bulletMat.HasProperty("_BaseColor"))
+            bulletMat.SetColor("_BaseColor", new Color(0f, 1f, 0.85f, 1f));
+        else if (bulletMat.HasProperty("_Color"))
+            bulletMat.SetColor("_Color", new Color(0f, 1f, 0.85f, 1f));
+        mr.material = bulletMat;
 
         mf.mesh = CreateTinySphereMesh();
         transform.localScale = Vector3.one * 0.08f;
@@ -114,7 +119,7 @@ public class Sniper_ChainBulletVisual : MonoBehaviour
         {
             Shader fxShader = Shader.Find("Universal Render Pipeline/Unlit");
             if (fxShader == null)
-                fxShader = Shader.Find("Standard");
+                fxShader = Shader.Find("Sprites/Default");
             r.material = new Material(fxShader);
 
             if (r.material.HasProperty("_BaseColor"))

@@ -231,12 +231,19 @@ public class Enemy_Melee : Enemy
         if (distToPlayer < attackData.attackRange)
             return true;
 
-        // If player is in a car, also check distance to the car
         Car_Controller car = player.GetComponentInParent<Car_Controller>();
         if (car != null)
         {
-            float distToCar = Vector3.Distance(transform.position, car.transform.position);
-            return distToCar < attackData.attackRange + 2f;
+            Collider carCol = car.GetComponent<Collider>();
+            if (carCol != null)
+            {
+                Vector3 closest = carCol.ClosestPoint(transform.position);
+                float distToCar = Vector3.Distance(transform.position, closest);
+                return distToCar < attackData.attackRange;
+            }
+
+            float distToCarCenter = Vector3.Distance(transform.position, car.transform.position);
+            return distToCarCenter < attackData.attackRange + 1f;
         }
 
         return false;

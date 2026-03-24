@@ -43,7 +43,11 @@ public class GameManager : MonoBehaviour
         UI.instance?.inGameUI?.ShowControlsHint();
     }
 
-    public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    public void RestartScene()
+    {
+        TimeManager.instance.UnfreezeTime();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     public void GameCompleted()
     {
@@ -55,13 +59,22 @@ public class GameManager : MonoBehaviour
         UI.instance.ShowVictoryScreenUI(comicIndex);
         ControlsManager.instance.controls.Character.Disable();
         player.health.currentHealth += 99999;
+        TimeManager.instance.FreezeTime();
     }
 
     public void GameOver()
     {
+        ControlsManager.instance.controls.Character.Disable();
         TimeManager.instance.SlowMotionFor(1.5f);
         UI.instance.ShowGameOverUI();
         CameraManager.instance.ChangeCameraDistance(5);
+        StartCoroutine(FreezeAfterDelay(1.6f));
+    }
+
+    private System.Collections.IEnumerator FreezeAfterDelay(float realSeconds)
+    {
+        yield return new WaitForSecondsRealtime(realSeconds);
+        TimeManager.instance.FreezeTime();
     }
 
     private void SetDefaultWeaponsForPlayer()

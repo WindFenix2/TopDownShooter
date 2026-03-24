@@ -19,8 +19,6 @@ public class Mission_KeyFind : Mission
     {
         keyFound = false;
 
-        // Unsubscribe first to prevent duplicate handlers from previous play sessions
-        // (ScriptableObjects persist in the Editor, so static events accumulate)
         MissionObject_Key.OnKeyPickedUp -= PickUpKey;
         MissionObject_Key.OnKeyPickedUp += PickUpKey;
 
@@ -32,7 +30,6 @@ public class Mission_KeyFind : Mission
 
         keyEnemy = enemy;
 
-        // Add hunt target component so tracker can find this enemy
         if (enemy.GetComponent<MissionObject_HuntTarget>() == null)
             enemy.gameObject.AddComponent<MissionObject_HuntTarget>();
     }
@@ -80,5 +77,15 @@ public class Mission_KeyFind : Mission
             UI_EnemyTracker.instance.SetTracking(false);
 
         UI.instance.inGameUI.UpdateMissionInfo("You've got the key! \n Get to the evacuation point.");
+    }
+    public override void CleanupMission()
+    {
+        MissionObject_Key.OnKeyPickedUp -= PickUpKey;
+        keyFound = false;
+        keyEnemy = null;
+        lastTrackingState = false;
+
+        if (UI_EnemyTracker.instance != null)
+            UI_EnemyTracker.instance.SetTracking(false);
     }
 }

@@ -19,8 +19,6 @@ public class Mission_EnemyHunt : Mission
         killsToGo = amountToKill;
         UpdateMissionUI();
 
-        // Unsubscribe first to prevent duplicate handlers from previous play sessions
-        // (ScriptableObjects persist in the Editor, so static events accumulate)
         MissionObject_HuntTarget.OnTargetKilled -= EliminateTarget;
         MissionObject_HuntTarget.OnTargetKilled += EliminateTarget;
 
@@ -71,5 +69,11 @@ public class Mission_EnemyHunt : Mission
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetaiils);
     }
 
-}
+    public override void CleanupMission()
+    {
+        MissionObject_HuntTarget.OnTargetKilled -= EliminateTarget;
 
+        if (UI_EnemyTracker.instance != null)
+            UI_EnemyTracker.instance.SetTracking(false);
+    }
+}

@@ -23,8 +23,6 @@ public class Mission_CarDelivery : Mission
         carWasDelivered = false;
         gasolinePickedUp = false;
 
-        // Unsubscribe first to prevent duplicate handlers from previous play sessions
-        // (ScriptableObjects persist in the Editor, so static events accumulate)
         MissionObject_CarToDeliver.OnCarDelivery -= CarDeliveryCompleted;
         Pickup_Gasoline.OnGasolinePickedUp -= GasolinePicked;
         Car_HealthController.OnCarDestroyed -= OnCarDestroyed;
@@ -153,5 +151,14 @@ public class Mission_CarDelivery : Mission
 
         UI.instance?.inGameUI?.ShowCenterMessage("Vehicle destroyed! Mission failed.");
         GameManager.instance.GameOver();
+    }
+    public override void CleanupMission()
+    {
+        MissionObject_CarToDeliver.OnCarDelivery -= CarDeliveryCompleted;
+        Pickup_Gasoline.OnGasolinePickedUp -= GasolinePicked;
+        Car_HealthController.OnCarDestroyed -= OnCarDestroyed;
+
+        carWasDelivered = false;
+        gasolinePickedUp = false;
     }
 }

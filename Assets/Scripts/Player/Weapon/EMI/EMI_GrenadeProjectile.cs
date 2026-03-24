@@ -118,6 +118,17 @@ public class EMI_GrenadeProjectile : MonoBehaviour
             velocity += Vector3.up * upwardBoost;
 
         rb.velocity = velocity;
+
+        if (owner != null)
+        {
+            Collider grenadeCol = GetComponent<Collider>();
+            if (grenadeCol != null)
+            {
+                Collider[] ownerCols = owner.GetComponentsInChildren<Collider>();
+                for (int i = 0; i < ownerCols.Length; i++)
+                    Physics.IgnoreCollision(grenadeCol, ownerCols[i], true);
+            }
+        }
     }
 
     private void Update()

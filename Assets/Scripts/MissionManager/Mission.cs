@@ -42,4 +42,9 @@ public abstract class Mission : ScriptableObject
     {
 
     }
+
+    public virtual void CleanupMission()
+    {
+
+    }
 }

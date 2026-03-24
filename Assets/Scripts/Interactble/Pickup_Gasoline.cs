@@ -4,6 +4,7 @@ using UnityEngine;
 public class Pickup_Gasoline : Interactable
 {
     public static event Action OnGasolinePickedUp;
+    public static void ClearEvent() => OnGasolinePickedUp = null;
 
     [SerializeField] private int amount = 1;
 

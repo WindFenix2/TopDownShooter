@@ -10,11 +10,13 @@ public class Car_HealthController : MonoBehaviour, IDamagable
     public int maxHealth;
     public int currentHealth;
 
-    private bool carBroken;
+    public bool carBroken { get; private set; }
 
     public static System.Action OnCarDestroyed;
+    public static void ClearEvent() => OnCarDestroyed = null;
 
     [Header("Explosion Info")]
+    [SerializeField] private bool canExplode = true;
     [SerializeField] private int explosionDamage = 350;
     [Space]
     [SerializeField] private float explosionRadius = 3;
@@ -61,8 +63,22 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
         OnCarDestroyed?.Invoke();
 
+        Car_Interaction interaction = GetComponent<Car_Interaction>();
+        if (interaction != null)
+        {
+            interaction.HighlightActive(false);
+            Player_Interaction pi = GameManager.instance?.player?.GetComponent<Player_Interaction>();
+            if (pi != null)
+            {
+                pi.GetInteracbles().Remove(interaction);
+                pi.UpdateClosestInteractble();
+            }
+        }
+
         fireFx.gameObject.SetActive(true);
-        StartCoroutine(ExplosionCo(explosionDelay));
+
+        if (canExplode)
+            StartCoroutine(ExplosionCo(explosionDelay));
     }
 
     public void TakeDamage(int damage)
@@ -73,9 +89,11 @@ public class Car_HealthController : MonoBehaviour, IDamagable
 
     private IEnumerator ExplosionCo(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
-        explosionFx.gameObject.SetActive(true);
+        if (explosionFx != null)
+            explosionFx.gameObject.SetActive(true);
+
         carController.rb.
             AddExplosionForce(explosionForce, explosionPoint.position,
             explosionRadius, explosionUpwardsModifier, ForceMode.Impulse);

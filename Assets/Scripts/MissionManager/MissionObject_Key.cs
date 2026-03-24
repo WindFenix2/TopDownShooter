@@ -7,6 +7,7 @@ public class MissionObject_Key : MonoBehaviour
 {
     private GameObject player;
     public static event Action OnKeyPickedUp;
+    public static void ClearEvent() => OnKeyPickedUp = null;
 
     private void Awake()
     {

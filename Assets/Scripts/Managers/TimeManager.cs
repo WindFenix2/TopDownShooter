@@ -14,6 +14,7 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] private float slowMotionTimeScale = .5f;
     private bool isSlowMotionHeld;
+    private bool frozen;
 
     private void Awake()
     {
@@ -23,7 +24,9 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
-        // Hold Ctrl to keep slow motion, release to smoothly resume
+        if (frozen)
+            return;
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
             if (!isSlowMotionHeld)
@@ -58,8 +61,29 @@ public class TimeManager : MonoBehaviour
 
     public void ResumeTime()
     {
+        if (frozen)
+            return;
+
         timeAdjustRate = resumeRate;
         targetTimeScale = 1;
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetSFXPause(false);
+    }
+
+    public void FreezeTime()
+    {
+        frozen = true;
+        targetTimeScale = 0;
+        Time.timeScale = 0;
+        if (AudioManager.instance != null)
+            AudioManager.instance.SetSFXPause(true);
+    }
+
+    public void UnfreezeTime()
+    {
+        frozen = false;
+        targetTimeScale = 1;
+        Time.timeScale = 1;
         if (AudioManager.instance != null)
             AudioManager.instance.SetSFXPause(false);
     }
@@ -71,6 +95,8 @@ public class TimeManager : MonoBehaviour
         targetTimeScale = slowMotionTimeScale;
         Time.timeScale = targetTimeScale;
         yield return new WaitForSecondsRealtime(seconds);
-        ResumeTime();
+
+        if (!frozen)
+            ResumeTime();
     }
 }

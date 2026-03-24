@@ -90,6 +90,7 @@ public class Car_Controller : MonoBehaviour
     {
         rb.centerOfMass = centerOfMass.localPosition;
         rb.mass = carMass;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
         foreach (var wheel in wheels)
         {
@@ -281,6 +282,7 @@ public class Car_Controller : MonoBehaviour
         }
         else
         {
+            rb.isKinematic = false;
             rb.constraints = RigidbodyConstraints.None;
             rb.drag = 0;
         }
@@ -301,6 +303,7 @@ public class Car_Controller : MonoBehaviour
         }
 
         rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
     }
 
     public void BrakeTheCar()
