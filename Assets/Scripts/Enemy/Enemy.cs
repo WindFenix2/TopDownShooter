@@ -96,6 +96,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (IsDead)
+            return;
+
         if (agent != null && !agent.isOnNavMesh)
             return;
 

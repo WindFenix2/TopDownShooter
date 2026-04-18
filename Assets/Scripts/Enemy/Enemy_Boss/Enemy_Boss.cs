@@ -86,6 +86,9 @@ public class Enemy_Boss : Enemy
     {
         base.Update();
 
+        if (IsDead)
+            return;
+
         stateMachine.currentState.Update();
 
         if (ShouldEnterBattleMode())

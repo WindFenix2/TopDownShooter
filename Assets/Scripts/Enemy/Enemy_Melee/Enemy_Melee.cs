@@ -95,6 +95,10 @@ public class Enemy_Melee : Enemy
     protected override void Update()
     {
         base.Update();
+
+        if (IsDead)
+            return;
+
         stateMachine.currentState.Update();
 
         if (currentWeapon != null)
